@@ -1,0 +1,26 @@
+{%
+  set classes = [
+    'node',
+    'node--' ~ node.bundle|clean_class,
+    'node--' ~ view_mode|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    is_front ? 'node--is-front'
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <header class="node__header {{ node_hide_header or is_front ? 'visually-hidden' }}">
+    {% block node_header %}
+      <h1 class="node__heading">
+        {% block node_heading %}
+          {{- label -}}
+        {% endblock %}
+      </h1>
+    {% endblock %}
+  </header>
+
+  {% block node_content %}
+    <div class="node__content">
+      {{ content }}
+    </div>
+  {% endblock %}
+</article>

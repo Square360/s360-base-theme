@@ -1,0 +1,15 @@
+{% if title %}
+  <h3 class="view__heading">{{ title }}</h3>
+{% endif %}
+
+{% for item in items %}
+  {%
+    set item_classes = [
+      'view__row',
+      'view__row--' ~ loop.index
+    ]
+  %}
+  <div{{ item.attributes.addClass(item_classes) }}>
+    {{- item.content -}}
+  </div>
+{% endfor %}

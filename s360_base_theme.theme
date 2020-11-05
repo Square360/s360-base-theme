@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * s360_base_theme.theme
+ *
+ * Defines custom hooks for the theme.
+ */
+
+require_once drupal_get_path('theme', 's360_base_theme') . '/theme-hooks/preprocess.php';
+require_once drupal_get_path('theme', 's360_base_theme') . '/theme-hooks/preprocess-form.php';
+require_once drupal_get_path('theme', 's360_base_theme') . '/theme-hooks/preprocess-menu.php';
+require_once drupal_get_path('theme', 's360_base_theme') . '/theme-hooks/preprocess-node.php';
+require_once drupal_get_path('theme', 's360_base_theme') . '/theme-hooks/preprocess-taxonomy.php';
+require_once drupal_get_path('theme', 's360_base_theme') . '/theme-hooks/preprocess-views.php';
+
+require_once drupal_get_path('theme', 's360_base_theme') . '/theme-hooks/theme-suggestions.php';

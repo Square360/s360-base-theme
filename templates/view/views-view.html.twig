@@ -1,0 +1,68 @@
+{%
+  set classes = [
+    'view',
+    'view--' ~ css_name,
+    'view--' ~ view.current_display|clean_class,
+    'view--display-' ~ view.style_plugin.definition.id|clean_class,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<section{{ attributes.addClass(classes) }}>
+  {% if title_prefix or title_suffix or exposed or header %}
+    <header class="view__header">
+      {% if exposed %}
+        <div class="view__exposed-filters">
+          {{ exposed }}
+        </div>
+      {% endif %}
+
+      {% if header %}
+        {{ header }}
+      {% endif %}
+    </header>
+  {% endif %}
+
+  <div class="view__content">
+    {% if attachment_before %}
+      <div class="view__attachment view__attachment--before">
+        {{ attachment_before }}
+      </div>
+    {% endif %}
+
+    <div class="view__rows">
+      {{ rows }}
+    </div>
+
+    {% block view_slider_arrows %}
+      {{- view_slider_arrows -}}
+    {% endblock %}
+
+    {{ empty }}
+
+    {% if pager %}
+      <div class="view__pager">
+        {{ pager }}
+      </div>
+    {% endif %}
+
+    {% if attachment_after %}
+      <div class="view__attachment view__attachment--after">
+        {{ attachment_after }}
+      </div>
+    {% endif %}
+
+    {{ more }}
+
+    {% if footer %}
+      <footer class="view__footer">
+        {{ footer }}
+      </footer>
+    {% endif %}
+
+    {{ feed_icons }}
+  </div>
+
+  {% block view_aside %}
+    {{- view_aside -}}
+  {% endblock %}
+</section>
