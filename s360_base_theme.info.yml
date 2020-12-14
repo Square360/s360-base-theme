@@ -1,5 +1,4 @@
-name: S360 Base Themes
-base theme: false
+name: S360 Base Theme
 core: 8.x
 description: 'Provides theme hooks and base templates for faster development.'
 type: theme
