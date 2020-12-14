@@ -1,0 +1,7 @@
+{% if content %}
+  <figure{{ attributes.addClass(['media', 'media--remote-video']) }}>
+    <div class="media__video-wrapper">
+      {{ content.field_media_oembed_video }}
+    </div>
+  </figure>
+{% endif %}
