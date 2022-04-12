@@ -5,7 +5,7 @@ base theme: false
 core_version_requirement: ^8 || ^9
 
 libraries:
-  - 's360_base_theme/s360_base_theme.theme'
+  - 's360_base_theme/base'
 
 regions:
   site_header: Header

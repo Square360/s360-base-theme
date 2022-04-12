@@ -1,4 +1,3 @@
-base:
+s360_base_theme.theme:
   css:
     theme:
-      dist/01-base/base.css: {}
