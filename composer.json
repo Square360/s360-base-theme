@@ -3,6 +3,6 @@
   "description": "Provides theme hooks and base templates for faster development.",
   "type": "drupal-theme",
   "homepage": "https://bitbucket.org/sq360_sysadmin/s360-base-theme",
-  "keywords": ["Drupal", "Theme", "Admin Theme"],
+  "keywords": ["Drupal", "Theme"],
   "license": "GPL-2.0+"
 }

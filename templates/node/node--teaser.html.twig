@@ -11,7 +11,7 @@
     is_front ? 'node-teaser--is-front'
   ]
 %}
-<article{{ attributes.addClass(classes) }}>
+<teaser{{ attributes.addClass(classes) }}>
   <header class="node-teaser__header {{ node_teaser_hide_header ? 'visually-hidden' }}">
     {% block node_teaser_header %}
       <{{- node_teaser_heading_size -}} class="node-teaser__heading">
@@ -33,4 +33,4 @@
       {{ node_teaser_image }}
     {% endblock %}
   </div>
-</article>
+</teaser>

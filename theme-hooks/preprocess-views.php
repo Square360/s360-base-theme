@@ -2,7 +2,7 @@
 
 /**
  * @file
- * preprocess-view.php
+ * preprocess-views.php
  *
  * Define all view preprocess HOOKs.
  */
