@@ -94,33 +94,33 @@ function copy_files($files, $theme_path) {
 function get_files_to_copy() {
   if (get_cli_option('storybook')) {
     $files = [
-      // '.browserslistrc',
-      '.editorconfig',
-      // '.eslintignore',
-      // '.eslintrc.yml',
-      // '.gitignore',
-      // '.npmrc',
-      // 'a11y.config.js',
-      // 'babel.config.js',
-      // 'lint-staged.config.js',
-      // 'package.json',
-      // 'prettier.config.js',
-
-      's360_base_theme.theme',
-      'theme-hooks',
-
-      'storybook_setup/postcss.config.js',
       'storybook_setup/.storybook',
       'storybook_setup/components',
       'storybook_setup/scripts',
       'storybook_setup/util',
       'storybook_setup/webpack',
+      'storybook_setup/.browserslistrc',
+      'storybook_setup/.eslintignore',
+      'storybook_setup/.eslintrc.yml',
+      'storybook_setup/.npmrc',
+      'storybook_setup/a11y.config.js',
+      'storybook_setup/babel.config.js',
+      'storybook_setup/jest.config.js',
+      'storybook_setup/lint-staged.config.js',
+      'storybook_setup/package.json',
+      'storybook_setup/postcss.config.js',
       'storybook_setup/s360_base_theme.info.yml',
       'storybook_setup/s360_base_theme.libraries.yml',
+      '.editorconfig',
+      's360_base_theme.theme',
+      'templates',
+      'theme-hooks',
     ];
   }
   else {
     $files = [
+      'templates',
+      'theme-hooks',
       '.editorconfig',
       's360_base_theme.theme',
       's360_base_theme.info.yml',
