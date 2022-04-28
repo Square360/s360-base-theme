@@ -1,8 +1,0 @@
-{
-  "name": "square360/s360_base_theme",
-  "description": "Provides theme hooks and base templates for faster development.",
-  "type": "drupal-theme",
-  "homepage": "https://bitbucket.org/sq360_sysadmin/s360-base-theme",
-  "keywords": ["Drupal", "Theme"],
-  "license": "GPL-2.0+"
-}

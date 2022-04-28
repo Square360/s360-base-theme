@@ -20,18 +20,22 @@ function s360_theme_init() {
   ];
 
   $machine_name = preg_replace($search, '', $machine_name);
+  $kebab_name = str_replace('_', '-', $machine_name);
 
-  s360_theme_create($theme_name, $machine_name);
+  s360_theme_create($theme_name, $machine_name, $kebab_name);
 }
 
-function s360_theme_create($theme_name, $machine_name) {
+function s360_theme_create($theme_name, $machine_name, $kebab_name) {
   $theme_dir = substr(getcwd(), 0, strpos(getcwd(), 'themes') + 6);
 
   $theme_path = $theme_dir . DIRECTORY_SEPARATOR . 'custom' . DIRECTORY_SEPARATOR . $machine_name;
 
-  $create_custom_theme_dir_status = @mkdir(normalize_path($theme_path), 0755, TRUE);
-  if ($create_custom_theme_dir_status !== TRUE) {
-    return 'custom theme could not be created';
+  if (!is_dir(normalize_path($theme_path))) {
+    $create_custom_theme_dir_status = @mkdir(normalize_path($theme_path), 0755, TRUE);
+
+    if ($create_custom_theme_dir_status !== TRUE) {
+      return 'custom theme could not be created' . PHP_EOL;
+    }
   }
 
   $files_to_copy = get_files_to_copy();
@@ -41,7 +45,7 @@ function s360_theme_create($theme_name, $machine_name) {
     print 'Failed to files' . PHP_EOL;
   }
 
-  $alterations = set_alterations($theme_name, $machine_name);
+  $alterations = set_alterations($theme_name, $machine_name, $kebab_name);
   $files_to_alter = get_files_to_alter();
   $files_to_alter_status = alter_files($theme_path, $files_to_alter, $alterations);
 
@@ -57,11 +61,10 @@ function s360_theme_create($theme_name, $machine_name) {
   }
 }
 
-
 function _recursive_copy($src, $dest) {
   if (is_dir($src)) {
     // Make the destination directory if not exist
-    @mkdir($dest);
+    @mkdir($dest, 0755, TRUE);
 
     $dir_handle = opendir($src);
 
@@ -83,7 +86,15 @@ function copy_files($files, $theme_path) {
     $src = getcwd() . DIRECTORY_SEPARATOR . $file;
 
     $file = explode(DIRECTORY_SEPARATOR, $file);
-    $dest = $theme_path . DIRECTORY_SEPARATOR . end($file);
+
+    if (in_array('assets', $file)) {
+      $file = 'assets' . DIRECTORY_SEPARATOR . end($file);
+    }
+    else {
+      $file = end($file);
+    }
+
+    $dest = $theme_path . DIRECTORY_SEPARATOR . $file;
 
     $recursive_copy_status = _recursive_copy($src, $dest);
   }
@@ -92,40 +103,28 @@ function copy_files($files, $theme_path) {
 }
 
 function get_files_to_copy() {
+  $common_files = [
+    '.editorconfig',
+    's360_base_theme.theme',
+    's360_base_theme.info.yml',
+    's360_base_theme.libraries.yml',
+    'templates',
+    'theme-hooks',
+  ];
+
   if (get_cli_option('storybook')) {
-    $files = [
-      'storybook_setup/.storybook',
-      'storybook_setup/components',
-      'storybook_setup/scripts',
-      'storybook_setup/util',
-      'storybook_setup/webpack',
-      'storybook_setup/.browserslistrc',
-      'storybook_setup/.eslintignore',
-      'storybook_setup/.eslintrc.yml',
-      'storybook_setup/.npmrc',
-      'storybook_setup/a11y.config.js',
-      'storybook_setup/babel.config.js',
-      'storybook_setup/jest.config.js',
-      'storybook_setup/lint-staged.config.js',
-      'storybook_setup/package.json',
-      'storybook_setup/postcss.config.js',
-      'storybook_setup/s360_base_theme.info.yml',
-      'storybook_setup/s360_base_theme.libraries.yml',
-      '.editorconfig',
-      's360_base_theme.theme',
-      'templates',
-      'theme-hooks',
+    $storybook_files = [
+      'assets/.storybook',
+      'assets/components',
+      'assets/config',
+      'assets/src',
+      'assets/.babelrc',
+      'assets/package.json',
+      'assets/tsconfig.json',
+      'assets/webpack.config.ts',
     ];
-  }
-  else {
-    $files = [
-      'templates',
-      'theme-hooks',
-      '.editorconfig',
-      's360_base_theme.theme',
-      's360_base_theme.info.yml',
-      's360_base_theme.libraries.yml',
-    ];
+
+    $files = array_merge($common_files, $storybook_files);
   }
 
   return $files;
@@ -151,18 +150,30 @@ function rename_files(array $files_to_rename, string $theme_path, string $machin
 }
 
 function get_files_to_alter() {
-  return [
+  $common_files = [
     'theme-hooks',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
     's360_base_theme.theme',
   ];
+
+  if (get_cli_option('storybook')) {
+    $storybook_files = [
+      'assets/package.json',
+    ];
+
+    $files = array_merge($common_files, $storybook_files);
+  }
+
+
+  return $files;
 }
 
-function set_alterations(string $theme_name, string $machine_name) {
+function set_alterations(string $theme_name, string $machine_name, string $kebab_name) {
   return [
     'S360 Base Theme' => $theme_name,
     's360_base_theme' => $machine_name,
+    's360-base-theme' => $kebab_name,
   ];
 }
 
@@ -201,6 +212,8 @@ function alter_files(string $theme_path, array $files_to_alter, array $alteratio
   return TRUE;
 }
 
+// Utilities
+
 function file_str_replace($file_path, array $find, array $replace) {
   $file_path = normalize_path($file_path);
 
@@ -211,8 +224,6 @@ function file_str_replace($file_path, array $find, array $replace) {
 
   return TRUE;
 }
-
-// Utilities
 
 /**
  * Checks whether current OS is windows.

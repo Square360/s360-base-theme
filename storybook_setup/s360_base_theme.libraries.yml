@@ -1,4 +1,0 @@
-base:
-  css:
-    theme:
-      dist/01-base/base.css: {}
