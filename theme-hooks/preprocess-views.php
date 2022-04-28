@@ -13,16 +13,18 @@ use Drupal\Component\Utility\Html;
  * Implements hook_preprocess_views_view().
  */
 function s360_base_theme_preprocess_views_view(&$variables) {
+  /** @var \Drupal\views\ViewExecutable $view */
   $view = $variables['view'];
-  $style_plugin = $view->style_plugin;
-  $view_display = $style_plugin->getPluginId();
+  $view_style_plugin = $view->style_plugin;
+  $view_plugin_id = $view_style_plugin->getPluginId();
+  $view_current_display = $view->current_display;
 
   // Clear any Drupal classes.
   $variables['attributes']['class'] = [];
 
-  if ($view_display == 'grid') {
-    if (isset($style_plugin->options['columns'])) {
-      $variables['attributes']['class'][] = Html::getClass('view--display-grid-columns-' . $style_plugin->options['columns']);
+  if ($view_plugin_id == 'grid') {
+    if (isset($view_style_plugin->options['columns'])) {
+      $variables['attributes']['class'][] = Html::getClass('view--display-grid-columns-' . $view_style_plugin->options['columns']);
     }
   }
 }
