@@ -1,9 +1,29 @@
-{% if not label_hidden %}
-  <div class="field-label">{{ label|t }}</div>
-{% endif %}
-
-{% for item in items %}
-  <div class="field-value field-value--{{ loop.index }}">
+{% if label_hidden %}
+  {% if attributes %}
+    <div{{ attributes }}>
+  {% endif %}
+  {% for item in items %}
+    {% if item.attributes %}
+      <div{{ item.attributes }}>
+    {% endif %}
     {{- item.content -}}
-  </div>
-{% endfor %}
+    {% if item.attributes %}
+      </div>
+    {% endif %}
+  {% endfor %}
+  {% if attributes %}
+    </div>
+  {% endif %}
+{# There is a label, assume this is not for public display. #}
+{% else %}
+  <dl class="field">
+    <dt class="field__term">{{ label }}</dt>
+    <dd class="field__description">
+      {% for item in items %}
+        <div clsss="field__item field__item--{{ loop.index }}">
+          {{- item.content -}}
+        </div>
+      {% endfor %}
+    </dd>
+  </dl>
+{% endif %}

@@ -1,0 +1,45 @@
+{%
+  set header_attributes = create_attribute({
+    'class': [
+      'site-header',
+      is_front ? 'site-header--is-front',
+    ],
+    'id': 'site-header',
+    'data-js': 'site-header'
+  })
+%}
+<header{{ header_attributes }}>
+  {{- page.site_header -}}
+</header>
+
+{% if page.system %}
+  <div class="site-header__system">
+    {{- page.system -}}
+  </div>
+{% endif %}
+
+{%
+  set main_attributes = create_attribute({
+    'class': [
+      'site-main',
+      is_front ? 'site-main--is-front'
+    ],
+    'id': 'site-main'
+  })
+%}
+<main{{ main_attributes }}>
+  {{- page.content -}}
+</main>
+
+{%
+  set footer_attributes = create_attribute({
+    'class': [
+      'site-footer',
+      is_front ? 'site-footer--is-front'
+    ],
+    'id': 'site-footer'
+  })
+%}
+<footer{{ footer_attributes }}>
+  {{- page.site_footer -}}
+</footer>
