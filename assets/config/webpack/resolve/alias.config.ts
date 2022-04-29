@@ -16,4 +16,3 @@ export default {
   ...BASE_ALIASES,
   ...customAliases
 };
-

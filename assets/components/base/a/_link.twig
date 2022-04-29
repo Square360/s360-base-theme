@@ -1,0 +1,21 @@
+{#
+/**
+ * Available variables:
+ * - link_attributes - the url this link should poing to
+ * - link_url - the url this link should poing to
+ *
+ * Available blocks:
+ * - link_content - used to replace the content of the link
+ */
+#}
+
+<a
+  {% for attribute, value in link_attributes %}
+    {{ attribute }}="{{ value }}"
+  {% endfor %}
+  href="{{ link_url }}"
+>
+  {% block link_content %}
+    {{ link_content }}
+  {% endblock %}
+</a>
