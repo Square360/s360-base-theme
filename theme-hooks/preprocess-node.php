@@ -4,7 +4,7 @@
  * @file
  * preprocess-node.php
  *
- * Define all view preprocess HOOKs.
+ * Define all node preprocess HOOKs.
  */
 
 /**
@@ -13,15 +13,16 @@
 function s360_base_theme_preprocess_node(&$variables) {
   $elements = $variables['elements'];
 
-  if (isset($elements['#node'])) {
-    /** @var \Drupal\node\Entity\Node $node */
-    $node = $elements['#node'];
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = $elements['#node'];
 
-    // Clear any Drupal classes.
-    $variables['attributes']['class'] = [];
+  $node_view_mode = $elements['#view_mode'];
+  $node_base_class = $node_view_mode === 'full' ? 'node' : 'teaser';
 
-    // Remove some attributes.
-    unset($variables['attributes']['role']);
-    unset($variables['attributes']['about']);
-  }
+  // Clear any Drupal classes.
+  $variables['attributes']['class'] = [];
+
+  // Remove some attributes.
+  unset($variables['attributes']['role']);
+  unset($variables['attributes']['about']);
 }

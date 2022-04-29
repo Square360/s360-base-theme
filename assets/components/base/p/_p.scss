@@ -1,0 +1,14 @@
+p {
+  color: var(--p-color, inherit);
+  display: var(--p-display, block);
+  font-family: var(--p-font-family, inherit);
+  font-size: var(--p-font-size, inherit);
+  font-weight: var(--p-font-weight, inherit);
+  line-height: var(--p-line-height, inherit);
+  margin: var(--p-margin, 0 0 1em 0);
+  padding: var(--p-padding, 0);
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
