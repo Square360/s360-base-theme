@@ -1,0 +1,27 @@
+{% set image_base_class = image_base_class|default('image') %}
+
+<img src="{{ image_src }}" loading="lazy"
+  {% if image_srcset %}
+    srcset="{{ image_srcset }}"
+  {% endif %}
+
+  {% if image_sizes %}
+    sizes="{{ image_sizes }}"
+  {% endif %}
+
+  {% if width %}
+    width="{{ width }}"
+  {% endif %}
+
+  {% if height %}
+    height="{{ height }}"
+  {% endif %}
+
+  {% if image_alt %}
+    alt="{{ image_alt }}"
+  {% endif %}
+
+  {% if image_title %}
+    title="{{ image_title }}"
+  {% endif %}
+/>

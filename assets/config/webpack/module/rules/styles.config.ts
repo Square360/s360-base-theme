@@ -1,0 +1,45 @@
+// css-loader
+// @see https://webpack.js.org/loaders/css-loader/#options
+//
+// postcss-loader
+// @see https://webpack.js.org/loaders/postcss-loader/#options
+//
+// sass-loader
+// @see https://webpack.js.org/loaders/sass-loader/#options
+
+export default {
+  test: /\.s[ac]ss$/i,
+  use: [
+    { loader: require('mini-css-extract-plugin').loader },
+    { loader: 'css-loader',
+      options: {
+        url: (url: string): boolean => {
+          if (url.includes('images')) {
+            return false;
+          }
+          else {
+            return true;
+          }
+        }
+      }
+    },
+    { loader: 'postcss-loader',
+      options: {
+        postcssOptions: {
+          parser: 'postcss-scss',
+          plugins: [
+            require('autoprefixer')({
+              grid: true
+            })
+          ]
+        }
+      }
+    },
+    { loader: 'sass-loader',
+      options: {
+        // Use dart-sass.
+        implementation: require('sass')
+      }
+    }
+  ]
+};
