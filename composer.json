@@ -1,0 +1,12 @@
+{
+    "name": "square360/s360_base_theme",
+    "description": "Square360 Mediteran",
+    "type": "drupal-theme",
+    "homepage": "https://bitbucket.org/sq360_sysadmin/s360-base-theme",
+    "keywords": [
+        "Drupal",
+        "Theme"
+    ],
+    "license": "GPL-2.0+",
+    "version": "1.0.0"
+}

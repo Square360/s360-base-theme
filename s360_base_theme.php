@@ -6,7 +6,7 @@ function s360_theme_init() {
   $theme_name = get_cli_option('theme-name');
 
   if (!$theme_name) {
-    print "WTF";
+    print "No theme name provided";
     return false;
   }
 
