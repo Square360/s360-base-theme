@@ -1,5 +1,4 @@
 // Simple Drupal.behaviors usage for Storybook
-
 window.Drupal = { behaviors: {} };
 
 (function (Drupal, drupalSettings) {

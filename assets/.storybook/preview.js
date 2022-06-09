@@ -4,7 +4,9 @@ import Twig from 'twig';
 import { setupTwig } from './setupTwig';
 
 // GLOBAL CSS
-import '../components/base/index.scss';
+import '../src/base/index.scss';
+import '../src/theme/index.scss';
+import '../src/layout/index.scss';
 
 // If in a Drupal project, it's recommended to import a symlinked version of drupal.js.
 import './_drupal.js';
