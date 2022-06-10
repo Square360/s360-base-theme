@@ -1,19 +1,7 @@
 {% if label_hidden %}
-  {% if attributes %}
-    <div{{ attributes }}>
-  {% endif %}
   {% for item in items %}
-    {% if item.attributes %}
-      <div{{ item.attributes }}>
-    {% endif %}
     {{- item.content -}}
-    {% if item.attributes %}
-      </div>
-    {% endif %}
   {% endfor %}
-  {% if attributes %}
-    </div>
-  {% endif %}
 {# There is a label, assume this is not for public display. #}
 {% else %}
   <dl class="field">
