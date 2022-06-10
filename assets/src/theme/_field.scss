@@ -1,0 +1,15 @@
+@use "s360-toolkit";
+@use "core";
+
+.field {
+  --dl-padding: #{ core.$spacing-half };
+  --dl-margin: 0 0 #{ core.$spacing-half } 0;
+
+  --dt-font-size: #{ s360-toolkit.font-size-ms(1) };
+  --dt-font-weight: #{ core.$font-weight-bold };
+  --dt-margin: 0 0 #{ core.$spacing-half } 0;
+
+  --dd-padding: 0 #{ core.$spacing-half };
+
+  border: 1px solid core.$color-medium-platinum;
+}
