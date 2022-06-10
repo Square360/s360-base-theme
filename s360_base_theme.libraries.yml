@@ -1,0 +1,39 @@
+global:
+  css:
+    base:
+      assets/dist/base/base.css: { }
+    theme:
+      assets/dist/theme/theme.css: { }
+      assets/dist/components/ckeditor/ckeditor.css: {}
+    layout:
+      assets/dist/layout/layout.css: { }
+  dependencies:
+  - core/jquery
+  - core/jquery.once
+  - core/drupal
+
+# ##################################################
+# Menu libraries
+
+menu.main:
+  css:
+    component:
+      assets/dist/components/menu/main/main.css: {}
+  js:
+    assets/dist/components/menu/main/main.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+menu.local-tasks:
+  css:
+    component:
+      assets/dist/components/menu/local-tasks/local-tasks.css: {}
+
+# ##################################################
+# Node libraries
+
+node.page:
+  css:
+    component:
+      assets/dist/components/node/page/page.css: {}
