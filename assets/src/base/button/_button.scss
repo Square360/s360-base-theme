@@ -1,0 +1,23 @@
+button,
+[role="button"],
+input[type="submit"] {
+  background-color: var(--button-background-color, transparent);
+  border:
+    var(--button-border-width, 0)
+    var(--button-border-style, solid)
+    var(--button-border-color, transparent);
+  border-radius: var(--button-border-radius, 0);
+  box-shadow: var(--button-box-shadow, none);
+  color: var(--button-color, var(--text-color, inherit));
+  cursor: var(--button-cursor, pointer);
+  display: var(--button-display, inline-block);
+  font-size: var(--button-font-size, inherit);
+  font-weight: var(--button-font-wight, inherit);
+  font-family: var(--button-font-family, inherit);
+  line-height: var(--button-line-height, inherit);
+  margin: var(--button-margin, 0);
+  padding: var(--button-padding, 0);
+  text-align: var(--button-text-align, inherit);
+  text-transform: var(--button-text-transform, inherit);
+  transition: var(--button-transition, all 200ms ease-in-out);
+}
