@@ -1,0 +1,13 @@
+<main class="site-main">
+  {% if site_main_page_system %}
+    <div class="site-main__system">
+      {{- site_main_page_system -}}
+    </div>
+  {% endif %}
+
+  {% block site_main_content %}
+    {% include "@components/paragraph/placeholder/placeholder.twig" with {
+      "placeholder_text": "Site Content",
+    } %}
+  {% endblock %}
+</main>
