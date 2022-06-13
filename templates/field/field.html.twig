@@ -4,14 +4,9 @@
   {% endfor %}
 {# There is a label, assume this is not for public display. #}
 {% else %}
-  <dl class="field">
-    <dt class="field__term">{{ label }}</dt>
-    <dd class="field__description">
-      {% for item in items %}
-        <div clsss="field__item field__item--{{ loop.index }}">
-          {{- item.content -}}
-        </div>
-      {% endfor %}
-    </dd>
-  </dl>
+  {{ attach_library('s360_base_theme/field') }}
+
+  {% include "@components/field/field.twig" with {
+    field_items: items
+  } %}
 {% endif %}

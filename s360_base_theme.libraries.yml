@@ -3,7 +3,6 @@ global:
     base:
       assets/dist/base/base.css: { }
     theme:
-      assets/dist/theme/theme.css: { }
       assets/dist/components/ckeditor/ckeditor.css: {}
     layout:
       assets/dist/layout/layout.css: { }
@@ -45,3 +44,8 @@ field.advanced-header-field:
   css:
     component:
       assets/dist/components/field/advanced-header-field/advanced-header-field.css: {}
+
+field.field:
+  css:
+    component:
+      assets/dist/components/field/field.css: {}
