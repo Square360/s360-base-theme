@@ -2,7 +2,6 @@ import * as path from 'path';
 import * as glob from 'glob';
 import * as webpack from 'webpack';
 
-
 import {
   WEBPACK_MODULE_RULES,
   WEBPACK_OPTIMIZATION_MINIMIZER,
@@ -12,14 +11,15 @@ import {
   WEBPACK_PLUGINS
 } from './config/webpack';
 
-
 function getEntries(pattern: string) {
   let entries: any = {};
 
   glob.sync(pattern).forEach((file: string) => {
-    const filePath = file.split('components/')[1];
-    const newfilePath = `${ filePath.replace('.js', '') }`;
-    entries[newfilePath] = file;
+    if (!file.includes('src/vendors')) {
+      const FILE_PATH = file.split('components/')[1];
+      const NEW_FILE_PATH = `${ FILE_PATH.replace('.js', '') }`;
+      entries[NEW_FILE_PATH] = file;
+    }
   });
 
   return entries;
