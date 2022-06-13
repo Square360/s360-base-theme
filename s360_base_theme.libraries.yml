@@ -8,9 +8,9 @@ global:
     layout:
       assets/dist/layout/layout.css: { }
   dependencies:
-  - core/jquery
-  - core/jquery.once
-  - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
 
 # ##################################################
 # Menu libraries
@@ -18,9 +18,9 @@ global:
 menu.main:
   css:
     component:
-      assets/dist/components/menu/main/main.css: {}
+      assets/dist/components/navigation/main/main.css: {}
   js:
-    assets/dist/components/menu/main/main.js: {}
+    assets/dist/components/navigation/main/main.js: {}
   dependencies:
     - core/jquery
     - core/drupal
@@ -28,7 +28,7 @@ menu.main:
 menu.local-tasks:
   css:
     component:
-      assets/dist/components/menu/local-tasks/local-tasks.css: {}
+      assets/dist/components/navigation/local-tasks/local-tasks.css: {}
 
 # ##################################################
 # Node libraries
@@ -37,3 +37,11 @@ node.page:
   css:
     component:
       assets/dist/components/node/page/page.css: {}
+
+##################################################
+# Field libraries
+
+field.advanced-header-field:
+  css:
+    component:
+      assets/dist/components/field/advanced-header-field/advanced-header-field.css: {}
