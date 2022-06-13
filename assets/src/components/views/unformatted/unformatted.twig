@@ -1,0 +1,10 @@
+
+{% if title %}
+  <h3 class="view__title">{{ title }}</h3>
+{% endif %}
+
+{% for row in rows %}
+  <div{{ row.attributes }}>
+    {{- row.content -}}
+  </div>
+{% endfor %}
