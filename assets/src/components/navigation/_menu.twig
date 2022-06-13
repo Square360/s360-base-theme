@@ -47,32 +47,10 @@
             {{ link(item.title, item.url) }}
           {% endif %}
         {% else %}
-          {% if item.in_active_trail %}
-            <details data-menu="{{ item.title|clean_class }}" class="menu__details is-active"><summary class="menu__details-summary">{{ item.title }}</summary>
-          {% else %}
-            <details data-menu="{{ item.title|clean_class }}" class="menu__details"><summary class="menu__details-summary">{{ item.title }}</summary>
-          {% endif %}
-          <div class="menu__content-wrapper">
-            <div class="menu__content-container">
-        {% endif %}
-
-        {% if item.content %}
-          {% if item.content.field_content.0 %}
-            <div class="menu__content">
-              {{ item.content.field_content }}
-            </div>
-          {% endif %}
+          <button>{{ item.title }}</button>
         {% endif %}
 
         {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item.title) }}
-
-        {% if menu_item_type == 'button' %}
-              {# .menu__content-container #}
-              </div>
-            {# .menu__content-wrapper #}
-            </div>
-          </details>
-        {% endif %}
       </li>
     {% endfor %}
     </ul>
