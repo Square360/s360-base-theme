@@ -1,8 +1,8 @@
 import pTwig from './p/_p.twig';
 import paragraphData from './p/p.yml';
 
-import headingTwig from './heading/_heading.twig';
-import headingData from './heading/heading.yml';
+import headingsTwig from './headings/_headings.twig';
+import headingsData from './headings/headings.yml';
 
 /**
  * Storybook Definition.
@@ -10,8 +10,8 @@ import headingData from './heading/heading.yml';
 export default { title: 'Foundations/Text' };
 
 export const headings = () => {
-  return headingData.map((heading) => {
-    return headingTwig(heading)
+  return headingsData.map((heading) => {
+    return headingsTwig(heading)
   }).join('');
 };
 
