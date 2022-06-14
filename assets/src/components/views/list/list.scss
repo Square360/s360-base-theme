@@ -1,8 +1,8 @@
 @use "core/config" as *;
 @use "s360-toolkit" with ($config: $SITE_CONFIG);
 
-@use "../_view" as *;
 @use "core";
+@use "../_view" as *;
 
 .view--display-html-list {
   @extend %view;
