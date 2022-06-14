@@ -16,7 +16,7 @@ function getEntries(pattern: string) {
 
   glob.sync(pattern).forEach((file: string) => {
     if (!file.includes('src/vendors')) {
-      const FILE_PATH = file.split('components/')[1];
+      const FILE_PATH = file.split('src/')[1];
       const NEW_FILE_PATH = `${ FILE_PATH.replace('.js', '') }`;
       entries[NEW_FILE_PATH] = file;
     }
@@ -27,7 +27,7 @@ function getEntries(pattern: string) {
 
 const WEBPACK_CONFIG: webpack.Configuration = {
   target: 'node',
-  entry: getEntries(path.resolve('components/**/!(*.stories|*.component|*.min|*.test).js')),
+  entry: getEntries(path.resolve('src/**/!(_*|*.stories|*.component|*.min|*.test).js')),
   module: {
     rules: WEBPACK_MODULE_RULES
   },
