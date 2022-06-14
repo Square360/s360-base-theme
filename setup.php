@@ -165,6 +165,7 @@ function copy_files(array $files, string $theme_path) {
  */
 function get_files_to_alter() {
   return [
+    'assets/.storybook',
     'assets/package.json',
     'templates',
     'theme-hooks',
