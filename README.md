@@ -26,7 +26,7 @@ $ composer require square360/s360_base_theme
 ## Setup
 After this theme is installed:
 ```bash
-$ /web/themes/contrib/s360_base_theme
+$ cd web/themes/contrib/s360_base_theme
 $ php setup.php --theme-name "[HUMAN READABLE NAME]"
 ```
 
