@@ -57,8 +57,8 @@ _`.custom-widget` is the block_
 ### Dart Sass Compilar
 The `@import` rule is depreciated and MUST NOT be used! The following are the
 new rules to use:
-* [@use](https://sass-lang.com/documentation/at-rules/use)
-* [@forward](https://sass-lang.com/documentation/at-rules/forward)
+- [@use](https://sass-lang.com/documentation/at-rules/use)
+- [@forward](https://sass-lang.com/documentation/at-rules/forward)
 
 ## Storybook Files
 Creates a story that captures the rendered state of a UI component. Filename
