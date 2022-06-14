@@ -9,12 +9,12 @@ module.exports = async ({ config }) => {
     ],
   });
 
-  config.resolve.alias['@core'] = path.resolve('./src/core');
   config.resolve.alias['@base'] = path.resolve('./src/base');
   config.resolve.alias['@layout'] = path.resolve('./src/layout');
   config.resolve.alias['@components'] = path.resolve('./src/components');
 
   config.resolve.alias['s360-toolkit'] = path.resolve(path.join('node_modules', 's360-fundamental-toolkit', 'scss'));
+  config.resolve.alias['core'] = path.resolve(path.join('src', 'core'));
 
   // SCSS
   config.module.rules.push({
