@@ -1,0 +1,1 @@
+import './one-column.scss';
