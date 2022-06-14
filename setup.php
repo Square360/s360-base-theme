@@ -103,31 +103,22 @@ function copy_files($files, $theme_path) {
 }
 
 function get_files_to_copy() {
-  $common_files = [
-    '.editorconfig',
-    's360_base_theme.theme',
-    's360_base_theme.info.yml',
-    's360_base_theme.libraries.yml',
+  return [
+    'assets/.storybook',
+    'assets/config',
+    'assets/src',
+    'assets/.babelrc',
+    'assets/.nvmrc',
+    'assets/package.json',
+    'assets/tsconfig.json',
+    'assets/webpack.config.ts',
     'templates',
     'theme-hooks',
+    '.editorconfig',
+    's360_base_theme.info.yml',
+    's360_base_theme.libraries.yml',
+    's360_base_theme.theme',
   ];
-
-  if (get_cli_option('storybook')) {
-    $storybook_files = [
-      'assets/.storybook',
-      'assets/components',
-      'assets/config',
-      'assets/src',
-      'assets/.babelrc',
-      'assets/package.json',
-      'assets/tsconfig.json',
-      'assets/webpack.config.ts',
-    ];
-
-    $files = array_merge($common_files, $storybook_files);
-  }
-
-  return $files;
 }
 
 function get_files_to_rename() {
@@ -150,23 +141,13 @@ function rename_files(array $files_to_rename, string $theme_path, string $machin
 }
 
 function get_files_to_alter() {
-  $common_files = [
+  return [
     'theme-hooks',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
     's360_base_theme.theme',
+    'assets/package.json',
   ];
-
-  if (get_cli_option('storybook')) {
-    $storybook_files = [
-      'assets/package.json',
-    ];
-
-    $files = array_merge($common_files, $storybook_files);
-  }
-
-
-  return $files;
 }
 
 function set_alterations(string $theme_name, string $machine_name, string $kebab_name) {
@@ -259,10 +240,6 @@ function get_cli_options() {
       case "-theme-name":
       case "--theme-name":
         $options['theme-name'] = $argv[$key + 1];
-        break;
-      case "-storybook":
-      case "--storybook":
-        $options['storybook'] = TRUE;
         break;
     }
   }
