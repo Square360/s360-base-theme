@@ -22,7 +22,8 @@ function s360_base_theme_preprocess(array &$variables) {
 function s360_base_theme_preprocess_html(array &$variables) {
   // Get currently active user and roles.
   $account = \Drupal::currentUser();
-  $roles = $account->getRoles();
+
+  $variables['attributes']['data-roles'] = implode(', ', $account->getRoles());
 
   // Clear any Drupal classes.
   $variables['attributes']['class'] = [];
@@ -34,15 +35,8 @@ function s360_base_theme_preprocess_html(array &$variables) {
     $variables['attributes']['class'][] = Html::getClass('site-page--node-' . $variables['node_type']);
   }
 
-  if (isset($variables['is_front'])) {
+  if (isset($variables['is_front']) && isset($variables['is_front'])) {
     $variables['attributes']['class'][] = 'site-page--is-front';
-  }
-
-  // The getRoles() method will return us the machine names, so there is no need
-  // to process roles names additionally. However, I suggest prefixing the names
-  // with "role-", so it's more obvious.
-  foreach ($roles as $role) {
-    $variables['attributes']['class'][] = 'role-' . $role;
   }
 }
 
@@ -58,23 +52,6 @@ function s360_base_theme_preprocess_region(array &$variables) {
     // Clear any Drupal classes.
     $variables['attributes']['class'] = [];
     $variables['attributes']['class'] = 'region-' . Html::getClass($region);
-  }
-}
-
-/**
- * Implements hook_preprocess_block().
- */
-function s360_base_theme_preprocess_block(array &$variables) {
-  $elements = $variables['elements'];
-
-  if (isset($elements['#id'])) {
-    $block_name = $elements['#id'];
-
-    // Clear any Drupal classes.
-    $variables['attributes']['class'] = [];
-    $variables['attributes']['class'][] = 'block-' . Html::getClass($block_name);
-
-    unset($variables['attributes']['id']);
   }
 }
 

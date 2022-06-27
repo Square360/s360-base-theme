@@ -1,0 +1,20 @@
+@use "core/config" as *;
+@use "s360-toolkit"  with ($config: $SITE_CONFIG);
+
+@use "core";
+
+.menu--local-tasks {
+  @extend %semantic-list;
+
+  display: flex;
+  z-index: 1;
+  position: relative;
+
+  .menu__item {
+    --a-padding: 0.5em;
+
+    & + .menu__item {
+      --li-margin: 0 0 0 1em;
+    }
+  }
+}

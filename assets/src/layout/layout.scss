@@ -1,0 +1,6 @@
+@use "../core/config" as *;
+@use "s360-toolkit" with ($config: $SITE_CONFIG);
+
+@use "./site-header/_site-header.scss";
+@use "./site-main/_site-main.scss";
+@use "./site-footer/_site-footer.scss";

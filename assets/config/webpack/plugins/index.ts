@@ -1,11 +1,9 @@
 // import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-// import { BannerPlugin } from 'webpack';
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-// // --------------------------------------------------
-// // IMPORT PLUGIN CONFIGURATIONS
+// --------------------------------------------------
+// IMPORT PLUGIN CONFIGURATIONS
 
-// import bannerPluginConfig from './banner-plugin.config';
 // import cleanWebpackPluginConfig from './clean-webpack-plugin.config';
 import miniCssExtractPluginConfig from './mini-css-extract-plugin.config';
 // import svgSpritemapWebpackPluginConfig from './svg-spritemap-webpack-plugin.config';
@@ -17,7 +15,6 @@ import miniCssExtractPluginConfig from './mini-css-extract-plugin.config';
 
 let plugins: any[] = [];
 
-// plugins.push(new BannerPlugin(bannerPluginConfig));
 // plugins.push(new CleanWebpackPlugin(cleanWebpackPluginConfig));
 plugins.push(new MiniCssExtractPlugin(miniCssExtractPluginConfig));
 

@@ -1,0 +1,8 @@
+@use "s360-toolkit";
+
+$mq-512: s360-toolkit.em(512, 16);
+$mq-640: s360-toolkit.em(640, 16);
+$mq-768: s360-toolkit.em(768, 16);
+$mq-1024: s360-toolkit.em(1024, 16);
+$mq-1280: s360-toolkit.em(1280, 16);
+$mq-1440: s360-toolkit.em(1440, 16);

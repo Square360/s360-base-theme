@@ -1,0 +1,14 @@
+table {
+  border:
+    var(--table-border-width, 1px)
+    var(--table-border-style, solid)
+    var(--table-border-color, inherit);
+  padding: var(--table-padding, 0);
+  margin: var(--table-margin, 0);
+  border-collapse: collapse;
+  table-layout: auto;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

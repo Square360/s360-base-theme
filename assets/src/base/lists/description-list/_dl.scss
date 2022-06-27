@@ -1,0 +1,23 @@
+dl {
+  display: var(--dl-display, block);
+  margin: var(--dl-margin, 0);
+  padding: var(--dl-padding, 2em);
+
+  dt {
+    font-size: var(--dt-font-size, inherit);
+    font-family: var(--dt-font-family, inherit);
+    font-weight: var(--dt-font-weight, inherit);
+    line-height: var(--dt-line-height, 1.5);
+    margin: var(--dt-margin, 0);
+    padding: var(--dt-padding, 0);
+  }
+
+  dd {
+    font-size: var(--dd-font-size, inherit);
+    font-family: var(--dd-font-family, inherit);
+    font-weight: var(--dd-font-weight, inherit);
+    line-height: var(--dd-line-height, 1.5);
+    margin: var(--dd-margin, 0);
+    padding: var(--dd-padding, 2em);
+  }
+}

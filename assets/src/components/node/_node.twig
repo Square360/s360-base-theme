@@ -1,0 +1,17 @@
+<article{{ attributes }}>
+  <header class="node__header" data-js="node-header">
+    {% block node_header %}
+      <h1 class="node__heading">
+        {{ node_field_label }}
+      </h1>
+    {% endblock %}
+  </header>
+
+  <div class="node__content">
+    {% block node_content %}
+      {% include "@components/paragraph/placeholder/placeholder.twig" with {
+        "paragraph_field_title": "Content",
+      } %}
+    {% endblock %}
+  </div>
+</article>

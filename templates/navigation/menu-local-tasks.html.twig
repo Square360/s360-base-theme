@@ -1,0 +1,6 @@
+{{ attach_library('s360_base_theme/menu.local-tasks') }}
+
+{% include "@components/navigation/local-tasks/local-tasks.twig" with {
+  local_tasks_primary: primary,
+  local_tasks_secondary: secondary,
+} %}

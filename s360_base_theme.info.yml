@@ -5,21 +5,15 @@ base theme: false
 core_version_requirement: ^8 || ^9
 
 libraries:
-  - 's360_base_theme/'
+  - 's360_base_theme/global'
 
 regions:
-  site_header: Header
   system: System
   content: Content
-  site_footer: Footer
 
 components:
   namespaces:
-    core:
-      - assets/components/00-core
-    base:
-      - assets/components/01-base
-    molecules:
-      - assets/components/02-molecules
-    organisms:
-      - assets/components/03-organisms
+    layout:
+      - assets/src/layout
+    components:
+      - assets/src/components

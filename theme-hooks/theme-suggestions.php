@@ -8,30 +8,6 @@
  */
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter().
- */
-function s360_base_theme_theme_suggestions_container_alter(array &$suggestions, array $variables) {
-  $element = $variables['element'];
-
-  if (in_array($element['#type'], ['actions', 'webform_actions'])) {
-    $suggestions[] = 'container__form_element_actions';
-  }
-
-  if ($element['#type'] == 'view') {
-    $suggestions[] = 'container__' . $element['#type'];
-
-    $suggestions[] = 'container__' .
-      $element['#type'] . '__' .
-      $element['#name'];
-
-    $suggestions[] = 'container__' .
-      $element['#type'] . '__' .
-      $element['#name'] . '__' .
-      $element['#display_id'];
-  }
-}
-
-/**
  * Implements hook_theme_suggestions_page_alter().
  */
 function s360_base_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {

@@ -1,0 +1,7 @@
+{{ attach_library('s360_base_theme/view.list') }}
+
+{% include "@components/view/list/list.twig" with {
+  view_title: title,
+  view_rows: rows,
+  view_list_type: list.type,
+} %}

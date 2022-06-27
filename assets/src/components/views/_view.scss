@@ -1,0 +1,10 @@
+@use "s360-toolkit";
+@use "core";
+
+%view {
+  .view__rows {
+    .view__row + .view__row {
+
+    }
+  }
+}

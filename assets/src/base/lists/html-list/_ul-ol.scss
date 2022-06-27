@@ -1,0 +1,23 @@
+ul,
+ol {
+  margin: var(--list-margin, 1em 0);
+  padding: var(--list-padding, 0 0 0 2em);
+
+  li {
+    padding: var(--li-padding, 0);
+    margin: var(--li-margin, 0);
+
+    &::marker {
+      color: var(--li-marker-color);
+      font-family: var(--li-marker-font-family);
+      font-size: var(--li-marker-font-size);
+      font-weight: var(--li-marker-font-weight);
+    }
+  }
+}
+
+ul {
+  li {
+    list-style-type: var(--li-style-type);
+  }
+}
