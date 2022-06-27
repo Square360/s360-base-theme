@@ -1,16 +1,19 @@
 <?php
 
 /**
+ * @file
+ * setup.php
+ */
+
+/**
  * Initial setup before we can create a theme.
- *
- * @return void
  */
 function init() {
   $theme_name = get_cli_option('theme-name');
 
   if (!$theme_name) {
     print 'No theme name provided' . PHP_EOL;
-    return false;
+    return FALSE;
   }
 
   $machine_name = str_replace(' ', '_', strtolower($theme_name));
@@ -37,7 +40,6 @@ function init() {
  *   The machine_name for Drupal.
  * @param string $kebab_name
  *   The package.json name.
- * @return void
  */
 function create_theme(string $theme_name, string $machine_name, string $kebab_name) {
   $theme_dir = substr(getcwd(), 0, strpos(getcwd(), 'themes') + 6);
@@ -46,29 +48,30 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
   if (!is_dir(normalize_path($theme_path))) {
     if (@mkdir(normalize_path($theme_path), 0755, TRUE) !== TRUE) {
       print 'Custom theme could not be created' . PHP_EOL;
-      return false;
+      return FALSE;
     }
   }
 
   if (copy_files(get_files_to_copy(), $theme_path) !== TRUE) {
     print 'Failed to files' . PHP_EOL;
-    return false;
+    return FALSE;
   }
 
   $alterations = set_alterations($theme_name, $machine_name, $kebab_name);
   if (alter_files($theme_path, get_files_to_alter(), $alterations) !== TRUE) {
     print 'Failed to alter files' . PHP_EOL;
-    return false;
+    return FALSE;
   }
 
   if (rename_files(get_files_to_rename(), $theme_path, $machine_name) !== TRUE) {
     print 'Failed to rename files' . PHP_EOL;
-    return false;
+    return FALSE;
   }
 }
 
-// **************************************************
-// COPY FUNCTIONS
+/**
+ * COPY FUNCTIONS.
+ */
 
 /**
  * The files that need to be copied into the new theme.
@@ -102,11 +105,10 @@ function get_files_to_copy() {
  *   The directory inside the base theme.
  * @param string $dest
  *   The directory inside the new theme.
- * @return void
  */
 function _recursive_copy(string $src, string $dest) {
   if (is_dir($src)) {
-    // Make the destination directory if not exist
+    // Make the destination directory if not exist.
     @mkdir($dest, 0755, TRUE);
 
     $dir_handle = opendir($src);
@@ -131,7 +133,6 @@ function _recursive_copy(string $src, string $dest) {
  *   An array of files to copy, including folders.
  * @param string $theme_path
  *   The path for the new theme.
- * @return bool
  */
 function copy_files(array $files, string $theme_path) {
   foreach ($files as $file) {
@@ -154,8 +155,9 @@ function copy_files(array $files, string $theme_path) {
   return TRUE;
 }
 
-// **************************************************
-// ALTER FUNCTIONS
+/**
+ * ALTER FUNCTIONS.
+ */
 
 /**
  * The files that need to be altered with the new theme name.
@@ -186,7 +188,6 @@ function get_files_to_alter() {
  *   The associative array of alterations.
  * @param bool $absolute
  *   If the file path is absolute or relative.
- * @return bool
  */
 function alter_files(string $theme_path, array $files, array $alterations, bool $absolute = FALSE) {
   foreach ($files as $file) {
@@ -229,7 +230,6 @@ function alter_files(string $theme_path, array $files, array $alterations, bool 
  *   The keys of the associative array of alterations.
  * @param array $replace
  *   The associative array of alterations.
- * @return bool
  */
 function alter_file_str_replace(string $file_path, array $find, array $replace) {
   $file_path = normalize_path($file_path);
@@ -251,6 +251,7 @@ function alter_file_str_replace(string $file_path, array $find, array $replace) 
  *   The machine_name for Drupal.
  * @param string $kebab_name
  *   The package.json name.
+ *
  * @return array
  *   An associative array of the original theme with it's new counterparts.
  */
@@ -262,8 +263,9 @@ function set_alterations(string $theme_name, string $machine_name, string $kebab
   ];
 }
 
-// **************************************************
-// RENAME FUNCTIONS
+/**
+ * RENAME FUNCTIONS.
+ */
 
 /**
  * The files that need to be renamed with the new theme name.
@@ -279,6 +281,16 @@ function get_files_to_rename() {
   ];
 }
 
+/**
+ * Renames files.
+ *
+ * @param array $files_to_rename
+ *   The files to rename.
+ * @param string $theme_path
+ *   The path for the new theme.
+ * @param string $machine_name
+ *   The machine_name for Drupal.
+ */
 function rename_files(array $files_to_rename, string $theme_path, string $machine_name) {
   foreach ($files_to_rename as $file_to_rename) {
     $file_original_path = $theme_path . DIRECTORY_SEPARATOR . $file_to_rename;
@@ -290,13 +302,16 @@ function rename_files(array $files_to_rename, string $theme_path, string $machin
   return TRUE;
 }
 
-// **************************************************
-// UTILITY FUNCTIONS
+/**
+ * UTILITY FUNCTIONS.
+ */
 
 /**
  * An unnormalized path.
  *
  * @param string $path
+ *   The path to normalize.
+ *
  * @return string
  *   The normalized path.
  */
@@ -325,7 +340,7 @@ function get_cli_options() {
   foreach ($argv as $key => $arg) {
     if (strpos($arg, '=') !== FALSE) {
       print 'Do not use equal signs in your options.' . PHP_EOL;
-      return false;
+      return FALSE;
     }
 
     switch ($arg) {
@@ -341,7 +356,9 @@ function get_cli_options() {
 /**
  * The value of the CLI option.
  *
- * @param string$option
+ * @param string $option
+ *   The CLI option.
+ *
  * @return string|bool
  *   The value of the CLI option, false if the CLI option wasn't passed.
  */
