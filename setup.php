@@ -89,6 +89,7 @@ function get_files_to_copy() {
     'assets/package.json',
     'assets/tsconfig.json',
     'assets/webpack.config.ts',
+    'assets/yarn.lock',
     'templates',
     'theme-hooks',
     '.editorconfig',
