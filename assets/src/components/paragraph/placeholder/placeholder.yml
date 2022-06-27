@@ -1,0 +1,6 @@
+paragraph_attributes:
+  class:
+    - paragraph
+    - paragraph--placeholder
+paragraph_field_title: 'Placeholder'
+paragraph_field_body: '<p>Vestibulum id ligula porta felis euismod semper.</p>'

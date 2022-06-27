@@ -1,0 +1,7 @@
+{% set paragraph_tag = paragraph_tag|default('div') %}
+
+<{{ paragraph_tag }}{{ attributes }}>
+  {% block paragraph_content %}
+    {{ paragraph_content }}
+  {% endblock %}
+</{{ paragraph_tag }}>

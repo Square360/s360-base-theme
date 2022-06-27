@@ -10,6 +10,8 @@ let customAliases = {
 // Define a base set of aliases.
 const BASE_ALIASES = {
   SRC_IMAGES$: path.resolve('src/images'),
+  's360-toolkit': path.resolve(path.join('node_modules', 's360-fundamental-toolkit', 'scss')),
+  'core': path.resolve(path.join('src', 'core')),
 };
 
 export default {

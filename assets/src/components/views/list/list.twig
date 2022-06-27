@@ -1,0 +1,11 @@
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+
+<{{ view_list_type }}>
+  {% for row in rows %}
+    <li{{ row.attributes }}>
+      {{- row.content -}}
+    </li>
+  {% endfor %}
+</{{ view_list_type }}>

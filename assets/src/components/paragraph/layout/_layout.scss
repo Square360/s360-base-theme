@@ -1,0 +1,38 @@
+@use "sass:map";
+@use "core/config" as *;
+
+@use "core";
+
+%layout {
+  > .layout__regions {
+    display: grid;
+
+    @media (min-width: core.$mq-1024) {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  }
+
+  .layout__region {
+    > * + * {
+    }
+  }
+
+  &.layout--width-edge-to-edge {
+  }
+
+  &.layout--margin-bottom-sm {
+    margin-bottom: 0;
+  }
+
+  &.layout--margin-bottom-md {
+    margin-bottom: 0;
+  }
+
+  &.layout--margin-bottom-lg {
+    margin-bottom: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

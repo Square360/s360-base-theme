@@ -1,0 +1,8 @@
+<dl class="field">
+  <dt class="field__term">{{ label }}</dt>
+  <dd class="field__description">
+    {% for item in field_items %}
+      {{- item.content -}}
+    {% endfor %}
+  </dd>
+</dl>

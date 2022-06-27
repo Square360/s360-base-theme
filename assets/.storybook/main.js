@@ -1,7 +1,6 @@
 module.exports = {
   stories: [
-    '../components/**/*.stories.mdx',
-    '../components/**/*.stories.@(js|jsx|ts|tsx)',
+    '../src/**/*.stories.@(js|ts)',
   ],
   addons: [
     '@storybook/addon-a11y',
@@ -9,8 +8,8 @@ module.exports = {
     '@storybook/addon-essentials',
   ],
   staticDirs: [
-    '../assets/dist/',
-    '../assets/dist/fonts',
-    '../assets/dist/images',
+    '../dist/',
+    '../dist/fonts',
+    '../dist/images',
   ],
 };

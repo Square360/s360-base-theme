@@ -1,0 +1,9 @@
+{% if local_tasks_primary %}
+  <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
+  <ul{{ attributes }}>{{ local_tasks_primary }}</ul>
+{% endif %}
+
+{% if local_tasks_secondary %}
+  <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
+  <ul{{ attributes }}>{{ local_tasks_secondary }}</ul>
+{% endif %}

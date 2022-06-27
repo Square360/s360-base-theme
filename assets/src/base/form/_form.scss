@@ -1,0 +1,71 @@
+@use "s360-toolkit";
+@use "core";
+
+form {
+  margin: var(--form-margin, inherit);
+  padding: var(--form-padding, inherit);
+  display: var(--form-display, grid);
+  gap: var(--form-gap, 0);
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  input[type="file"],
+  input[type="tel"],
+  input[type="search"],
+  input[type="url"],
+  select,
+  textarea {
+    background-color: var(--form-input-background-color, inherit);
+    border:
+      var(--form-input-border-width, 1px)
+      var(--form-input-border-style, solid)
+      var(--form-input-border-color, inherit);
+    border-radius: var(--form-input-border-radius, 0);
+    color: var(--form-input-color, var(--text-color, inherit));
+    display: var(--form-input-display, block);
+    font-family: var(--form-input-font-family, inherit);
+    font-size: var(--form-input-font-size, #{ s360-toolkit.font-size-ms(0) });
+    margin: var(--form-input-margin, 0);
+    overflow: var(--form-input-overflow, visible);
+    padding: var(--form-input-padding, 0.5em 1em);
+    width: var(--form-input-width, 100%);
+
+    &:invalid {
+      box-shadow: none;
+    }
+  }
+
+  textarea {
+    --form-input-overflow: auto;
+    resize: none;
+  }
+
+  select {
+    appearance: none;
+  }
+
+  input[type="submit"] {
+
+  }
+
+  label {
+    color: var(--form-label, var(--text-color, inherit));
+  }
+
+  /// **************************************************
+  /// Core classes inside a form.
+
+  .form__description {
+    margin-top: 0.25em;
+    color: inherit;
+  }
+
+  .form__element--actions {
+    margin-top: 0;
+  }
+
+  .form__select-wrapper {
+    position: relative;
+  }
+}
