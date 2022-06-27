@@ -2,7 +2,7 @@
 // @see https://webpack.js.org/plugins/mini-css-extract-plugin/#options
 
 let miniCssExtractPluginConfig = {
-  filename: '[name].min.css',
+  filename: '[name].css',
 };
 
 export default miniCssExtractPluginConfig;
