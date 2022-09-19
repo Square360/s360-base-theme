@@ -1,7 +1,17 @@
-{% include "@components/view/view.twig" with {
+{#
+/**
+ * Available variables:
+ * - css_name: A CSS-safe version of the view name provided by Drupal.
+ */
+#}
+
+{{ attach_library('economics/view.' ~ css_name) }}
+
+{% include "@components/views/view.twig" with {
   view_rows: rows,
   view_exposed: exposed,
   view_footer: footer,
   view_header: header,
-  view_pager: pager
+  view_pager: pager,
+  view_empty: empty,
 } %}

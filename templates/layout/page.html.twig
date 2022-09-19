@@ -1,12 +1,12 @@
-{% embed "@layout/site-header/site-header.twig" %}
+{% include "@layout/site-header/site-header.twig" with {
 
-{% endembed %}
+} %}
 
 {% include "@layout/site-main/site-main.twig" with {
   site_main_page_system: page.system,
   site_main_page_content: page.content,
 } %}
 
-{% embed "@layout/site-footer/site-footer.twig" %}
+{% include "@layout/site-footer/site-footer.twig" with {
 
-{% endembed %}
+} %}
