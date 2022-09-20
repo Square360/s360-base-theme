@@ -1,0 +1,11 @@
+@use "s360-toolkit";
+
+blockquote {
+  --p-font-family: var(--blockquote-font-family);
+  --p-font-style: var(--blockquote-font-style);
+  --p-line-height: var(--blockquote-line-height);
+  --p-font-size: var(--blockquote-font-size);
+
+  margin: var(--blockquote-margin, 0);
+  padding: var(--blockquote-padding, 0)
+}

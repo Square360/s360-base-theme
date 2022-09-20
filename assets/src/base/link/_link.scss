@@ -4,17 +4,26 @@ a {
     var(--a-border-width, 0)
     var(--a-border-style, solid)
     var(--a-border-color, transparent);
-  color: var(--a-color, var(--text-color, inherit));
+  color: var(--a-color);
   cursor: var(--a-cursor, pointer);
   display: var(--a-display, inline-block);
-  font-family: var(--a-font-family, inherit);
-  font-size: var(--a-font-size, inherit);
-  font-weight: var(--a-font-weight, inherit);
-  letter-spacing: var(--a-letter-spacing, inherit);
-  line-height: var(--a-line-height, inherit);
+  font-family: var(--a-font-family);
+  font-size: var(--a-font-size);
+  font-weight: var(--a-font-weight);
+  letter-spacing: var(--a-letter-spacing);
+  line-height: var(--a-line-height, 1);
   margin: var(--a-margin, 0);
   padding: var(--a-padding, 0);
   text-decoration: var(--a-text-decoration, none);
-  text-transform: var(--a-text-transform, inherit);
+  text-transform: var(--a-text-transform);
   transition: var(--a-transition, all 200ms ease-in-out);
+  width: var(--a-width);
+  outline: var(--a-outline);
+  outline-offset: var(--a-outline-offset, 4px);
+
+  &:focus {
+    [data-whatintent="keyboard"] & {
+      --a-outline: 4px dashed currentColor;
+    }
+  }
 }
