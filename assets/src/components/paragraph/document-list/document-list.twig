@@ -1,0 +1,9 @@
+{% extends "@components/paragraph/_paragraph.twig" %}
+
+{% block paragraph_content %}
+  {% if paragraph_documents %}
+    <div class="paragraph__documents">
+      {{ paragraph_documents }}
+    </div>
+  {% endif %}
+{% endblock %}
