@@ -1,6 +1,6 @@
 @use "s360-toolkit";
-@use "core";
+@use "core/colors";
 
 .field {
-  border: 1px solid inherit;
+  border: 1px solid colors.$black;
 }
