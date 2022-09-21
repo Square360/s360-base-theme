@@ -30,7 +30,8 @@
     "add-attributes-twig-extension": "^0.1.0",
     "s360-fundamental-toolkit": "git+https://bitbucket.org/sq360_sysadmin/s360-fundamental-toolkit.git#6.0.2",
     "twig-drupal-filters": "^3.1.0",
-    "twing": "^5.1.1"
+    "twing": "^5.1.1",
+    "what-input": "5.2.12"
   },
   "devDependencies": {
     "@babel/core": "7.19.1",
