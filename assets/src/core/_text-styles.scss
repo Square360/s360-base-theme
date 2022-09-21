@@ -43,10 +43,6 @@
 }
 
 %text-as-h6 {
-  --heading-color: #{ colors.$black };
-  --heading-font-weight: 800;
-  --heading-font-family: #{ typography.$font-family-mallory };
-  --heading-text-transform: uppercase;
   @extend %_heading-base;
 
   font-size: var(--h6-font-size, var(--heading-font-size, #{ heading-font-sizes.h6-font-size() }));

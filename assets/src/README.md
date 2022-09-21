@@ -65,7 +65,7 @@ Creates a story that captures the rendered state of a UI component. Filename
 format: `[FILENAME].stories.js`.
 
 ### Example
-Filename: widget.stories.js
+Filename: custom-widget.stories.js
 ```js
 import customWidgetTwig from './custom-widget.twig';
 ...
@@ -95,8 +95,6 @@ dist directory
 
 The `*.scss` file for each entry point must contain the following:
 ```scss
-@use "core/config" as *;
-@use "s360-toolkit" with ($config: $SITE_CONFIG);
-
-@use "core";
+@use "core/site-config";
+@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
 ```

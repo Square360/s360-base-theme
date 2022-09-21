@@ -1,7 +1,7 @@
 @use "core/site-config";
 
 /// Forces content to span the entire viewport with no max limit.
-%bleed {
+%edge-to-edge {
   margin-left: calc(calc(-50vw + 50%) - (var(--scrollbar-width, 0px) / 2 * -1));
   margin-right: calc(calc(-50vw + 50%) - (var(--scrollbar-width, 0px) / 2 * -1));
 }
