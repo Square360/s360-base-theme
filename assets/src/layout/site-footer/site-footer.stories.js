@@ -5,4 +5,6 @@ import siteFooterTwig from './site-footer.twig';
  */
 export default { title: 'Layout/Site Footer' };
 
-export const siteFooter = () => siteFooterTwig();
+export const siteFooter = () => {
+  return siteFooterTwig();
+}
