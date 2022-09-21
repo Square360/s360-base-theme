@@ -1,0 +1,1 @@
+import './cta-link.scss';
