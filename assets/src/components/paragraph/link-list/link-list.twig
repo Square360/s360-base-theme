@@ -1,0 +1,9 @@
+{% extends "@components/paragraph/_paragraph.twig" %}
+
+{% block paragraph_content %}
+  {% if paragraph_field_links %}
+    <div class="paragraph__links">
+      {{ paragraph_field_links }}
+    </div>
+  {% endif %}
+{% endblock %}

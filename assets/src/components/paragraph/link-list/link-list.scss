@@ -1,0 +1,9 @@
+@use "core/site-config";
+@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+@use "core/mq";
+
+.paragraph--link-list {
+  .paragraph__links {
+
+  }
+}
