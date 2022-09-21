@@ -93,6 +93,7 @@ function get_files_to_copy() {
     'templates',
     'theme-hooks',
     '.editorconfig',
+    's360_base_theme.breakpoints.yml',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
     's360_base_theme.theme',
@@ -172,6 +173,7 @@ function get_files_to_alter() {
     'assets/package.json',
     'templates',
     'theme-hooks',
+    's360_base_theme.breakpoints.yml',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
     's360_base_theme.theme',
@@ -276,6 +278,7 @@ function set_alterations(string $theme_name, string $machine_name, string $kebab
  */
 function get_files_to_rename() {
   return [
+    's360_base_theme.breakpoints.yml',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
     's360_base_theme.theme',
