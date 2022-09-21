@@ -1,0 +1,15 @@
+{# NOTE: This file is for Storybook display purposes only. #}
+
+<div class="layout layout--one-column">
+  <details class="layout__details">
+    <summary class="layout__summary"> {{ paragraph_header }}</summary>
+
+    <div class="layout__regions">
+      <div class="layout__region layout__region--content">
+        {% include "@components/paragraph/placeholder/placeholder.twig" with {
+          paragraph_field_title: "Content Region"
+        } %}
+      </div>
+    </div>
+  </details>
+</div>

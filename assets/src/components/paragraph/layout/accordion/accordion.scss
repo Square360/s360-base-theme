@@ -2,8 +2,12 @@
 @use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
 @use "../_layout.scss";
 
-.layout--one-column {
+.layout--accordion {
   @extend %layout;
+
+  .layout__summary {
+    @include s360-toolkit.font-size-ms(1, 'summary');
+  }
 
   > .layout__regions {
     display: grid;

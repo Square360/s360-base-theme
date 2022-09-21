@@ -1,3 +1,5 @@
+import layoutData from './layout.yml';
+
 import oneColumTwig from './one-column/_one-column.twig';
 import './one-column/one-column.js';
 
@@ -10,19 +12,38 @@ import './three-column/three-column.js';
 import fourColumTwig from './four-column/_four-column.twig';
 import './four-column/four-column.js';
 
+import { placeholder } from '../placeholder/placeholder.stories.js';
+import drupalAttribute from 'drupal-attribute';
+
 /**
  * Storybook Definition.
  */
 export default { title: 'Layouts/Layouts' };
 
-export const oneColumn = () => oneColumTwig();
+export const oneColumn = () => {
+  let paragraphClasses = [...layoutData.layout_one_column.paragraph_attributes.class];
+  let paragraphAttributes = Object.assign({}, layoutData.layout_one_column.paragraph_attributes);
 
-export const twoColumn = ({ columnRatio }) => {
+  paragraphAttributes.class = paragraphClasses;
+
+  return oneColumTwig({
+    paragraph_layout_region_content: placeholder({ ...layoutData.layout_one_column.paragraph_layout_region_content }),
+    attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
+  });
+}
+
+export const twoColumn = ({ column_ratio }) => {
+  let paragraphClasses = [...layoutData.layout_two_column.paragraph_attributes.class, column_ratio, background_color, layout_width ];
+  let paragraphAttributes = Object.assign({}, layoutData.layout_two_column.paragraph_attributes);
+
+  paragraphAttributes.class = paragraphClasses;
+
   return twoColumTwig({
-    column_ratio: columnRatio
+    paragraph_layout_region_first: placeholder({ ...layoutData.layout_two_column.paragraph_layout_region_first }),
+    paragraph_layout_region_second: placeholder({ ...layoutData.layout_two_column.paragraph_layout_region_second }),
+    attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
-
 twoColumn.argTypes = {
   columnRatio: {
     name: 'Column Ratio',
@@ -40,12 +61,19 @@ twoColumn.argTypes = {
   }
 }
 
-export const threeColumn = ({ columnRatio }) => {
+export const threeColumn = ({ column_ratio }) => {
+  let paragraphClasses = [...layoutData.layout_three_column.paragraph_attributes.class, column_ratio];
+  let paragraphAttributes = Object.assign({}, layoutData.layout_three_column.paragraph_attributes);
+
+  paragraphAttributes.class = paragraphClasses;
+
   return threeColumTwig({
-    column_ratio: columnRatio
+    paragraph_layout_region_first: placeholder({ ...layoutData.layout_three_column.paragraph_layout_region_first }),
+    paragraph_layout_region_second: placeholder({ ...layoutData.layout_three_column.paragraph_layout_region_second }),
+    paragraph_layout_region_third: placeholder({ ...layoutData.layout_three_column.paragraph_layout_region_third }),
+    attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
-
 threeColumn.argTypes = {
   columnRatio: {
     name: 'Column Ratio',
@@ -60,4 +88,17 @@ threeColumn.argTypes = {
   }
 }
 
-export const fourColumn = () => fourColumTwig();
+export const fourColumn = () => {
+  let paragraphClasses = [...layoutData.layout_four_column.paragraph_attributes.class];
+  let paragraphAttributes = Object.assign({}, layoutData.layout_four_column.paragraph_attributes);
+
+  paragraphAttributes.class = paragraphClasses;
+
+  return fourColumTwig({
+    paragraph_layout_region_first: placeholder({ ...layoutData.layout_four_column.paragraph_layout_region_first }),
+    paragraph_layout_region_second: placeholder({ ...layoutData.layout_four_column.paragraph_layout_region_second }),
+    paragraph_layout_region_third: placeholder({ ...layoutData.layout_four_column.paragraph_layout_region_third }),
+    paragraph_layout_region_fourth: placeholder({ ...layoutData.layout_four_column.paragraph_layout_region_fourth }),
+    attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
+  });
+}
