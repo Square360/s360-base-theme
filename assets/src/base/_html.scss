@@ -1,6 +1,6 @@
 @use "sass:math";
 @use "sass:map";
-@use "core/config" as *;
+@use "core/site-config";
 
 html {
   font-size: calc(#{ math.div(map.get($SITE_CONFIG, 'font-size-base'), 16) } * 100%);

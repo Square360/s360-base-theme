@@ -1,0 +1,31 @@
+@use "core/site-config";
+@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+
+.node__body,
+.paragraph__body,
+.cke_editable_themed {
+  h2, h3, h4, h5 {
+    margin-bottom: 0.5em;
+  }
+
+  figure {
+    --figure-display: table;
+  }
+
+  figure,
+  img {
+    &.align-left {
+      margin: {
+        bottom: site-config.$spacing-half;
+        right: site-config.$spacing-half;
+      }
+    }
+
+    &.align-right {
+      margin: {
+        bottom: site-config.$spacing-half;
+        left: site-config.$spacing-half;
+      }
+    }
+  }
+}

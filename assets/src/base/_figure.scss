@@ -1,4 +1,12 @@
 figure {
   height: var(--figure-height, auto);
   width: var(--figure-width, auto);
+  display: var(--figure-display);
+
+  figcaption {
+    margin: var(--figcaption-margin, 0.5em 0 0 0);
+    display: var(--figcaption-display, table-caption);
+    caption-side: var(--figcaption-caption-side, bottom);
+    line-height: var(--figcaption-line-height);
+  }
 }

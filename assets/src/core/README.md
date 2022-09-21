@@ -7,8 +7,7 @@ This folder contains all variables, placeholders, functions, mixins, etc.
 There will NEVER be twig files for anything in this directory.
 
 ## SCSS Files
-All `*.scss` files must begin with an underscore, except the `index.scss`
-"manifest" file.
+All `*.scss` files must begin with an underscore.
 
 ## Storybook Files
 There will NEVER be a storybook files for anything in this directory.

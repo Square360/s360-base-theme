@@ -1,0 +1,8 @@
+@use "core/site-config";
+@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+
+.paragraph--view-block {
+  > * + * {
+    margin-top: site-config.$spacing;
+  }
+}

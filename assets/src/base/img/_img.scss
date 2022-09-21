@@ -3,4 +3,5 @@ img {
   max-width: var(--img-max-width, 100%);
   height: var(--img-height, auto);
   width: var(--img-width, auto);
+  object-fit: var(--img-object-fit, initial);
 }

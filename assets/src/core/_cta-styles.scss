@@ -1,0 +1,99 @@
+@use "s360-toolkit";
+@use "core/colors";
+@use "core/typography";
+
+/// **************************************************
+/// BASE: PRIMARY
+
+%_cta-primary {
+  --cta-color: inherit;
+  --cta-border-radius: 0;
+  --cta-display: inline-block;
+  --cta-font-family: '';
+  --cta-font-weight: #{ typography.$font-weight-regular };
+  --cta-padding: 0;
+  --cta-text-decoration: none;
+  --cta-text-transform: none;
+  --cta-width: max-content;
+  @include s360-toolkit.font-size-ms(0, 'cta');
+}
+
+/// **************************************************
+/// PRIMARY
+
+/// Make any link look like the CTA primary style.
+%cta-link-primary {
+  --a-color: var(--cta-color);
+  --a-display: var(--cta-display);
+  --a-font-family: var(--cta-font-family);
+  --a-font-size: var(--cta-font-size);
+  --a-font-weight: var(--cta-font-weight);
+  --a-padding: var(--cta-padding);
+  --a-text-decoration: var(--cta-text-decoration);
+  --a-text-transform: var(--cta-text-transform);
+  --a-width: var(--cta-width);
+  @extend %_cta-primary;
+}
+
+/// Make any button look like the CTA primary style.
+%cta-button-primary {
+  --border-radius: var(--cta-border-radius);
+  --button-color: var(--cta-color);
+  --button-display: var(--cta-display);
+  --button-font-family: var(--cta-font-family);
+  --button-font-size: var(--cta-font-size);
+  --button-font-weight: var(--cta-font-weight);
+  --button-padding: var(--cta-padding);
+  --button-text-decoration: var(--cta-text-decoration);
+  --button-text-transform: var(--cta-text-transform);
+  --button-width: var(--cta-width);
+  @extend %_cta-primary;
+}
+
+/// **************************************************
+/// BASE: SECONDARY
+
+%_cta-secondary {
+  --cta-color: inherit;
+  --cta-border-radius: 0;
+  --cta-display: inline-block;
+  --cta-font-family: '';
+  --cta-font-weight: #{ typography.$font-weight-regular };
+  --cta-padding: 0;
+  --cta-text-decoration: none;
+  --cta-text-transform: none;
+  --cta-width: max-content;
+  @include s360-toolkit.font-size-ms(0, 'cta');
+}
+
+/// **************************************************
+/// SECONDARY
+
+/// Make any link look like the CTA secondary style.
+%cta-link-secondary {
+  --a-color: var(--cta-color);
+  --a-display: var(--cta-display);
+  --a-font-family: var(--cta-font-family);
+  --a-font-size: var(--cta-font-size);
+  --a-font-weight: var(--cta-font-weight);
+  --a-padding: var(--cta-padding);
+  --a-text-decoration: var(--cta-text-decoration);
+  --a-text-transform: var(--cta-text-transform);
+  --a-width: var(--cta-width);
+  @extend %_cta-secondary;
+}
+
+/// Make any button look like the CTA secondary style.
+%cta-button-secondary {
+  --border-radius: var(--cta-border-radius);
+  --button-color: var(--cta-color);
+  --button-display: var(--cta-display);
+  --button-font-family: var(--cta-font-family);
+  --button-font-size: var(--cta-font-size);
+  --button-font-weight: var(--cta-font-weight);
+  --button-padding: var(--cta-padding);
+  --button-text-decoration: var(--cta-text-decoration);
+  --button-text-transform: var(--cta-text-transform);
+  --button-width: var(--cta-width);
+  @extend %_cta-secondary;
+}

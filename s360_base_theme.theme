@@ -11,6 +11,7 @@ require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme'
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-block.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-field.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-form.php';
+require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-media.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-menu.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-node.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-paragraph.php';

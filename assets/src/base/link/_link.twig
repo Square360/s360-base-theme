@@ -4,7 +4,7 @@
   {% endfor %}
   href="{{ link_url }}"
 >
-  {% block link_content %}
-    {{ link_content }}
-  {% endblock %}
+  {% spaceless %}
+    <span>{{ link_content }}</span>
+  {% endspaceless %}
 </a>

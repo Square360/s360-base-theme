@@ -1,0 +1,25 @@
+@use "s360-toolkit";
+
+@function h1-font-size() {
+  @return s360-toolkit.linear-scale(s360-toolkit.modular-scale(4), s360-toolkit.modular-scale(4));
+}
+
+@function h2-font-size() {
+  @return s360-toolkit.linear-scale(s360-toolkit.modular-scale(3), s360-toolkit.modular-scale(3));
+}
+
+@function h3-font-size() {
+  @return s360-toolkit.linear-scale(s360-toolkit.modular-scale(2), s360-toolkit.modular-scale(2));
+}
+
+@function h4-font-size() {
+  @return s360-toolkit.linear-scale(s360-toolkit.modular-scale(1), s360-toolkit.modular-scale(1));
+}
+
+@function h5-font-size() {
+  @return s360-toolkit.linear-scale(s360-toolkit.modular-scale(0), s360-toolkit.modular-scale(0));
+}
+
+@function h6-font-size() {
+  @return s360-toolkit.linear-scale(s360-toolkit.modular-scale(-1), s360-toolkit.modular-scale(-1));
+}

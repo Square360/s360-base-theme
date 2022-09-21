@@ -1,20 +1,27 @@
-@use "core/config" as *;
-@use "s360-toolkit" with ($config: $SITE_CONFIG);
-
-@use "core";
+@use "core/site-config";
+@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+@use "core/mq";
 @use "../_layout.scss" as *;
 
 .layout--four-column {
   @extend %layout;
 
-  .layout__region {
-    > * + * {
-    }
+  > .layout__regions {
+    display: grid;
+    row-gap: site-config.$spacing-half;
+    column-gap: site-config.$spacing;
   }
 
+  /// **************************************************
+  /// MEDIA QUERIES
+
   @media (min-width: core.$mq-1024) {
-    .layout__region {
-      grid-column: span 3;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+
+    > .layout__regions {
+      > .layout__region {
+        grid-column: span 3;
+      }
     }
   }
 }

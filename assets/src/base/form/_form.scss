@@ -1,9 +1,9 @@
 @use "s360-toolkit";
-@use "core";
+@use "core/colors";
 
 form {
-  margin: var(--form-margin, inherit);
-  padding: var(--form-padding, inherit);
+  margin: var(--form-margin, 0);
+  padding: var(--form-padding, 0);
   display: var(--form-display, grid);
   gap: var(--form-gap, 0);
 
@@ -16,16 +16,16 @@ form {
   input[type="url"],
   select,
   textarea {
-    background-color: var(--form-input-background-color, inherit);
+    background-color: var(--form-input-background-color, #{ colors.$white });
     border:
       var(--form-input-border-width, 1px)
       var(--form-input-border-style, solid)
-      var(--form-input-border-color, inherit);
+      var(--form-input-border-color, transparent);
     border-radius: var(--form-input-border-radius, 0);
-    color: var(--form-input-color, var(--text-color, inherit));
+    color: var(--form-input-color);
     display: var(--form-input-display, block);
-    font-family: var(--form-input-font-family, inherit);
-    font-size: var(--form-input-font-size, #{ s360-toolkit.font-size-ms(0) });
+    font-family: var(--form-input-font-family);
+    font-size: var(--form-input-font-size);
     margin: var(--form-input-margin, 0);
     overflow: var(--form-input-overflow, visible);
     padding: var(--form-input-padding, 0.5em 1em);
@@ -38,6 +38,7 @@ form {
 
   textarea {
     --form-input-overflow: auto;
+
     resize: none;
   }
 
@@ -50,22 +51,6 @@ form {
   }
 
   label {
-    color: var(--form-label, var(--text-color, inherit));
-  }
-
-  /// **************************************************
-  /// Core classes inside a form.
-
-  .form__description {
-    margin-top: 0.25em;
-    color: inherit;
-  }
-
-  .form__element--actions {
-    margin-top: 0;
-  }
-
-  .form__select-wrapper {
-    position: relative;
+    color: var(--form-label-color);
   }
 }

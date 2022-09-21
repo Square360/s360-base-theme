@@ -1,0 +1,4 @@
+paragraph_attributes:
+  class:
+    - paragraph
+    - paragraph--document-list

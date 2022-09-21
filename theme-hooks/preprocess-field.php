@@ -13,3 +13,15 @@
 function s360_base_theme_preprocess_field(&$variables) {
   $element = $variables['element'];
 }
+
+/**
+ * Implements hook_preprocess_field() for address.
+ */
+function s360_base_theme_preprocess_field__address(&$variables) {
+  $element = $variables['element'];
+
+  // We always want to remove United States.
+  if ($variables['items'][0]['content']['country']['#value'] === 'United States') {
+    $variables['items'][0]['content']['country']['#value'] = '';
+  }
+}

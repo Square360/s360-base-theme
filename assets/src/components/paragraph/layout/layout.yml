@@ -1,0 +1,53 @@
+layout_accordion:
+  paragraph_attributes:
+    class:
+      - layout
+      - layout--accordion
+  paragraph_layout_region_content:
+    paragraph_field_title: 'Content Region'
+  paragraph_header: 'Accordion'
+
+layout_one_column:
+  paragraph_attributes:
+    class:
+      - layout
+      - layout--one-column
+  paragraph_layout_region_content:
+    paragraph_field_title: 'Content Region'
+
+layout_two_column:
+  paragraph_attributes:
+    class:
+      - layout
+      - layout--two-column
+  paragraph_layout_region_first:
+    paragraph_field_title: 'First Region Content'
+  paragraph_layout_region_second:
+    paragraph_field_title: 'Second Region Content'
+
+layout_three_column:
+  paragraph_attributes:
+    class:
+      - layout
+      - layout--three-column
+  paragraph_layout_region_first:
+    paragraph_field_title: 'First Region Content'
+  paragraph_layout_region_second:
+    paragraph_field_title: 'Second Region Content'
+  paragraph_layout_region_third:
+    paragraph_field_title: 'Third Region Content'
+
+layout_four_column:
+  paragraph_attributes:
+    class:
+      - layout
+      - layout--four-column
+  paragraph_layout_region_first:
+    paragraph_field_title: 'First Region Content'
+  paragraph_layout_region_second:
+    paragraph_field_title: 'Second Region Content'
+  paragraph_layout_region_third:
+    paragraph_field_title: 'Third Region Content'
+  paragraph_layout_region_fourth:
+    paragraph_field_title: 'Fourth Region Content'
+
