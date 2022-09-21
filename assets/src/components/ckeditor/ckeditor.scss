@@ -1,0 +1,21 @@
+@use "core/site-config";
+@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+
+.node__body,
+.paragraph__body,
+.cke_editable_themed {
+  figure {
+    --figure-display: table;
+  }
+
+  figure,
+  img {
+    &.align-left {
+      margin: 0;
+    }
+
+    &.align-right {
+      margin: 0;
+    }
+  }
+}
