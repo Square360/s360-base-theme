@@ -1,0 +1,17 @@
+@use "sass:math";
+$max-width: 1440px;
+$layout-columns: 12;
+$layout-column-width: 0px;
+$layout-gutter-width: 0px;
+$layout-side-margin: 0px;
+$line-height: 1;
+$content-area: calc(#{ $max-width } - calc(#{ $layout-side-margin } * 2));
+
+$spacing: 0px;
+$spacing-half: math.div(#{ $spacing } / 2);
+$spacing-double: calc(#{ $spacing } * 2);
+
+$SITE_CONFIG: (
+  font-size-base: 16,
+  modular-scale-ratio: 1,
+);
