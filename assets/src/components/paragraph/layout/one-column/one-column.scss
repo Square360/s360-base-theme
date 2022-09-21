@@ -1,5 +1,6 @@
 @use "core/site-config";
 @use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+@use "core/mq";
 @use "../_layout.scss";
 
 .layout--one-column {
@@ -7,6 +8,28 @@
 
   > .layout__regions {
     display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  /// **************************************************
+  /// MEDIA QUERIES
+
+  @media (min-width: mq.$mq-1024) {
+    > .layout__regions {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    > .layout__regions {
+      > .layout__region {
+        grid-column: 1 / -1;
+      }
+    }
+
+    &.layout--width-inset {
+      > .layout__regions {
+        > .layout__region {
+          grid-column: 2 / -2;
+        }
+      }
+    }
   }
 }
