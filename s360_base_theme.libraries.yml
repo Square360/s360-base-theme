@@ -11,8 +11,38 @@ global:
     - core/jquery.once
     - core/drupal
 
+site-layout:
+  css:
+    layout:
+      assets/dist/layout/layout.css: { }
+  js:
+    assets/dist/layout/layout.js: { }
+  dependencies:
+    - core/drupal
+
+##################################################
+# Field Libraries
+
+field.advanced-header-field:
+  css:
+    component:
+      assets/dist/components/field/advanced-header-field/advanced-header-field.css: {}
+
+field.field:
+  css:
+    component:
+      assets/dist/components/field/field.css: {}
+
+##################################################
+# Form Libraries
+
+form.views-exposed-form:
+  css:
+    component:
+      assets/dist/components/form/views-exposed-form/views-exposed-form.css: {}
+
 # ##################################################
-# Menu libraries
+# Menu Libraries
 
 menu.main:
   css:
@@ -29,8 +59,16 @@ menu.local-tasks:
     component:
       assets/dist/components/navigation/local-tasks/local-tasks.css: {}
 
+# ##################################################
+# Node: Page Libraries
+
+node.page:
+  css:
+    component:
+      assets/dist/components/node/page/page.css: {}
+
 ##################################################
-# Paragraph libraries: Layout
+# Paragraph Libraries: Layout
 
 paragraph.layout.one-column:
   css:
@@ -53,56 +91,42 @@ paragraph.layout.four-column:
       assets/dist/components/paragraph/layout/four-column/four-column.css: {}
 
 ##################################################
-# Paragraph libraries
+# Paragraph Libraries
+
+paragraph.cta-link:
+  css:
+    component:
+      assets/dist/components/paragraph/cta-link/cta-link.css: {}
+
+paragraph.document-list:
+  css:
+    component:
+      assets/dist/components/paragraph/document-list/document-list.css: {}
+
+paragraph.embed-code:
+  css:
+    component:
+      assets/dist/components/paragraph/embed-code/embed-code.css: {}
+
+paragraph.html-content:
+  css:
+    component:
+      assets/dist/components/paragraph/html-content/html-content.css: {}
+
+paragraph.link-list:
+  css:
+    component:
+      assets/dist/components/paragraph/link-list/link-list.css: {}
 
 paragraph.placeholder:
   css:
     component:
       assets/dist/components/paragraph/placeholder/placeholder.css: {}
 
-# ##################################################
-# Node libraries
-
-node.page:
+paragraph.view-block:
   css:
     component:
-      assets/dist/components/node/page/page.css: {}
+      assets/dist/components/paragraph/view-block/view-block.css: {}
 
 ##################################################
-# View libraries
-
-view.grid:
-  css:
-    component:
-      assets/dist/components/view/grid/grid.css: {}
-
-view.unformatted:
-  css:
-    component:
-      assets/dist/components/view/unformatted/unformatted.css: {}
-
-view.list:
-  css:
-    component:
-      assets/dist/components/view/list/list.css: {}
-
-##################################################
-# Form libraries
-
-form.views-exposed-form:
-  css:
-    component:
-      assets/dist/components/form/views-exposed-form/views-exposed-form.css: {}
-
-##################################################
-# Field libraries
-
-field.advanced-header-field:
-  css:
-    component:
-      assets/dist/components/field/advanced-header-field/advanced-header-field.css: {}
-
-field.field:
-  css:
-    component:
-      assets/dist/components/field/field.css: {}
+# View Libraries

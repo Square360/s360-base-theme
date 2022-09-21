@@ -1,0 +1,31 @@
+s360_base_theme.mobile:
+  label: Mobile
+  mediaQuery: ""
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+
+s360_base_theme.tablet:
+  label: Tablet
+  mediaQuery: "all and (min-width: 768px)"
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+
+s360_base_theme.desktop:
+  label: Desktop
+  mediaQuery: "all and (min-width: 1024px)"
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+
+s360_base_theme.target:
+  label: Target
+  mediaQuery: "all and (min-width: 1440px)"
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
