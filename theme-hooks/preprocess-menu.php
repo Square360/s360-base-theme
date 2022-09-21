@@ -26,3 +26,25 @@ function s360_base_theme_preprocess_menu_local_task(&$variables) {
   $variables['attributes']['class'] = [];
   $variables['attributes']['class'][] = 'menu__item';
 }
+
+/**
+ * Implements hook_preprocess_menu() for social.
+ */
+function s360_base_theme_preprocess_menu__social(&$variables) {
+  $site_name = \Drupal::config('system.site')->get('name');
+
+  foreach ($variables['items'] as $key => &$item) {
+    $item_title = &$item['title'];
+
+    $item['url']->setOptions([
+      'attributes' => [
+        'aria-label' => "Go to $site_name's $item_title page",
+        'title' => $item_title,
+      ],
+    ]);
+
+    // $fa_icon = _economics_get_social_icon($item_title);
+
+    // $item_title = Markup::create('<i class="' . $fa_icon . '"></i>');
+  }
+}

@@ -1,35 +1,44 @@
-@use "sass:map";
-@use "core/config" as *;
-
-@use "core";
+@use "core/site-config";
+@use "core/content-containers";
 
 %layout {
-  > .layout__regions {
-    display: grid;
-
-    @media (min-width: core.$mq-1024) {
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-    }
+  // Don't allow header to touch content.
+  > .advanced-header-field {
+    margin-bottom: 0;
   }
 
+  // Make sure paragraphs inside regions don't touch each other.
   .layout__region {
     > * + * {
+      margin-top: 0;
     }
   }
 
+  /// **************************************************
+  /// LAYOUT WIDTH MODIFIERS
+
   &.layout--width-edge-to-edge {
+    @extend %edge-to-edge;
+
+    > .advanced-header-field,
+    > .layout__regions {
+      @extend %live;
+    }
   }
 
+  /// **************************************************
+  /// MARGIN BOTTOM MODIFIERS
+
   &.layout--margin-bottom-sm {
-    margin-bottom: 0;
+    margin-bottom: site-config.$spacing-half;
   }
 
   &.layout--margin-bottom-md {
-    margin-bottom: 0;
+    margin-bottom: site-config.$spacing;
   }
 
   &.layout--margin-bottom-lg {
-    margin-bottom: 0;
+    margin-bottom: site-config.$spacing-double;
   }
 
   &:last-child {

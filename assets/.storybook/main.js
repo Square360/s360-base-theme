@@ -9,7 +9,6 @@ module.exports = {
   ],
   staticDirs: [
     '../dist/',
-    '../dist/fonts',
-    '../dist/images',
+    './fontawesome'
   ],
 };

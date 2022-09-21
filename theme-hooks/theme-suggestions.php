@@ -40,3 +40,29 @@ function s360_base_theme_theme_suggestions_taxonomy_term_alter(array &$suggestio
   $suggestions[] = 'taxonomy_term__' . $term->id();
   $suggestions[] = 'taxonomy_term__' . $term->id() . '__' . $view_mode;
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function s360_base_theme_theme_suggestions_container_alter(array &$suggestions, array $variables) {
+  if ($variables['element']['#type'] == 'view') {
+    $suggestions[] = 'container__' .
+      $variables['element']['#type'];
+
+    $suggestions[] = 'container__' .
+      $variables['element']['#type'] . '__' .
+      $variables['element']['#name'];
+
+    $suggestions[] = 'container__' .
+      $variables['element']['#type'] . '__' .
+      $variables['element']['#name'] . '__' .
+      $variables['element']['#display_id'];
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function s360_base_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
+}

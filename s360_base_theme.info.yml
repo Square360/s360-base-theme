@@ -3,9 +3,13 @@ description: ''
 type: theme
 base theme: false
 core_version_requirement: ^8 || ^9
+dependencies:
+  - s360_base_paragraphs
+  - s360_layout_builder
 
 libraries:
   - 's360_base_theme/global'
+  - 's360_base_theme/site-layout'
 
 regions:
   system: System

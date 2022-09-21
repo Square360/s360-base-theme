@@ -1,6 +1,8 @@
 require.context('SRC_IMAGES', true, /\.(gif|png|jpe?g|svg)$/);
 import './base.scss';
 
+require('what-input');
+
 Drupal.behaviors.scrollbarWidth = {
   attach(context) {
     const ROOT = document.documentElement;

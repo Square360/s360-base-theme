@@ -6,5 +6,3 @@ export { WEBPACK_PLUGINS } from './plugins';
 export { WEBPACK_RESOLVE_ALIAS, WEBPACK_RESOLVE_EXTENSIONS } from './resolve';
 
 export { stats as WEBPACK_STATS };
-
-

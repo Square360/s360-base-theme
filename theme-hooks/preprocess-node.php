@@ -7,6 +7,10 @@
  * Define all node preprocess HOOKs.
  */
 
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Url;
+use Drupal\Core\Render\Markup;
+
 /**
  * Implements hook_preprocess_node().
  */
@@ -28,8 +32,24 @@ function s360_base_theme_preprocess_node(&$variables) {
   $variables['attributes']['class'][] = $node_base_class;
   $variables['attributes']['class'][] = Html::getClass("$node_base_class--$node_bundle");
   $variables['attributes']['class'][] = Html::getClass("$node_base_class--$node_view_mode");
-
   $variables['attributes']['data-js'] = "node-$node_bundle";
+
+  if ($node_view_mode !== 'full') {
+    $label_url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
+
+    if ($node->hasField('field_source_link')) {
+      $field_source_link = $node->get('field_source_link');
+      if ($field_source_link->count()) {
+        $label_url = Url::fromUri($field_source_link->getString());
+      }
+    }
+
+    $variables['label_as_link'] = [
+      '#type' => 'link',
+      '#title' => Markup::create('<span>' . $node->label() . '</span>'),
+      '#url' => $label_url,
+    ];
+  }
 
   // Remove some attributes.
   unset($variables['attributes']['role']);

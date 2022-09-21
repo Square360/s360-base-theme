@@ -1,0 +1,21 @@
+@use "core/site-config";
+
+/// Forces content to span the entire viewport with no max limit.
+%edge-to-edge {
+  margin-left: calc(calc(-50vw + 50%) - (var(--scrollbar-width, 0px) / 2 * -1));
+  margin-right: calc(calc(-50vw + 50%) - (var(--scrollbar-width, 0px) / 2 * -1));
+}
+
+/// Forces content to be containted to the max-width, including "safe-area".
+%live {
+  padding-right: var(--safe-area-right);
+  padding-left: var(--safe-area-left);
+  max-width: site-config.$max-width;
+  margin: 0 auto;
+}
+
+/// Forces content to negate safe-areas.
+%trim {
+  margin-left: calc(var(--safe-area-left) * -1);
+  margin-right: calc(var(--safe-area-right) * -1);
+}

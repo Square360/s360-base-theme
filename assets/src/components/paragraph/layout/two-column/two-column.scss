@@ -1,85 +1,109 @@
-@use "core/config" as *;
-@use "s360-toolkit" with ($config: $SITE_CONFIG);
-
-@use "core";
-@use "../_layout.scss" as *;
+@use "core/site-config";
+@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+@use "core/mq";
+@use "../_layout.scss";
 
 .layout--two-column {
   @extend %layout;
 
+  > .layout__regions {
+    display: grid;
+    row-gap: site-config.$spacing-half;
+    column-gap: site-config.$spacing;
+  }
+
+  /// **************************************************
+  /// MEDIA QUERIES
+
   @media (min-width: core.$mq-1024) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+
     &.layout--50-50 {
-      .layout__region {
-        grid-column: span 6;
+      > .layout__regions {
+        > .layout__region {
+          grid-column: span 6;
+        }
       }
     }
 
-    // **************************************************
-    // 60-40 / 40-60 SPLITS
+    /// **************************************************
+    /// 60-40 / 40-60 SPLITS
 
     &.layout--60-40 {
-      .layout__region--first {
-        grid-column: span 7;
-      }
+      > .layout__regions {
+        > .layout__region--first {
+          grid-column: span 7;
+        }
 
-      .layout__region--second {
-        grid-column: span 5;
+        > .layout__region--second {
+          grid-column: span 5;
+        }
       }
     }
 
     &.layout--40-60 {
-      .layout__region--first {
-        grid-column: span 5;
-      }
+      > .layout__regions {
+        > .layout__region--first {
+          grid-column: span 5;
+        }
 
-      .layout__region--second {
-        grid-column: span 7;
+        > .layout__region--second {
+          grid-column: span 7;
+        }
       }
     }
 
-    // **************************************************
-    // 70-30 / 30-70 SPLITS
+    /// **************************************************
+    /// 70-30 / 30-70 SPLITS
 
     &.layout--70-30 {
-      .layout__region--first {
-        grid-column: span 8;
-      }
+      > .layout__regions {
+        > .layout__region--first {
+          grid-column: span 8;
+        }
 
-      .layout__region--second {
-        grid-column: span 4;
+        > .layout__region--second {
+          grid-column: span 4;
+        }
       }
     }
 
     &.layout--30-70 {
-      .layout__region--first {
-        grid-column: span 4;
-      }
+      > .layout__regions {
+        > .layout__region--first {
+          grid-column: span 4;
+        }
 
-      .layout__region--second {
-        grid-column: span 8;
+        > .layout__region--second {
+          grid-column: span 8;
+        }
       }
     }
 
-    // **************************************************
-    // 75-25 / 25-75 SPLITS
+    /// **************************************************
+    /// 75-25 / 25-75 SPLITS
 
     &.layout--75-25 {
-      .layout__region--first {
-        grid-column: span 9;
-      }
+      > .layout__regions {
+        > .layout__region--first {
+          grid-column: span 9;
+        }
 
-      .layout__region--second {
-        grid-column: span 3;
+        > .layout__region--second {
+          grid-column: span 3;
+        }
       }
     }
 
     &.layout--25-75 {
-      .layout__region--first {
-        grid-column: span 3;
-      }
+      > .layout__regions {
+        > .layout__region--first {
+          grid-column: span 3;
+        }
 
-      .layout__region--second {
-        grid-column: span 9;
+        > .layout__region--second {
+          grid-column: span 9;
+        }
       }
     }
   }

@@ -1,0 +1,33 @@
+<form class="form">
+  <div class="form__element form__element--input-textfield">
+    <label for="edit-name" class="form__label form__label--username form__label--required">Required Input</label>
+    <input aria-describedby="edit-name--description" type="text" id="edit-name" name="name" value="" size="60" maxlength="60" class="form-text required form__input form__input--textfield" required="required" aria-required="true">
+    <div id="edit-name--description" class="form__description description">
+      Username.
+    </div>
+  </div>
+
+  <div class="form__element form__element--input-password">
+    <label for="edit-pass" class="form__label form__label--password">Input</label>
+    <input aria-describedby="edit-pass--description" type="text" id="edit-pass" name="pass" size="60" maxlength="128" class="form-text required form__input form__input--password" required="required" aria-required="true">
+    <div id="edit-pass--description" class="form__description description">
+      Password.
+    </div>
+  </div>
+
+  <div class="form__element form__element--select form__element--topic js-form-item form-item js-form-type-select form-item-topic js-form-item-topic">
+    <label for="edit-topic" class="form__label form__label--topic form-element__label--required js-form-required form-required">Topic</label>
+    <div class="form__select-wrapper">
+      <select id="edit-topic" name="topic" class="form-select required" required="required" aria-required="true">
+        <option value="" selected="selected">- Select -</option>
+        <option value="" selected="selected">Option 1</option>
+        <option value="" selected="selected">Option 2</option>
+        <option value="" selected="selected">Option 3</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form__element form__element--actions" id="edit-actions">
+    <input type="submit" id="edit-submit" name="op" value="Log in" class="button js-form-submit form-submit form__input form__input--submit">
+  </div>
+</form>

@@ -9,7 +9,9 @@ import drupalAttribute from 'drupal-attribute';
  */
 export default { title: 'Content Types/Page' };
 
-export const page = () => pageTwig({
-  ...pageData,
-  attributes: new drupalAttribute(Object.entries(pageData.node_attributes)),
-});
+export const page = () => {
+  return pageTwig({
+    ...pageData,
+    attributes: new drupalAttribute(Object.entries(pageData.node_attributes)),
+  });
+}

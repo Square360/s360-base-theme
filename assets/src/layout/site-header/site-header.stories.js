@@ -5,4 +5,6 @@ import siteHeaderTwig from './site-header.twig';
  */
 export default { title: 'Layout/Site Header' };
 
-export const siteHeader = () => siteHeaderTwig();
+export const siteHeader = () => {
+  return siteHeaderTwig();
+}

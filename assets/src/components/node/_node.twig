@@ -9,9 +9,15 @@
 
   <div class="node__content">
     {% block node_content %}
-      {% include "@components/paragraph/placeholder/placeholder.twig" with {
-        "paragraph_field_title": "Content",
-      } %}
+      {{ node_content }}
     {% endblock %}
   </div>
+
+  {% if node_has_aside %}
+    <aside class="node__aside">
+      {% block node_aside_content %}
+        {{ node_aside_content }}
+      {% endblock %}
+    </aside>
+  {% endif %}
 </article>

@@ -24,7 +24,10 @@ function setItemAttribues(item) {
 mainData.items.forEach(item => {
   setItemAttribues(item);
 });
-export const main = () => mainTwig({
-  ...mainData,
-  attributes: new drupalAttribute(),
-});
+
+export const main = () => {
+  return mainTwig({
+    ...mainData,
+    attributes: new drupalAttribute(),
+  });
+}

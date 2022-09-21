@@ -2,11 +2,28 @@ table {
   border:
     var(--table-border-width, 1px)
     var(--table-border-style, solid)
-    var(--table-border-color, inherit);
+    var(--table-border-color, transparent);
   padding: var(--table-padding, 0);
   margin: var(--table-margin, 0);
   border-collapse: collapse;
   table-layout: auto;
+  width: var(--table-width);
+
+  tr {
+    background-color: var(--table-tr-background-color);
+  }
+
+  th {
+    font-size: var(--table-th-font-size);
+    font-family: var(--table-th-font-family);
+    font-weight: var(--table-th-font-weight);
+    padding: var(--table-th-padding, 1rem);
+    text-transform: var(--table-th-text-transform);
+  }
+
+  td {
+    padding: var(--table-td-padding, 1rem);
+  }
 
   &:last-child {
     margin-bottom: 0;
