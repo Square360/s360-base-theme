@@ -6,4 +6,6 @@ import '../../components/form/form.scss';
  */
 export default { title: 'Foundations/Forms' };
 
-export const form = () => formTwig();
+export const form = () => {
+  return formTwig();
+}

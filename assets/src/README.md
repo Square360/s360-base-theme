@@ -69,7 +69,9 @@ Filename: custom-widget.stories.js
 ```js
 import customWidgetTwig from './custom-widget.twig';
 ...
-export const customWidget = () => customWidgetTwig();
+export const customWidget = () => {
+  return customWidgetTwig();
+}
 ```
 
 ## Webpack Entry Point Files
