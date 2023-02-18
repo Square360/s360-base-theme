@@ -9,9 +9,10 @@ import drupalAttribute from 'drupal-attribute';
  */
 export default { title: 'Layout Components/Placeholder' };
 
-export const placeholder = () => {
+export const placeholder = ({ paragraph_field_title, paragraph_field_body }) => {
   return placeholderTwig({
-    ...placeholderData,
+    paragraph_field_title,
+    paragraph_field_body,
     attributes: new drupalAttribute(Object.entries(placeholderData.paragraph_attributes)),
   });
 }

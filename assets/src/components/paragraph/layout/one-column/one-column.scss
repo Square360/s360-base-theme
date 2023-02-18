@@ -16,6 +16,7 @@
   @media (min-width: mq.$mq-1024) {
     > .layout__regions {
       grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: site-config.$spacing;
     }
 
     > .layout__regions {

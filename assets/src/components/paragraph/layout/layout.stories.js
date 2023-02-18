@@ -15,13 +15,24 @@ import './four-column/four-column.js';
 import { placeholder } from '../placeholder/placeholder.stories.js';
 import drupalAttribute from 'drupal-attribute';
 
+const LAYOUT_WIDTH_OPTIONS = {
+  name: 'Layout width',
+  options: {
+    'Normal': '',
+    'Edge to Edge': 'layout--width-edge-to-edge',
+    'Inset': 'layout--width-inset',
+  },
+  control: 'select',
+  defaultValue: '',
+};
+
 /**
  * Storybook Definition.
  */
 export default { title: 'Layouts/Layouts' };
 
-export const oneColumn = () => {
-  let paragraphClasses = [...layoutData.layout_one_column.paragraph_attributes.class];
+export const oneColumn = ({ layout_width }) => {
+  let paragraphClasses = [...layoutData.layout_one_column.paragraph_attributes.class, layout_width];
   let paragraphAttributes = Object.assign({}, layoutData.layout_one_column.paragraph_attributes);
 
   paragraphAttributes.class = paragraphClasses;
@@ -31,9 +42,12 @@ export const oneColumn = () => {
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 }
+oneColumn.argTypes = {
+  layout_width: LAYOUT_WIDTH_OPTIONS
+}
 
 export const twoColumn = ({ column_ratio }) => {
-  let paragraphClasses = [...layoutData.layout_two_column.paragraph_attributes.class, column_ratio, background_color, layout_width ];
+  let paragraphClasses = [...layoutData.layout_two_column.paragraph_attributes.class, column_ratio];
   let paragraphAttributes = Object.assign({}, layoutData.layout_two_column.paragraph_attributes);
 
   paragraphAttributes.class = paragraphClasses;
@@ -45,7 +59,7 @@ export const twoColumn = ({ column_ratio }) => {
   });
 };
 twoColumn.argTypes = {
-  columnRatio: {
+  column_ratio: {
     name: 'Column Ratio',
     options: {
       '50%/50%': 'layout--50-50',
@@ -75,7 +89,7 @@ export const threeColumn = ({ column_ratio }) => {
   });
 };
 threeColumn.argTypes = {
-  columnRatio: {
+  column_ratio: {
     name: 'Column Ratio',
     options: {
       '33%/33%/33%': 'layout--33-33-33',

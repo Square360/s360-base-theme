@@ -50,7 +50,7 @@
 
 %text-as-p {
   color: var(--p-color);
-  display: var(--p-display);
+  display: var(--p-display, block);
   font-family: var(--p-font-family);
   font-size: var(--p-font-size);
   font-style: var(--p-font-style);
