@@ -87,6 +87,7 @@ function get_files_to_copy() {
     'assets/.babelrc',
     'assets/.nvmrc',
     'assets/package.json',
+    'assets/plopfile.mjs',
     'assets/tsconfig.json',
     'assets/webpack.config.ts',
     'assets/yarn.lock',

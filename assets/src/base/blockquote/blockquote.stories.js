@@ -6,4 +6,6 @@ import blockquoteData from './blockquote.yml';
  */
 export default { title: 'Foundations/Blockquote' };
 
-export const blockquote = () => blockquoteTwig(blockquoteData);
+export const blockquote = () => {
+  return blockquoteTwig(blockquoteData);
+}

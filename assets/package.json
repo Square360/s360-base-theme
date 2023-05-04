@@ -21,7 +21,7 @@
     "a11y": "yarn storybook-build && ./assets/scripts/a11y.js -r",
     "build": "webpack --mode=production",
     "develop": "concurrently --raw \"yarn webpack\" \"yarn storybook\"",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook --ci -p 6006",
     "storybook-build": "yarn build && build-storybook -o ../.out",
     "webpack": "webpack --mode=development --watch",
     "generate": "plop"

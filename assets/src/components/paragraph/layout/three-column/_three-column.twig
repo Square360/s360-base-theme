@@ -1,28 +1,17 @@
-{#
-  NOTE: This file is for Storybook display purposes only.
+{# NOTE: This file is for Storybook display purposes only. #}
 
-  # Available Variables:
-  # column_ratio: The ratio for the columns.
-#}
-
-<section class="layout layout--three-column {{ column_ratio }}">
+<section{{ attributes }}>
   <div class="layout__regions">
     <div class="layout__region layout__region--first">
-      {% include "@components/paragraph/placeholder/placeholder.twig" with {
-        paragraph_field_title: "First Region Content"
-      } %}
+      {{ paragraph_layout_region_first }}
     </div>
 
     <div class="layout__region layout__region--second">
-      {% include "@components/paragraph/placeholder/placeholder.twig" with {
-        paragraph_field_title: "Second Region Content"
-      } %}
+      {{ paragraph_layout_region_second }}
     </div>
 
     <div class="layout__region layout__region--third">
-      {% include "@components/paragraph/placeholder/placeholder.twig" with {
-        paragraph_field_title: "Third Region Content"
-      } %}
+      {{ paragraph_layout_region_third }}
     </div>
   </div>
 </section>

@@ -6,4 +6,6 @@ import linkData from './link.yml';
  */
 export default { title: 'Foundations/Links' };
 
-export const link = () => linkTwig(linkData);
+export const link = () => {
+  return linkTwig(linkData);
+}

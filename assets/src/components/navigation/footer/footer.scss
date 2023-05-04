@@ -1,0 +1,6 @@
+@use "core/site-config";
+@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+
+.menu--footer {
+  @extend %semantic-list;
+}
