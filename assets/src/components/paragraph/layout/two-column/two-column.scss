@@ -15,8 +15,10 @@
   /// **************************************************
   /// MEDIA QUERIES
 
-  @media (min-width: core.$mq-1024) {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+  @media (min-width: mq.$mq-1024) {
+    > .layout__regions {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
 
     &.layout--50-50 {
       > .layout__regions {

@@ -7,6 +7,14 @@ import olTwig from './html-list/_ol.twig';
  */
 export default { title: 'Foundations/Lists' };
 
-export const descriptionList = () => dlTwig();
-export const unorderedList = () => ulTwig();
-export const orderedList = () => olTwig();
+export const descriptionList = () => {
+  return dlTwig();
+}
+
+export const unorderedList = () => {
+  return ulTwig();
+}
+
+export const orderedList = () => {
+  return olTwig();
+}

@@ -54,6 +54,11 @@ menu.main:
     - core/jquery
     - core/drupal
 
+menu.footer:
+  css:
+    component:
+      assets/dist/components/navigation/footer/footer.css: {}
+
 menu.local-tasks:
   css:
     component:

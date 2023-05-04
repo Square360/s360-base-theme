@@ -8,9 +8,4 @@
   .layout__summary {
     @include s360-toolkit.font-size-ms(1, 'summary');
   }
-
-  > .layout__regions {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
 }

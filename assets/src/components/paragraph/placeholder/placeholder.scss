@@ -1,7 +1,8 @@
 @use "core/site-config";
 @use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+@use "core/colors";
 
 .paragraph--placeholder {
-  border: 4px dashed inherit;
+  border: 4px dashed colors.$black;
   padding: 1em;
 }
