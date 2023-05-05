@@ -1,27 +1,3 @@
-// import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-// --------------------------------------------------
-// IMPORT PLUGIN CONFIGURATIONS
-
-// import cleanWebpackPluginConfig from './clean-webpack-plugin.config';
-import miniCssExtractPluginConfig from './mini-css-extract-plugin.config';
-// import svgSpritemapWebpackPluginConfig from './svg-spritemap-webpack-plugin.config';
-
-// const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
-
-// --------------------------------------------------
-// DEFINE PLUGINS
-
-let plugins: any[] = [];
-
-// plugins.push(new CleanWebpackPlugin(cleanWebpackPluginConfig));
-plugins.push(new MiniCssExtractPlugin(miniCssExtractPluginConfig));
-
-// if (svgSpritemapWebpackPluginConfig.length) {
-//   svgSpritemapWebpackPluginConfig.forEach(svgSpritmap => {
-//     plugins.push(new SVGSpritemapPlugin(svgSpritmap.patterns, svgSpritmap.options));
-//   });
-// }
-
-export { plugins as WEBPACK_PLUGINS };
+export { SVG_SPRITEMAP_WEBPACK_PLUGIN_CONFIG } from './svg-spritemap-webpack-plugin.config';
+export { CLEAN_WEBPACK_PLUGIN_CONFIG } from './clean-webpack-plugin.config';
+export { MINI_CSS_EXTRACT_PLUGIN_CONFIG } from './mini-css-extract-plugin.config';

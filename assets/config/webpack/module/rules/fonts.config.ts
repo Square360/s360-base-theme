@@ -1,4 +1,4 @@
-export default {
+export const FONT_RULES = {
   test: /\.(woff|woff2)(\?\S*)?$/,
   include: [/(web)?fonts?/],
   use: [

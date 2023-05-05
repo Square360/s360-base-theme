@@ -1,5 +1,2 @@
-import aliasConfig from './alias.config';
-import extensionsConfig from './extensions.config';
-
-export { aliasConfig as WEBPACK_RESOLVE_ALIAS };
-export { extensionsConfig as WEBPACK_RESOLVE_EXTENSIONS };
+export { WEBPACK_RESOLVE_ALIAS } from './alias.config';
+export { WEBPACK_RESOLVE_EXTENSIONS } from './extensions.config';

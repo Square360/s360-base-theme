@@ -6,7 +6,7 @@
 
 const path = require('path');
 
-export default {
+export const IMAGE_RULES = {
   test: /\.(gif|png|jpe?g|svg)$/,
   include: path.resolve('src/images'),
   exclude: path.resolve('src/images/icons'),

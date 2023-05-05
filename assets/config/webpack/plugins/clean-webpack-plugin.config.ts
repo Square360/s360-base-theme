@@ -1,11 +1,9 @@
 // Clean plugin for webpack
 // @see https://github.com/johnagan/clean-webpack-plugin#options-and-defaults-optional
 
-let cleanWebpackPluginConfig = {
+export const CLEAN_WEBPACK_PLUGIN_CONFIG = {
   cleanAfterEveryBuildPatterns: [
     '!fonts/**/*',
     'images/**/*',
   ],
 };
-
-export { cleanWebpackPluginConfig as PLUGIN_CLEAN_WEBPACK_CONFIG };
