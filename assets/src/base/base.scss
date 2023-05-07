@@ -1,6 +1,6 @@
 @use "s360-toolkit/reset";
 @use "core/site-config";
-@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+@use "s360-toolkit";
 
 /// **************************************************
 /// Single top-level-files, no associated stories.
