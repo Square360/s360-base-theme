@@ -7,6 +7,8 @@
  * Defines custom hooks for the theme.
  */
 
+use Drupal\Core\Url;
+
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-block.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-field.php';
@@ -19,3 +21,147 @@ require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme'
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-views.php';
 
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/theme-suggestions.php';
+
+
+/**
+ * Get file information about the media.
+ *
+ * @param \Drupal\media\Entity\Media $media
+ * @return bool|array
+ */
+function s360_base_theme_get_media_info(\Drupal\media\Entity\Media $media) {
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  $media_bundle = $media->bundle();
+
+  $media_info = [
+    'media_type' => $media_bundle,
+    'media_label' => $media->label(),
+  ];
+
+  $thumbnail = $media->thumbnail;
+  $thumbnail_fid = $thumbnail->target_id;
+
+  if ($thumbnail_fid) {
+    $media_info['thumbnail'] = s360_base_theme_get_file_info($entity_type_manager->getStorage('file')->load($thumbnail_fid));
+  }
+
+  switch ($media_bundle) {
+    case 'document':
+      $media_info = array_merge($media_info, s360_base_theme_get_media_document_file_info($media));
+      break;
+
+    case 'image':
+      $media_info = array_merge($media_info, s360_base_theme_get_media_image_file_info($media));
+      break;
+
+    default:
+      break;
+  }
+
+  return $media_info;
+}
+
+/**
+ * Get file information about the media document.
+ *
+ * @param \Drupal\media\Entity\Media $media
+ * @return bool|array
+ */
+function s360_base_theme_get_media_document_file_info(\Drupal\media\Entity\Media $media) {
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  if (!$media->hasField('field_media_document')) {
+    return FALSE;
+  }
+
+  $field_media_document = $media->get('field_media_document');
+
+  if (!$field_media_document->count()) {
+    return FALSE;
+  }
+
+  $file = $entity_type_manager->getStorage('file')->load($field_media_document->target_id);
+  $file_info = s360_base_theme_get_file_info($file);
+
+  // Get a file icon based on the mime type.
+  switch ($file_info['file_mime_type']) {
+    // .pdf extension.
+    case 'application/pdf':
+      $file_icon = 'fa-file-pdf';
+      break;
+
+    // .doc and .docx extensions.
+    case 'application/msword':
+    case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+      $file_icon = 'fa-file-word';
+      break;
+
+    // .xls and .xlsx extensions.
+    case 'application/vnd.ms-excel':
+    case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+      $file_icon = 'fa-file-excel';
+      break;
+
+    // .ppt and .pptx extensions.
+    case 'application/vnd.ms-powerpoint':
+    case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
+      $file_icon = 'fa-file-powerpoint';
+      break;
+
+    default:
+      $file_icon = 'fa-file';
+      break;
+  }
+
+  return array_merge($file_info, ['file_icon' => $file_icon]);
+}
+
+/**
+ * Get file information about the media image.
+ *
+ * @param \Drupal\media\Entity\Media $media
+ * @return bool|array
+ */
+function s360_base_theme_get_media_image_file_info(\Drupal\media\Entity\Media $media) {
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  if (!$media->hasField('field_media_image')) {
+    return FALSE;
+  }
+
+  $field_media_image = $media->get('field_media_image');
+
+  if (!$field_media_image->count()) {
+    return FALSE;
+  }
+
+  $file = $entity_type_manager->getStorage('file')->load($field_media_image->target_id);
+  $file_info = s360_base_theme_get_file_info($file);
+
+  return array_merge($file_info, ['file_icon' => 'fa-file-image']);
+}
+
+/**
+ * Get file information.
+ *
+ * @param \Drupal\file\Entity\File $file
+ * @return array
+ */
+function s360_base_theme_get_file_info(\Drupal\file\Entity\File $file) {
+  $file_mime_type = $file->getMimeType();
+  $file_size = $file->getSize();
+  $file_filename = $file->getFilename();
+  $file_url = $file->createFileUrl();
+  $file_uri = $file->getFileUri();
+
+  return [
+    'file' => $file,
+    'file_size' => $file_size,
+    'file_filename' => $file_filename,
+    'file_mime_type' => $file_mime_type,
+    'file_relative_url' => $file_url,
+    'file_absolute_url' => Url::fromUri(\Drupal::service('file_url_generator')->generateAbsoluteString($file_uri)),
+    'file_uri' => $file_uri,
+  ];
+}
