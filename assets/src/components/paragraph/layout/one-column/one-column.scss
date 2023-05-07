@@ -1,11 +1,8 @@
 @use "core/site-config";
-@use "s360-toolkit";
 @use "core/mq";
-@use "../_layout.scss";
+@use "s360-toolkit";
 
 .layout--one-column {
-  @extend %layout;
-
   > .layout__regions {
     display: grid;
   }
@@ -15,8 +12,8 @@
 
   @media (min-width: mq.$mq-1024) {
     > .layout__regions {
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: site-config.$spacing;
+      grid-template-columns: repeat(site-config.$grid-columns, minmax(0, 1fr));
+      column-gap: site-config.$column-gap;
     }
 
     > .layout__regions {
