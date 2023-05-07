@@ -1,0 +1,11 @@
+{% extends "@components/media/_media.twig" %}
+
+{% block media_content %}
+  {% if media_document_download_link %}
+    {{ media_document_download_link }}
+  {% endif %}
+
+  {% if media_field_media_document %}
+    {{ media_field_media_document }}
+  {% endif %}
+{% endblock %}

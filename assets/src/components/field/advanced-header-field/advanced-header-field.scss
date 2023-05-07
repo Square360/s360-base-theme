@@ -1,8 +1,43 @@
 @use "core/site-config";
-@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+@use "core/heading-styles";
+@use "s360-toolkit";
 
 .advanced-header-field {
   .advanced-header-field__subtitle {
     margin-top: 0.5em;
+  }
+
+  &.advanced-header-field--style-centered {
+    text-align: center;
+  }
+
+  &.advanced-header-field--size-h2 {
+    .advanced-header-field__heading {
+      @extend %h2-style;
+    }
+  }
+
+  &.advanced-header-field--size-h3 {
+    .advanced-header-field__heading {
+      @extend %h3-style;
+    }
+  }
+
+  &.advanced-header-field--size-h4 {
+    .advanced-header-field__heading {
+      @extend %h4-style;
+    }
+  }
+
+  &.advanced-header-field--size-h5 {
+    .advanced-header-field__heading {
+      @extend %h5-style;
+    }
+  }
+
+  &.advanced-header-field--size-h6 {
+    .advanced-header-field__heading {
+      @extend %h6-style;
+    }
   }
 }

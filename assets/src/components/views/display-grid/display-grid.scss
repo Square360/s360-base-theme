@@ -1,0 +1,28 @@
+@use "core/site-config";
+@use "core/mq";
+@use "s360-toolkit";
+
+.view--display-grid {
+  .view__rows {
+    display: grid;
+    grid-template-columns: repeat(var(--view-grid-template-columns, 1), 1fr);
+    column-gap: site-config.$column-gap;
+    row-gap: site-config.$spacing-lg;
+  }
+
+  /// **************************************************
+  /// MEDIA QUERIES
+
+  @media (min-width: mq.$mq-768) {
+    &.view--2-columns,
+    &.view--3-columns {
+      --view-grid-template-columns: 2;
+    }
+  }
+
+  @media (min-width: mq.$mq-1024) {
+    &.view--3-columns {
+      --view-grid-template-columns: 3;
+    }
+  }
+}

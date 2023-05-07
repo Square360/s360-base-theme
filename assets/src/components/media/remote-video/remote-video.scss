@@ -1,0 +1,10 @@
+@use "core/site-config";
+@use "s360-toolkit";
+
+.media--remote-video {
+  width: 100%;
+
+  .media__video-wrapper {
+    @extend %responsive-video;
+  }
+}

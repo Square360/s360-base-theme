@@ -1,6 +1,19 @@
-@use "s360-toolkit";
 @use "core/colors";
+@use "s360-toolkit";
 
 .field {
+  --dl-padding: 1rem;
+
   border: 1px solid colors.$black;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  max-width: 100%;
+  word-break: break-word;
+
+  &__term {
+  }
+
+  &__description {
+    --dd-padding: 1rem;
+  }
 }
