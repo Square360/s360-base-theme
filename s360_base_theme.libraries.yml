@@ -88,15 +88,25 @@ menu.local-tasks:
       assets/dist/components/navigation/local-tasks/local-tasks.css: {}
 
 # ##################################################
-# Node: Page Libraries
+# Node Libraries
+
+node:
+  css:
+    component:
+      assets/dist/components/node/node.css: {}
+
+# ##################################################
+# Node Page Libraries
 
 node.page:
   css:
     component:
       assets/dist/components/node/page/page.css: {}
+  dependencies:
+    - s360_base_theme/node
 
 ##################################################
-# Paragraph Libraries: Layout
+# Paragraph Layout Libraries
 
 paragraph.layout:
   css:
