@@ -10,7 +10,6 @@
 use Drupal\Component\Utility\Html;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
-use Drupal\Core\Render\Markup;
 
 /**
  * Implements hook_preprocess_responsive_image() for images.

@@ -8,6 +8,8 @@
  */
 
 use Drupal\Core\Url;
+use Drupal\media\Entity\Media;
+use Drupal\file\Entity\File;
 
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-block.php';
@@ -22,14 +24,16 @@ require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme'
 
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/theme-suggestions.php';
 
-
 /**
  * Get file information about the media.
  *
  * @param \Drupal\media\Entity\Media $media
+ *   The Drupal media entity.
+ *
  * @return bool|array
+ *   Either an array of information for the media or false.
  */
-function s360_base_theme_get_media_info(\Drupal\media\Entity\Media $media) {
+function s360_base_theme_get_media_info(Media $media) {
   $entity_type_manager = \Drupal::entityTypeManager();
 
   $media_bundle = $media->bundle();
@@ -66,9 +70,12 @@ function s360_base_theme_get_media_info(\Drupal\media\Entity\Media $media) {
  * Get file information about the media document.
  *
  * @param \Drupal\media\Entity\Media $media
+ *   The Drupal media entity.
+ *
  * @return bool|array
+ *   Either an array of information for the media or false.
  */
-function s360_base_theme_get_media_document_file_info(\Drupal\media\Entity\Media $media) {
+function s360_base_theme_get_media_document_file_info(Media $media) {
   $entity_type_manager = \Drupal::entityTypeManager();
 
   if (!$media->hasField('field_media_document')) {
@@ -121,9 +128,12 @@ function s360_base_theme_get_media_document_file_info(\Drupal\media\Entity\Media
  * Get file information about the media image.
  *
  * @param \Drupal\media\Entity\Media $media
+ *   The Drupal media entity.
+ *
  * @return bool|array
+ *   Either an array of information for the media or false.
  */
-function s360_base_theme_get_media_image_file_info(\Drupal\media\Entity\Media $media) {
+function s360_base_theme_get_media_image_file_info(Media $media) {
   $entity_type_manager = \Drupal::entityTypeManager();
 
   if (!$media->hasField('field_media_image')) {
@@ -146,9 +156,12 @@ function s360_base_theme_get_media_image_file_info(\Drupal\media\Entity\Media $m
  * Get file information.
  *
  * @param \Drupal\file\Entity\File $file
+ *   The Drupal file entity.
+ *
  * @return array
+ *   An array of information for the file.
  */
-function s360_base_theme_get_file_info(\Drupal\file\Entity\File $file) {
+function s360_base_theme_get_file_info(File $file) {
   $file_mime_type = $file->getMimeType();
   $file_size = $file->getSize();
   $file_filename = $file->getFilename();
