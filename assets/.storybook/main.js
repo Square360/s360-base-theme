@@ -1,4 +1,8 @@
 module.exports = {
+  framework: {
+    name: '@storybook/html-webpack5',
+    options: { fastRefresh: true },
+  },
   stories: [
     '../src/**/*.stories.@(js|ts)',
   ],
@@ -9,6 +13,6 @@ module.exports = {
   ],
   staticDirs: [
     '../dist/',
-    './fontawesome'
+    './fontawesome',
   ],
 };

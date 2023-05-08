@@ -1,18 +1,33 @@
 @use "core/site-config";
-@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+@use "core/colors";
+@use "s360-toolkit";
 
 .menu--local-tasks {
   @extend %semantic-list;
 
   display: flex;
-  z-index: 1;
-  position: relative;
+  flex-direction: column;
+  z-index: 2;
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 
   .menu__item {
+    --a-color: #{ colors.$black };
+    --a-background-color: #{ rgba(colors.$white, 0.7) };
     --a-padding: 0.5em;
+    --a-border-color: #{ colors.$black };
+    --a-border-width: 1px;
+    --a-display: block;
 
     & + .menu__item {
-      --li-margin: 0 0 0 1em;
+      --li-margin: 1em 0 0 0;
+    }
+
+    &:hover {
+      --a-color-hover: #{ colors.$white };
+      --a-background-color: #{ colors.$black };
     }
   }
 }

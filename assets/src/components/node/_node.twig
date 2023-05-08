@@ -2,7 +2,9 @@
   <header class="node__header" data-js="node-header">
     {% block node_header %}
       <h1 class="node__heading">
-        {{ node_field_label }}
+        {% block node_heading %}
+          {{ node_field_label }}
+        {% endblock %}
       </h1>
     {% endblock %}
   </header>

@@ -2,13 +2,14 @@ global:
   css:
     base:
       assets/dist/base/base.css: { }
+      assets/dist/components/form/form.css: { }
     theme:
       assets/dist/components/ckeditor/ckeditor.css: {}
     layout:
       assets/dist/layout/layout.css: { }
+  js:
+    assets/dist/base/base.js: { }
   dependencies:
-    - core/jquery
-    - core/jquery.once
     - core/drupal
 
 site-layout:
@@ -41,6 +42,29 @@ form.views-exposed-form:
     component:
       assets/dist/components/form/views-exposed-form/views-exposed-form.css: {}
 
+form.user-login-form:
+  css:
+    component:
+      assets/dist/components/form/user-login-form/user-login-form.css: {}
+
+# ##################################################
+# Media Libraries
+
+media.document:
+  css:
+    component:
+      assets/dist/components/media/document/document.css: {}
+
+media.image:
+  css:
+    component:
+      assets/dist/components/media/image/image.css: {}
+
+media.remote-video:
+  css:
+    component:
+      assets/dist/components/media/remote-video/remote-video.css: {}
+
 # ##################################################
 # Menu Libraries
 
@@ -51,7 +75,6 @@ menu.main:
   js:
     assets/dist/components/navigation/main/main.js: {}
   dependencies:
-    - core/jquery
     - core/drupal
 
 menu.footer:
@@ -65,35 +88,58 @@ menu.local-tasks:
       assets/dist/components/navigation/local-tasks/local-tasks.css: {}
 
 # ##################################################
-# Node: Page Libraries
+# Node Libraries
+
+node:
+  css:
+    component:
+      assets/dist/components/node/node.css: {}
+
+# ##################################################
+# Node Page Libraries
 
 node.page:
   css:
     component:
       assets/dist/components/node/page/page.css: {}
+  dependencies:
+    - s360_base_theme/node
 
 ##################################################
-# Paragraph Libraries: Layout
+# Paragraph Layout Libraries
+
+paragraph.layout:
+  css:
+    component:
+      assets/dist/components/paragraph/layout/layout.css: {}
 
 paragraph.layout.one-column:
   css:
     component:
       assets/dist/components/paragraph/layout/one-column/one-column.css: {}
+  dependencies:
+    - s360_base_theme/paragraph.layout
 
 paragraph.layout.two-column:
   css:
     component:
       assets/dist/components/paragraph/layout/two-column/two-column.css: {}
+  dependencies:
+    - s360_base_theme/paragraph.layout
 
 paragraph.layout.three-column:
   css:
     component:
       assets/dist/components/paragraph/layout/three-column/three-column.css: {}
+  dependencies:
+    - s360_base_theme/paragraph.layout
 
 paragraph.layout.four-column:
   css:
     component:
       assets/dist/components/paragraph/layout/four-column/four-column.css: {}
+  dependencies:
+    - s360_base_theme/paragraph.layout
 
 ##################################################
 # Paragraph Libraries
@@ -135,3 +181,8 @@ paragraph.view-block:
 
 ##################################################
 # View Libraries
+
+view.display-grid:
+  css:
+    component:
+      assets/dist/components/views/display-grid/display-grid.css: {}

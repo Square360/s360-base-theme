@@ -1,15 +1,17 @@
-import {{ camelCase name }}Twig from './{{ kebabCase name }}.twig';
-import {{ camelCase name }}Data from './{{ kebabCase name }}.yml';
-import './{{kebabCase name }}.js';
+import {{ camelCase bundle }}Twig from './{{ kebabCase bundle }}.twig';
+import {{ camelCase bundle }}Data from './{{ kebabCase bundle }}.yml';
+import './{{ kebabCase bundle }}.js';
 
 import drupalAttribute from 'drupal-attribute';
 
 /**
  * Storybook Definition.
  */
-export default { title: '/{{ titleCase name }}' };
+export default { title: '/{{ titleCase bundle }}' };
 
-export const {{ camelCase name }} = () => {{ camelCase name }}Twig({
-  ...{{ camelCase name }}Data,
-  attributes: new drupalAttribute(Object.entries({{ camelCase name }}Data.{{ type }}_attributes)),
-});
+export const {{ camelCase bundle }} = () => {
+  return {{ camelCase bundle }}Twig({
+    ...{{ camelCase bundle }}Data,
+    attributes: new drupalAttribute(Object.entries({{ camelCase bundle }}Data.{{ entityType }}_attributes)),
+  });
+}

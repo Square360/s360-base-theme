@@ -1,0 +1,37 @@
+@use "core/site-config";
+@use "core/content-containers";
+
+.layout {
+  // Make sure paragraphs inside regions don't touch each other.
+  .layout__region {
+    > * + * {
+      margin-top: 0;
+    }
+  }
+
+  /// **************************************************
+  /// MARGIN BOTTOM MODIFIERS
+
+  &.layout--margin-bottom-sm {
+    margin-bottom: site-config.$spacing-sm;
+  }
+
+  &.layout--margin-bottom-md {
+    margin-bottom: site-config.$spacing-md;
+  }
+
+  &.layout--margin-bottom-lg {
+    margin-bottom: site-config.$spacing-lg;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  /// **************************************************
+  /// STYLE EXTERNAL CLASSES
+
+  .advanced-header-field {
+    margin-bottom: site-config.$spacing-md;
+  }
+}

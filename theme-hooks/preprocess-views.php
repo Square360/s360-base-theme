@@ -29,12 +29,6 @@ function s360_base_theme_preprocess_views_view(&$variables) {
   $variables['attributes']['class'][] = 'view--display-' . Html::getClass($view_plugin_id);
   $variables['attributes']['class'][] = 'view--' . Html::getClass($view_id);
   $variables['attributes']['class'][] = 'js-view-dom-id-' . $view_dom_id;
-
-  if ($view_plugin_id == 'grid') {
-    if (isset($view_style_plugin->options['columns'])) {
-      $variables['attributes']['class'][] = 'view--' . $view_style_plugin->options['columns'] . '-columns';
-    }
-  }
 }
 
 /**
@@ -65,6 +59,15 @@ function s360_base_theme_preprocess_views_view_list(&$variables) {
  * Implements hook_preprocess_views_view_grid().
  */
 function s360_base_theme_preprocess_views_view_grid(&$variables) {
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = $variables['view'];
+  $view_style_plugin = $view->style_plugin;
+  $view_columns = $view_style_plugin->options['columns'];
+
+  if (isset($view_columns)) {
+    $variables['attributes']['class'][] = "view--$view_columns-columns";
+  }
+
   foreach ($variables['items'] as &$item) {
     foreach ($item['content'] as $key => &$nested_item) {
       $nested_item['attributes'] = new Attribute();

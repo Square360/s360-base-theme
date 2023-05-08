@@ -1,6 +1,6 @@
 @use "core/site-config";
-@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
 @use "core/cta-styles";
+@use "s360-toolkit";
 
 .paragraph--cta-link {
 

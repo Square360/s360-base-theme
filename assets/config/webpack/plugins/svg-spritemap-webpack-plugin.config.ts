@@ -1,10 +1,10 @@
 // SVG Spritemap Webpack Plugin
 // @see https://github.com/cascornelissen/svg-spritemap-webpack-plugin/blob/master/docs/options.md
 
-let svgSpritemapWebpackPluginConfig = [
+export const SVG_SPRITEMAP_WEBPACK_PLUGIN_CONFIG = [
   {
     patterns: [
-      'images/icons/*.svg'
+      // 'images/icons/*.svg'
     ],
     options: {
       output: {
@@ -14,4 +14,3 @@ let svgSpritemapWebpackPluginConfig = [
   }
 ];
 
-export default svgSpritemapWebpackPluginConfig;

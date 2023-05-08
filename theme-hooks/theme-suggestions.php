@@ -45,18 +45,20 @@ function s360_base_theme_theme_suggestions_taxonomy_term_alter(array &$suggestio
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function s360_base_theme_theme_suggestions_container_alter(array &$suggestions, array $variables) {
-  if ($variables['element']['#type'] == 'view') {
-    $suggestions[] = 'container__' .
-      $variables['element']['#type'];
+  if (isset($variables['element']['#type'])) {
+    if ($variables['element']['#type'] == 'view') {
+      $suggestions[] = 'container__' .
+        $variables['element']['#type'];
 
-    $suggestions[] = 'container__' .
-      $variables['element']['#type'] . '__' .
-      $variables['element']['#name'];
+      $suggestions[] = 'container__' .
+        $variables['element']['#type'] . '__' .
+        $variables['element']['#name'];
 
-    $suggestions[] = 'container__' .
-      $variables['element']['#type'] . '__' .
-      $variables['element']['#name'] . '__' .
-      $variables['element']['#display_id'];
+      $suggestions[] = 'container__' .
+        $variables['element']['#type'] . '__' .
+        $variables['element']['#name'] . '__' .
+        $variables['element']['#display_id'];
+    }
   }
 }
 

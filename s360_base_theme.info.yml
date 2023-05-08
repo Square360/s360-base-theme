@@ -2,7 +2,7 @@ name: S360 Base Theme
 description: ''
 type: theme
 base theme: false
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 dependencies:
   - s360_base_paragraphs
   - s360_layout_builder

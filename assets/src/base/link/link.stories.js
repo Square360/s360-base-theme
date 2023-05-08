@@ -1,5 +1,6 @@
 import linkTwig from './_link.twig';
 import linkData from './link.yml';
+import "./_link-storybook-only.scss";
 
 /**
  * Storybook Definition.

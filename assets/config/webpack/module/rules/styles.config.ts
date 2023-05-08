@@ -7,18 +7,20 @@
 // sass-loader
 // @see https://webpack.js.org/loaders/sass-loader/#options
 
-export default {
+export const STYLE_RULES = {
   test: /\.s[ac]ss$/i,
   use: [
     { loader: require('mini-css-extract-plugin').loader },
     { loader: 'css-loader',
       options: {
-        url: (url: string): boolean => {
-          if (url.includes('images')) {
-            return false;
-          }
-          else {
-            return true;
+        url: {
+          filter: (url: string): boolean => {
+            if (url.includes('images')) {
+              return false;
+            }
+            else {
+              return true;
+            }
           }
         }
       }

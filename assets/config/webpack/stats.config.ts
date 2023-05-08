@@ -1,7 +1,7 @@
 // Stats
 // @see https://webpack.js.org/configuration/stats/#stats-options
 
-export default {
+export const WEBPACK_STATS = {
   errorDetails: true,
   assetsSort: '!size',
   children: false,

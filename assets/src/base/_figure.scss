@@ -4,6 +4,8 @@ figure {
   display: var(--figure-display);
 
   figcaption {
+    font-size: var(--figcaption-font-size);
+    font-weight: var(--figcaption-font-weight);
     margin: var(--figcaption-margin, 0.5em 0 0 0);
     display: var(--figcaption-display, table-caption);
     caption-side: var(--figcaption-caption-side, bottom);

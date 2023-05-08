@@ -1,7 +1,13 @@
 @use "core/site-config";
-@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+@use "s360-toolkit";
 
 .form {
+  .form__element {
+    > * + * {
+      margin-top: 0.25em;
+    }
+  }
+
   .form__label--required {
     &::after {
       content: '\002A';

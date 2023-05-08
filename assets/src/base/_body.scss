@@ -1,5 +1,9 @@
+@use "core/content-containers";
+
 body {
+  @extend %live;
+
   font-family: '';
-  color: var(--text-color);
+  color: '';
   line-height: 1;
 }
