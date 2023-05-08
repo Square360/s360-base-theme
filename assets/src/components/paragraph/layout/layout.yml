@@ -1,12 +1,3 @@
-layout_accordion:
-  paragraph_attributes:
-    class:
-      - layout
-      - layout--accordion
-  paragraph_layout_region_content:
-    paragraph_field_title: 'Content Region'
-  paragraph_header: 'Accordion'
-
 layout_one_column:
   paragraph_attributes:
     class:

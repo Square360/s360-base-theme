@@ -1,21 +1,125 @@
 @use "core/site-config";
 
-/// Forces content to span the entire viewport with no max limit.
-%edge-to-edge {
+/// **************************************************
+/// BLEED
+///
+/// These mixins and placeholders are designed to force the content to span the
+/// entire viewport, infinitely.
+///
+/// @mixin should only be used inside "@media" queries.
+/// %placeholders should cannot be used inside "@media" queries.
+
+@mixin bleed-left {
   margin-left: calc(calc(-50vw + 50%) - (var(--scrollbar-width, 0px) / 2 * -1));
+}
+
+/// @requires {mixin} bleed-left
+%bleed-left {
+  @include bleed-left;
+}
+
+@mixin bleed-right {
   margin-right: calc(calc(-50vw + 50%) - (var(--scrollbar-width, 0px) / 2 * -1));
 }
 
-/// Forces content to be containted to the max-width, including "safe-area".
-%live {
-  padding-right: var(--safe-area-right);
+/// @requires {mixin} bleed-right
+%bleed-right {
+  @include bleed-right;
+}
+
+/// @requires {mixin} bleed-left
+/// @requires {mixin} bleed-right
+@mixin bleed {
+  @include bleed-left;
+  @include bleed-right;
+}
+
+/// Same as the bleed mixin, but cannot be use inside `@media` queries.
+/// @requires {mixin} bleed
+%bleed {
+  @include bleed;
+}
+
+/// **************************************************
+/// TRIM
+///
+/// These mixins and placeholders are designed to force content into
+/// "safe-area" of the site. (i.e. side margins).
+///
+/// @mixin should only be used inside "@media" queries.
+/// %placeholders should cannot be used inside "@media" queries.
+
+@mixin trim-left {
+  margin-left: calc(var(--safe-area-left) * -1);
+}
+
+/// @requires {mixin} trim-left
+%trim-left {
+  @include trim-left;
+}
+
+@mixin trim-right {
+  margin-right: calc(var(--safe-area-right) * -1);
+}
+
+/// @requires {mixin} trim-right
+%trim-right {
+  @include trim-right;
+}
+
+/// @requires {mixin} trim-left
+/// @requires {mixin} trim-right
+@mixin trim {
+  @include trim-left;
+  @include trim-right;
+}
+
+/// @requires {mixin} trim
+%trim {
+  @include trim;
+}
+
+/// **************************************************
+/// LIVE
+///
+/// These mixins and placeholders are designed to keep content pinned to the
+/// live area of the site.
+///
+/// NOTE: They should not be used unless the parent container is using
+/// "bleed" or "trim" otherwise you'll get odd indenting.
+///
+/// @mixin should only be used inside "@media" queries.
+/// %placeholders should cannot be used inside "@media" queries.
+
+@mixin live-left {
   padding-left: var(--safe-area-left);
-  max-width: site-config.$max-width;
+}
+
+/// @requires {mixin} live-left
+%live-left {
+  @include live-left;
+}
+
+@mixin live-right {
+  padding-right: var(--safe-area-right);
+}
+
+/// @requires {mixin} live-right
+%live-right {
+  @include live-right;
+}
+
+/// @requires {mixin} live-left
+/// @requires {mixin} live-right
+@mixin live {
+  @include live-left;
+  @include live-right;
+
+  max-width: site-config.$site-max-width;
   margin: 0 auto;
 }
 
-/// Forces content to negate safe-areas.
-%trim {
-  margin-left: calc(var(--safe-area-left) * -1);
-  margin-right: calc(var(--safe-area-right) * -1);
+/// @requires {mixin} live
+%live {
+  @include live;
 }

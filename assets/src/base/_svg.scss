@@ -1,11 +1,11 @@
 svg {
   width: var(--svg-width);
   height: var(--svg-height);
-  display: var(--svg-display);
+  display: var(--svg-display, block);
   margin: var(--svg-margin);
 
   path {
-    fill: var(--svg-path-fill);
+    fill: var(--svg-path-fill, currentColor);
     transition: var(--svg-path-transition, all 200ms ease-in-out);
   }
 }

@@ -1,0 +1,7 @@
+{% set media_tag = media_tag|default('figure') %}
+
+<{{ media_tag }}{{ attributes }}>
+  {% block media_content %}
+    {{- media_content -}}
+  {% endblock %}
+</{{ media_tag }}>

@@ -1,5 +1,5 @@
 @use "core/site-config";
-@use "s360-toolkit" with ($config: site-config.$SITE_CONFIG);
+@use "s360-toolkit";
 
 .node__body,
 .paragraph__body,
@@ -16,15 +16,15 @@
   img {
     &.align-left {
       margin: {
-        bottom: site-config.$spacing-half;
-        right: site-config.$spacing-half;
+        bottom: site-config.$spacing-sm;
+        right: site-config.$spacing-sm;
       }
     }
 
     &.align-right {
       margin: {
-        bottom: site-config.$spacing-half;
-        left: site-config.$spacing-half;
+        bottom: site-config.$spacing-sm;
+        left: site-config.$spacing-sm;
       }
     }
   }

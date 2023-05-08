@@ -1,6 +1,6 @@
 @use "core/site-config";
 
 :root {
-  --safe-area-left: #{ site-config.$layout-side-margin };
-  --safe-area-right: #{ site-config.$layout-side-margin };
+  --safe-area-left: #{ site-config.$site-side-margin };
+  --safe-area-right: #{ site-config.$site-side-margin };
 }

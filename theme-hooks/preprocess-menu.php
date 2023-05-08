@@ -33,7 +33,7 @@ function s360_base_theme_preprocess_menu_local_task(&$variables) {
 function s360_base_theme_preprocess_menu__social(&$variables) {
   $site_name = \Drupal::config('system.site')->get('name');
 
-  foreach ($variables['items'] as $key => &$item) {
+  foreach ($variables['items'] as &$item) {
     $item_title = &$item['title'];
 
     $item['url']->setOptions([
@@ -42,9 +42,5 @@ function s360_base_theme_preprocess_menu__social(&$variables) {
         'title' => $item_title,
       ],
     ]);
-
-    // $fa_icon = _economics_get_social_icon($item_title);
-
-    // $item_title = Markup::create('<i class="' . $fa_icon . '"></i>');
   }
 }

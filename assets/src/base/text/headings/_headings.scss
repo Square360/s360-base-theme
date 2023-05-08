@@ -1,25 +1,31 @@
-@use "core/text-styles";
+@use "core/heading-styles";
 
 h1 {
-  @extend %text-as-h1;
+  @extend %heading-base;
+  @extend %h1-style;
 }
 
 h2 {
-  @extend %text-as-h2;
+  @extend %heading-base;
+  @extend %h2-style;
 }
 
 h3 {
-  @extend %text-as-h3;
+  @extend %heading-base;
+  @extend %h3-style;
 }
 
 h4 {
-  @extend %text-as-h4;
+  @extend %heading-base;
+  @extend %h4-style;
 }
 
 h5 {
-  @extend %text-as-h5;
+  @extend %heading-base;
+  @extend %h5-style;
 }
 
 h6 {
-  @extend %text-as-h6;
+  @extend %heading-base;
+  @extend %h6-style;
 }

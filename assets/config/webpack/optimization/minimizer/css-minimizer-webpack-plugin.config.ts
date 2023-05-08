@@ -1,10 +1,7 @@
-// CssMinimizerWebpackPlugin
-// @see https://webpack.js.org/plugins/css-minimizer-webpack-plugin/#options
-//
 // minimizerOptions
 // @see https://cssnano.co/docs/optimisations/
 
-export default {
+export const CSS_MINIMIZER_WEBPACK_PLUGIN_CONFIG = {
   minimizerOptions: {
     preset: [
       'default',

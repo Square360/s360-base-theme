@@ -4,7 +4,7 @@ export default function (plop) {
     prompts: [
       {
         type: 'list',
-        name: 'type',
+        name: 'entityType',
         message: 'Entity Type',
         choices: [
           'node',
@@ -13,59 +13,58 @@ export default function (plop) {
       },
       {
         type: 'input',
-        name: 'name',
+        name: 'bundle',
         message: 'Bundle Name'
       }
     ],
     actions: (data) => {
-      // let drupalTemplatePath = '';
+      let drupalTemplatePath = '';
 
-      // if (data.type == 'paragraph') {
-      //   drupalTemplatePath = '../templates/{{ type }}/{{ type }}--{{ kebabCase name }}.html.twig';
-      // }
-      // else if (data.type == 'node') {
-      //   drupalTemplatePath = '../templates/{{ type }}/{{ kebabCase name }}/{{ type }}--{{ kebabCase name }}--full.html.twig';
-      // }
+      if (data.entityType == 'paragraph') {
+        drupalTemplatePath = '../templates/{{ entityType }}/{{ entityType }}--{{ kebabCase bundle }}.html.twig';
+      }
+      else if (data.entityType == 'node') {
+        drupalTemplatePath = '../templates/{{ entityType }}/{{ kebabCase bundle }}/{{ entityType }}--{{ kebabCase bundle }}--full.html.twig';
+      }
 
       let actions = [
         {
           type: 'add',
-          path: 'src/components/{{ type }}/{{ kebabCase name }}/{{ kebabCase name }}.js',
+          path: 'src/components/{{ entityType }}/{{ kebabCase bundle }}/{{ kebabCase bundle }}.js',
           templateFile: './config/plop-templates/component.script.hbs',
           skipIfExists: true
         },
         {
           type: 'add',
-          path: 'src/components/{{ type }}/{{ kebabCase name }}/{{ kebabCase name }}.scss',
+          path: 'src/components/{{ entityType }}/{{ kebabCase bundle }}/{{ kebabCase bundle }}.scss',
           templateFile: './config/plop-templates/component.style.hbs',
           skipIfExists: true
         },
         {
           type: 'add',
-          path: 'src/components/{{ type }}/{{ kebabCase name }}/{{ kebabCase name }}.stories.js',
+          path: 'src/components/{{ entityType }}/{{ kebabCase bundle }}/{{ kebabCase bundle }}.stories.js',
           templateFile: './config/plop-templates/component.stories.hbs',
           skipIfExists: true
         },
         {
           type: 'add',
-          path: 'src/components/{{ type }}/{{ kebabCase name }}/{{ kebabCase name }}.yml',
+          path: 'src/components/{{ entityType }}/{{ kebabCase bundle }}/{{ kebabCase bundle }}.yml',
           templateFile: './config/plop-templates/component.yml.hbs',
           skipIfExists: true
         },
         {
           type: 'add',
-          path: 'src/components/{{ type }}/{{ kebabCase name }}/{{ kebabCase name }}.twig',
+          path: 'src/components/{{ entityType }}/{{ kebabCase bundle }}/{{ kebabCase bundle }}.twig',
           templateFile: './config/plop-templates/component.twig.hbs',
+          skipIfExists: true
+        },
+        {
+          type: 'add',
+          path: `${ drupalTemplatePath }`,
+          templateFile: './config/plop-templates/component.drupal-twig.hbs',
           skipIfExists: true
         }
       ];
-
-      // actions.push({
-      //   type: 'add',
-      //   path: `${ drupalTemplatePath }/--{{ kebabCase name }}.html.twig`,
-      //   templateFile: './config/plop-templates/component.drupal-twig.hbs',
-      //   skipIfExists: true
-      // });
 
       return actions;
     }

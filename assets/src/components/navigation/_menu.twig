@@ -30,6 +30,8 @@
         {% set menu_item_type = 'nolink' %}
       {% elseif item.url.isrouted and item.url.routeName == '<button>' %}
         {% set menu_item_type = 'button' %}
+      {% elseif item.url.isrouted and item.below and menu_level == 0 %}
+        {% set menu_item_type = 'details_summary' %}
       {% else %}
         {% set menu_item_type = 'link' %}
       {% endif %}
@@ -41,18 +43,35 @@
           item.in_active_trail ? 'menu__item--active' : '',
         ]
       %}
+
       <li{{ item.attributes.addClass(item_classes) }}>
-        {% if menu_item_type == 'link' or menu_item_type == 'nolink' %}
-          {% if item.in_active_trail %}
-            {{ link(item.title, item.url, { 'aria-current': ['page'] }) }}
-          {% else %}
-            {{ link(item.title, item.url) }}
+        {% if menu_item_type == 'details_summary' %}
+          {% set link_text = item.title %}
+
+          {% if menu_name == 'main' and menu_level == 0 %}
+            {% set tmp = item.title ~ '<div class="menu__expand"><span></span><span></span></div>' %}
+            {% set link_text %}{{ tmp|raw }}{% endset %}
           {% endif %}
-        {% else %}
+
+          <details class="menu__details">
+            <summary class="menu__summary">
+              {{ link(link_text, item.url, (item.in_active_trail ? { 'aria-current': ['page'] } : {})) }}
+            </summary>
+            <div class="menu__submenu-wrapper">
+              <div class="menu__submenu-wrapper-content">
+                {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item.title) }}
+              </div>
+            </div>
+          </details>
+        {% elseif menu_item_type == 'link' or menu_item_type == 'nolink' %}
+          {{ link(item.title, item.url, (item.in_active_trail ? { 'aria-current': ['page'] } : {})) }}
+        {% elseif menu_item_type == 'button' %}
           <button>{{ item.title }}</button>
         {% endif %}
 
-        {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item.title) }}
+        {% if menu_item_type != 'details_summary' %}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item.title) }}
+        {% endif %}
       </li>
     {% endfor %}
     </ul>

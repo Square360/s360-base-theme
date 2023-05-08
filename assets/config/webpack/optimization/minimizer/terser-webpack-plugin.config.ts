@@ -1,10 +1,7 @@
-// TerserWebpackPlugin
-// @see https://webpack.js.org/plugins/terser-webpack-plugin/#options
-//
 // terserOptions
 // @see https://github.com/terser/terser#minify-options
 
-export default {
+export const TERSER_WEBPACK_PLUGIN_CONFIG = {
   extractComments: false,
   terserOptions: {
     ecma: undefined,
