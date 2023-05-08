@@ -53,7 +53,7 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
   }
 
   if (copy_files(get_files_to_copy(), $theme_path) !== TRUE) {
-    print 'Failed to files' . PHP_EOL;
+    print 'Failed to copy files' . PHP_EOL;
     return FALSE;
   }
 
