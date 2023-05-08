@@ -42,7 +42,7 @@
   font-size: var(--p-font-size);
   font-style: var(--p-font-style);
   font-weight: var(--p-font-weight);
-  line-height: var(--p-line-height, #{ typography.$line-height });
+  line-height: var(--p-line-height);
   margin: var(--p-margin, 0 0 1em 0);
   padding: var(--p-padding, 0);
 

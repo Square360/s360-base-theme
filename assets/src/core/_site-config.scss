@@ -27,4 +27,4 @@ $grid-columns: 12;
 
 $site-max-width: 1440px;
 $site-side-margin: s360-toolkit.linear-scale($spacing-sm, $spacing-sm);
-$site-content-area: calc(#{ $site-max-width } - calc(#{ $layout-side-margin } * 2));
+$site-content-area: calc(#{ $site-max-width } - calc(#{ $site-side-margin } * 2));

@@ -83,6 +83,7 @@ function get_files_to_copy() {
   return [
     'assets/.storybook',
     'assets/config',
+    'assets/dist',
     'assets/src',
     'assets/.babelrc',
     'assets/.nvmrc',

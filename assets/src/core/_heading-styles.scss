@@ -6,10 +6,10 @@
 
 %heading-base {
   font-size: var(--heading-font-size);
-  color: var(--heading-color, #{ colors.$blue-dark });
+  color: var(--heading-color);
   line-height: var(--heading-line-height, 1);
-  font-family: var(--heading-font-family, #{ typography.$font-family-yale-design });
-  font-weight: var(--heading-font-weight, #{ typography.$font-weight-bold });
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
   text-transform: var(--heading-text-transform);
 }
 

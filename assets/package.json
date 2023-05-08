@@ -23,8 +23,8 @@
     "a11y": "yarn storybook-build && ./assets/scripts/a11y.js -r",
     "build": "webpack --mode=production",
     "develop": "concurrently --raw \"yarn webpack\" \"yarn storybook\"",
-    "storybook": "start-storybook --ci -p 6006",
-    "storybook-build": "yarn build && build-storybook -o ../.out",
+    "storybook": "storybook dev --ci -p 6006",
+    "storybook-build": "yarn build && storybook build -o ../.out",
     "webpack": "webpack --mode=development --watch",
     "generate": "plop"
   },
@@ -97,6 +97,7 @@
     "stylelint-prettier": "3.0.0",
     "stylelint-webpack-plugin": "4.1.1",
     "svg-sprite-loader": "6.0.11",
+    "svg-spritemap-webpack-plugin": "4.5.0",
     "ts-node": "10.9.1",
     "twig-testing-library": "1.2.0",
     "twigjs-loader": "1.0.3",
