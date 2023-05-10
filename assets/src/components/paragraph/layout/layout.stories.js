@@ -22,14 +22,18 @@ const LAYOUT_WIDTH_OPTIONS = {
     'Edge to Edge': 'layout--width-edge-to-edge',
     'Inset': 'layout--width-inset',
   },
-  control: 'select',
-  defaultValue: '',
+  type: {
+    control: 'select',
+  }
 };
 
 /**
  * Storybook Definition.
  */
 export default { title: 'Layouts/Layouts' };
+
+// **************************************************
+// ONE COLUMN LAYOUTS
 
 export const oneColumn = ({ layout_width }) => {
   let paragraphClasses = [...layoutData.layout_one_column.paragraph_attributes.class, layout_width];
@@ -44,6 +48,19 @@ export const oneColumn = ({ layout_width }) => {
 }
 oneColumn.argTypes = {
   layout_width: LAYOUT_WIDTH_OPTIONS
+}
+
+// **************************************************
+// TWO COLUMN LAYOUTS
+
+const LAYOUT_TWO_COLUMN_RATIO_OPTIONS = {
+  'layout--50-50': '50%/50%',
+  'layout--60-40': '60%/40%',
+  'layout--40-60': '40%/60%',
+  'layout--70-30': '70%/30%',
+  'layout--30-70': '30%/70%',
+  'layout--75-25': '75%/25%',
+  'layout--25-75': '25%/75%',
 }
 
 export const twoColumn = ({ column_ratio }) => {
@@ -61,18 +78,25 @@ export const twoColumn = ({ column_ratio }) => {
 twoColumn.argTypes = {
   column_ratio: {
     name: 'Column Ratio',
-    options: {
-      '50%/50%': 'layout--50-50',
-      '60%/40%': 'layout--60-40',
-      '40%/60%': 'layout--40-60',
-      '70%/30%': 'layout--70-30',
-      '30%/70%': 'layout--30-70',
-      '75%/25%': 'layout--75-25',
-      '25%/75%': 'layout--25-75',
-    },
-    control: 'select',
-    defaultValue: 'layout--50-50',
+    options: Object.keys(LAYOUT_TWO_COLUMN_RATIO_OPTIONS),
+    control: {
+      type: 'select',
+      labels: LAYOUT_TWO_COLUMN_RATIO_OPTIONS
+    }
   }
+};
+twoColumn.args = {
+  column_ratio: 'layout--50-50'
+};
+
+// **************************************************
+// THREE COLUMN LAYOUTS
+
+const LAYOUT_THREE_COLUMN_RATIO_OPTIONS = {
+  'layout--33-33-33': '33%/33%/33%',
+  'layout--25-50-25': '25%/50%/25%',
+  'layout--50-25-25': '50%/25%/25%',
+  'layout--25-25-50': '25%/25%/50%',
 }
 
 export const threeColumn = ({ column_ratio }) => {
@@ -91,16 +115,19 @@ export const threeColumn = ({ column_ratio }) => {
 threeColumn.argTypes = {
   column_ratio: {
     name: 'Column Ratio',
-    options: {
-      '33%/33%/33%': 'layout--33-33-33',
-      '25%/50%/25%': 'layout--25-50-25',
-      '50%/25%/25%': 'layout--50-25-25',
-      '25%/25%/50%': 'layout--25-25-50',
-    },
-    control: 'select',
-    defaultValue: 'layout--33-33-33',
+    options: Object.keys(LAYOUT_THREE_COLUMN_RATIO_OPTIONS),
+    control: {
+      type: 'select',
+      labels: LAYOUT_THREE_COLUMN_RATIO_OPTIONS
+    }
   }
 }
+threeColumn.args = {
+  column_ratio: 'layout--33-33-33',
+};
+
+// **************************************************
+// FOUR COLUMN LAYOUTS
 
 export const fourColumn = () => {
   let paragraphClasses = [...layoutData.layout_four_column.paragraph_attributes.class];

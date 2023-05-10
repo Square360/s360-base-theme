@@ -1,4 +1,5 @@
 import siteFooterTwig from './site-footer.twig';
+import siteFooterData from './site-footer.yml';
 
 /**
  * Storybook Definition.

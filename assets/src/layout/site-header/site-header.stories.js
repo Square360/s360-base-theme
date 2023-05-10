@@ -1,4 +1,5 @@
 import siteHeaderTwig from './site-header.twig';
+import siteHeaderData from './site-header.yml';
 
 /**
  * Storybook Definition.

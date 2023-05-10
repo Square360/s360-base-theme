@@ -12,6 +12,6 @@ export default { title: 'Layout Components/Image' };
 export const image = () => {
   return imageTwig({
     ...imageData,
-    attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
+    attributes: new drupalAttribute(Object.entries(imageData.paragraph_attributes)),
   });
 };
