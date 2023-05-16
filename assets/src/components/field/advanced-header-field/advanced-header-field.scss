@@ -13,31 +13,31 @@
 
   &.advanced-header-field--size-h2 {
     .advanced-header-field__heading {
-      @extend %h2-style;
+      @extend %heading-as-h2;
     }
   }
 
   &.advanced-header-field--size-h3 {
     .advanced-header-field__heading {
-      @extend %h3-style;
+      @extend %heading-as-h3;
     }
   }
 
   &.advanced-header-field--size-h4 {
     .advanced-header-field__heading {
-      @extend %h4-style;
+      @extend %heading-as-h4;
     }
   }
 
   &.advanced-header-field--size-h5 {
     .advanced-header-field__heading {
-      @extend %h5-style;
+      @extend %heading-as-h5;
     }
   }
 
   &.advanced-header-field--size-h6 {
     .advanced-header-field__heading {
-      @extend %h6-style;
+      @extend %heading-as-h6;
     }
   }
 }

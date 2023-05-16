@@ -13,26 +13,26 @@
   text-transform: var(--heading-text-transform);
 }
 
-%h1-style {
+%heading-as-h1 {
   --heading-font-size: var(--h1-font-size, #{ heading-font-sizes.h1-font-size() });
 }
 
-%h2-style {
+%heading-as-h2 {
   --heading-font-size: var(--h2-font-size, #{ heading-font-sizes.h2-font-size() });
 }
 
-%h3-style {
+%heading-as-h3 {
   --heading-font-size: var(--h3-font-size, #{ heading-font-sizes.h3-font-size() });
 }
 
-%h4-style {
+%heading-as-h4 {
   --heading-font-size: var(--h4-font-size, #{ heading-font-sizes.h4-font-size() });
 }
 
-%h5-style {
+%heading-as-h5 {
   --heading-font-size: var(--h5-font-size, #{ heading-font-sizes.h5-font-size() });
 }
 
-%h6-style {
+%heading-as-h6 {
   --heading-font-size: var(--h6-font-size, #{ heading-font-sizes.h6-font-size() });
 }
