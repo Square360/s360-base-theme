@@ -2,12 +2,13 @@ import { useEffect } from '@storybook/client-api';
 import Twig from 'twig';
 import { setupTwig } from './setupTwig';
 
+// JS
+import './_drupal.js';
+import '../src/base/base.js';
+
 // GLOBAL CSS
 import '../src/base/base.scss';
 import '../src/layout/layout.scss';
-
-// DRUPAL JS
-import './_drupal.js';
 
 setupTwig(Twig);
 
