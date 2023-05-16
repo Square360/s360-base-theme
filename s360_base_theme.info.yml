@@ -17,7 +17,19 @@ regions:
 
 components:
   namespaces:
-    layout:
+    ui-layout:
       - assets/src/layout
-    components:
-      - assets/src/components
+    ui-field:
+      - assets/src/components/field
+    ui-form:
+      - assets/src/components/form
+    ui-media:
+      - assets/src/components/media
+    ui-navigation:
+      - assets/src/components/navigation
+    ui-node:
+      - assets/src/components/node
+    ui-paragraph:
+      - assets/src/components/paragraph
+    ui-views:
+      - assets/src/components/views
