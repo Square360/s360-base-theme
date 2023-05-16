@@ -11,20 +11,7 @@ export const STYLE_RULES = {
   test: /\.s[ac]ss$/i,
   use: [
     { loader: require('mini-css-extract-plugin').loader },
-    { loader: 'css-loader',
-      options: {
-        url: {
-          filter: (url: string): boolean => {
-            if (url.includes('images')) {
-              return false;
-            }
-            else {
-              return true;
-            }
-          }
-        }
-      }
-    },
+    { loader: 'css-loader' },
     { loader: 'postcss-loader',
       options: {
         postcssOptions: {
