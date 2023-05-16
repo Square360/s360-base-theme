@@ -7,6 +7,7 @@ dl {
   line-height: var(--dl-line-height);
 
   dt {
+    display: var(--dt-display);
     font-size: var(--dt-font-size);
     font-family: var(--dt-font-family);
     font-weight: var(--dt-font-weight);
@@ -15,6 +16,7 @@ dl {
   }
 
   dd {
+    display: var(--dd-display);
     font-size: var(--dd-font-size);
     font-family: var(--dd-font-family);
     font-weight: var(--dd-font-weight);

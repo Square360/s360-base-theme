@@ -14,12 +14,18 @@
   transform: translateY(-50%);
 
   .menu__item {
-    --a-color: #{ colors.$black };
-    --a-background-color: #{ rgba(colors.$white, 0.7) };
-    --a-padding: 0.5em;
-    --a-border-color: #{ colors.$black };
-    --a-border-width: 1px;
-    --a-display: block;
+    a {
+      --a-color: #{ colors.$black };
+      --a-background-color: #{ rgba(colors.$white, 0.7) };
+      --a-padding: 0.5em;
+      --a-border-color: #{ colors.$black };
+      --a-border-width: 1px;
+      --a-display: block;
+
+      &:hover {
+
+      }
+    }
 
     & + .menu__item {
       --li-margin: 1em 0 0 0;

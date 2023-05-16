@@ -1,5 +1,5 @@
-@use "s360-toolkit";
 @use "core/colors";
+@use "s360-toolkit";
 
 form {
   margin: var(--form-margin, 0);
@@ -30,6 +30,11 @@ form {
     overflow: var(--form-input-overflow, visible);
     padding: var(--form-input-padding, 0.5em 1em);
     width: var(--form-input-width, 100%);
+    transition: var(--form-transition, all 200ms ease-in-out);
+    outline:
+      var(--form-input-outline-width, 0)
+      var(--form-input-outline-style, dashed)
+      var(--form-input-outline-color, currentColor);
 
     &:invalid {
       box-shadow: none;
@@ -51,5 +56,8 @@ form {
 
   label {
     color: var(--form-label-color);
+    cursor: pointer;
+    font-family: var(--form-label-font-family);
+    font-size: var(--form-label-font-size);
   }
 }
