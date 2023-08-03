@@ -8,8 +8,8 @@
  */
 
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Url;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_preprocess_node().
@@ -30,6 +30,7 @@ function s360_base_theme_preprocess_node(&$variables) {
 
     if ($node->hasField('field_source_link')) {
       $field_source_link = $node->get('field_source_link');
+
       if ($field_source_link->count()) {
         $label_url = Url::fromUri($field_source_link->getString());
       }
@@ -45,6 +46,11 @@ function s360_base_theme_preprocess_node(&$variables) {
   $variables['attributes']['class'][] = $node_base_class;
   $variables['attributes']['class'][] = Html::getClass("$node_base_class--$node_bundle");
   $variables['attributes']['class'][] = Html::getClass("$node_base_class--$node_view_mode");
+
+  if ($variables['is_front']) {
+    $variables['attributes']['class'][] = Html::getClass("$node_base_class--is-front");
+  }
+
   $variables['attributes']['data-js'] = "node-$node_bundle";
 
   // Remove some attributes.

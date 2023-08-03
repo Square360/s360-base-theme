@@ -8,8 +8,8 @@
  */
 
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Template\Attribute;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_preprocess_form().
@@ -31,6 +31,7 @@ function s360_base_theme_preprocess_webform(&$variables) {
   $element = $variables['element'];
 
   $variables['attributes']['class'][] = 'form';
+  $variables['attributes']['class'][] = 'form--webform';
   $variables['attributes']['class'][] = 'form--' . Html::getClass($element['#webform_id']);
 }
 
@@ -50,6 +51,10 @@ function s360_base_theme_preprocess_form_element(&$variables) {
 
     // Apply a wrapping div around select elements.
     if ($element['#theme'] === 'select') {
+      if (isset($element['#multiple']) && $element['#multiple']) {
+        $variables['attributes']['class'][] = Html::getClass('form__element--multiple');
+      }
+
       $variables['children'] = Markup::create('<div class="form__select-wrapper">' . $variables['children'] . '</div>');
     }
   }
@@ -91,14 +96,15 @@ function s360_base_theme_preprocess_fieldset(&$variables) {
 
   // Clear any Drupal classes.
   $variables['attributes']['class'] = [];
+  $variables['attributes']['class'][] = 'form__fieldset';
 
   // Add the new class names to the array of classes.
-  $variables['attributes']['class'][] = 'form__fieldset';
-  $variables['attributes']['class'][] = Html::getClass('form__fieldset--' . $element['#name']);
+  if (isset($element['#name'])) {
+    $variables['attributes']['class'][] = Html::getClass('form__fieldset--' . $element['#name']);
+  }
 
   // Clear any Drupal classes.
   $variables['legend']['attributes']['class'] = [];
-
   $variables['legend']['attributes']['class'] = 'form__legend';
 }
 
