@@ -70,6 +70,7 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
 }
 
 /**
+ * **************************************************
  * COPY FUNCTIONS.
  */
 
@@ -160,6 +161,7 @@ function copy_files(array $files, string $theme_path) {
 }
 
 /**
+ * **************************************************
  * ALTER FUNCTIONS.
  */
 
@@ -269,6 +271,7 @@ function set_alterations(string $theme_name, string $machine_name, string $kebab
 }
 
 /**
+ * **************************************************
  * RENAME FUNCTIONS.
  */
 
@@ -309,6 +312,7 @@ function rename_files(array $files_to_rename, string $theme_path, string $machin
 }
 
 /**
+ * **************************************************
  * UTILITY FUNCTIONS.
  */
 
@@ -335,7 +339,7 @@ function normalize_path(string $path) {
 /**
  * Returns all the passed in CLI options.
  *
- * @return array
+ * @return array|bool
  *   An associative array of the all the CLI options.
  */
 function get_cli_options() {
