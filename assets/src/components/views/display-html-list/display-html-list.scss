@@ -1,0 +1,12 @@
+@use "core/site-config";
+@use "s360-toolkit";
+
+.view--display-html-list {
+  .view__list {
+    @extend %semantic-list;
+
+    .view__row + .view__row {
+      margin-top: var(--view-html-list-view-row-margin-top, #{ site-config.$row-gap });
+    }
+  }
+}

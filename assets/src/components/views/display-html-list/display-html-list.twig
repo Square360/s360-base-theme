@@ -1,8 +1,8 @@
-{% if title %}
-  <h3>{{ title }}</h3>
+{% if view_title %}
+  <h2 class="view__heading">{{ view_title }}</h2>
 {% endif %}
 
-<{{ view_list_type }}>
+<{{ view_list_type }} class="view__list">
   {% for row in rows %}
     <li{{ row.attributes }}>
       {{- row.content -}}
