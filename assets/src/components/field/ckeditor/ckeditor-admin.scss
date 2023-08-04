@@ -3,7 +3,7 @@
 
 .ck-content {
   p {
-    @extend %p;
+    @extend %text-as-p;
   }
 
   a {
