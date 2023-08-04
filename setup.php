@@ -67,6 +67,8 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
     print 'Failed to rename files' . PHP_EOL;
     return FALSE;
   }
+
+  print "$theme_name theme created! Happy coding!" . PHP_EOL;
 }
 
 /**
