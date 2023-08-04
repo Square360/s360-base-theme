@@ -3,13 +3,15 @@
 @use "s360-toolkit";
 
 .advanced-header-field {
-  .advanced-header-field__subtitle {
-    margin-top: 0.5em;
-  }
+  // **************************************************
+  // SYLES
 
   &.advanced-header-field--style-centered {
     text-align: center;
   }
+
+  // **************************************************
+  // SIZES
 
   &.advanced-header-field--size-h2 {
     .advanced-header-field__heading {
