@@ -53,13 +53,9 @@ export const main = () => {
   });
 }
 
-pagerData.items.forEach(item => {
-  setItemAttribues(item);
-});
 export const pager = () => {
   return pagerTwig({
     ...pagerData,
-    attributes: new drupalAttribute(),
   });
 }
 
