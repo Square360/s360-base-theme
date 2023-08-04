@@ -1,21 +1,29 @@
 {# NOTE: This file is for Storybook display purposes only. #}
 
-<section{{ attributes }}>
-  <div class="layout__regions">
-    <div class="layout__region layout__region--first">
-      {{ paragraph_layout_region_first }}
-    </div>
+<div{{ attributes }}>
+  <div class="layout__content">
+    {% if paragraph_layout_header %}
+      <div class="layout__header">
+        {{ paragraph_layout_header }}
+      </div>
+    {% endif %}
 
-    <div class="layout__region layout__region--second">
-      {{ paragraph_layout_region_second }}
-    </div>
+    <div class="layout__regions">
+      <div class="layout__region layout__region--first">
+        {{ paragraph_layout_region_first }}
+      </div>
 
-    <div class="layout__region layout__region--third">
-      {{ paragraph_layout_region_third }}
-    </div>
+      <div class="layout__region layout__region--second">
+        {{ paragraph_layout_region_second }}
+      </div>
 
-    <div class="layout__region layout__region--fourth">
-      {{ paragraph_layout_region_fourth }}
+      <div class="layout__region layout__region--third">
+        {{ paragraph_layout_region_third }}
+      </div>
+
+      <div class="layout__region layout__region--fourth">
+        {{ paragraph_layout_region_fourth }}
+      </div>
     </div>
   </div>
-</section>
+</div>
