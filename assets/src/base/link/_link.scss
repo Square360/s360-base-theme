@@ -1,29 +1,5 @@
-a {
-  background-color: var(--a-background-color, transparent);
-  border:
-    var(--a-border-width, 0)
-    var(--a-border-style, solid)
-    var(--a-border-color, transparent);
-  color: var(--a-color);
-  cursor: var(--a-cursor, pointer);
-  display: var(--a-display, inline-block);
-  font-family: var(--a-font-family);
-  font-size: var(--a-font-size);
-  font-weight: var(--a-font-weight);
-  letter-spacing: var(--a-letter-spacing);
-  line-height: var(--a-line-height, 1);
-  margin: var(--a-margin, 0);
-  padding: var(--a-padding, 0);
-  text-decoration: var(--a-text-decoration, none);
-  text-transform: var(--a-text-transform);
-  transition: var(--a-transition, all 200ms ease-in-out);
-  width: var(--a-width);
-  outline: var(--a-outline);
-  outline-offset: var(--a-outline-offset, 4px);
+@use "core/link-styles";
 
-  &:focus {
-    [data-whatintent="keyboard"] & {
-      --a-outline: 4px dashed currentColor;
-    }
-  }
+a {
+  @extend %a;
 }

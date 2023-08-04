@@ -1,9 +1,11 @@
 @use "core/content-containers";
+@use "core/typography";
 
 body {
   @extend %live;
 
+  color: currentColor;
   font-family: '';
-  color: '';
   line-height: 1;
+  width: 100%;
 }

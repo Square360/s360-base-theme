@@ -3,30 +3,18 @@
 @use "s360-toolkit";
 
 .layout--one-column {
-  > .layout__regions {
-    display: grid;
-  }
-
   /// **************************************************
   /// MEDIA QUERIES
 
   @media (min-width: mq.$mq-1024) {
-    > .layout__regions {
+    > .layout__content > .layout__regions {
       grid-template-columns: repeat(site-config.$grid-columns, minmax(0, 1fr));
       column-gap: site-config.$column-gap;
     }
 
-    > .layout__regions {
+    > .layout__content > .layout__regions {
       > .layout__region {
         grid-column: 1 / -1;
-      }
-    }
-
-    &.layout--width-inset {
-      > .layout__regions {
-        > .layout__region {
-          grid-column: 2 / -2;
-        }
       }
     }
   }

@@ -2,12 +2,6 @@
 @use "s360-toolkit";
 
 .form {
-  .form__element {
-    > * + * {
-      margin-top: 0.25em;
-    }
-  }
-
   .form__label--required {
     &::after {
       content: '\002A';
@@ -25,7 +19,7 @@
     position: relative;
 
     select {
-      padding-right: calc(#{ (s360-toolkit.modular-scale(1) * 3)+px });
+      padding-right: calc(#{ (s360-toolkit.modular-scale(1) * 3) + px });
     }
 
     &::after {

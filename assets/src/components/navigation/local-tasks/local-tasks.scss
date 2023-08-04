@@ -13,7 +13,7 @@
   top: 50%;
   transform: translateY(-50%);
 
-  .menu__item {
+  a {
     --a-color: #{ colors.$black };
     --a-background-color: #{ rgba(colors.$white, 0.7) };
     --a-padding: 0.5em;
@@ -21,13 +21,22 @@
     --a-border-width: 1px;
     --a-display: block;
 
-    & + .menu__item {
-      --li-margin: 1em 0 0 0;
+    &:focus {
+      --a-outline-color: currentColor;
     }
 
-    &:hover {
-      --a-color-hover: #{ colors.$white };
-      --a-background-color: #{ colors.$black };
+    &:focus,
+    &:hover,
+    // Drupal class.
+    &.is-active {
+      --a-color: #{ colors.$black };
+      --a-background-color: #{ colors.$white };
+    }
+  }
+
+  .menu__item {
+    & + .menu__item {
+      --li-margin: 1em 0 0 0;
     }
   }
 }

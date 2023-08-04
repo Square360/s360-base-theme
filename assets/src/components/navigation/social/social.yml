@@ -1,0 +1,8 @@
+menu_name: Social
+items:
+  - title: '<i class="fab fa-twitter"></i>'
+    url: '#'
+  - title: '<i class="fab fa-facebook"></i>'
+    url: '#'
+  - title: '<i class="fab fa-instagram"></i>'
+    url: '#'

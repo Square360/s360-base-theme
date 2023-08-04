@@ -3,21 +3,13 @@
 @use "s360-toolkit";
 
 .layout--four-column {
-  > .layout__regions {
-    display: grid;
-    row-gap: site-config.$row-gap;
-    column-gap: site-config.$column-gap;
-  }
-
   /// **************************************************
   /// MEDIA QUERIES
 
   @media (min-width: mq.$mq-1024) {
-    > .layout__regions {
+    > .layout__content > .layout__regions {
       grid-template-columns: repeat(site-config.$grid-columns, minmax(0, 1fr));
-    }
 
-    > .layout__regions {
       > .layout__region {
         grid-column: span 3;
       }

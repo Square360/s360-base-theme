@@ -7,11 +7,12 @@
 
 {{ attach_library('s360_base_theme/view.' ~ css_name) }}
 
-{% include "@components/views/view.twig" with {
+{% include "@ui-views/view.twig" with {
   view_rows: rows,
   view_exposed: exposed,
   view_footer: footer,
   view_header: header,
   view_pager: pager,
   view_empty: empty,
+  view_more: more
 } %}

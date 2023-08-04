@@ -7,9 +7,15 @@ dependencies:
   - s360_base_paragraphs
   - s360_layout_builder
 
+ckeditor5-stylesheets:
+  - assets/dist/components/field/ckeditor/ckeditor-admin.css
+
 libraries:
   - 's360_base_theme/global'
   - 's360_base_theme/site-layout'
+
+libraries-override:
+  webform/webform.element.flexbox: false
 
 regions:
   system: System
@@ -17,7 +23,19 @@ regions:
 
 components:
   namespaces:
-    layout:
+    ui-layout:
       - assets/src/layout
-    components:
-      - assets/src/components
+    ui-field:
+      - assets/src/components/field
+    ui-form:
+      - assets/src/components/form
+    ui-media:
+      - assets/src/components/media
+    ui-navigation:
+      - assets/src/components/navigation
+    ui-node:
+      - assets/src/components/node
+    ui-paragraph:
+      - assets/src/components/paragraph
+    ui-views:
+      - assets/src/components/views

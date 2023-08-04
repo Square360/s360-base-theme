@@ -3,6 +3,9 @@
 
 @use "./branding-block/_branding-block";
 
+@use "./menu-block/_menu-block.scss";
+@use "./menu-toggle/_menu-toggle.scss";
+
 @use "./site-header/_site-header.scss";
 @use "./site-main/_site-main.scss";
 @use "./site-footer/_site-footer.scss";

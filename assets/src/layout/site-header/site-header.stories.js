@@ -1,4 +1,5 @@
 import siteHeaderTwig from './site-header.twig';
+import siteHeaderData from './site-header.yml';
 
 /**
  * Storybook Definition.
@@ -6,5 +7,7 @@ import siteHeaderTwig from './site-header.twig';
 export default { title: 'Layout/Site Header' };
 
 export const siteHeader = () => {
-  return siteHeaderTwig();
+  return siteHeaderTwig({
+    ...siteHeaderData
+  });
 }

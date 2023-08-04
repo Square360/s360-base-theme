@@ -1,0 +1,11 @@
+@use "core/site-config";
+
+.view {
+  &__pager {
+    margin-top: site-config.$row-gap;
+  }
+
+  &__more-link {
+    margin-top: site-config.$row-gap;
+  }
+}

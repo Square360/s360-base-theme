@@ -7,7 +7,6 @@
         set classes = [
           'menu',
           'menu--' ~ menu_name|clean_class,
-          'menu--' ~ menu_name|clean_class|split('-')[0],
           'menu--level-' ~ menu_level
         ]
       %}
@@ -17,7 +16,6 @@
         set classes = [
           'menu',
           'menu--' ~ menu_name|clean_class,
-          'menu--' ~ menu_name|clean_class|split('-')[0],
           'menu--level-' ~ menu_level,
           'menu--submenu'
         ]

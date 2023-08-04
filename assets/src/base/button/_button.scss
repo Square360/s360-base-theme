@@ -9,7 +9,7 @@ input[type="submit"] {
   border-radius: var(--button-border-radius, 0);
   color: var(--button-color);
   cursor: var(--button-cursor, pointer);
-  display: var(--button-display, inline-block);
+  display: var(--button-display, var(--display, inline-block));
   font-family: var(--button-font-family);
   font-size: var(--button-font-size);
   font-weight: var(--button-font-weight);
@@ -18,14 +18,17 @@ input[type="submit"] {
   padding: var(--button-padding, 0);
   text-align: var(--button-text-align);
   text-transform: var(--button-text-transform);
-  transition: var(--button-transition, all 200ms ease-in-out);
+  transition: var(--button-transition, var(--transition, all 200ms ease-in-out));
   width: var(--button-width);
-  outline: var(--button-outline);
+  outline:
+    var(--button-outline-width, 0)
+    var(--button-outline-style, dashed)
+    var(--button-outline-color, currentColor);
   outline-offset: var(--button-outline-offset, 4px);
 
   &:focus {
     [data-whatintent="keyboard"] & {
-      --button-outline: 4px dashed currentColor;
+      --button-outline-width: 4px;
     }
   }
 }

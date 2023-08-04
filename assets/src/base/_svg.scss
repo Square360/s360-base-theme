@@ -1,8 +1,9 @@
 svg {
-  width: var(--svg-width);
-  height: var(--svg-height);
   display: var(--svg-display, block);
+  height: var(--svg-height);
   margin: var(--svg-margin);
+  max-width: var(--svg-max-width);
+  width: var(--svg-width);
 
   path {
     fill: var(--svg-path-fill, currentColor);

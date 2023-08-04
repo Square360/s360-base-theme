@@ -18,11 +18,14 @@ table {
     font-family: var(--table-th-font-family);
     font-weight: var(--table-th-font-weight);
     padding: var(--table-th-padding, 1rem);
+    text-align: var(--table-th-text-align);
     text-transform: var(--table-th-text-transform);
   }
 
   td {
     padding: var(--table-td-padding, 1rem);
+    text-align: var(--table-td-text-align);
+    vertical-align: var(--table-td-vertical-align);
   }
 
   &:last-child {
