@@ -7,5 +7,7 @@ import siteHeaderData from './site-header.yml';
 export default { title: 'Layout/Site Header' };
 
 export const siteHeader = () => {
-  return siteHeaderTwig();
+  return siteHeaderTwig({
+    ...siteHeaderData
+  });
 }

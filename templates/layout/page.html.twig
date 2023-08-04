@@ -1,5 +1,12 @@
 {% include "@ui-layout/site-header/site-header.twig" with {
-
+  site_header_main_menu: drupal_block('system_menu_block:main', {
+    label: 'Main Menu'|t,
+    id: 'main',
+    label_display: false,
+    level: 1,
+    depth: 2,
+    expand_all_items: true
+  }),
 } %}
 
 {% include "@ui-layout/site-main/site-main.twig" with {
@@ -8,5 +15,16 @@
 } %}
 
 {% include "@ui-layout/site-footer/site-footer.twig" with {
-
+  site_footer_social_menu: drupal_block('system_menu_block:social', {
+    label: 'Social Menu'|t,
+    id: 'social',
+    label_display: false
+  }),
+  site_footer_menu: drupal_block('system_menu_block:footer', {
+    label: 'Footer Menu'|t,
+    id: 'footer',
+    label_display: false,
+    level: 1,
+    expand_all_items: true
+  }),
 } %}
