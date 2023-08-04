@@ -32,12 +32,12 @@ Filename: node/page/page.scss
 ## Storybook Files
 Typically Drupal nodes will have "teasers" and these storybook files need to be
 represented in a different `*.stories.js` file. To closely match naming
-convention, the following format is recommended: `[FILENAME]-teasers.stories.js`
+convention, the following format is recommended: `[FILENAME].teaser.stories.js`
 
 ### Example
 Directory: node/page
 ```
-/page-teasers.stories.js
+/page.teaser.stories.js
 /page.stories.js
 ```
 
