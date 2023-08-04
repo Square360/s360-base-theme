@@ -3,4 +3,6 @@
 {% include "@ui-paragraph/view-block/view-block.twig" with {
   paragraph_field_view: (content.field_view.0) ? content.field_view : '',
   paragraph_field_header: (content.field_header.0) ? content.field_header : '',
+
+  paragraph_tag: (content.field_header.0) ? 'section' : 'div',
 } %}
