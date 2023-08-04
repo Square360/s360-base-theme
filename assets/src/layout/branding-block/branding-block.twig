@@ -1,7 +1,10 @@
-<div class="branding-block">
-  {% if branding_block_site_name %}
-    <div class="branding-block__site-name">
-      {{ branding_block_site_name }}
-    </div>
-  {% endif %}
+<div class="branding-block" data-js="branding-block">
+  <a
+    href="{{ path('<front>') }}"
+    title="{{ 'Home'|t }}"
+    aria-label="Go to {{ branding_block_site_name }} homepage"
+    rel="home"
+  >
+    {% include "@layout/branding-block/logo.twig" %}
+  </a>
 </div>

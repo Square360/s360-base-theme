@@ -1,0 +1,11 @@
+{% extends "@ui-paragraph/_paragraph.twig" %}
+
+{% block paragraph_content %}
+  {{ paragraph_field_header }}
+
+  {% if paragraph_field_webform %}
+    <div class="paragraph__webform">
+      {{ paragraph_field_webform }}
+    </div>
+  {% endif %}
+{% endblock %}

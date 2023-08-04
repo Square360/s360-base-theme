@@ -1,5 +1,6 @@
 {{ attach_library('s360_base_theme/paragraph.link-list') }}
 
-{% include "@components/paragraph/link-list/link-list.twig" with {
+{% include "@ui-paragraph/link-list/link-list.twig" with {
+  paragraph_field_header: (content.field_header.0) ? content.field_header : '',\
   paragraph_field_links: content.field_links,
 } %}

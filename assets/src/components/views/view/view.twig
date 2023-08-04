@@ -1,0 +1,65 @@
+{% set view_tag = view_tag|default('div') %}
+
+<{{ view_tag }}{{ attributes }}>
+  {% block view_sticky %}
+    {{ view_sticky }}
+  {% endblock %}
+
+  {% if view_exposed or view_header %}
+    <header class="view__header">
+      {% if view_exposed %}
+        <div class="view__filters">
+          {{ view_exposed }}
+        </div>
+      {% endif %}
+
+      {% if view_header %}
+        <div class="view__header-content">
+          {{ view_header }}
+        </div>
+      {% endif %}
+    </header>
+  {% endif %}
+
+  <div class="view__content">
+    {% block view_content %}
+      {% if view_attachment_before %}
+        <div class="view__attachment view__attachment--before">
+          {{ view_attachment_before }}
+        </div>
+      {% endif %}
+
+      {% if view_rows %}
+        <div class="view__rows">
+          {{ view_rows }}
+        </div>
+      {% endif %}
+
+      {{ view_empty }}
+
+      {% if view_pager %}
+        <div class="view__pager">
+          {{ view_pager }}
+        </div>
+      {% endif %}
+
+      {% if view_attachment_after %}
+        <div class="view__attachment view__attachment--after">
+          {{ view_attachment_after }}
+        </div>
+      {% endif %}
+
+      {% if view_more %}
+        <div class="view__more-link">
+          {{ view_more }}
+        </div>
+      {% endif %}
+    {% endblock %}
+  </div>
+
+  {% if view_footer %}
+    <footer class="view__footer">
+      {{ view_footer }}
+    </footer>
+  {% endif %}
+</{{ view_tag }}>

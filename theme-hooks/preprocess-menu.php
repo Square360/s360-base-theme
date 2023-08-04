@@ -7,6 +7,8 @@
  * Define all view preprocess HOOKs.
  */
 
+use Drupal\Core\Render\Markup;
+
 /**
  * Implements hook_preprocess_menu().
  */
@@ -42,5 +44,9 @@ function s360_base_theme_preprocess_menu__social(&$variables) {
         'title' => $item_title,
       ],
     ]);
+
+    $fa_icon = s360_base_theme_get_social_icon($item_title);
+
+    $item_title = Markup::create('<i class="' . $fa_icon . '"></i>');
   }
 }

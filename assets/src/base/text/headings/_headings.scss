@@ -2,30 +2,30 @@
 
 h1 {
   @extend %heading-base;
-  @extend %h1-style;
+  @extend %heading-as-h1;
 }
 
 h2 {
   @extend %heading-base;
-  @extend %h2-style;
+  @extend %heading-as-h2;
 }
 
 h3 {
   @extend %heading-base;
-  @extend %h3-style;
+  @extend %heading-as-h3;
 }
 
 h4 {
   @extend %heading-base;
-  @extend %h4-style;
+  @extend %heading-as-h4;
 }
 
 h5 {
   @extend %heading-base;
-  @extend %h5-style;
+  @extend %heading-as-h5;
 }
 
 h6 {
   @extend %heading-base;
-  @extend %h6-style;
+  @extend %heading-as-h6;
 }

@@ -1,0 +1,22 @@
+@use "core/site-config";
+@use "s360-toolkit";
+
+.pager {
+  &__items {
+    @extend %semantic-list;
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item {
+    + .pager__item {
+      margin-left: site-config.$spacing-sm;
+    }
+
+    // Drupal class.
+    &.is-active {
+    }
+  }
+}

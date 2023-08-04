@@ -9,12 +9,19 @@ module.exports = async ({ config }) => {
     ],
   });
 
-  config.resolve.alias['@base'] = path.resolve('./src/base');
-  config.resolve.alias['@layout'] = path.resolve('./src/layout');
-  config.resolve.alias['@components'] = path.resolve('./src/components');
+  config.resolve.alias['@base'] = path.resolve(path.join('src', 'base'));
+  config.resolve.alias['@ui-layout'] = path.resolve(path.join('src', 'layout'));
+  config.resolve.alias['@ui-field'] = path.resolve(path.join('src', 'components', 'field'));
+  config.resolve.alias['@ui-form'] = path.resolve(path.join('src', 'components', 'form'));
+  config.resolve.alias['@ui-media'] = path.resolve(path.join('src', 'components', 'media'));
+  config.resolve.alias['@ui-navigation'] = path.resolve(path.join('src', 'components', 'navigation'));
+  config.resolve.alias['@ui-node'] = path.resolve(path.join('src', 'components', 'node'));
+  config.resolve.alias['@ui-paragraph'] = path.resolve(path.join('src', 'components', 'paragraph'));
+  config.resolve.alias['@ui-views'] = path.resolve(path.join('src', 'components', 'views'));
 
   config.resolve.alias['s360-toolkit'] = path.resolve(path.join('node_modules', 's360-fundamental-toolkit', 'scss'));
   config.resolve.alias['core'] = path.resolve(path.join('src', 'core'));
+  config.resolve.alias['SRC_IMAGES'] = path.resolve(path.join('src', 'images'));
 
   // SCSS
   config.module.rules.push({

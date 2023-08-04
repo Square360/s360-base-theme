@@ -1,4 +1,6 @@
-{% include "@components/views/table.twig" with {
+{{ attach_library('s360_base_theme/view.display-table') }}
+
+{% include "@ui-views/table.twig" with {
   view_caption_needed: caption_needed,
   view_caption: caption,
   view_header: header,

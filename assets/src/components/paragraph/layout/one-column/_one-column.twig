@@ -1,9 +1,17 @@
 {# NOTE: This file is for Storybook display purposes only. #}
 
-<section{{ attributes }}>
-  <div class="layout__regions">
-    <div class="layout__region layout__region--content">
-      {{ paragraph_layout_region_content }}
+<div{{ attributes }}>
+  <div class="layout__content">
+    {% if paragraph_layout_header %}
+      <div class="layout__header">
+        {{ paragraph_layout_header }}
+      </div>
+    {% endif %}
+
+    <div class="layout__regions">
+      <div class="layout__region layout__region--content">
+        {{ paragraph_layout_region_content }}
+      </div>
     </div>
   </div>
-</section>
+</div>

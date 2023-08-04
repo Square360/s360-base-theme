@@ -19,7 +19,6 @@
 
 @use "./blockquote/_blockquote";
 @use "./button/_button";
-@use "./form/_form";
 @use "./img/_img";
 @use "./link/_link";
 @use "./table/_table";
@@ -30,3 +29,4 @@
 
 @use "./lists";
 @use "./text";
+@use "./form";

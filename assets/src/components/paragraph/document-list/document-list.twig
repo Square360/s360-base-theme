@@ -1,6 +1,8 @@
-{% extends "@components/paragraph/_paragraph.twig" %}
+{% extends "@ui-paragraph/_paragraph.twig" %}
 
 {% block paragraph_content %}
+  {{ paragraph_field_header }}
+
   {% if paragraph_documents %}
     <div class="paragraph__documents">
       {{ paragraph_documents }}

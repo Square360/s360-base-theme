@@ -1,9 +1,7 @@
-{% extends "@components/paragraph/_paragraph.twig" %}
+{% extends "@ui-paragraph/_paragraph.twig" %}
 
 {% block paragraph_content %}
-  {% if paragraph_field_header %}
-    {{- paragraph_field_header -}}
-  {% endif %}
+  {{ paragraph_field_header }}
 
   {% if paragraph_field_body %}
     <div class="paragraph__body">

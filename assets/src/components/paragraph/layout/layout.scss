@@ -2,36 +2,24 @@
 @use "core/content-containers";
 
 .layout {
-  // Make sure paragraphs inside regions don't touch each other.
-  .layout__region {
-    > * + * {
-      margin-top: 0;
+  margin-bottom: site-config.$spacing-sm;
+
+  > .layout__content {
+    > .layout__regions {
+      display: grid;
+      row-gap: site-config.$row-gap;
+      column-gap: site-config.$column-gap;
     }
   }
 
-  /// **************************************************
-  /// MARGIN BOTTOM MODIFIERS
-
-  &.layout--margin-bottom-sm {
-    margin-bottom: site-config.$spacing-sm;
-  }
-
-  &.layout--margin-bottom-md {
-    margin-bottom: site-config.$spacing-md;
-  }
-
-  &.layout--margin-bottom-lg {
-    margin-bottom: site-config.$spacing-lg;
+  // Make sure paragraphs inside regions don't touch each other.
+  .layout__region {
+    display: grid;
+    row-gap: site-config.$row-gap;
+    grid-auto-rows: min-content;
   }
 
   &:last-child {
     margin-bottom: 0;
-  }
-
-  /// **************************************************
-  /// STYLE EXTERNAL CLASSES
-
-  .advanced-header-field {
-    margin-bottom: site-config.$spacing-md;
   }
 }

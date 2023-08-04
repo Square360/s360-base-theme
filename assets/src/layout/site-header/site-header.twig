@@ -1,4 +1,16 @@
-<header class="site-header">
+<header class="site-header" data-js="site-header">
+  <div class="site-header__content">
+    {% if site_header_main_menu %}
+      <button class="menu-toggle" data-js="menu-toggle" aria-controls="block-main" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
+      <div class="site-header__menu">
+        {{ site_header_main_menu }}
+      </div>
+    {% endif %}
+  </div>
 </header>
 

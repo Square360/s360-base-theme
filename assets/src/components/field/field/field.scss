@@ -1,4 +1,5 @@
 @use "core/colors";
+@use "core/typography";
 @use "s360-toolkit";
 
 .field {
@@ -11,9 +12,11 @@
   word-break: break-word;
 
   &__term {
+    --dt-font-weight: #{ typography.$font-weight-bold };
   }
 
   &__description {
+    --dd-display: block;
     --dd-padding: 1rem;
   }
 }
