@@ -1,4 +1,3 @@
-
 $SITE_CONFIG: (
   font-size-base: 16,
   modular-scale-ratio: 1,
@@ -7,24 +6,28 @@ $SITE_CONFIG: (
 @use "sass:math";
 @use "s360-toolkit" with ($config: $SITE_CONFIG);
 
-/// **************************************************
-/// SPACING
+// **************************************************
+// SPACING
 
+$spacing-xs: s360-toolkit.to-unit(s360-toolkit.modular-scale(-1), 'px');
 $spacing-sm: s360-toolkit.to-unit(s360-toolkit.modular-scale(0), 'px');
 $spacing-md: s360-toolkit.to-unit(s360-toolkit.modular-scale(1), 'px');
 $spacing-lg: s360-toolkit.to-unit(s360-toolkit.modular-scale(2), 'px');
 $spacing-xl: s360-toolkit.to-unit(s360-toolkit.modular-scale(3), 'px');
 
-/// **************************************************
-/// FLEX AND GRID GAPS
+// **************************************************
+// FLEX AND GRID GAPS
 
 $column-gap: s360-toolkit.linear-scale($spacing-sm, $spacing-sm);
 $row-gap: $spacing-sm;
 $grid-columns: 12;
 
-/// **************************************************
-/// LAYOUT
+// **************************************************
+// LAYOUT
 
 $site-max-width: 1440px;
 $site-side-margin: s360-toolkit.linear-scale($spacing-sm, $spacing-sm);
 $site-content-area: calc(#{ $site-max-width } - calc(#{ $site-side-margin } * 2));
+
+// **************************************************
+// IMAGE MASKS

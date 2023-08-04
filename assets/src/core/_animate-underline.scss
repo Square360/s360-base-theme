@@ -1,7 +1,5 @@
 %animate-underline {
-  --display: inline;
-  --transition: background-size 200ms ease-in-out;
-
+  display: inline;
   background-image: linear-gradient(
     0deg,
     var(--animate-underline-gradient-color-1, currentColor) 0%,
@@ -12,6 +10,7 @@
     var(--animate-underline-background-size-height, 1px);
   background-repeat: no-repeat;
   background-position: var(--animate-underline-background-position-x, left) bottom;
+  transition: all 200ms ease-in-out;
 
   &:hover {
     --animate-underline-background-size-width: var(--animate-underline-background-size-width-hover, 100%);

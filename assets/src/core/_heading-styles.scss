@@ -11,6 +11,11 @@
   font-family: var(--heading-font-family);
   font-weight: var(--heading-font-weight);
   text-transform: var(--heading-text-transform);
+  margin-bottom: var(--heading-margin-bottom, 0.25em);
+
+  &:not(:first-child) {
+    margin-top: var(--heading-margin-top, 1em);
+  }
 }
 
 %heading-as-h1 {
