@@ -45,5 +45,6 @@ details {
   }
 
   &[open] {
+    --summary-margin: var(--summary-margin-open);
   }
 }
