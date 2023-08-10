@@ -1,5 +1,9 @@
 <header class="site-header" data-js="site-header">
   <div class="site-header__content">
+    <div class="site-header__branding">
+      {% include "@ui-layout/branding-block/branding-block.twig" %}
+    </div>
+
     {% if site_header_main_menu %}
       <button class="menu-toggle" data-js="menu-toggle" aria-controls="block-main" aria-expanded="false">
         <span></span>
