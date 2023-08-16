@@ -34,7 +34,7 @@ field.ckeditor:
 field.field:
   css:
     component:
-      assets/dist/components/field/field.css: {}
+      assets/dist/components/field/field/field.css: {}
 
 ##################################################
 # Form Libraries
