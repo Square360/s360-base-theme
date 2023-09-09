@@ -2,8 +2,7 @@
 @use "core/site-config";
 @use "s360-toolkit";
 
-/// **************************************************
-/// Single top-level-files, no associated stories.
+// Single top-level-files, no associated stories.
 
 @use "./_root"; // Must be first.
 @use "./_body";
@@ -14,8 +13,7 @@
 @use "./_strong";
 @use "./_svg";
 
-/// **************************************************
-/// Single styles typically with associated stories.
+// Single styles typically with associated stories.
 
 @use "./blockquote/_blockquote";
 @use "./button/_button";
@@ -23,9 +21,8 @@
 @use "./link/_link";
 @use "./table/_table";
 
-/// **************************************************
-/// Top-level folders that contain multiple styles,
-/// with associated stories.
+// Top-level folders that contain multiple styles,
+// with associated stories.
 
 @use "./lists";
 @use "./text";

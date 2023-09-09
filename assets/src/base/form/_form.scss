@@ -15,6 +15,7 @@ form {
   input[type="tel"],
   input[type="search"],
   input[type="url"],
+  input[type="date"],
   select,
   textarea {
     background-color: var(--form-input-background-color, #{ colors.$white });

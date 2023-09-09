@@ -1,6 +1,5 @@
 @use "core/site-config";
 
-/// **************************************************
 /// BLEED
 ///
 /// These mixins and placeholders are designed to force the content to span the
@@ -40,7 +39,6 @@
   @include bleed;
 }
 
-/// **************************************************
 /// TRIM
 ///
 /// These mixins and placeholders are designed to force content into
@@ -79,7 +77,6 @@
   @include trim;
 }
 
-/// **************************************************
 /// LIVE
 ///
 /// These mixins and placeholders are designed to keep content pinned to the

@@ -10,8 +10,8 @@
     row-gap: var(--view-grid-row-gap, #{ site-config.$row-gap });
   }
 
-  /// **************************************************
-  /// MEDIA QUERIES
+  // **************************************************
+  // MEDIA QUERIES
 
   @media (min-width: mq.$mq-768) {
     &.view--2-columns,

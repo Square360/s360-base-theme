@@ -1,10 +1,5 @@
-<a
-  {% for attribute, value in link_attributes %}
-    {{ attribute }}="{{ value }}"
-  {% endfor %}
-  href="{{ link_url }}"
->
+<a {{ attributes }} href="{{ link_url }}">
   {% spaceless %}
-    <span>{{ link_content }}</span>
+    {{ link_content }}
   {% endspaceless %}
 </a>

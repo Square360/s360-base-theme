@@ -1,14 +1,19 @@
 Drupal.behaviors.siteHeader = {
   attach(context) {
+    const ROOT = document.documentElement;
     const SITE_HEADER = document.querySelector('[data-js="site-header"]');
     if (!SITE_HEADER) return;
 
-    window.addEventListener('resize', () => {
-      let root = document.documentElement;
+    const updateSiteHeaderHeight = () => {
+      ROOT.style.setProperty('--site-header-height', `${ SITE_HEADER.clientHeight }px`);
+    }
 
-      root.style.setProperty('--site-header-height', `${ SITE_HEADER.clientHeight }px`);
+    window.addEventListener('load', () => {
+      updateSiteHeaderHeight();
     });
 
-    window.dispatchEvent(new Event('resize'));
+    window.addEventListener('resize', () => {
+      updateSiteHeaderHeight();
+    });
   }
 }

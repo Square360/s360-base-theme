@@ -4,7 +4,8 @@
  * @file
  * preprocess-node.php
  *
- * Define all node preprocess HOOKs.
+ * Define all node preprocess HOOKs. Each bundle should provide it's own
+ * hook function. e.g. `s360_base_theme_preprocess_node__[bundle]`
  */
 
 use Drupal\Component\Utility\Html;

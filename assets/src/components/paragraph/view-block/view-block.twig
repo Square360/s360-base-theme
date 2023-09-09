@@ -1,7 +1,11 @@
 {% extends "@ui-paragraph/_paragraph.twig" %}
 
 {% block paragraph_content %}
-  {{ paragraph_field_header }}
+  {% if paragraph_field_header %}
+    {{- paragraph_field_header -}}
+  {% endif %}
 
-  {{ paragraph_field_view }}
+  {% if paragraph_field_view %}
+    {{ paragraph_field_view }}
+  {% endif %}
 {% endblock %}
