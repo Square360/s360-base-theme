@@ -3,8 +3,8 @@
 @use "s360-toolkit";
 
 .layout--one-column {
-  /// **************************************************
-  /// MEDIA QUERIES
+  // **************************************************
+  // MEDIA QUERIES
 
   @media (min-width: mq.$mq-1024) {
     > .layout__content > .layout__regions {
