@@ -23,7 +23,7 @@ export const link = ({ ctaStyle }) => {
     ...linkData,
     attributes: new drupalAttribute(Object.entries(linkAttributes)),
   });
-};
+}
 link.argTypes = {
   ctaStyle: {
     name: 'CTA Style',
@@ -33,4 +33,4 @@ link.argTypes = {
       labels: CTA_STYLE_OPTIONS
     }
   }
-};
+}
