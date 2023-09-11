@@ -7,7 +7,7 @@
     display: grid;
     grid-template-columns: repeat(var(--view-grid-template-columns, 1), 1fr);
     column-gap: site-config.$column-gap;
-    row-gap: var(--view-grid-row-gap, #{ site-config.$row-gap });
+    row-gap: var(--view-grid-row-gap, #{ site-config.$spacing-xs });
   }
 
   // **************************************************
