@@ -93,6 +93,7 @@ function get_files_to_copy() {
     'assets/package.json',
     'assets/plopfile.mjs',
     'assets/tsconfig.json',
+    'assets/README.md',
     'assets/webpack.config.ts',
     'assets/yarn.lock',
     'config',
