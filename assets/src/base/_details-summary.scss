@@ -1,6 +1,5 @@
 details {
   summary {
-    line-height: var(--summary-line-height, 1);
     align-items: center;
     background-color: var(--summary-background-color, transparent);
     color: var(--summary-colo);
@@ -9,13 +8,14 @@ details {
     font-family: var(--summary-font-family);
     font-weight: var(--summary-font-weight);
     font-size: var(--summary-font-size);
-    position: relative;
-    text-transform: var(--summary-text-transform);
+    line-height: var(--summary-line-height, 1);
     margin: var(--summary-margin, 0);
-    transition: var(--summary-transition, all 200ms ease-in-out);
-    padding: var(--summary-padding, 0);
     outline: var(--summary-outline);
     outline-offset: var(--summary-outline-offset, 4px);
+    padding: var(--summary-padding, 0);
+    position: relative;
+    text-transform: var(--summary-text-transform);
+    transition: var(--summary-transition, all 200ms ease-in-out);
 
     &:focus {
       [data-whatintent="keyboard"] & {
@@ -25,26 +25,28 @@ details {
 
     &::-webkit-details-marker,
     &::marker {
-      display: none;
       content: '';
+      display: none;
     }
 
     &::before {
-      content: var(--summary-before-content, '');
       background-color: currentColor;
-      mask-image: var(--summary-before-mask-image);
-      mask-repeat: no-repeat;
-      mask-position: center;
+      content: var(--summary-before-content, '');
       display: inline-flex;
       flex: 0 0 auto;
       height: 0.75em;
-      width: 0.75em;
       margin-right: 0.5em;
+      mask-image: var(--summary-before-mask-image);
+      mask-position: center;
+      mask-repeat: no-repeat;
+      rotate: var(--summary-before-rotate);
       transition: transform 200ms ease-in-out;
+      width: 0.75em;
     }
   }
 
   &[open] {
+    --summary-before-rotate: var(--summary-before-rotate-open);
     --summary-margin: var(--summary-margin-open);
   }
 }

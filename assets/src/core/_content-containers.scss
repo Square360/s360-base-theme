@@ -1,8 +1,6 @@
 @use "core/site-config";
 
-/// **************************************************
 /// BLEED
-///
 /// These mixins and placeholders are designed to force the content to span the
 /// entire viewport, infinitely.
 ///
@@ -14,7 +12,7 @@
 }
 
 /// @requires {mixin} bleed-left
-%bleed-left {
+%content-container-bleed-left {
   @include bleed-left;
 }
 
@@ -23,7 +21,7 @@
 }
 
 /// @requires {mixin} bleed-right
-%bleed-right {
+%content-container-bleed-right {
   @include bleed-right;
 }
 
@@ -36,13 +34,11 @@
 
 /// Same as the bleed mixin, but cannot be use inside `@media` queries.
 /// @requires {mixin} bleed
-%bleed {
+%content-container-bleed {
   @include bleed;
 }
 
-/// **************************************************
 /// TRIM
-///
 /// These mixins and placeholders are designed to force content into
 /// "safe-area" of the site. (i.e. side margins).
 ///
@@ -63,7 +59,7 @@
 }
 
 /// @requires {mixin} trim-right
-%trim-right {
+%content-container-trim-right {
   @include trim-right;
 }
 
@@ -75,13 +71,11 @@
 }
 
 /// @requires {mixin} trim
-%trim {
+%content-container-trim {
   @include trim;
 }
 
-/// **************************************************
 /// LIVE
-///
 /// These mixins and placeholders are designed to keep content pinned to the
 /// live area of the site.
 ///
@@ -96,7 +90,7 @@
 }
 
 /// @requires {mixin} live-left
-%live-left {
+%content-container-live-left {
   @include live-left;
 }
 
@@ -105,7 +99,7 @@
 }
 
 /// @requires {mixin} live-right
-%live-right {
+%content-container-live-right {
   @include live-right;
 }
 
@@ -120,6 +114,22 @@
 }
 
 /// @requires {mixin} live
-%live {
+%content-container-live {
   @include live;
+}
+
+//  **************************************************
+/// INSET
+
+@mixin inset-left($columns: 1) {
+  margin-left: calc(#{ site-config.column-width() } * #{ $columns });
+}
+
+@mixin inset-right($columns: 1) {
+  margin-right: calc(#{ site-config.column-width() } * #{ $columns });
+}
+
+@mixin inset($columns: 1) {
+  @include inset-left($columns);
+  @include inset-right($columns);
 }

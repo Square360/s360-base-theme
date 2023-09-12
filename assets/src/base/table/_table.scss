@@ -8,9 +8,14 @@ table {
   border-collapse: collapse;
   table-layout: auto;
   width: var(--table-width);
+  color: var(--table-color);
 
   tr {
     background-color: var(--table-tr-background-color);
+    border:
+      var(--table-border-width, 1px)
+      var(--table-border-style, solid)
+      var(--table-border-color);
   }
 
   th {
@@ -20,12 +25,20 @@ table {
     padding: var(--table-th-padding, 1rem);
     text-align: var(--table-th-text-align);
     text-transform: var(--table-th-text-transform);
+    border:
+      var(--table-th-border-width, 1px)
+      var(--table-th-border-style, solid)
+      var(--table-th-border-color);
   }
 
   td {
     padding: var(--table-td-padding, 1rem);
     text-align: var(--table-td-text-align);
     vertical-align: var(--table-td-vertical-align);
+    border:
+      var(--table-td-border-width, 1px)
+      var(--table-td-border-style, solid)
+      var(--table-td-border-color);
   }
 
   &:last-child {

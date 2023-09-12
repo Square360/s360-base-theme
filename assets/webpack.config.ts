@@ -73,7 +73,7 @@ module.exports = (env, argv) => {
     });
   }
 
-  WEBPACK_CONFIG.devtool = (argv.mode == 'production') ? false : 'source-map';
+  // WEBPACK_CONFIG.devtool = (argv.mode == 'production') ? false : 'source-map';
 
   return WEBPACK_CONFIG;
 }

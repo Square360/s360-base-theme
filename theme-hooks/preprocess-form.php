@@ -63,6 +63,14 @@ function s360_base_theme_preprocess_form_element(&$variables) {
     $variables['attributes']['class'][] = Html::getClass('form__element--' . $element['#name']);
   }
 
+  if ($variables['label_display'] !== 'none') {
+    $variables['attributes']['class'][] = 'form__element--has-label';
+  }
+
+  if (isset($variables['description'])) {
+    $variables['attributes']['class'][] = 'form__element--has-description';
+  }
+
   // Create an error attribute.
   $variables['error']['attributes'] = new Attribute();
   $variables['error']['attributes']['class'] = 'form__element-error-message';

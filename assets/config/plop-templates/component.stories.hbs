@@ -10,8 +10,13 @@ import drupalAttribute from 'drupal-attribute';
 export default { title: '/{{ titleCase bundle }}' };
 
 export const {{ camelCase bundle }} = () => {
+  let {{ entityType }}Classes = [...{{ camelCase bundle }}Data.{{ entityType }}_attributes.class];
+  let {{ entityType }}Attributes = Object.assign({}, {{ camelCase bundle }}Data.{{ entityType }}_attributes);
+
+  {{ entityType }}Attributes.class = {{ entityType }}Classes;
+
   return {{ camelCase bundle }}Twig({
     ...{{ camelCase bundle }}Data,
-    attributes: new drupalAttribute(Object.entries({{ camelCase bundle }}Data.{{ entityType }}_attributes)),
+    attributes: new drupalAttribute(Object.entries({{ entityType }}Attributes)),
   });
 }

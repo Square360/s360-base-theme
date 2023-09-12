@@ -7,7 +7,7 @@
   > .layout__content {
     > .layout__regions {
       display: grid;
-      row-gap: site-config.$row-gap;
+      row-gap: site-config.$spacing-xs;
       column-gap: site-config.$column-gap;
     }
   }
@@ -15,7 +15,7 @@
   // Make sure paragraphs inside regions don't touch each other.
   .layout__region {
     display: grid;
-    row-gap: site-config.$row-gap;
+    row-gap: site-config.$spacing-xs;
     grid-auto-rows: min-content;
   }
 

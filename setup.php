@@ -93,8 +93,10 @@ function get_files_to_copy() {
     'assets/package.json',
     'assets/plopfile.mjs',
     'assets/tsconfig.json',
+    'assets/README.md',
     'assets/webpack.config.ts',
     'assets/yarn.lock',
+    'config',
     'templates',
     'theme-hooks',
     '.editorconfig',
@@ -177,6 +179,7 @@ function get_files_to_alter() {
   return [
     'assets/.storybook',
     'assets/package.json',
+    'config',
     'templates',
     'theme-hooks',
     's360_base_theme.breakpoints.yml',
@@ -285,6 +288,9 @@ function set_alterations(string $theme_name, string $machine_name, string $kebab
  */
 function get_files_to_rename() {
   return [
+    'config/install/block.block.s360_base_theme_content.yml',
+    'config/install/block.block.s360_base_theme_messages.yml',
+    'config/install/block.block.s360_base_theme_tabs.yml',
     's360_base_theme.breakpoints.yml',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
