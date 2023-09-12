@@ -6,32 +6,26 @@
 @use "s360-toolkit";
 
 %text-as-h1 {
-  @extend %heading-base;
   @extend %heading-as-h1;
 }
 
 %text-as-h2 {
-  @extend %heading-base;
   @extend %heading-as-h2;
 }
 
 %text-as-h3 {
-  @extend %heading-base;
   @extend %heading-as-h3;
 }
 
 %text-as-h4 {
-  @extend %heading-base;
   @extend %heading-as-h4;
 }
 
 %text-as-h5 {
-  @extend %heading-base;
   @extend %heading-as-h5;
 }
 
 %text-as-h6 {
-  @extend %heading-base;
   @extend %heading-as-h6;
 }
 
@@ -45,8 +39,22 @@
   line-height: var(--p-line-height);
   margin: var(--p-margin, 0 0 1em 0);
   padding: var(--p-padding, 0);
+  max-width: var(--p-max-width);
 
   &:last-of-type {
     margin-bottom: 0;
   }
+}
+
+%text-as-blockquote {
+  --p-font-family: var(--blockquote-font-family);
+  --p-font-style: var(--blockquote-font-style);
+  --p-line-height: var(--blockquote-line-height);
+  --p-font-size: var(--blockquote-font-size);
+  --p-font-style: var(--blockquote-font-style);
+  --p-font-weight: var(--blockquote-font-weight);
+
+  margin: var(--blockquote-margin, 0);
+  padding: var(--blockquote-padding, 0);
+  position: relative;
 }

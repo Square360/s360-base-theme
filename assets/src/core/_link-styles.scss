@@ -16,16 +16,16 @@
   letter-spacing: var(--a-letter-spacing);
   line-height: var(--a-line-height);
   margin: var(--a-margin, 0);
-  padding: var(--a-padding, 0);
-  text-decoration: var(--a-text-decoration, none);
-  text-transform: var(--a-text-transform);
-  transition: var(--a-transition, var(--transition, all 200ms ease-in-out));
-  width: var(--a-width);
   outline:
     var(--a-outline-width, 0)
     var(--a-outline-style, dashed)
     var(--a-outline-color, currentColor);
   outline-offset: var(--a-outline-offset, 4px);
+  padding: var(--a-padding, 0);
+  text-decoration: var(--a-text-decoration, none);
+  text-transform: var(--a-text-transform);
+  transition: var(--a-transition, all 200ms ease-in-out);
+  width: var(--a-width);
 
   &:focus {
     [data-whatintent="keyboard"] & {
@@ -35,6 +35,6 @@
 
   &:focus,
   &:hover {
-    --a-color: currentColor;
+    --a-color: var(--a-color-hover, currentColor);
   }
 }

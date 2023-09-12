@@ -1,13 +1,6 @@
+@use "core/text-styles";
 @use "s360-toolkit";
 
 blockquote {
-  --p-font-family: var(--blockquote-font-family);
-  --p-font-style: var(--blockquote-font-style);
-  --p-line-height: var(--blockquote-line-height);
-  --p-font-size: var(--blockquote-font-size);
-  --p-font-style: var(--blockquote-font-style);
-  --p-font-weight: var(--blockquote-font-weight);
-
-  margin: var(--blockquote-margin, 0);
-  padding: var(--blockquote-padding, 0)
+  @extend %text-as-blockquote;
 }

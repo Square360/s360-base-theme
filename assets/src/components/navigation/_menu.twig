@@ -47,7 +47,7 @@
           {% set link_text = item.title %}
 
           {% if menu_name == 'main' and menu_level == 0 %}
-            {% set tmp = item.title ~ '<div class="menu__expand"><span></span><span></span></div>' %}
+            {% set tmp = item.title ~ '<div class="menu__expand"></div>' %}
             {% set link_text %}{{ tmp|raw }}{% endset %}
           {% endif %}
 
@@ -61,8 +61,10 @@
               </div>
             </div>
           </details>
-        {% elseif menu_item_type == 'link' or menu_item_type == 'nolink' %}
+        {% elseif menu_item_type == 'link' %}
           {{ link(item.title, item.url, (item.in_active_trail ? { 'aria-current': ['page'] } : {})) }}
+        {% elseif menu_item_type == 'nolink' %}
+          <span>{{ item.title }}</span>
         {% elseif menu_item_type == 'button' %}
           <button>{{ item.title }}</button>
         {% endif %}

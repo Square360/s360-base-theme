@@ -3,9 +3,8 @@
 @use "s360-toolkit";
 
 .layout--two-column {
-
-  /// **************************************************
-  /// MEDIA QUERIES
+  // **************************************************
+  // MEDIA QUERIES
 
   @media (min-width: mq.$mq-1024) {
     > .layout__content > .layout__regions {
@@ -20,16 +19,16 @@
       }
     }
 
-    /// **************************************************
-    /// 50-50 SPLIT
+    // **************************************************
+    // 50-50 SPLIT
 
     &.layout--50-50 {
       --layout-two-column-region-first-grid-column: span 6;
       --layout-two-column-region-second-grid-column: span 6;
     }
 
-    /// **************************************************
-    /// 60-40 / 40-60 SPLITS
+    // **************************************************
+    // 60-40 / 40-60 SPLITS
 
     &.layout--60-40 {
       --layout-two-column-region-first-grid-column: span 7;
@@ -41,8 +40,8 @@
       --layout-two-column-region-second-grid-column: span 7;
     }
 
-    /// **************************************************
-    /// 70-30 / 30-70 SPLITS
+    // **************************************************
+    // 70-30 / 30-70 SPLITS
 
     &.layout--70-30 {
       --layout-two-column-region-first-grid-column: span 8;
@@ -54,8 +53,8 @@
       --layout-two-column-region-second-grid-column: span 8;
     }
 
-    /// **************************************************
-    /// 75-25 / 25-75 SPLITS
+    // **************************************************
+    // 75-25 / 25-75 SPLITS
 
     &.layout--75-25 {
       --layout-two-column-region-first-grid-column: span 9;

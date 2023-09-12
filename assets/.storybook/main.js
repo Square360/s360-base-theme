@@ -13,7 +13,6 @@ module.exports = {
   ],
   staticDirs: [
     '../dist/',
-    // Uncomment if you're using FontAwesome in your theme.
-    // '../../../../../libraries/fontawesome/js',
+    './fontawesome',
   ],
 };

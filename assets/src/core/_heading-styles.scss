@@ -4,7 +4,7 @@
 @use "core/heading-font-sizes";
 @use "s360-toolkit";
 
-%heading-base {
+%_heading-base {
   font-size: var(--heading-font-size);
   color: var(--heading-color);
   line-height: var(--heading-line-height, 1);
@@ -12,32 +12,40 @@
   font-weight: var(--heading-font-weight);
   text-transform: var(--heading-text-transform);
   margin-bottom: var(--heading-margin-bottom, 0.25em);
+  transition: var(--heading-transition, all 200ms ease-in-out);
+}
 
-  &:not(:first-child) {
-    margin-top: var(--heading-margin-top, 1em);
-  }
+%heading-margins {
+  margin-top: var(--heading-margin-top, 1em);
+  margin-bottom: var(--heading-margin-bottom, 0.25em);
 }
 
 %heading-as-h1 {
   --heading-font-size: var(--h1-font-size, #{ heading-font-sizes.h1-font-size() });
+  @extend %_heading-base;
 }
 
 %heading-as-h2 {
   --heading-font-size: var(--h2-font-size, #{ heading-font-sizes.h2-font-size() });
+  @extend %_heading-base;
 }
 
 %heading-as-h3 {
   --heading-font-size: var(--h3-font-size, #{ heading-font-sizes.h3-font-size() });
+  @extend %_heading-base;
 }
 
 %heading-as-h4 {
   --heading-font-size: var(--h4-font-size, #{ heading-font-sizes.h4-font-size() });
+  @extend %_heading-base;
 }
 
 %heading-as-h5 {
   --heading-font-size: var(--h5-font-size, #{ heading-font-sizes.h5-font-size() });
+  @extend %_heading-base;
 }
 
 %heading-as-h6 {
   --heading-font-size: var(--h6-font-size, #{ heading-font-sizes.h6-font-size() });
+  @extend %_heading-base;
 }

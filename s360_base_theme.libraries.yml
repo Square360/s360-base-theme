@@ -34,7 +34,7 @@ field.ckeditor:
 field.field:
   css:
     component:
-      assets/dist/components/field/field.css: {}
+      assets/dist/components/field/field/field.css: {}
 
 ##################################################
 # Form Libraries
@@ -82,19 +82,19 @@ media.remote-video:
       assets/dist/components/media/remote-video/remote-video.css: {}
 
 # ##################################################
-# Navigation Libraries
+# Menu Libraries
 
-navigation.footer:
+menu.footer:
   css:
     component:
       assets/dist/components/navigation/footer/footer.css: {}
 
-navigation.local-tasks:
+menu.local-tasks:
   css:
     component:
       assets/dist/components/navigation/local-tasks/local-tasks.css: {}
 
-navigation.main:
+menu.main:
   css:
     component:
       assets/dist/components/navigation/main/main.css: {}
@@ -103,12 +103,12 @@ navigation.main:
   dependencies:
     - core/drupal
 
-navigation.pager:
+menu.pager:
   css:
     component:
       assets/dist/components/navigation/pager/pager.css: {}
 
-navigation.social:
+menu.social:
   css:
     component:
       assets/dist/components/navigation/social/social.css: {}
@@ -245,3 +245,10 @@ view.display-table:
 
 ##################################################
 # Views Libraries
+
+view.[view_name]:
+  css:
+    component:
+      assets/dist/components/views/[view_name]/[view_name].css: {}
+  dependencies:
+    - s360_base_theme/view.view

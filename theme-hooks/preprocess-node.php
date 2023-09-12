@@ -4,7 +4,8 @@
  * @file
  * preprocess-node.php
  *
- * Define all node preprocess HOOKs.
+ * Define all node preprocess HOOKs. Each bundle should provide it's own
+ * hook function. e.g. `s360_base_theme_preprocess_node__[bundle]`
  */
 
 use Drupal\Component\Utility\Html;
@@ -18,11 +19,11 @@ function s360_base_theme_preprocess_node(&$variables) {
   $elements = $variables['elements'];
 
   /** @var \Drupal\node\Entity\Node $node */
-  $node = $elements['#node'];
+  $node = $variables['node'];
 
   $node_bundle = $node->bundle();
   $node_view_mode = $elements['#view_mode'];
-  $node_base_class = $node_view_mode === 'full' ? 'node' : 'teaser';
+  $node_base_class = $node_view_mode === 'full' ? 'node' : 'node-teaser';
 
   if ($node_view_mode !== 'full') {
     $node_view_mode = str_replace('teaser_', '', $node_view_mode);
