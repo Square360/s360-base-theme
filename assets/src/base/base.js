@@ -8,10 +8,16 @@ Drupal.behaviors.scrollbarWidth = {
     const ROOT = document.documentElement;
     const BODY = document.querySelector('body');
 
-    window.addEventListener('resize', () => {
+    const updateScrollbarWidth = () => {
       ROOT.style.setProperty('--scrollbar-width', `${ window.innerWidth - ROOT.clientWidth }px`);
+    }
+
+    window.addEventListener('load', () => {
+      updateScrollbarWidth()
     });
 
-    window.dispatchEvent(new Event('resize'));
+    window.addEventListener('resize', () => {
+      updateScrollbarWidth();
+    });
   }
 }

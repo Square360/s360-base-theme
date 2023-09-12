@@ -10,6 +10,9 @@ import drupalAttribute from 'drupal-attribute';
  */
 export default { title: 'Layout Components/Cta Link' };
 
+const CTA_LINK_STYLE_OPTIONS = {
+}
+
 export const ctaLink = ({ ctaLinkStyle }) => {
   let paragraphClasses = [...ctaLinkData.paragraph_attributes.class, ctaLinkStyle ];
   let paragraphAttributes = Object.assign({}, ctaLinkData.paragraph_attributes);
@@ -26,11 +29,13 @@ export const ctaLink = ({ ctaLinkStyle }) => {
 ctaLink.argTypes = {
   ctaLinkStyle: {
     name: 'CTA Link Style',
+    options: Object.keys(CTA_LINK_STYLE_OPTIONS),
     control: {
       type: 'select',
-      options: {
-      },
+      labels: CTA_LINK_STYLE_OPTIONS
     },
-    defaultValue: 'paragraph--cta-link-',
   }
 };
+ctaLink.args = {
+  ctaLinkStyle: '',
+}

@@ -3,8 +3,8 @@
 @use "s360-toolkit";
 
 .layout--three-column {
-  /// **************************************************
-  /// MEDIA QUERIES
+  // **************************************************
+  // MEDIA QUERIES
 
   @media (min-width: mq.$mq-1024) {
     > .layout__content > .layout__regions {
@@ -23,8 +23,8 @@
       }
     }
 
-    /// **************************************************
-    /// 33-33-33 SPLIT
+    // **************************************************
+    // 33-33-33 SPLIT
 
     &.layout--33-33-33 {
       --layout-three-column-region-first-grid-column: span 4;
@@ -32,8 +32,8 @@
       --layout-three-column-region-third-grid-column: span 4;
     }
 
-    /// **************************************************
-    /// 25-50-25 SPLIT
+    // **************************************************
+    // 25-50-25 SPLIT
 
     &.layout--25-50-25 {
       --layout-three-column-region-first-grid-column: 1 / 4;
@@ -41,8 +41,8 @@
       --layout-three-column-region-third-grid-column: 10 / 13;
     }
 
-    /// **************************************************
-    /// 50-25-25 SPLIT
+    // **************************************************
+    // 50-25-25 SPLIT
 
     &.layout--50-25-25 {
       --layout-three-column-region-first-grid-column: 1 / 7;
@@ -50,8 +50,8 @@
       --layout-three-column-region-third-grid-column: 10 / 13;
     }
 
-    /// **************************************************
-    /// 25-25-50 SPLIT
+    // **************************************************
+    // 25-25-50 SPLIT
 
     &.layout--25-25-50 {
       --layout-three-column-region-first-grid-column: 1 / 4;

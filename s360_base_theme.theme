@@ -225,6 +225,9 @@ function s360_base_theme_get_social_icon(string $social_name) {
     case 'Twitter':
       return 'fab fa-twitter';
 
+    case 'X Twitter':
+      return 'fab fab-x-twitter';
+
     case 'Facebook':
       return 'fab fa-facebook';
 

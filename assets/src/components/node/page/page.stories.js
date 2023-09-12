@@ -3,7 +3,6 @@ import pageData from './page.yml';
 import './page.js';
 
 import '../node.js';
-
 import drupalAttribute from 'drupal-attribute';
 
 /**
