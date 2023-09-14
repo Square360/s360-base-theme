@@ -2,10 +2,10 @@
 
 .view {
   &__pager {
-    margin-top: site-config.$row-gap;
+    margin-top: site-config.$spacing-sm;
   }
 
   &__more-link {
-    margin-top: site-config.$row-gap;
+    margin-top: site-config.$spacing-sm;
   }
 }

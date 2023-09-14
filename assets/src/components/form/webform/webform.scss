@@ -5,7 +5,7 @@
   // Drupal class.
   .webform-flexbox {
     display: flex;
-    gap: site-config.$row-gap;
+    gap: site-config.$spacing-sm;
     flex-wrap: wrap;
 
     &--flex-start {
