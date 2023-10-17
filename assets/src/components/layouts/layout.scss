@@ -2,12 +2,12 @@
 @use "core/content-containers";
 
 .layout {
-  margin-bottom: site-config.$spacing-sm;
+  margin-bottom: site-config.$spacer-0sm;
 
   > .layout__content {
     > .layout__regions {
       display: grid;
-      row-gap: site-config.$spacing-xs;
+      row-gap: site-config.$spacer-0xs;
       column-gap: site-config.$column-gap;
     }
   }
@@ -15,7 +15,7 @@
   // Make sure paragraphs inside regions don't touch each other.
   .layout__region {
     display: grid;
-    row-gap: site-config.$spacing-xs;
+    row-gap: site-config.$spacer-0xs;
     grid-auto-rows: min-content;
   }
 
