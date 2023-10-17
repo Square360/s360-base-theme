@@ -1,5 +1,5 @@
 @use "core/site-config";
-@use "s360-toolkit";
+@use "s360-scss-toolkit";
 
 .form {
   .form__label--required {
@@ -19,7 +19,7 @@
     position: relative;
 
     select {
-      padding-right: calc(#{ (s360-toolkit.modular-scale(1) * 3) + px });
+      padding-right: calc(#{ (s360-scss-toolkit.modular-scale(1) * 3) + px });
     }
 
     &::after {
@@ -28,7 +28,7 @@
       mask-image: site-config.$circle-chevron-down;
       mask-repeat: no-repeat;
       mask-position: center;
-      font-size: s360-toolkit.font-size-ms(1);
+      font-size: s360-scss-toolkit.font-size-ms(1);
       top: 50%;
       transform: translateY(-50%);
       right: 1em;
