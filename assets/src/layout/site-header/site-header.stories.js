@@ -1,6 +1,8 @@
 import siteHeaderTwig from './site-header.twig';
 import siteHeaderData from './site-header.yml';
 
+import { main } from '../../components/navigation/menu.stories';
+
 /**
  * Storybook Definition.
  */
@@ -8,6 +10,7 @@ export default { title: 'Layout/Site Header' };
 
 export const siteHeader = () => {
   return siteHeaderTwig({
-    ...siteHeaderData
+    ...siteHeaderData,
+    site_header_main_menu: main(),
   });
 }
