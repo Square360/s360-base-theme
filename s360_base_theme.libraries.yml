@@ -1,20 +1,13 @@
 global:
   css:
     base:
-      assets/dist/base/base.css: { }
+      assets/dist/base/base.css: {}
+      assets/dist/layout/layout.css: {}
     layout:
-      assets/dist/layout/layout.css: { }
+      assets/dist/components/layouts/layouts.css: {}
   js:
-    assets/dist/base/base.js: { }
-  dependencies:
-    - core/drupal
-
-site-layout:
-  css:
-    layout:
-      assets/dist/layout/layout.css: { }
-  js:
-    assets/dist/layout/layout.js: { }
+    assets/dist/base/base.js: {}
+    assets/dist/layout/layout.js: {}
   dependencies:
     - core/drupal
 
@@ -42,7 +35,7 @@ field.field:
 form:
   css:
     component:
-      assets/dist/components/form/form.css: { }
+      assets/dist/components/form/form.css: {}
 
 form.views-exposed-form:
   css:
@@ -130,42 +123,6 @@ node.page:
       assets/dist/components/node/page/page.css: {}
   dependencies:
     - s360_base_theme/node
-
-##################################################
-# Paragraph Layout Libraries
-
-paragraph.layout:
-  css:
-    component:
-      assets/dist/components/paragraph/layout/layout.css: {}
-
-paragraph.layout.one-column:
-  css:
-    component:
-      assets/dist/components/paragraph/layout/one-column/one-column.css: {}
-  dependencies:
-    - s360_base_theme/paragraph.layout
-
-paragraph.layout.two-column:
-  css:
-    component:
-      assets/dist/components/paragraph/layout/two-column/two-column.css: {}
-  dependencies:
-    - s360_base_theme/paragraph.layout
-
-paragraph.layout.three-column:
-  css:
-    component:
-      assets/dist/components/paragraph/layout/three-column/three-column.css: {}
-  dependencies:
-    - s360_base_theme/paragraph.layout
-
-paragraph.layout.four-column:
-  css:
-    component:
-      assets/dist/components/paragraph/layout/four-column/four-column.css: {}
-  dependencies:
-    - s360_base_theme/paragraph.layout
 
 ##################################################
 # Paragraph Libraries

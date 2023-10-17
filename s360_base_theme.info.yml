@@ -4,15 +4,15 @@ type: theme
 base theme: false
 core_version_requirement: ^9 || ^10
 dependencies:
-  - s360_base_paragraphs
-  - s360_layout_builder
+  - s360_base_paragraphs/s360_base_paragraphs
+  - s360_layout_builder/s360_layout_builder
+  - drupal/components
 
 ckeditor5-stylesheets:
   - assets/dist/components/field/ckeditor/ckeditor-admin.css
 
 libraries:
   - 's360_base_theme/global'
-  - 's360_base_theme/site-layout'
 
 libraries-override:
   webform/webform.element.flexbox: false
