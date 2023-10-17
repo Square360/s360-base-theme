@@ -1,13 +1,13 @@
 @use "core/site-config";
 @use "core/mq";
-@use "s360-toolkit";
+@use "s360-scss-toolkit";
 
 .view--display-grid {
   > .view__content > .view__rows {
     display: grid;
     grid-template-columns: repeat(var(--view-grid-template-columns, 1), 1fr);
     column-gap: site-config.$column-gap;
-    row-gap: var(--view-grid-row-gap, #{ site-config.$spacing-xs });
+    row-gap: var(--view-grid-row-gap, #{ site-config.$spacer-0xs });
   }
 
   // **************************************************
