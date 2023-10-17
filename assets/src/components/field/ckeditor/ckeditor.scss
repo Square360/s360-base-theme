@@ -1,6 +1,6 @@
 @use "core/site-config";
 @use "core/colors";
-@use "s360-toolkit";
+@use "s360-scss-toolkit";
 
 .ck-content {
   figure {
@@ -9,14 +9,14 @@
 
   figure,
   img {
-    margin-bottom: site-config.$spacing-sm;
+    margin-bottom: site-config.$spacer-0sm;
 
     &.align-left {
-      margin-right: site-config.$spacing-sm;
+      margin-right: site-config.$spacer-0sm;
     }
 
     &.align-right {
-      margin-left: site-config.$spacing-sm;
+      margin-left: site-config.$spacer-0sm;
     }
   }
 }
