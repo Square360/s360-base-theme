@@ -1,11 +1,11 @@
 button,
 [role="button"],
 input[type="submit"] {
-  background-color: var(--button-background-color, transparent);
+  background-color: var(--button-background-color);
   border:
     var(--button-border-width, 0)
     var(--button-border-style, solid)
-    var(--button-border-color, transparent);
+    var(--button-border-color);
   border-radius: var(--button-border-radius, 0);
   color: var(--button-color);
   cursor: var(--button-cursor, pointer);
@@ -30,5 +30,11 @@ input[type="submit"] {
     [data-whatintent="keyboard"] & {
       --button-outline-width: 4px;
     }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--button-background-color-hover, var(--button-background-color));
+    color: var(--button-color-hover, var(--button-color));
   }
 }

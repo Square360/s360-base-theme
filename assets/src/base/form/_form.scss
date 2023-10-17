@@ -1,6 +1,7 @@
 @use "core/site-config";
 @use "core/colors";
-@use "s360-toolkit";
+@use "core/cta-primary";
+@use "s360-scss-toolkit";
 
 form {
   margin: var(--form-margin, 0);
@@ -54,6 +55,7 @@ form {
   }
 
   input[type="submit"] {
+    @extend %cta-primary;
   }
 
   input[type="date"] {

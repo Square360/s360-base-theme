@@ -1,7 +1,7 @@
 details {
   summary {
     align-items: center;
-    background-color: var(--summary-background-color, transparent);
+    background-color: var(--summary-background-color);
     color: var(--summary-colo);
     cursor: var(--summary-cursor, pointer);
     display: var(--summary-display, inline-flex);
@@ -17,36 +17,20 @@ details {
     text-transform: var(--summary-text-transform);
     transition: var(--summary-transition, all 200ms ease-in-out);
 
-    &:focus {
-      [data-whatintent="keyboard"] & {
-        --summary-outline: 4px dashed currentColor;
-      }
-    }
-
     &::-webkit-details-marker,
     &::marker {
       content: '';
       display: none;
     }
 
-    &::before {
-      background-color: currentColor;
-      content: var(--summary-before-content, '');
-      display: inline-flex;
-      flex: 0 0 auto;
-      height: 0.75em;
-      margin-right: 0.5em;
-      mask-image: var(--summary-before-mask-image);
-      mask-position: center;
-      mask-repeat: no-repeat;
-      rotate: var(--summary-before-rotate);
-      transition: transform 200ms ease-in-out;
-      width: 0.75em;
+    &:focus {
+      [data-whatintent="keyboard"] & {
+        --summary-outline: 4px dashed currentColor;
+      }
     }
   }
 
   &[open] {
-    --summary-before-rotate: var(--summary-before-rotate-open);
     --summary-margin: var(--summary-margin-open);
   }
 }

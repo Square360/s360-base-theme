@@ -1,5 +1,5 @@
 @use "core/text-styles";
-@use "s360-toolkit";
+@use "s360-scss-toolkit";
 
 blockquote {
   @extend %text-as-blockquote;
