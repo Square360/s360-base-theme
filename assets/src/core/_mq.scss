@@ -1,13 +1,13 @@
-@use "s360-toolkit";
+@use "s360-scss-toolkit";
 
-$mq-512: s360-toolkit.em(512, 16);
-$mq-640: s360-toolkit.em(640, 16);
-$mq-768: s360-toolkit.em(768, 16);
-$mq-896: s360-toolkit.em(896, 16);
-$mq-1024: s360-toolkit.em(1024, 16);
-$mq-1152: s360-toolkit.em(1152, 16);
-$mq-1280: s360-toolkit.em(1280, 16);
-$mq-1440: s360-toolkit.em(1440, 16);
-$mq-1600: s360-toolkit.em(1600, 16);
-$mq-1920: s360-toolkit.em(1920, 16);
-$mq-2560: s360-toolkit.em(2560, 16);
+$mq-512: s360-scss-toolkit.em(512, 16);
+$mq-640: s360-scss-toolkit.em(640, 16);
+$mq-768: s360-scss-toolkit.em(768, 16);
+$mq-896: s360-scss-toolkit.em(896, 16);
+$mq-1024: s360-scss-toolkit.em(1024, 16);
+$mq-1152: s360-scss-toolkit.em(1152, 16);
+$mq-1280: s360-scss-toolkit.em(1280, 16);
+$mq-1440: s360-scss-toolkit.em(1440, 16);
+$mq-1600: s360-scss-toolkit.em(1600, 16);
+$mq-1920: s360-scss-toolkit.em(1920, 16);
+$mq-2560: s360-scss-toolkit.em(2560, 16);

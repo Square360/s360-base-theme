@@ -1,0 +1,23 @@
+@use "core/site-config";
+@use "core/colors";
+@use "core/typography";
+@use "s360-scss-toolkit";
+
+$_cta-primary-foreground-color: '';
+$_cta-primary-background-color: '';
+
+/// Defines the styles for the primary CTA.
+///
+/// @access public
+///
+%cta-primary {
+  background-color: var(--cta-primary-background-color, #{ $_cta-primary-background-color });
+  color: var(--cta-primary-color, #{ $_cta-primary-foreground-color });
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    background-color: var(--cta-primary-background-color-hover, var(--cta-primary-background-color, #{ $_cta-primary-foreground-color }));
+    color: var(--cta-primary-color-hover, var(--cta-primary-color, #{ $_cta-primary-background-color }));
+  }
+}

@@ -3,7 +3,7 @@
 @use "core/heading-font-sizes";
 @use "core/heading-styles";
 @use "core/typography";
-@use "s360-toolkit";
+@use "s360-scss-toolkit";
 
 %text-as-h1 {
   @extend %heading-as-h1;

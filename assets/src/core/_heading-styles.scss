@@ -2,7 +2,7 @@
 @use "core/colors";
 @use "core/typography";
 @use "core/heading-font-sizes";
-@use "s360-toolkit";
+@use "s360-scss-toolkit";
 
 %_heading-base {
   font-size: var(--heading-font-size);
@@ -11,13 +11,11 @@
   font-family: var(--heading-font-family);
   font-weight: var(--heading-font-weight);
   text-transform: var(--heading-text-transform);
-  margin-bottom: var(--heading-margin-bottom, 0.25em);
+  margin: {
+    top: var(--heading-margin-top);
+    bottom: var(--heading-margin-bottom);
+  }
   transition: var(--heading-transition, all 200ms ease-in-out);
-}
-
-%heading-margins {
-  margin-top: var(--heading-margin-top, 1em);
-  margin-bottom: var(--heading-margin-bottom, 0.25em);
 }
 
 %heading-as-h1 {

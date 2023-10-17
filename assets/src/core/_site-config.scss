@@ -4,33 +4,37 @@ $SITE_CONFIG: (
 );
 
 @use "sass:math";
-@use "s360-toolkit" with ($config: $SITE_CONFIG);
+@use "s360-scss-toolkit" with ($config: $SITE_CONFIG);
+@use "core/mq";
+
+// **************************************************
+// SPACING
+
+$spacer-down-1: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-1), 'rem');
+$spacer-0: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(0), 'rem');
+$spacer-up-1: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(1), 'rem');
+$spacer-up-2: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(2), 'rem');
+$spacer-up-3: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(3), 'rem');
+$spacer-up-4: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(4), 'rem');
+$spacer-up-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(5), 'rem');
 
 // **************************************************
 // GAPS AND GRIDS
 
 $grid-columns: 12;
-$column-gap: s360-toolkit.to-unit(s360-toolkit.modular-scale(0), 'px');
-$_grid-column: s360-toolkit.to-unit(s360-toolkit.modular-scale(0), 'px');
+$column-gap: $spacer-0;
 
 @function column-width() {
   @return calc(#{ $site-content-area / $grid-columns });
 }
 
 // **************************************************
-// SPACING
-
-$spacing-xs: math.div($column-gap, 2);
-$spacing-sm: $column-gap;
-$spacing-md: $_grid-column;
-$spacing-lg: $_grid-column * 2;
-
-// **************************************************
 // LAYOUT
 
 $site-max-width: 1440px;
-$site-side-margin: s360-toolkit.linear-scale($spacing-sm, $spacing-sm);
+$site-side-margin: s360-scss-toolkit.linear-scale($spacer-0, $spacer-0);
 $site-content-area: calc(#{ $site-max-width } - calc(#{ $site-side-margin } * 2));
+$main-menu-mq: 'min-width: #{ mq.$mq-1024 }';
 
 // **************************************************
 // UI

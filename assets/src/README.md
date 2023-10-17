@@ -98,5 +98,5 @@ dist directory
 The `*.scss` file for each entry point must contain the following:
 ```scss
 @use "core/site-config";
-@use "s360-toolkit";
+@use "s360-scss-toolkit";
 ```
