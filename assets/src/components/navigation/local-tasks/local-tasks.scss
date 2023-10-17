@@ -1,6 +1,6 @@
 @use "core/site-config";
 @use "core/colors";
-@use "s360-toolkit";
+@use "s360-scss-toolkit";
 
 .menu--local-tasks {
   @extend %semantic-list;
