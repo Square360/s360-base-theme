@@ -4,12 +4,13 @@ type: theme
 base theme: false
 core_version_requirement: ^9 || ^10
 dependencies:
-  - s360_base_paragraphs/s360_base_paragraphs
-  - s360_layout_builder/s360_layout_builder
-  - drupal/components
+  - components:components
+  - style_options:style_options
+  - s360_base_paragraphs:s360_base_paragraphs
+  - s360_layout_builder:s360_layout_builder
 
 ckeditor5-stylesheets:
-  - assets/dist/components/field/ckeditor/ckeditor-admin.css
+  - ui/dist/components/field/ckeditor/ckeditor-admin.css
 
 libraries:
   - 's360_base_theme/global'
@@ -24,18 +25,20 @@ regions:
 components:
   namespaces:
     ui-layout:
-      - assets/src/layout
+      - ui/src/layout
     ui-field:
-      - assets/src/components/field
+      - ui/src/components/field
     ui-form:
-      - assets/src/components/form
+      - ui/src/components/form
     ui-media:
-      - assets/src/components/media
+      - ui/src/components/media
     ui-navigation:
-      - assets/src/components/navigation
+      - ui/src/components/navigation
     ui-node:
-      - assets/src/components/node
+      - ui/src/components/node
     ui-paragraph:
-      - assets/src/components/paragraph
+      - ui/src/components/paragraph
     ui-views:
-      - assets/src/components/views
+      - ui/src/components/views
+    ui-taxonomy:
+      - ui/src/components/taxonomy

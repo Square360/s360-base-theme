@@ -1,0 +1,11 @@
+@use "core/site-config";
+
+.view {
+  &__pager {
+    margin-top: site-config.$spacer-0;
+  }
+
+  &__more-link {
+    margin-top: site-config.$spacer-0;
+  }
+}

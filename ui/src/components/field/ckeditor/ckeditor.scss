@@ -1,0 +1,22 @@
+@use "core/site-config";
+@use "core/colors";
+@use "s360-scss-toolkit";
+
+.ck-content {
+  figure {
+    --figure-display: table;
+  }
+
+  figure,
+  img {
+    margin-bottom: site-config.$spacer-0;
+
+    &.align-left {
+      margin-right: site-config.$spacer-0;
+    }
+
+    &.align-right {
+      margin-left: site-config.$spacer-0;
+    }
+  }
+}

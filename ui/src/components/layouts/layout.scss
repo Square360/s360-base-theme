@@ -1,0 +1,25 @@
+@use "core/site-config";
+@use "core/content-containers";
+
+.layout {
+  margin-bottom: site-config.$spacer-0;
+
+  > .layout__content {
+    > .layout__regions {
+      display: grid;
+      row-gap: site-config.$spacer-0;
+      column-gap: site-config.$column-gap;
+    }
+  }
+
+  // Make sure paragraphs inside regions don't touch each other.
+  .layout__region {
+    display: grid;
+    row-gap: site-config.$spacer-0;
+    grid-auto-rows: min-content;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

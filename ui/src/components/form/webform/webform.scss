@@ -1,0 +1,89 @@
+@use "core/site-config";
+@use "core/mq";
+
+.form--webform {
+  // Drupal class.
+  .webform-flexbox {
+    display: flex;
+    gap: site-config.$spacer-0;
+    flex-wrap: wrap;
+
+    &--flex-start {
+      align-items: flex-start;
+    }
+
+    &--flex-end {
+      align-items: flex-end;
+    }
+
+    &--center {
+      align-items: center;
+    }
+
+    // **************************************************
+    // MEDIA QUERIES
+
+    @media (width <= mq.$mq-1024) {
+      flex-direction: column;
+    }
+  }
+
+  // Drupal class.
+  .webform-flex {
+    &--1 {
+      flex: 1;
+    }
+
+    &--2 {
+      flex: 2;
+    }
+
+    &--3 {
+      flex: 3;
+    }
+
+    &--4 {
+      flex: 4;
+    }
+
+    &--5 {
+      flex: 5;
+    }
+
+    &--6 {
+      flex: 6;
+    }
+
+    &--7 {
+      flex: 7;
+    }
+
+    &--8 {
+      flex: 8;
+    }
+
+    &--9 {
+      flex: 9;
+    }
+
+    &--10 {
+      flex: 10;
+    }
+
+    &--11 {
+      flex: 11;
+    }
+
+    &--12 {
+      flex: 12;
+    }
+  }
+
+  /*
+   * Make sure flexbox is always using 'display: flex' when toggled via #states.
+   * @see https://stackoverflow.com/questions/38491653/jquery-show-a-flex-box/4121
+   */
+  .webform-flexbox.js-webform-states-hidden[style*="display: block"] {
+    display: flex !important;
+  }
+}
