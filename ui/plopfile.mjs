@@ -15,53 +15,75 @@ export default function (plop) {
         type: 'input',
         name: 'bundle',
         message: 'Bundle Name'
-      }
+      },
+      // {
+      //   when(context) {
+      //     return context.entityType === 'node';
+      //   },
+      //   type: 'list',
+      //   name: 'viewMode',
+      //   message: 'View Mode',
+      //   choices: [
+      //     'full',
+      //     'teaser'
+      //   ]
+      // }
     ],
     actions: (data) => {
-      let drupalTemplatePath = '';
+      data.bundle = plop.getHelper('kebabCase')(data.bundle);
+      data.componentName = data.bundle;
+
+      let templatePath = `src/templates/${ data.entityType }/${ data.bundle }`;
+      let drupalTemplateName = '';
 
       if (data.entityType == 'paragraph') {
-        drupalTemplatePath = '../templates/{{ entityType }}/{{ entityType }}--{{ kebabCase bundle }}.html.twig';
+        data.storyBookTitle = `Layout Components/${ plop.getHelper('titleCase')(data.bundle).replaceAll('-', ' ') }`;
+        drupalTemplateName = `${ data.entityType }--${ data.bundle }.html.twig`;
       }
       else if (data.entityType == 'node') {
-        drupalTemplatePath = '../templates/{{ entityType }}/{{ kebabCase bundle }}/{{ entityType }}--{{ kebabCase bundle }}--full.html.twig';
+        data.viewMode = 'full';
+        data.componentName = `${ data.bundle }.${ data.viewMode }`;
+        data.storyBookTitle = `Content Types/${ plop.getHelper('titleCase')(data.bundle).replaceAll('-', ' ') }`;
+
+        drupalTemplateName = `${ data.entityType }--${ data.bundle }--${ data.viewMode }.html.twig`;
+        templatePath = `${ templatePath }/${ data.viewMode }`;
       }
 
       let actions = [
         {
           type: 'add',
-          path: 'src/components/{{ entityType }}/{{ kebabCase bundle }}/{{ kebabCase bundle }}.js',
-          templateFile: './config/plop-templates/component.script.hbs',
+          path: `${ templatePath }/component/{{ componentName }}.js`,
+          templateFile: './plop-templates/component.script.hbs',
           skipIfExists: true
         },
         {
           type: 'add',
-          path: 'src/components/{{ entityType }}/{{ kebabCase bundle }}/{{ kebabCase bundle }}.scss',
-          templateFile: './config/plop-templates/component.style.hbs',
+          path: `${ templatePath }/component/{{ componentName }}.scss`,
+          templateFile: './plop-templates/component.style.hbs',
           skipIfExists: true
         },
         {
           type: 'add',
-          path: 'src/components/{{ entityType }}/{{ kebabCase bundle }}/{{ kebabCase bundle }}.stories.js',
-          templateFile: './config/plop-templates/component.stories.hbs',
+          path: `${ templatePath }/component/{{ componentName }}.stories.js`,
+          templateFile: './plop-templates/component.stories.hbs',
           skipIfExists: true
         },
         {
           type: 'add',
-          path: 'src/components/{{ entityType }}/{{ kebabCase bundle }}/{{ kebabCase bundle }}.yml',
-          templateFile: './config/plop-templates/component.yml.hbs',
+          path: `${ templatePath }/component/{{ componentName }}.yml`,
+          templateFile: './plop-templates/component.yml.hbs',
           skipIfExists: true
         },
         {
           type: 'add',
-          path: 'src/components/{{ entityType }}/{{ kebabCase bundle }}/{{ kebabCase bundle }}.twig',
-          templateFile: './config/plop-templates/component.twig.hbs',
+          path: `${ templatePath }/component/{{ componentName }}.twig`,
+          templateFile: './plop-templates/component.twig.hbs',
           skipIfExists: true
         },
         {
           type: 'add',
-          path: `${ drupalTemplatePath }`,
-          templateFile: './config/plop-templates/component.drupal-twig.hbs',
+          path: `${ templatePath }/${ drupalTemplateName }`,
+          templateFile: './plop-templates/drupal-twig.hbs',
           skipIfExists: true
         }
       ];
