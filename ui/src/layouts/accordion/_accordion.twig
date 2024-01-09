@@ -1,0 +1,20 @@
+{# NOTE: This file is for Storybook display purposes only. #}
+
+<div{{ attributes }}>
+  <div class="layout__content">
+    {% if paragraph_layout_header %}
+      <details class="layout__details">
+        <summary class="layout__summary">{{ paragraph_layout_header }}</summary>
+    {% endif %}
+
+    <div class="layout__regions">
+      <div class="layout__region layout__region--first">
+        <div class="layout__region-item">{{ paragraph_layout_region_first }}</div>
+      </div>
+    </div>
+
+    {% if paragraph_layout_header %}
+      </details>
+    {% endif %}
+  </div>
+</div>
