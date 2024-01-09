@@ -1,5 +1,5 @@
-@use "core/content-containers";
-@use "core/typography";
+@use "@s360-base-theme/ui-core/content-containers";
+@use "@s360-base-theme/ui-core/typography";
 
 body {
   @extend %content-container-live;
