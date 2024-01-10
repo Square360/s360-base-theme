@@ -28,9 +28,16 @@ details {
         --summary-outline: 4px dashed currentColor;
       }
     }
+
+    &:hover,
+    &:focus {
+      color: var(--summary-color-hover, var(--summary-color));
+    }
   }
 
   &[open] {
-    --summary-margin: var(--summary-margin-open);
+    summary {
+      margin: var(--summary-margin-open, var(--summary-margin));
+    }
   }
 }
