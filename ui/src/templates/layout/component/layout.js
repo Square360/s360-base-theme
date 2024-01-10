@@ -1,5 +1,3 @@
-import "./layout.scss";
-
 Drupal.behaviors.layout = {
   attach(context) {
     const MAIN_MENU_MQ = window.matchMedia(`(${ getComputedStyle(document.documentElement).getPropertyValue('--main-menu-mq') })`);
