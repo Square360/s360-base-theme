@@ -1,14 +1,11 @@
-@use "core/site-config";
+@use "@s360-base-theme/ui-core/site-config";
 @use "s360-scss-toolkit";
 
 .form {
-  .form__label--required {
-    &::after {
-      content: '\002A';
-      color: #EF0909;
-      margin-left: 0.25em;
-    }
-  }
+  // .form__label--required {
+  //   &::after {
+  //   }
+  // }
 
   .form__description {
     margin-top: 0.25em;
