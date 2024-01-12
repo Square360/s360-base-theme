@@ -1,0 +1,5 @@
+{{ attach_library('s360_base_theme/paragraph.image') }}
+
+{% include "@ui-paragraph/image/component/image.twig" with {
+  field_erm_image: (content.field_erm_image.0) ? content.field_erm_image : '',
+} %}

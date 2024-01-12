@@ -1,11 +1,11 @@
-{% extends "@ui-paragraph/_paragraph.twig" %}
+{% extends "@ui-paragraph/paragraph.twig" %}
 
 {% block paragraph_content %}
-  {{ paragraph_field_header }}
+  {{ field_header }}
 
-  {% if paragraph_field_links %}
+  {% if field_links %}
     <div class="paragraph__links">
-      {{ paragraph_field_links }}
+      {{ field_links }}
     </div>
   {% endif %}
 {% endblock %}
