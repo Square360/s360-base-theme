@@ -1,1 +1,1 @@
-import './display-grid.scss';
+import './grid.scss';

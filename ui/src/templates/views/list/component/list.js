@@ -1,1 +1,1 @@
-import './display-html-list.scss';
+import './list.scss';

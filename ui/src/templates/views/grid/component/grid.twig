@@ -1,9 +1,9 @@
-{% if view_title %}
-  <h2 class="view__heading">{{ view_title }}</h2>
+{% if title %}
+  <h2 class="view__heading">{{ title }}</h2>
 {% endif %}
 
-{% if view_alignment == 'horizontal' %}
-  {% for row in view_items %}
+{% if options.alignment == 'horizontal' %}
+  {% for row in items %}
     {% for column in row.content %}
       <div{{ column.attributes }}>
         {{- column.content -}}
@@ -11,7 +11,7 @@
     {% endfor %}
   {% endfor %}
 {% else %}
-  {% for column in view_items %}
+  {% for column in items %}
     {% for row in column.content %}
       <div{{ row.attributes }}>
         {{- row.content -}}

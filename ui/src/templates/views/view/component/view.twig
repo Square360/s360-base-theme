@@ -5,17 +5,17 @@
     {{ view_sticky }}
   {% endblock %}
 
-  {% if view_exposed or view_header %}
+  {% if exposed or header %}
     <header class="view__header">
-      {% if view_exposed %}
+      {% if exposed %}
         <div class="view__filters">
-          {{ view_exposed }}
+          {{ exposed }}
         </div>
       {% endif %}
 
-      {% if view_header %}
+      {% if header %}
         <div class="view__header-content">
-          {{ view_header }}
+          {{ header }}
         </div>
       {% endif %}
     </header>
@@ -23,33 +23,33 @@
 
   <div class="view__content">
     {% block view_content %}
-      {% if view_attachment_before %}
+      {% if attachment_before %}
         <div class="view__attachment view__attachment--before">
-          {{ view_attachment_before }}
+          {{ attachment_before }}
         </div>
       {% endif %}
 
-      {% if view_rows %}
+      {% if rows %}
         <div class="view__rows">
-          {{ view_rows }}
+          {{ rows }}
         </div>
       {% endif %}
 
-      {{ view_empty }}
+      {{ empty }}
 
-      {% if view_pager %}
+      {% if pager %}
         <div class="view__pager">
-          {{ view_pager }}
+          {{ pager }}
         </div>
       {% endif %}
 
-      {% if view_attachment_after %}
+      {% if attachment_after %}
         <div class="view__attachment view__attachment--after">
-          {{ view_attachment_after }}
+          {{ attachment_after }}
         </div>
       {% endif %}
 
-      {% if view_more %}
+      {% if more %}
         <div class="view__more-link">
           {{ view_more }}
         </div>
@@ -57,9 +57,9 @@
     {% endblock %}
   </div>
 
-  {% if view_footer %}
+  {% if footer %}
     <footer class="view__footer">
-      {{ view_footer }}
+      {{ footer }}
     </footer>
   {% endif %}
 </{{ view_tag }}>

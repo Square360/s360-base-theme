@@ -1,31 +1,32 @@
-{% if view_title %}
-  <h2 class="view__heading">{{ view_title }}</h2>
+{% if title %}
+  <h2 class="view__heading">{{ title }}</h2>
 {% endif %}
 
-{% set compare_view_title = view_title|striptags|trim %}
-{% set compare_view_caption = view_caption|first|striptags|trim %}
+{% set compare_view_title = title|striptags|trim %}
+{% set compare_view_caption = caption|first|striptags|trim %}
 
 <table{{ attributes.addClass('view__table') }}>
   {% if
-    view_caption_needed and
-    (view_caption and (compare_view_caption != compare_view_title) or
-    view_summary_element is not empty)
+    caption_needed and (
+      (caption and (compare_view_caption != compare_view_title)) or
+      summary_element is not empty
+    )
   %}
     <caption class="view__caption">
-      {% if view_caption and (compare_view_caption != compare_view_title) %}
-        {{ view_caption }}
+      {% if caption and (compare_view_caption != compare_view_title) %}
+        {{ caption }}
       {% endif %}
 
-      {% if (view_summary_element is not empty) %}
-        {{ view_summary_element }}
+      {% if (summary_element is not empty) %}
+        {{ summary_element }}
       {% endif %}
     </caption>
   {% endif %}
 
-  {% if view_header %}
+  {% if header %}
     <thead>
       <tr>
-        {% for key, column in view_header %}
+        {% for key, column in header %}
           <th{{ column.attributes.setAttribute('scope', 'col') }}>
             {%- if column.url -%}
               <a href="{{ column.url }}" title="{{ column.title }}" rel="nofollow">{{ column.content }}{{ column.sort_indicator }}</a>
@@ -39,10 +40,10 @@
   {% endif %}
 
   <tbody>
-    {% for row in view_rows %}
+    {% for row in rows %}
       <tr{{ row.attributes }}>
         {% for key, column in row.columns %}
-          <td{{ column.attributes.setAttribute('data-cell', view_header[key].content) }}>
+          <td{{ column.attributes.setAttribute('data-cell', header[key].content) }}>
             {% for content in column.content %}
               {{- content.separator }}{{ content.field_output -}}
             {% endfor %}

@@ -1,1 +1,1 @@
-import './display-table.scss';
+import './table.scss';
