@@ -52,7 +52,7 @@ function s360_base_theme_preprocess_region(array &$variables) {
 
     // Clear any Drupal classes.
     $variables['attributes']['class'] = [];
-    $variables['attributes']['class'] = 'region-' . Html::getClass($region);
+    $variables['attributes']['class'] = Html::getClass("region-$region");
   }
 }
 

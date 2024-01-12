@@ -21,3 +21,12 @@ function s360_base_theme_preprocess_paragraph(&$variables) {
 
   $variables['attributes']['id'] = 'paragraph-' . $paragraph_bundle_safe . '-' . $paragraph->id();
 }
+
+/**
+ * Implements hook_preprocess_paragraph() for document_list.
+ */
+function s360_base_theme_preprocess_paragraph__document_list(&$variables) {
+  /** @var \Drupal\paragraph\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+}
