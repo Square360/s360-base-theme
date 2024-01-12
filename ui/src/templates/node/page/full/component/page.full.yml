@@ -3,4 +3,4 @@ node_attributes:
     - node
     - node--page
     - node--full
-node_field_label: Basic Page
+field_label: Basic Page

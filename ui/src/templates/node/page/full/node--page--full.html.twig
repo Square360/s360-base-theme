@@ -1,9 +1,5 @@
-{{ attach_library('s360_base_theme/node.page') }}
+{{ attach_library('s360_base_theme/node.page.full') }}
 
-{% include "@ui-node/page/page.twig" with {
-  d_label: label,
-
-  field_erp_sections: content.field_erp_
-
-  temp_content: content,
+{% include "@ui-node/page/component/page.full.twig" with {
+  field_label: label,
 } %}
