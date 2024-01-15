@@ -1,4 +1,2 @@
-paragraph_attributes:
-  class:
-    - paragraph
-    - paragraph--image
+field_erm_image:
+  image_src: ''

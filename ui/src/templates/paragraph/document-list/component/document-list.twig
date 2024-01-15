@@ -1,11 +1,21 @@
-{% extends "@ui-paragraph/paragraph.twig" %}
+{% set document_list_classes = [
+  'document-list',
+  field_document_view_mode ?? 'document-list--' ~ field_document_view_mode
+] %}
+{% set paragraph_attributes = attributes|default(create_attribute({})) %}
+{% set paragraph_attributes = paragraph_attributes.setAttribute('class', document_list_classes) %}
+{% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'document-list') %}
+
+{{ attach_library('s360_base_theme/paragraph.document-list') }}
+
+{% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
   {{ paragraph_field_header }}
 
-  {% if paragraph_documents %}
-    <div class="paragraph__documents">
-      {{ paragraph_documents }}
+  {% if documents %}
+    <div class="document-list__documents">
+      {{ documents }}
     </div>
   {% endif %}
 {% endblock %}

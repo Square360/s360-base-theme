@@ -1,4 +1,3 @@
-paragraph_attributes:
-  class:
-    - paragraph
-    - paragraph--document-list
+documents:
+  - Doc 1
+  - Doc 2

@@ -2,16 +2,31 @@ import documentListTwig from './document-list.twig';
 import documentListData from './document-list.yml';
 import './document-list.js';
 
-import drupalAttribute from 'drupal-attribute';
-
 /**
  * Storybook Definition.
  */
 export default { title: 'Layout Components/Document List' };
 
-export const documentList = () => {
+const DOCUMENT_VIEW_MODE_OPTIONS = {
+}
+
+export const documentList = ({ documentViewMode }) => {
   return documentListTwig({
     ...documentListData,
-    attributes: new drupalAttribute(Object.entries(documentListData.paragraph_attributes)),
+    field_document_view_mode: documentViewMode
   });
+}
+
+documentList.argTypes = {
+  documentViewMode: {
+    name: 'Document View Mode',
+    options: Object.keys(DOCUMENT_VIEW_MODE_OPTIONS),
+    control: {
+      type: 'select',
+      labels: DOCUMENT_VIEW_MODE_OPTIONS
+    },
+  }
+};
+documentList.args = {
+  documentViewMode: '',
 }
