@@ -1,9 +1,17 @@
-{% extends "@ui-media/media.twig" %}
+{% set classes = [
+  'media',
+  'media--remote-video',
+] %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'media-remote-video') %}
+
+{% extends "@ui-media/media.html.twig" %}
 
 {% block media_content %}
-  {% if media_field_media_oembed_video %}
+  {% if field_media_oembed_video %}
     <div class="media__video-wrapper">
-      {{ media_field_media_oembed_video }}
+      {{ field_media_oembed_video }}
     </div>
   {% endif %}
 {% endblock %}

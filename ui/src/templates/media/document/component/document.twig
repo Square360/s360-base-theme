@@ -1,7 +1,13 @@
+{% set classes = [
+  'media',
+  'media--document',
+] %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'media-document') %}
+
 {% extends "@ui-media/media.twig" %}
 
 {% block media_content %}
-  {% if media_field_media_document %}
-    {{ media_field_media_document }}
-  {% endif %}
+  {{ field_media_document }}
 {% endblock %}
