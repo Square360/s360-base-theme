@@ -6,11 +6,11 @@
 {% set paragraph_attributes = paragraph_attributes.setAttribute('class', document_list_classes) %}
 {% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'document-list') %}
 
-{{ attach_library('s360_base_theme/paragraph.document-list') }}
-
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
+  {{ attach_library('s360_base_theme/paragraph.document-list') }}
+
   {{ paragraph_field_header }}
 
   {% if documents %}

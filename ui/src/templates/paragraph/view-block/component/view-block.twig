@@ -5,11 +5,11 @@
 {% set paragraph_attributes = paragraph_attributes.setAttribute('class', view_block_classes) %}
 {% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'view-block') %}
 
-{{ attach_library('s360_base_theme/paragraph.view-block') }}
-
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
+  {{ attach_library('s360_base_theme/paragraph.view-block') }}
+
   {{ paragraph_field_header }}
 
   {{ field_view }}

@@ -5,11 +5,11 @@
 {% set paragraph_attributes = paragraph_attributes.setAttribute('class', image_classes) %}
 {% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'image') %}
 
-{{ attach_library('s360_base_theme/paragraph.image') }}
-
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
+  {{ attach_library('s360_base_theme/paragraph.image') }}
+
   {% if field_erm_image %}
     <div class="image__image-wrapper">
       {{ field_erm_image }}

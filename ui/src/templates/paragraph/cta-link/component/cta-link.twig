@@ -6,10 +6,10 @@
 {% set paragraph_attributes = paragraph_attributes.setAttribute('class', cta_link_classes) %}
 {% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'cta-link') %}
 
-{{ attach_library('s360_base_theme/paragraph.cta-link') }}
-
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
+  {{ attach_library('s360_base_theme/paragraph.cta-link') }}
+
   {{ field_link }}
 {% endblock %}

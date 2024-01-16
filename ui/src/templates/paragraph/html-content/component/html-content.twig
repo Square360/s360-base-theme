@@ -5,11 +5,11 @@
 {% set paragraph_attributes = paragraph_attributes.setAttribute('class', html_content_classes) %}
 {% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'html-content') %}
 
-{{ attach_library('s360_base_theme/paragraph.html-content') }}
-
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
+  {{ attach_library('s360_base_theme/paragraph.html-content') }}
+
   {{ field_header }}
 
   {% if field_body %}
