@@ -1,6 +1,0 @@
-node_attributes:
-  class:
-    - node
-    - node--page
-    - node--full
-field_label: Basic Page

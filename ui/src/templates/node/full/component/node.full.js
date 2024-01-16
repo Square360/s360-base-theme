@@ -1,1 +1,0 @@
-import "./node.full.scss";
