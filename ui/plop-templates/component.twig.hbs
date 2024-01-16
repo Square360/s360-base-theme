@@ -1,5 +1,14 @@
-{% extends "@ui-{{ entityType }}/{{ entityType }}{{#if viewMode }}--{{ viewMode }}{{/if}}.twig" %}
+{% set {{ snakeCase bundle }}_classes = [
+  '{{ kebabCase bundle }}',
+  {{#if viewMode }}'{{ kebabCase bundle }}--{{ viewMode }}',{{/if}}
+] %}
+{% set {{ entityType }}_attributes = attributes|default(create_attribute({})) %}
+{% set {{ entityType }}_attributes = {{ entityType }}_attributes.setAttribute('class', {{ snakeCase bundle }}_classes) %}
+{% set {{ entityType }}_attributes = {{ entityType }}_attributes.setAttribute('data-js', '{{ kebabCase bundle }}') %}
+
+{% extends "@ui-{{ entityType }}/{{ entityType }}{{#if viewMode }}--{{ viewMode }}{{/if}}.html.twig" %}
 
 {% block {{ entityType }}_content %}
+  \{{ attach_library('s360_base_theme/{{ entityType }}.{{ componentName }}') }}
 
 {% endblock %}

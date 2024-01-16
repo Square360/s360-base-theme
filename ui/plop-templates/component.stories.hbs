@@ -2,21 +2,13 @@ import {{ camelCase bundle }}Twig from './{{ kebabCase bundle }}{{#if viewMode }
 import {{ camelCase bundle }}Data from './{{ kebabCase bundle }}{{#if viewMode }}.{{ viewMode }}{{/if}}.yml';
 import './{{ kebabCase bundle }}{{#if viewMode }}.{{ viewMode }}{{/if}}.js';
 
-import drupalAttribute from 'drupal-attribute';
-
 /**
  * Storybook Definition.
  */
 export default { title: '{{ storyBookTitle }}' };
 
 export const {{ camelCase bundle }} = () => {
-  let classes = [...{{ camelCase bundle }}Data.attributes.class];
-  let attributes = Object.assign({}, {{ camelCase bundle }}Data.attributes);
-
-  attributes.class = classes;
-
   return {{ camelCase bundle }}Twig({
-    ...{{ camelCase bundle }}Data,
-    attributes: new drupalAttribute(Object.entries(attributes)),
+    ...{{ camelCase bundle }}Data
   });
 }
