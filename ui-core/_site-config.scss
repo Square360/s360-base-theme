@@ -5,7 +5,7 @@ $SITE_CONFIG: (
 
 @use "sass:math";
 @use "s360-scss-toolkit" with ($config: $SITE_CONFIG);
-@use "core/mq";
+@use "./mq";
 
 // **************************************************
 // SPACING

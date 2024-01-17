@@ -1,4 +1,4 @@
-@use "core/colors";
+@use "./colors";
 
 %a {
   background-color: var(--a-background-color, transparent);
