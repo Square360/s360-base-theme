@@ -1,15 +1,15 @@
-import footerData from './footer/footer.yml';
-import './footer/footer.js';
+import footerData from './footer/component/footer.yml';
+import './footer/component/footer.js';
 
-import mainData from './main/main.yml';
-import './main/main.js';
+import mainData from './main/component/main.yml';
+import './main/component/main.js';
 
-import pagerTwig from './pager/pager.twig';
-import pagerData from './pager/pager.yml';
-import './pager/pager.js';
+import pagerTwig from './pager/component/pager.twig';
+import pagerData from './pager/component/pager.yml';
+import './pager/component/pager.js';
 
-import socialData from './social/social.yml';
-import './social/social.js';
+import socialData from './social/component/social.yml';
+import './social/component/social.js';
 
 import menuTwig from './menu.twig';
 
