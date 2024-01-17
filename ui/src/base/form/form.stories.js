@@ -1,5 +1,5 @@
 import formTwig from './_form.twig';
-import '../../components/form/form.scss';
+import './_form.scss';
 
 /**
  * Storybook Definition.

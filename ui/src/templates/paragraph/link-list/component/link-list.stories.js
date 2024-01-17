@@ -3,7 +3,7 @@ import linkListData from './link-list.yml';
 import './link-list.js';
 
 // import paragraphFieldLinksTwig from '../../field/paragraph-field-links.twig';
-import linkTwig from '../../../base/link/_link.twig';
+import linkTwig from '@ui-base/link/_link.twig';
 
 /**
  * Storybook Definition.

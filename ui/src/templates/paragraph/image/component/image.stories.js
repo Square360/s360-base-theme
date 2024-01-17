@@ -2,7 +2,7 @@ import imageTwig from './image.twig';
 import imageData from './image.yml';
 import './image.js';
 
-import imgTwig from '../../../base/img/_img.twig';
+import imgTwig from '@ui-base/img/_img.twig';
 
 /**
  * Storybook Definition.

@@ -2,7 +2,7 @@ import ctaLinkTwig from './cta-link.twig';
 import ctaLinkData from './cta-link.yml';
 import './cta-link.js';
 
-import linkTwig from '../../../base/link/_link.twig';
+import linkTwig from '@ui-base/link/_link.twig';
 
 /**
  * Storybook Definition.

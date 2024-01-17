@@ -1,7 +1,7 @@
 import siteFooterTwig from './site-footer.twig';
 import siteFooterData from './site-footer.yml';
 
-import { footer } from '../../../components/navigation/menu.stories';
+import { footer } from '@ui-navigation/menu.stories';
 
 /**
  * Storybook Definition.
