@@ -8,6 +8,7 @@ dependencies:
   - style_options:style_options
   - s360_base_paragraphs:s360_base_paragraphs
   - s360_layout_builder:s360_layout_builder
+  - twig_tweak:twig_tweak
 
 ckeditor5-stylesheets:
   - ui/dist/field/ckeditor/ckeditor-admin.css
@@ -34,6 +35,8 @@ components:
       - ui/src/templates/form
     ui-layout:
       - ui/src/templates/layout
+    ui-layouts:
+      - ui/src/layouts
     ui-media:
       - ui/src/templates/media
     ui-navigation:
