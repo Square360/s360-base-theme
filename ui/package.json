@@ -29,7 +29,7 @@
     "generate": "plop"
   },
   "dependencies": {
-    "@s360-base-theme/ui-core": "1.0.0",
+    "@s360-base-theme/ui-core": "workspace:^1.0.0",
     "add-attributes-twig-extension": "0.1.0",
     "s360-scss-toolkit": "git+https://bitbucket.org/sq360_sysadmin/s360-scss-toolkit.git#1.0.0",
     "twig-drupal-filters": "3.2.0",
@@ -54,6 +54,7 @@
     "css-loader": "6.8.1",
     "css-minimizer-webpack-plugin": "5.0.1",
     "drupal-attribute": "1.0.2",
+    "drupal-twig-extensions": "1.0.0-beta.5",
     "file-loader": "6.2.0",
     "glob": "10.3.10",
     "js-yaml-loader": "1.2.2",
