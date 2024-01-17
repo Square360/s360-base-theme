@@ -8,7 +8,6 @@
  * hook function. e.g. `s360_base_theme_preprocess_node__[bundle]`
  */
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 
@@ -21,12 +20,9 @@ function s360_base_theme_preprocess_node(&$variables) {
   /** @var \Drupal\node\Entity\Node $node */
   $node = $variables['node'];
 
-  $node_bundle = $node->bundle();
   $node_view_mode = $elements['#view_mode'];
-  $node_base_class = $node_view_mode === 'full' ? 'node' : 'node-teaser';
 
   if ($node_view_mode !== 'full') {
-    $node_view_mode = str_replace('teaser_', '', $node_view_mode);
     $label_url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
 
     if ($node->hasField('field_source_link')) {
@@ -43,16 +39,6 @@ function s360_base_theme_preprocess_node(&$variables) {
       '#url' => $label_url,
     ];
   }
-
-  $variables['attributes']['class'][] = $node_base_class;
-  $variables['attributes']['class'][] = Html::getClass("$node_base_class--$node_bundle");
-  $variables['attributes']['class'][] = Html::getClass("$node_base_class--$node_view_mode");
-
-  if ($variables['is_front']) {
-    $variables['attributes']['class'][] = Html::getClass("$node_base_class--is-front");
-  }
-
-  $variables['attributes']['data-js'] = "node-$node_bundle";
 
   // Remove some attributes.
   unset($variables['attributes']['role']);
