@@ -10,6 +10,8 @@ import linkTwig from '@ui-base/link/_link.twig';
 export default { title: 'Layout Components/Cta Link' };
 
 const CTA_LINK_STYLE_OPTIONS = {
+  'primary': 'Primary',
+  'secondary': 'Secondary'
 }
 
 export const ctaLink = ({ ctaLinkStyle }) => {
