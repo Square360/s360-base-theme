@@ -14,7 +14,7 @@ export default function (plop) {
       {
         type: 'input',
         name: 'bundle',
-        message: 'Bundle Name'
+        message: 'Bundle Name (Human Readable Name):'
       },
       // {
       //   when(context) {
@@ -35,13 +35,13 @@ export default function (plop) {
 
       if (data.entityType == 'paragraph') {
         data.componentName = plop.getHelper('kebabCase')(data.bundle);
-        data.storyBookTitle = `Layout Components/${ plop.getHelper('titleCase')(data.bundle) }`;
+        data.storyBookTitle = `Layout Components/${ data.bundle }`;
         drupalTemplateName = `${ data.entityType }--${ plop.getHelper('kebabCase')(data.bundle) }.html.twig`;
       }
       else if (data.entityType == 'node') {
         data.viewMode = 'full';
         data.componentName = `${ plop.getHelper('kebabCase')(data.bundle) }.${ data.viewMode }`;
-        data.storyBookTitle = `Content Types/${ plop.getHelper('titleCase')(data.bundle) }`;
+        data.storyBookTitle = `Content Types/${ data.bundle }`;
 
         drupalTemplateName = `${ data.entityType }--${ plop.getHelper('kebabCase')(data.bundle) }--${ data.viewMode }.html.twig`;
         templatePath = `${ templatePath }/${ data.viewMode }`;
@@ -69,7 +69,6 @@ export default function (plop) {
         {
           type: 'add',
           path: `${ templatePath }/component/{{ componentName }}.yml`,
-          templateFile: './plop-templates/component.yml.hbs',
           skipIfExists: true
         },
         {

@@ -1,9 +1,9 @@
 @use "@s360-base-theme/ui-core/site-config";
 @use "s360-scss-toolkit";
 
-.{{ kebabCase bundle }} {
+.{{ entityType}}--{{ kebabCase bundle }} {
   {{#if viewMode}}
-  &.{{ kebabCase bundle }}--{{ viewMode }} {
+  &.{{ entityType}}--{{ viewMode }} {
 
   }
   {{/if}}
