@@ -1,19 +1,17 @@
-{% set html_content_classes = [
+{% set classes = [
   'html-content',
 ] %}
-{% set paragraph_attributes = attributes|default(create_attribute({})) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('class', html_content_classes) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'html-content') %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'html-content') %}
 
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {{ attach_library('s360_base_theme/paragraph.html-content') }}
-
   {{ field_header }}
 
   {% if field_body %}
-    <div class="html-content__body">
+    <div class="paragraph__body">
       {{ field_body }}
     </div>
   {% endif %}

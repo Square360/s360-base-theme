@@ -1,6 +1,6 @@
 {% set paragraph_tag = (field_header) ? 'section': 'div' %}
 
-<{{ paragraph_tag }}{{ paragraph_attributes }}>
+<{{ paragraph_tag }}{{ attributes }}>
   {% block paragraph_content %}
     {{ content }}
   {% endblock %}

@@ -1,15 +1,13 @@
-{% set cta_link_classes = [
+{% set classes = [
   'cta-link',
   field_cta_link_style ?? 'cta-link--' ~ field_cta_link_style,
 ] %}
-{% set paragraph_attributes = attributes|default(create_attribute({})) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('class', cta_link_classes) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'cta-link') %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'cta-link') %}
 
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {{ attach_library('s360_base_theme/paragraph.cta-link') }}
-
   {{ field_link }}
 {% endblock %}

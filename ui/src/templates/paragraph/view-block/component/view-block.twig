@@ -1,15 +1,13 @@
-{% set view_block_classes = [
+{% set classes = [
   'view-block',
 ] %}
-{% set paragraph_attributes = attributes|default(create_attribute({})) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('class', view_block_classes) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'view-block') %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'view-block') %}
 
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {{ attach_library('s360_base_theme/paragraph.view-block') }}
-
   {{ paragraph_field_header }}
 
   {{ field_view }}

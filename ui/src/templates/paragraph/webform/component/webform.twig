@@ -1,15 +1,13 @@
-{% set webform_classes = [
+{% set classes = [
   'webform',
 ] %}
-{% set paragraph_attributes = attributes|default(create_attribute({})) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('class', webform_classes) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'webform') %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'webform') %}
 
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {{ attach_library('s360_base_theme/paragraph.webform') }}
-
   {{ field_header }}
 
   {{ field_webform }}

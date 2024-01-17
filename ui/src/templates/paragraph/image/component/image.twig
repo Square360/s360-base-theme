@@ -1,17 +1,16 @@
-{% set image_classes = [
+{% set classes = [
   'image',
 ] %}
-{% set paragraph_attributes = attributes|default(create_attribute({})) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('class', image_classes) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'image') %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'image') %}
 
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {{ attach_library('s360_base_theme/paragraph.image') }}
 
   {% if field_erm_image %}
-    <div class="image__image-wrapper">
+    <div class="paragraph__image-wrapper">
       {{ field_erm_image }}
     </div>
   {% endif %}

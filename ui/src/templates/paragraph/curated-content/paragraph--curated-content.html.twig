@@ -1,3 +1,5 @@
-{% include "@ui-paragraph/curated-content/component/curated-content.twig" with {
-  paragraph_curated_node: curated_node
-} %}
+{% extends "@ui-paragraph/paragraph.html.twig" %}
+
+{% block paragraph_content %}
+  {{ curated_node }}
+{% endblock %}

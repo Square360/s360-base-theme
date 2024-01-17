@@ -1,15 +1,13 @@
-{% set placeholder_classes = [
+{% set classes = [
   'placeholder',
 ] %}
-{% set paragraph_attributes = attributes|default(create_attribute({})) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('class', placeholder_classes) %}
-{% set paragraph_attributes = paragraph_attributes.setAttribute('data-js', 'placeholder') %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'placeholder') %}
 
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {{ attach_library('s360_base_theme/paragraph.placeholder') }}
-
   {% if field_title %}
     <div class="placeholder__title">
       {{ field_title }}
