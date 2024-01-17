@@ -6,7 +6,7 @@ import fourColumTwig from './four-column/_four-column.twig';
 import layoutData from './layouts.yml';
 import './layouts.js';
 
-import { placeholder } from '@ui-paragraph/placeholder/placeholder.stories.js';
+import { placeholder } from '@ui-paragraph/placeholder/component/placeholder.stories.js';
 
 import drupalAttribute from 'drupal-attribute';
 
