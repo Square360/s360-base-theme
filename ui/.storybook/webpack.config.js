@@ -10,14 +10,15 @@ module.exports = async ({ config }) => {
   });
 
   config.resolve.alias['@base'] = path.resolve(path.join('src', 'base'));
-  config.resolve.alias['@ui-layout'] = path.resolve(path.join('src', 'layout'));
-  config.resolve.alias['@ui-field'] = path.resolve(path.join('src', 'components', 'field'));
-  config.resolve.alias['@ui-form'] = path.resolve(path.join('src', 'components', 'form'));
-  config.resolve.alias['@ui-media'] = path.resolve(path.join('src', 'components', 'media'));
-  config.resolve.alias['@ui-navigation'] = path.resolve(path.join('src', 'components', 'navigation'));
-  config.resolve.alias['@ui-node'] = path.resolve(path.join('src', 'components', 'node'));
-  config.resolve.alias['@ui-paragraph'] = path.resolve(path.join('src', 'components', 'paragraph'));
-  config.resolve.alias['@ui-views'] = path.resolve(path.join('src', 'components', 'views'));
+  config.resolve.alias['@ui-layouts'] = path.resolve(path.join('src', 'layouts'));
+  config.resolve.alias['@ui-layout'] = path.resolve(path.join('src', 'templates', 'layout'));
+  config.resolve.alias['@ui-field'] = path.resolve(path.join('src', 'templates', 'field'));
+  config.resolve.alias['@ui-form'] = path.resolve(path.join('src', 'templates', 'form'));
+  config.resolve.alias['@ui-media'] = path.resolve(path.join('src', 'templates', 'media'));
+  config.resolve.alias['@ui-navigation'] = path.resolve(path.join('src', 'templates', 'navigation'));
+  config.resolve.alias['@ui-node'] = path.resolve(path.join('src', 'templates', 'node'));
+  config.resolve.alias['@ui-paragraph'] = path.resolve(path.join('src', 'templates', 'paragraph'));
+  config.resolve.alias['@ui-views'] = path.resolve(path.join('src', 'templates', 'views'));
 
   config.resolve.alias['core'] = path.resolve(path.join('src', 'core'));
   config.resolve.alias['SRC_IMAGES'] = path.resolve(path.join('src', 'images'));
