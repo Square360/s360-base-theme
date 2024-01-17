@@ -4,7 +4,7 @@
 import { create } from '@storybook/theming';
 
 export default create({
-  base: 'light',
+  base: 'dark',
   brandTitle: 'S360 Base Theme',
   brandUrl: '',
   brandImage: '',
