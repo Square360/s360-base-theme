@@ -84,22 +84,26 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
  */
 function get_files_to_copy() {
   return [
+    'config',
+    'theme-hooks',
     'ui/.storybook',
     'ui/dist',
     'ui/plop-templates',
     'ui/src',
     'ui/.babelrc',
     'ui/.nvmrc',
+    'ui/.yarnrc.yml',
     'ui/package.json',
     'ui/plopfile.mjs',
     'ui/README.md',
     'ui/webpack.config.js',
-    'ui/yarn.lock',
-    'theme-hooks',
+    'ui-core',
     '.editorconfig',
+    'package.json',
     's360_base_theme.breakpoints.yml',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
+    's360_base_theme.style_options.yml',
     's360_base_theme.theme',
   ];
 }
@@ -174,10 +178,13 @@ function copy_files(array $files, string $theme_path) {
  */
 function get_files_to_alter() {
   return [
+    'config',
+    'theme-hooks',
     'ui/.storybook',
     'ui/package.json',
     'ui/plop-templates',
-    'theme-hooks',
+    'ui/src',
+    'ui-core/package.json',
     's360_base_theme.breakpoints.yml',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
