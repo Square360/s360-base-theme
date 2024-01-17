@@ -17,9 +17,8 @@ function s360_base_theme_preprocess_paragraph(&$variables) {
   /** @var \Drupal\paragraph\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $paragraph_bundle = $paragraph->bundle();
-  $paragraph_bundle_safe = Html::getClass($paragraph_bundle);
 
-  $variables['attributes']['id'] = 'paragraph-' . $paragraph_bundle_safe . '-' . $paragraph->id();
+  $variables['attributes']['id'] = Html::getClass('paragraph-' . $paragraph_bundle . '-' . $paragraph->id());
 }
 
 /**

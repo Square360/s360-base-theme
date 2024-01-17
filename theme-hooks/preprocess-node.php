@@ -8,6 +8,7 @@
  * hook function. e.g. `s360_base_theme_preprocess_node__[bundle]`
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 
@@ -19,6 +20,7 @@ function s360_base_theme_preprocess_node(&$variables) {
 
   /** @var \Drupal\node\Entity\Node $node */
   $node = $variables['node'];
+  $node_bundle = $node->bundle();
 
   $node_view_mode = $elements['#view_mode'];
 
@@ -39,6 +41,8 @@ function s360_base_theme_preprocess_node(&$variables) {
       '#url' => $label_url,
     ];
   }
+
+  $variables['attributes']['id'] = Html::getClass('node-' . $node_bundle . '-' . $node->id());
 
   // Remove some attributes.
   unset($variables['attributes']['role']);
