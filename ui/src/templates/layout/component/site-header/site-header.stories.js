@@ -1,7 +1,7 @@
 import siteHeaderTwig from './site-header.twig';
 import siteHeaderData from './site-header.yml';
 
-import { main } from '@ui-navigation/menu.stories';
+import { main } from '@ui-navigation/navigation.stories';
 
 /**
  * Storybook Definition.
