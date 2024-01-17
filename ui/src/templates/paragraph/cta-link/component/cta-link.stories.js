@@ -15,8 +15,8 @@ const CTA_LINK_STYLE_OPTIONS = {
 export const ctaLink = ({ ctaLinkStyle }) => {
   return ctaLinkTwig({
     ...ctaLinkData,
-    field_cta_link_style: ctaLinkStyle,
-    field_link: linkTwig({ ...ctaLinkData.field_link }),
+    paragraph_field_cta_link_style: ctaLinkStyle,
+    paragraph_field_link: linkTwig({ ...ctaLinkData.paragraph_field_link }),
   });
 }
 

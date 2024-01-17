@@ -1,7 +1,7 @@
 {% set classes = [
   'paragraph',
   'paragraph--document-list',
-  field_document_view_mode ?? 'document-list--' ~ field_document_view_mode
+  paragraph_field_document_view_mode ? 'paragraph--' ~ paragraph_field_document_view_mode : ''
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}

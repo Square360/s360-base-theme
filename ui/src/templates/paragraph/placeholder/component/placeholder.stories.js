@@ -18,7 +18,6 @@ export const placeholder = ({ paragraph_field_title, paragraph_field_body }) => 
   return placeholderTwig({
     paragraph_field_title,
     paragraph_field_body,
-    attributes: new drupalAttribute(Object.entries(placeholderData.paragraph_attributes)),
   });
 }
 placeholder.argTypes = {

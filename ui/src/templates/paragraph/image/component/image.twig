@@ -1,5 +1,6 @@
 {% set classes = [
-  'image',
+  'paragraph',
+  'paragraph--image',
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -8,7 +9,6 @@
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-
   {% if field_erm_image %}
     <div class="paragraph__image-wrapper">
       {{ field_erm_image }}

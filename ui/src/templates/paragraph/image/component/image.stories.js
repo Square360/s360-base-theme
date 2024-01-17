@@ -12,6 +12,6 @@ export default { title: 'Layout Components/Image' };
 export const image = () => {
   return imageTwig({
     ...imageData,
-    field_erm_image: imgTwig({ ...imageData.field_erm_image }),
+    paragraph_field_erm_image: imgTwig({ ...imageData.paragraph_field_erm_image }),
   });
 }

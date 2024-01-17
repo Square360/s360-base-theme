@@ -2,7 +2,7 @@ import htmlContentTwig from './html-content.twig';
 import htmlContentData from './html-content.yml';
 import './html-content.js';
 
-import ckEditorTwig from '@ui-field/ckeditor/ckeditor.twig';
+import ckEditorTwig from '@ui-field/ckeditor/component/ckeditor.twig';
 
 /**
  * Storybook Definition.

@@ -13,7 +13,7 @@ const DOCUMENT_VIEW_MODE_OPTIONS = {
 export const documentList = ({ documentViewMode }) => {
   return documentListTwig({
     ...documentListData,
-    field_document_view_mode: documentViewMode
+    paragraph_field_document_view_mode: documentViewMode
   });
 }
 

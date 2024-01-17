@@ -2,7 +2,7 @@ import linkListTwig from './link-list.twig';
 import linkListData from './link-list.yml';
 import './link-list.js';
 
-// import paragraphFieldLinksTwig from '../../field/paragraph-field-links.twig';
+import fieldLinksTwig from '@ui-field/field--field-links.html.twig';
 import linkTwig from '@ui-base/link/_link.twig';
 
 /**
@@ -14,13 +14,13 @@ export const linkList = () => {
   let links = [];
   let fieldLinks;
 
-  linkListData.field_links.forEach(link => {
+  linkListData.paragraph_field_links.forEach(link => {
     links.push({ content: linkTwig({ ...link })});
-    // fieldLinks = fieldLinksTwig({ field_items: links });
+    fieldLinks = fieldLinksTwig({ items: links });
   });
 
   return linkListTwig({
     ...linkListData,
-    field_links: fieldLinks,
+    paragraph_field_links: fieldLinks,
   });
 };
