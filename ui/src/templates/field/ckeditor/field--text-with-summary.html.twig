@@ -1,3 +1,5 @@
 {{ attach_library('s360_base_theme/field.ckeditor') }}
 
-{% include "@ui-field/ckeditor/component/ckeditor.twig" %}
+{% include "@ui-field/ckeditor/component/ckeditor.twig" with {
+  field_items: items
+} %}
