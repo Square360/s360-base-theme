@@ -1,8 +1,8 @@
 {{ attach_library('s360_base_theme/paragraph.html-content') }}
 
 {% include "@ui-paragraph/html-content/component/html-content.twig" with {
-  field_header: (content.field_header.0) ? content.field_header : '',
-  field_body: (content.field_body.0) ? content.field_body : '',
+  paragraph_field_header: (content.field_header.0) ?? content.field_header,
+  paragraph_field_body: (content.field_body.0) ?? content.field_body,
 
   paragraph_tag: (content.field_header.0) ?? 'section'
 } %}

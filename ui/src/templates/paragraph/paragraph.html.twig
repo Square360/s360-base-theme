@@ -1,4 +1,4 @@
-{% set paragraph_tag = (field_header) ? 'section': 'div' %}
+{% set paragraph_tag = paragraph_tag|default('div') %}
 
 <{{ paragraph_tag }}{{ attributes }}>
   {% block paragraph_content %}

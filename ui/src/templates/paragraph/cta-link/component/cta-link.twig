@@ -1,6 +1,7 @@
 {% set classes = [
-  'cta-link',
-  field_cta_link_style ?? 'cta-link--' ~ field_cta_link_style,
+  'paragraph',
+  'paragraph--cta-link',
+  paragraph_field_cta_link_style ?? 'cta-link--' ~ paragraph_field_cta_link_style,
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -9,5 +10,5 @@
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {{ field_link }}
+  {{ paragraph_field_link }}
 {% endblock %}

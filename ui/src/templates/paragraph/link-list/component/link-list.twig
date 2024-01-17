@@ -1,5 +1,6 @@
 {% set classes = [
-  'link-list',
+  'paragraph',
+  'paragraph--link-list',
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -8,11 +9,11 @@
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {{ field_header }}
+  {{ paragraph_field_header }}
 
-  {% if field_links %}
+  {% if paragraph_field_links %}
     <div class="paragraph__links">
-      {{ field_links }}
+      {{ paragraph_field_links }}
     </div>
   {% endif %}
 {% endblock %}

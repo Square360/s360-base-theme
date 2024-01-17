@@ -1,5 +1,6 @@
 {% set classes = [
-  'document-list',
+  'paragraph',
+  'paragraph--document-list',
   field_document_view_mode ?? 'document-list--' ~ field_document_view_mode
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
@@ -11,9 +12,9 @@
 {% block paragraph_content %}
   {{ paragraph_field_header }}
 
-  {% if documents %}
-    <div class="document-list__documents">
-      {{ documents }}
+  {% if paragraph_documents %}
+    <div class="paragraph__documents">
+      {{ paragraph_documents }}
     </div>
   {% endif %}
 {% endblock %}

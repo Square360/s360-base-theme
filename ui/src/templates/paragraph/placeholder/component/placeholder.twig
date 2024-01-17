@@ -1,5 +1,6 @@
 {% set classes = [
-  'placeholder',
+  'paragraph',
+  'paragraph--placeholder',
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -8,15 +9,15 @@
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {% if field_title %}
-    <div class="placeholder__title">
-      {{ field_title }}
+  {% if paragraph_field_title %}
+    <div class="paragraph__title">
+      {{ paragraph_field_title }}
     </div>
   {% endif %}
 
-  {% if field_body %}
-    <div class="placeholder__body">
-      {{ field_body }}
+  {% if paragraph_field_body %}
+    <div class="paragraph__body">
+      {{ paragraph_field_body }}
     </div>
   {% endif %}
 {% endblock %}

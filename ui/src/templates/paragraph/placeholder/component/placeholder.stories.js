@@ -7,27 +7,28 @@ import './placeholder.js';
  */
 export default { title: 'Layout Components/Placeholder' };
 
-export const placeholder = ({ field_title, field_body }) => {
-  field_title = (field_title)
-    ? field_title || placeholderData.field_title
+export const placeholder = ({ paragraph_field_title, paragraph_field_body }) => {
+  paragraph_field_title = (paragraph_field_title)
+    ? paragraph_field_title || placeholderData.paragraph_field_title
     : '';
-  field_body = (field_body)
-    ? field_body || placeholderData.field_body
+  paragraph_field_body = (paragraph_field_body)
+    ? paragraph_field_body || placeholderData.paragraph_field_body
     : '';
 
   return placeholderTwig({
-    field_title,
-    field_body,
+    paragraph_field_title,
+    paragraph_field_body,
+    attributes: new drupalAttribute(Object.entries(placeholderData.paragraph_attributes)),
   });
 }
 placeholder.argTypes = {
-  field_body: {
+  paragraph_field_body: {
     name: 'label',
     control: {
       type: 'text',
     }
   },
-  field_title: {
+  paragraph_field_title: {
     name: 'label',
     control: {
       type: 'text',
@@ -35,6 +36,6 @@ placeholder.argTypes = {
   }
 }
 placeholder.args = {
-  field_title: placeholderData.field_title,
-  field_body: placeholderData.field_body
+  paragraph_field_title: placeholderData.paragraph_field_title,
+  paragraph_field_body: placeholderData.paragraph_field_body
 }

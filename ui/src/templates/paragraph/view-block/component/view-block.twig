@@ -1,5 +1,6 @@
 {% set classes = [
-  'view-block',
+  'paragraph',
+  'paragraph--view-block',
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -10,5 +11,5 @@
 {% block paragraph_content %}
   {{ paragraph_field_header }}
 
-  {{ field_view }}
+  {{ paragraph_field_view }}
 {% endblock %}

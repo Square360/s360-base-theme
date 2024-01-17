@@ -1,5 +1,6 @@
 {% set classes = [
-  'html-content',
+  'paragraph',
+  'paragraph--html-content',
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -8,11 +9,11 @@
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {{ field_header }}
+  {{ paragraph_field_header }}
 
-  {% if field_body %}
+  {% if paragraph_field_body %}
     <div class="paragraph__body">
-      {{ field_body }}
+      {{ paragraph_field_body }}
     </div>
   {% endif %}
 {% endblock %}

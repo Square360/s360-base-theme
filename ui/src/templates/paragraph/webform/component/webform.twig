@@ -1,5 +1,6 @@
 {% set classes = [
-  'webform',
+  'paragraph',
+  'paragraph--webform',
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -8,7 +9,7 @@
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {{ field_header }}
+  {{ paragraph_field_header }}
 
-  {{ field_webform }}
+  {{ paragraph_field_webform }}
 {% endblock %}
