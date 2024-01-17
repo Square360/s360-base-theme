@@ -1,58 +1,59 @@
-global:
+base:
   css:
     base:
-      ui/dist/base/base.css: {}
-      ui/dist/layout/layout.css: {}
-    layout:
-      ui/dist/components/layouts/layouts.css: {}
-  js:
-    ui/dist/base/base.js: {}
-    ui/dist/layout/layout.js: {}
+      ui/dist/base/base.js: {}
   dependencies:
     - core/drupal
 
-##################################################
+layout:
+  css:
+    base:
+      ui/dist/layout/site-footer/site-footer.css: {}
+  js:
+    ui/dist/layout/layout.js: {}
+
+# ##################################################
 # Field Libraries
 
 field.advanced-header-field:
   css:
     component:
-      ui/dist/components/field/advanced-header-field/advanced-header-field.css: {}
+      ui/dist/field/advanced-header-field/advanced-header-field.css: {}
 
 field.ckeditor:
   css:
     component:
-      ui/dist/components/field/ckeditor/ckeditor.css: {}
+      ui/dist/field/ckeditor/ckeditor.css: {}
 
 field.field:
   css:
     component:
-      ui/dist/components/field/field/field.css: {}
+      ui/dist/field/field/field.css: {}
 
-##################################################
+# ##################################################
 # Form Libraries
 
 form:
   css:
     component:
-      ui/dist/components/form/form.css: {}
-
-form.views-exposed-form:
-  css:
-    component:
-      ui/dist/components/form/views-exposed-form/views-exposed-form.css: {}
+      ui/dist/form/form.css: {}
 
 form.user-login-form:
   css:
     component:
-      ui/dist/components/form/user-login-form/user-login-form.css: {}
+      ui/dist/form/user-login-form/user-login-form.css: {}
   dependencies:
     - s360_base_theme/form
+
+form.views-exposed-form:
+  css:
+    component:
+      ui/dist/form/views-exposed-form/views-exposed-form.css: {}
 
 form.webform:
   css:
     component:
-      ui/dist/components/form/webform/webform.css: {}
+      ui/dist/form/webform/webform.css: {}
   dependencies:
     - s360_base_theme/form
 
@@ -62,17 +63,17 @@ form.webform:
 media.document:
   css:
     component:
-      ui/dist/components/media/document/document.css: {}
+      ui/dist/media/document/document.css: {}
 
 media.image:
   css:
     component:
-      ui/dist/components/media/image/image.css: {}
+      ui/dist/media/image/image.css: {}
 
 media.remote-video:
   css:
     component:
-      ui/dist/components/media/remote-video/remote-video.css: {}
+      ui/dist/media/remote-video/remote-video.css: {}
 
 # ##################################################
 # Menu Libraries
@@ -80,132 +81,132 @@ media.remote-video:
 menu.footer:
   css:
     component:
-      ui/dist/components/navigation/footer/footer.css: {}
+      ui/dist/navigation/footer/footer.css: {}
 
 menu.local-tasks:
   css:
     component:
-      ui/dist/components/navigation/local-tasks/local-tasks.css: {}
+      ui/dist/navigation/local-tasks/local-tasks.css: {}
 
 menu.main:
   css:
     component:
-      ui/dist/components/navigation/main/main.css: {}
+      ui/dist/navigation/main/main.css: {}
   js:
-    ui/dist/components/navigation/main/main.js: {}
+    ui/dist/navigation/main/main.js: {}
   dependencies:
     - core/drupal
 
 menu.pager:
   css:
     component:
-      ui/dist/components/navigation/pager/pager.css: {}
+      ui/dist/navigation/pager/pager.css: {}
 
 menu.social:
   css:
     component:
-      ui/dist/components/navigation/social/social.css: {}
+      ui/dist/navigation/social/social.css: {}
 
 # ##################################################
 # Node Libraries
 
-node:
+node.full:
   css:
     component:
-      ui/dist/components/node/node.css: {}
+      ui/dist/node/full/node.full.css: {}
 
 # ##################################################
 # Node Page Libraries
 
-node.page:
+node.page.full:
   css:
     component:
-      ui/dist/components/node/page/page.css: {}
+      ui/dist/node/page/full/page.full.css: {}
   dependencies:
-    - s360_base_theme/node
+    - s360_base_theme/node.full
 
-##################################################
+# ##################################################
 # Paragraph Libraries
 
 paragraph.cta-link:
   css:
     component:
-      ui/dist/components/paragraph/cta-link/cta-link.css: {}
+      ui/dist/paragraph/cta-link/cta-link.css: {}
 
 paragraph.document-list:
   css:
     component:
-      ui/dist/components/paragraph/document-list/document-list.css: {}
+      ui/dist/paragraph/document-list/document-list.css: {}
 
 paragraph.embed-code:
   css:
     component:
-      ui/dist/components/paragraph/embed-code/embed-code.css: {}
+      ui/dist/paragraph/embed-code/embed-code.css: {}
 
 paragraph.html-content:
   css:
     component:
-      ui/dist/components/paragraph/html-content/html-content.css: {}
+      ui/dist/paragraph/html-content/html-content.css: {}
 
 paragraph.image:
   css:
     component:
-      ui/dist/components/paragraph/image/image.css: {}
+      ui/dist/paragraph/image/image.css: {}
 
 paragraph.link-list:
   css:
     component:
-      ui/dist/components/paragraph/link-list/link-list.css: {}
+      ui/dist/paragraph/link-list/link-list.css: {}
 
 paragraph.placeholder:
   css:
     component:
-      ui/dist/components/paragraph/placeholder/placeholder.css: {}
+      ui/dist/paragraph/placeholder/placeholder.css: {}
 
 paragraph.view-block:
   css:
     component:
-      ui/dist/components/paragraph/view-block/view-block.css: {}
+      ui/dist/paragraph/view-block/view-block.css: {}
 
 paragraph.webform:
   css:
     component:
-      ui/dist/components/paragraph/webform/webform.css: {}
+      ui/dist/paragraph/webform/webform.css: {}
 
-##################################################
-# Views Display Libraries
+# ##################################################
+# Views Libraries
 
 views.view:
   css:
     component:
-      ui/dist/components/views/view/view.css: {}
+      ui/dist/views/view/view.css: {}
 
-view.display-default:
+views.[view_name]:
   css:
     component:
-      ui/dist/components/views/display-default/display-default.css: {}
-
-view.display-grid:
-  css:
-    component:
-      ui/dist/components/views/display-grid/display-grid.css: {}
-
-view.display-html-list:
-  css:
-    component:
-      ui/dist/components/views/display-html-list/display-html-list.css: {}
-
-view.display-table:
-  css:
-    component:
-      ui/dist/components/views/display-table/display-table.css: {}
-
-##################################################
-# Views Libraries
-
-view.[view_name]:
-  css:
-    component:
-      ui/dist/components/views/[view_name]/[view_name].css: {}
+      ui/dist/views/[view_name]/[view_name].css: {}
   dependencies:
     - s360_base_theme/view.view
+
+# ##################################################
+# Views Format Libraries
+
+views.grid:
+  css:
+    component:
+      ui/dist/views/grid/grid.css: {}
+
+views.list:
+  css:
+    component:
+      ui/dist/views/list/list.css: {}
+
+views.table:
+  css:
+    component:
+      ui/dist/views/table/table.css: {}
+
+views.unformatted:
+  css:
+    component:
+      ui/dist/views/unformatted/unformatted.css: {}

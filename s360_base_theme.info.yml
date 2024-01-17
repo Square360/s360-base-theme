@@ -10,7 +10,7 @@ dependencies:
   - s360_layout_builder:s360_layout_builder
 
 ckeditor5-stylesheets:
-  - ui/dist/components/field/ckeditor/ckeditor-admin.css
+  - ui/dist/field/ckeditor/ckeditor-admin.css
 
 libraries:
   - 's360_base_theme/global'
@@ -24,21 +24,25 @@ regions:
 
 components:
   namespaces:
-    ui-layout:
-      - ui/src/layout
+    ui-components:
+      - ui/src/components
+    ui-block:
+      - ui/src/templates/block
     ui-field:
-      - ui/src/components/field
+      - ui/src/templates/field
     ui-form:
-      - ui/src/components/form
+      - ui/src/templates/form
+    ui-layout:
+      - ui/src/templates/layout
     ui-media:
-      - ui/src/components/media
+      - ui/src/templates/media
     ui-navigation:
-      - ui/src/components/navigation
+      - ui/src/templates/navigation
     ui-node:
-      - ui/src/components/node
+      - ui/src/templates/node
     ui-paragraph:
-      - ui/src/components/paragraph
+      - ui/src/templates/paragraph
     ui-views:
-      - ui/src/components/views
+      - ui/src/templates/views
     ui-taxonomy:
-      - ui/src/components/taxonomy
+      - ui/src/templates/taxonomy
