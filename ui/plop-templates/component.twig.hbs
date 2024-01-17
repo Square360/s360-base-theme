@@ -8,7 +8,7 @@
 {% set attributes = attributes.setAttribute('class', classes) %}
 {% set attributes = attributes.setAttribute('data-js', '{{ kebabCase bundle }}') %}
 
-{% extends "@ui-{{ entityType }}/{{ entityType }}{{#if viewMode }}--{{ viewMode }}{{/if}}.html.twig" %}
+{% extends "@ui-{{ entityType }}/{{#if viewMode }}{{ viewMode }}/{{/if}}{{ entityType }}{{#if viewMode }}--{{ viewMode }}{{/if}}.html.twig" %}
 
 {% block {{ entityType }}_content %}
 

@@ -1,4 +1,4 @@
-import {{ camelCase bundle }}Twig from './{{ entityType }}--{{ kebabCase bundle }}{{#if viewMode }}--{{ viewMode }}{{/if}}.html.twig';
+import {{ camelCase bundle }}Twig from './{{ kebabCase bundle }}{{#if viewMode }}.{{ viewMode }}{{/if}}.twig';
 import {{ camelCase bundle }}Data from './{{ kebabCase bundle }}{{#if viewMode }}.{{ viewMode }}{{/if}}.yml';
 import './{{ kebabCase bundle }}{{#if viewMode }}.{{ viewMode }}{{/if}}.js';
 
