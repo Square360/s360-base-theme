@@ -1,1 +1,4 @@
-{% include "@ui-block/branding-block/component/branding-block.twig" %}
+{% include "@ui-block/branding-block/component/branding-block.twig" with {
+  block_site_name: site_name,
+  block_site_logo: site_logo
+} %}

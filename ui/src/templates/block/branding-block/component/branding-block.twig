@@ -1,12 +1,20 @@
-<div class="branding-block" data-js="branding-block">
+{% set classes = [
+  'block',
+  'block--branding-block',
+] %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'branding-block') %}
+
+<div{{ attributes }}>
   <a
     href="{{ path('<front>') }}"
     title="{{ 'Home'|t }}"
-    aria-label="Go to {{ site_name }} homepage"
+    aria-label="Go to {{ block_site_name }} homepage"
     rel="home"
   >
     <img
-      src="{{ site_logo }}"
+      src="{{ block_site_logo }}"
       alt="Logo">
   </a>
 </div>
