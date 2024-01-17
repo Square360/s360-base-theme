@@ -67,5 +67,13 @@ form {
     cursor: pointer;
     font-family: var(--form-label-font-family);
     font-size: var(--form-label-font-size);
+
+    &:has(+ *[required]) {
+      &::after {
+        content: "\002A";
+        color: #ef0909;
+        margin-left: 0.25em;
+      }
+    }
   }
 }
