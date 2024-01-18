@@ -1,1 +1,1 @@
-import 'site-header.scss';
+import './site-header.scss';
