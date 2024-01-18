@@ -3,9 +3,6 @@ Drupal.behaviors.layout = {
     const MAIN_MENU_MQ = window.matchMedia(`(${ getComputedStyle(document.documentElement).getPropertyValue('--main-menu-mq') })`);
     const ROOT = document.documentElement;
 
-    const BRANDING_BLOCK = context.querySelector('[data-js="branding-block"]');
-    if (!BRANDING_BLOCK) return;
-
     const BLOCK_MAIN_MENU = context.querySelector('[data-js="block-main-menu"]');
     if (!BLOCK_MAIN_MENU) return;
 
@@ -33,7 +30,6 @@ Drupal.behaviors.layout = {
 
     window.addEventListener('resize', () => {
       ROOT.style.setProperty('--site-header-height', `${ SITE_HEADER.clientHeight }px`);
-      ROOT.style.setProperty('--branding-block-height', `${ BRANDING_BLOCK.clientHeight }px`);
     });
 
     MAIN_MENU_MQ.onchange = (e) => {

@@ -11,8 +11,6 @@ Drupal.behaviors.brandingBlock = {
       ROOT.style.setProperty('--branding-block-height', `${ BRANDING_BLOCK.clientHeight }px`);
     });
 
-    // Kickoff!
-
     window.dispatchEvent(new Event('resize'));
   }
 }
