@@ -4,15 +4,17 @@ type: theme
 base theme: false
 core_version_requirement: ^9 || ^10
 dependencies:
-  - s360_base_paragraphs
-  - s360_layout_builder
+  - components:components
+  - style_options:style_options
+  - s360_base_paragraphs:s360_base_paragraphs
+  - s360_layout_builder:s360_layout_builder
+  - twig_tweak:twig_tweak
 
 ckeditor5-stylesheets:
-  - assets/dist/components/field/ckeditor/ckeditor-admin.css
+  - ui/dist/field/ckeditor/ckeditor-admin.css
 
 libraries:
   - 's360_base_theme/global'
-  - 's360_base_theme/site-layout'
 
 libraries-override:
   webform/webform.element.flexbox: false
@@ -23,19 +25,27 @@ regions:
 
 components:
   namespaces:
-    ui-layout:
-      - assets/src/layout
+    ui-components:
+      - ui/src/components
+    ui-block:
+      - ui/src/templates/block
     ui-field:
-      - assets/src/components/field
+      - ui/src/templates/field
     ui-form:
-      - assets/src/components/form
+      - ui/src/templates/form
+    ui-layout:
+      - ui/src/templates/layout
+    ui-layouts:
+      - ui/src/layouts
     ui-media:
-      - assets/src/components/media
+      - ui/src/templates/media
     ui-navigation:
-      - assets/src/components/navigation
+      - ui/src/templates/navigation
     ui-node:
-      - assets/src/components/node
+      - ui/src/templates/node
     ui-paragraph:
-      - assets/src/components/paragraph
+      - ui/src/templates/paragraph
     ui-views:
-      - assets/src/components/views
+      - ui/src/templates/views
+    ui-taxonomy:
+      - ui/src/templates/taxonomy

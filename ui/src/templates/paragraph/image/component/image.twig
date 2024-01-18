@@ -1,0 +1,17 @@
+{% set classes = [
+  'paragraph',
+  'paragraph--image',
+] %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'image') %}
+
+{% extends "@ui-paragraph/paragraph.html.twig" %}
+
+{% block paragraph_content %}
+  {% if paragraph_field_erm_image %}
+    <div class="paragraph__image-wrapper">
+      {{ paragraph_field_erm_image }}
+    </div>
+  {% endif %}
+{% endblock %}

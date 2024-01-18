@@ -1,0 +1,42 @@
+@use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/colors";
+@use "s360-scss-toolkit";
+
+.menu--local-tasks {
+  @extend %semantic-list;
+
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  a {
+    --a-color: #{ colors.$black };
+    --a-background-color: #{ rgba(colors.$white, 0.7) };
+    --a-padding: 0.5em;
+    --a-border-color: #{ colors.$black };
+    --a-border-width: 1px;
+    --a-display: block;
+
+    &:focus {
+      --a-outline-color: currentColor;
+    }
+
+    &:focus,
+    &:hover,
+    // Drupal class.
+    &.is-active {
+      --a-color: #{ colors.$black };
+      --a-background-color: #{ colors.$white };
+    }
+  }
+
+  .menu__item {
+    & + .menu__item {
+      --li-margin: 1em 0 0 0;
+    }
+  }
+}

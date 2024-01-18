@@ -1,0 +1,14 @@
+{% set classes = [
+  'paragraph',
+  'paragraph--embed-code',
+  paragraph_embed_type ? 'paragraph--' ~ paragraph_embed_type : ''
+] %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'embed-code') %}
+
+{% extends "@ui-paragraph/paragraph.html.twig" %}
+
+{% block paragraph_content %}
+  {{ paragraph_embed_code }}
+{% endblock %}

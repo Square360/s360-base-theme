@@ -1,0 +1,38 @@
+@use "./site-config";
+@use "./colors";
+@use "./typography";
+@use "./icon-embed";
+@use "s360-scss-toolkit";
+
+%accordion {
+  border-top: 2px solid colors.$brand-light-blue;
+
+  summary {
+    --summary-color: #{ colors.$primary-dark };
+    --summary-font-size: #{ s360-scss-toolkit.font-size-ms(1) };
+    --summary-font-weight: #{ typography.$font-weight-bold };
+    --summary-margin: 0.5em 0 0 0;
+    --summary-margin-open: 0.5em 0 0.75em 0;
+
+    padding-left: calc(var(--summary-font-size) * 1.5);
+
+    &::before,
+    &::after {
+      --icon-embed-mask-image: #{ site-config.$circle-minus };
+      @extend %icon-embed;
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: rotate 200ms ease-in-out;
+    }
+
+    &::after {
+      rotate: var(--summary-after-rotate, -90deg);
+    }
+  }
+
+  &[open] {
+    --summary-after-rotate: 0;
+  }
+}

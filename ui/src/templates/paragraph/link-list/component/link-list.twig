@@ -1,0 +1,19 @@
+{% set classes = [
+  'paragraph',
+  'paragraph--link-list',
+] %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'link-list') %}
+
+{% extends "@ui-paragraph/paragraph.html.twig" %}
+
+{% block paragraph_content %}
+  {{ paragraph_field_header }}
+
+  {% if paragraph_field_links %}
+    <div class="paragraph__links">
+      {{ paragraph_field_links }}
+    </div>
+  {% endif %}
+{% endblock %}

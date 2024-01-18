@@ -27,6 +27,7 @@ function s360_base_theme_theme_suggestions_page_alter(array &$suggestions, array
  * Implements hook_theme_suggestions_taxonomy_term_alter().
  */
 function s360_base_theme_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $variables) {
+  /** @var \Drupal\taxonomy\Entity\Term $term */
   $term = $variables['elements']['#taxonomy_term'];
   $term_bundle = $term->bundle();
 

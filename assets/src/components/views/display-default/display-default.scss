@@ -1,8 +1,0 @@
-@use "core/site-config";
-@use "s360-toolkit";
-
-.view--display-default {
-  .view__row + .view__row {
-    margin-top: var(--view-default-view-row-margin-top, #{ site-config.$spacing-xs });
-  }
-}

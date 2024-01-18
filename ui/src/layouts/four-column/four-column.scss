@@ -1,0 +1,18 @@
+@use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/mq";
+@use "s360-scss-toolkit";
+
+.layout--four-column {
+  // **************************************************
+  // MEDIA QUERIES
+
+  @media (min-width: mq.$mq-1024) {
+    > .layout__content > .layout__regions {
+      grid-template-columns: repeat(site-config.$grid-columns, minmax(0, 1fr));
+
+      > .layout__region {
+        grid-column: span 3;
+      }
+    }
+  }
+}

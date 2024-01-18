@@ -1,0 +1,8 @@
+{{ attach_library('s360_base_theme/paragraph.document-list') }}
+
+{% include "@ui-paragraph/document-list/component/document-list.twig" with {
+  paragraph_field_header: (content.field_header.0) ? content.field_header : '',
+
+  paragraph_documents: paragraph_documents,
+  paragraph_tag: (content.field_header.0) ? 'section' : 'div'
+} %}

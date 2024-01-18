@@ -1,0 +1,39 @@
+@use "./site-config";
+@use "./colors";
+@use "./typography";
+@use "./heading-font-sizes";
+@use "s360-scss-toolkit";
+
+%heading-base {
+  font-size: var(--heading-font-size);
+  color: var(--heading-color);
+  line-height: var(--heading-line-height, 1);
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  text-transform: var(--heading-text-transform);
+  transition: var(--heading-transition, all 200ms ease-in-out);
+}
+
+%heading-as-h1 {
+  --heading-font-size: var(--h1-font-size, #{ heading-font-sizes.h1-font-size() });
+}
+
+%heading-as-h2 {
+  --heading-font-size: var(--h2-font-size, #{ heading-font-sizes.h2-font-size() });
+}
+
+%heading-as-h3 {
+  --heading-font-size: var(--h3-font-size, #{ heading-font-sizes.h3-font-size() });
+}
+
+%heading-as-h4 {
+  --heading-font-size: var(--h4-font-size, #{ heading-font-sizes.h4-font-size() });
+}
+
+%heading-as-h5 {
+  --heading-font-size: var(--h5-font-size, #{ heading-font-sizes.h5-font-size() });
+}
+
+%heading-as-h6 {
+  --heading-font-size: var(--h6-font-size, #{ heading-font-sizes.h6-font-size() });
+}

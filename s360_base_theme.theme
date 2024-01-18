@@ -8,7 +8,6 @@
  */
 
 use Drupal\Core\Url;
-use Drupal\media\Entity\Media;
 
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-block.php';
@@ -21,6 +20,7 @@ require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme'
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-taxonomy.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-views.php';
 
+require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/page-attachments.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/theme-suggestions.php';
 
 /**
@@ -39,25 +39,27 @@ function s360_base_theme_get_media_info(int $mid) {
   $media = $entity_type_manager->getStorage('media')->load($mid);
   $media_bundle = $media->bundle();
   $media_info = [
-    'media' => $media,
-    'media_type' => $media_bundle,
-    'media_label' => $media->label(),
+    'media' => [
+      'entity' => $media,
+      'type' => $media_bundle,
+      'label' => $media->label(),
+    ]
   ];
 
-  $thumbnail = $media->thumbnail;
-  $thumbnail_fid = $thumbnail->target_id;
+  $thumbnail_fid = $media->thumbnail->target_id;
 
   if ($thumbnail_fid) {
-    $media_info['thumbnail'] = _s360_base_theme_get_file_info($thumbnail_fid);
+    $thumbnail = _s360_base_theme_get_file_info($thumbnail_fid);
+    $media_info['thumbnail'] = reset($thumbnail);
   }
 
   switch ($media_bundle) {
     case 'document':
-      $media_info = array_merge($media_info, _s360_base_theme_get_media_document_file_info($media));
+      $media_info = array_merge($media_info, _s360_base_theme_get_media_document_info($media));
       break;
 
     case 'image':
-      $media_info = array_merge($media_info, _s360_base_theme_get_media_image_file_info($media));
+      $media_info = array_merge($media_info, _s360_base_theme_get_media_image_info($media));
       break;
 
     case 'remote_video':
@@ -80,7 +82,7 @@ function s360_base_theme_get_media_info(int $mid) {
  * @return bool|array
  *   Either an array of information for the media or false.
  */
-function _s360_base_theme_get_media_document_file_info(Media $media) {
+function _s360_base_theme_get_media_document_info(Drupal\media\Entity\Media $media) {
   if (!$media->hasField('field_media_document')) {
     return FALSE;
   }
@@ -94,7 +96,7 @@ function _s360_base_theme_get_media_document_file_info(Media $media) {
   $file_info = _s360_base_theme_get_file_info($field_media_document->target_id);
 
   // Get a file icon based on the mime type.
-  switch ($file_info['file_mime_type']) {
+  switch ($file_info['file']['mime_type']) {
     // .pdf extension.
     case 'application/pdf':
       $icon = 'fa-file-pdf';
@@ -135,7 +137,7 @@ function _s360_base_theme_get_media_document_file_info(Media $media) {
  * @return bool|array
  *   Either an array of information for the media or false.
  */
-function _s360_base_theme_get_media_image_file_info(Media $media) {
+function _s360_base_theme_get_media_image_info(Drupal\media\Entity\Media $media) {
   if (!$media->hasField('field_media_image')) {
     return FALSE;
   }
@@ -148,7 +150,11 @@ function _s360_base_theme_get_media_image_file_info(Media $media) {
 
   $file_info = _s360_base_theme_get_file_info($field_media_image->target_id);
 
-  return array_merge($file_info, ['icon' => 'fa-file-image']);
+  $file_info['file']['width'] = $field_media_image->width . 'px';
+  $file_info['file']['height'] = $field_media_image->height . 'px';
+  $file_info['file']['alt'] = $field_media_image->alt;
+
+  return $file_info;
 }
 
 /**
@@ -160,7 +166,7 @@ function _s360_base_theme_get_media_image_file_info(Media $media) {
  * @return bool|array
  *   Either an array of information for the media or false.
  */
-function _s360_base_theme_get_media_remote_video_info(Media $media) {
+function _s360_base_theme_get_media_remote_video_info(Drupal\media\Entity\Media $media) {
   if (!$media->hasField('field_media_oembed_video')) {
     return FALSE;
   }
@@ -197,14 +203,109 @@ function _s360_base_theme_get_file_info(int $fid) {
   $file_url = $file->createFileUrl();
   $file_uri = $file->getFileUri();
 
+  $mime_type_conversion = _s360_base_theme_file_mime_type_conversion($file_mime_type);
+
   return [
-    'file' => $file,
-    'file_size' => $file_size,
-    'file_filename' => $file_filename,
-    'file_mime_type' => $file_mime_type,
-    'file_relative_url' => $file_url,
-    'file_uri' => $file_uri,
-    'url' => Url::fromUri(\Drupal::service('file_url_generator')->generateAbsoluteString($file_uri)),
+    'file' => [
+      'entity' => $file,
+      'size' => _s360_base_theme_file_size_conversion($file_size),
+      'filename' => $file_filename,
+      'mime_type' => $file_mime_type,
+      'relative_url' => $file_url,
+      'uri' => $file_uri,
+      'url' => Url::fromUri(\Drupal::service('file_url_generator')->generateAbsoluteString($file_uri)),
+      'type' => $mime_type_conversion['file_type'],
+    ],
+    'icon' => $mime_type_conversion['icon'],
+  ];
+}
+
+/**
+ * Converts a file size into a human readable format.
+ *
+ * @param string|number $file_size
+ *   The original file size.
+ * @return string
+ *   The converted file size with unit.
+ */
+function _s360_base_theme_file_size_conversion($file_size) {
+  $one_kb = 1024;
+
+  // Possible units a file size can be.
+  $units = [
+    'B',
+    'KB',
+    'MB',
+    'GB',
+    'TB',
+    'PB',
+    'EB',
+    'ZB',
+    'YB'
+  ];
+
+  // Figure out which unit to use.
+  $power = floor(log($file_size, $one_kb));
+
+  // Format and return the converted filesize to human readable.
+  return number_format($file_size / pow($one_kb, $power), 2, '.', ',') . '' . $units[$power];
+}
+
+/**
+ * Converts a mime type into an icon and file type.
+ *
+ * @param string $file_mime_type
+ * @return An array containing icon and file type.
+ */
+function _s360_base_theme_file_mime_type_conversion(string $file_mime_type) {
+  switch ($file_mime_type) {
+    case 'image/jpeg':
+      $icon = 'fa-file-image';
+      $file_type = 'jpg';
+      break;
+
+    case 'image/png':
+      $icon = 'fa-file-image';
+      $file_type = 'png';
+      break;
+
+    case 'image/gif':
+      $icon = 'fa-file-image';
+      $file_type = 'gif';
+      break;
+
+    case 'application/pdf':
+      $icon = 'fa-file-pdf';
+      $file_type = 'PDF';
+      break;
+
+    case 'application/msword':
+    case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+      $icon = 'fa-file-word';
+      $file_type = 'Word';
+      break;
+
+    case 'application/vnd.ms-excel':
+    case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+      $icon = 'fa-file-excel';
+      $file_type = 'Excel';
+      break;
+
+    case 'application/vnd.ms-powerpoint':
+    case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
+      $icon = 'fa-file-powerpoint';
+      $file_type = 'PowerPoint';
+      break;
+
+    default:
+      $icon = 'fa-file';
+      $file_type = 'File';
+      break;
+  }
+
+  return [
+    'icon' => $icon,
+    'file_type' => $file_type,
   ];
 }
 
@@ -239,6 +340,7 @@ function s360_base_theme_get_social_icon(string $social_name) {
 
     case 'Apple':
     case 'Apple Podcast':
+    case 'iTunes':
       return 'fab fa-apple';
 
     case 'Flickr':

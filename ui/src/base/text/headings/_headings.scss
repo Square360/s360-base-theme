@@ -1,0 +1,31 @@
+@use "@s360-base-theme/ui-core/heading-styles";
+
+h1 {
+  @extend %heading-as-h1;
+  @extend %heading-base;
+}
+
+h2 {
+  @extend %heading-as-h2;
+  @extend %heading-base;
+}
+
+h3 {
+  @extend %heading-as-h3;
+  @extend %heading-base;
+}
+
+h4 {
+  @extend %heading-as-h4;
+  @extend %heading-base;
+}
+
+h5 {
+  @extend %heading-as-h5;
+  @extend %heading-base;
+}
+
+h6 {
+  @extend %heading-as-h6;
+  @extend %heading-base;
+}

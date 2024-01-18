@@ -24,5 +24,9 @@ function s360_base_theme_preprocess_block(array &$variables) {
   if ($base_plugin_id === 'system_menu_block') {
     $variables['attributes']['data-js'] = 'block-' . Html::getClass($block_name) . '-menu';
     $variables['attributes']['class'][] = 'block-' . Html::getClass($block_name) . '-menu';
+
+    if ($block_name === 'main') {
+      $variables['attributes']['style'][] = 'opacity: 0;';
+    }
   }
 }

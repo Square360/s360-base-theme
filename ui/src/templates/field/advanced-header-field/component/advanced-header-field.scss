@@ -1,0 +1,79 @@
+@use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/heading-styles";
+@use "@s360-base-theme/ui-core/heading-font-sizes";
+@use "s360-scss-toolkit";
+
+.advanced-header-field {
+  // **************************************************
+  // SYLES
+
+  &.advanced-header-field--style-centered {
+    text-align: center;
+  }
+
+  // **************************************************
+  // HEADING TAGS
+
+  &.advanced-header-field--heading-tag-h2 {
+    margin-bottom: calc(#{ heading-font-sizes.h2-font-size() } * 0.5);
+  }
+
+  &.advanced-header-field--heading-tag-h3 {
+    margin-bottom: calc(#{ heading-font-sizes.h3-font-size() } * 0.5);
+  }
+
+  &.advanced-header-field--heading-tag-h4 {
+    margin-bottom: calc(#{ heading-font-sizes.h4-font-size() } * 0.5);
+  }
+
+  &.advanced-header-field--heading-tag-h5 {
+    margin-bottom: calc(#{ heading-font-sizes.h5-font-size() } * 0.5);
+  }
+
+  &.advanced-header-field--heading-tag-h6 {
+    margin-bottom: calc(#{ heading-font-sizes.h6-font-size() } * 0.5);
+  }
+
+  // **************************************************
+  // SIZES
+
+  &.advanced-header-field--size-h2 {
+    margin-bottom: calc(#{ heading-font-sizes.h2-font-size() } * 0.5);
+
+    .advanced-header-field__heading {
+      @extend %heading-as-h2;
+    }
+  }
+
+  &.advanced-header-field--size-h3 {
+    margin-bottom: calc(#{ heading-font-sizes.h3-font-size() } * 0.5);
+
+    .advanced-header-field__heading {
+      @extend %heading-as-h3;
+    }
+  }
+
+  &.advanced-header-field--size-h4 {
+    margin-bottom: calc(#{ heading-font-sizes.h4-font-size() } * 0.5);
+
+    .advanced-header-field__heading {
+      @extend %heading-as-h4;
+    }
+  }
+
+  &.advanced-header-field--size-h5 {
+    margin-bottom: calc(#{ heading-font-sizes.h5-font-size() } * 0.5);
+
+    .advanced-header-field__heading {
+      @extend %heading-as-h5;
+    }
+  }
+
+  &.advanced-header-field--size-h6 {
+    margin-bottom: calc(#{ heading-font-sizes.h6-font-size() } * 0.5);
+
+    .advanced-header-field__heading {
+      @extend %heading-as-h6;
+    }
+  }
+}

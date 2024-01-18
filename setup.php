@@ -68,7 +68,7 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
     return FALSE;
   }
 
-  print "$theme_name theme created! Happy coding!" . PHP_EOL;
+  print "$theme_name theme created! Happy theming!" . PHP_EOL;
 }
 
 /**
@@ -84,25 +84,26 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
  */
 function get_files_to_copy() {
   return [
-    'assets/.storybook',
-    'assets/config',
-    'assets/dist',
-    'assets/src',
-    'assets/.babelrc',
-    'assets/.nvmrc',
-    'assets/package.json',
-    'assets/plopfile.mjs',
-    'assets/tsconfig.json',
-    'assets/README.md',
-    'assets/webpack.config.ts',
-    'assets/yarn.lock',
     'config',
-    'templates',
     'theme-hooks',
+    'ui/.storybook',
+    'ui/dist',
+    'ui/plop-templates',
+    'ui/src',
+    'ui/.babelrc',
+    'ui/.nvmrc',
+    'ui/.yarnrc.yml',
+    'ui/package.json',
+    'ui/plopfile.mjs',
+    'ui/README.md',
+    'ui/webpack.config.js',
+    'ui-core',
     '.editorconfig',
+    'package.json',
     's360_base_theme.breakpoints.yml',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
+    's360_base_theme.style_options.yml',
     's360_base_theme.theme',
   ];
 }
@@ -149,8 +150,8 @@ function copy_files(array $files, string $theme_path) {
 
     $file = explode(DIRECTORY_SEPARATOR, $file);
 
-    if (in_array('assets', $file)) {
-      $file = 'assets' . DIRECTORY_SEPARATOR . end($file);
+    if (in_array('ui', $file)) {
+      $file = 'ui' . DIRECTORY_SEPARATOR . end($file);
     }
     else {
       $file = end($file);
@@ -177,11 +178,13 @@ function copy_files(array $files, string $theme_path) {
  */
 function get_files_to_alter() {
   return [
-    'assets/.storybook',
-    'assets/package.json',
     'config',
-    'templates',
     'theme-hooks',
+    'ui/.storybook',
+    'ui/package.json',
+    'ui/plop-templates',
+    'ui/src',
+    'ui-core/package.json',
     's360_base_theme.breakpoints.yml',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',

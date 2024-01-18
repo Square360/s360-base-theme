@@ -1,0 +1,13 @@
+{
+  "name": "@s360-base-theme/ui-core",
+  "client": "S360 Base Theme",
+  "version": "1.0.0",
+  "author": "Square360, Inc. <info@square360.com>",
+  "contributors": [
+    {
+      "name": "Steven Keiser",
+      "email": "steven.keiser@square360.com"
+    }
+  ],
+  "packageManager": "yarn@4.0.2"
+}
