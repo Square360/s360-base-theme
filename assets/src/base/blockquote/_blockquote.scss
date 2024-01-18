@@ -1,6 +1,0 @@
-@use "core/text-styles";
-@use "s360-toolkit";
-
-blockquote {
-  @extend %text-as-blockquote;
-}

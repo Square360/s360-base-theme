@@ -1,7 +1,0 @@
-paragraph_attributes:
-  class:
-    - paragraph
-    - paragraph--cta-link
-paragraph_field_link:
-  link_url: '#'
-  link_content: 'CTA Link Text'

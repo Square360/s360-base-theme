@@ -1,0 +1,11 @@
+@use "@s360-base-theme/ui-core/content-containers";
+@use "@s360-base-theme/ui-core/typography";
+
+body {
+  @extend %content-container-live;
+
+  color: currentColor;
+  font-family: '';
+  line-height: 1;
+  width: 100%;
+}

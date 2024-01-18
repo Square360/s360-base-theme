@@ -1,0 +1,14 @@
+{% set classes = [
+  'paragraph',
+  'paragraph--cta-link',
+  paragraph_field_cta_link_style ? 'cta-link--' ~ paragraph_field_cta_link_style : '',
+] %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'cta-link') %}
+
+{% extends "@ui-paragraph/paragraph.html.twig" %}
+
+{% block paragraph_content %}
+  {{ paragraph_field_link }}
+{% endblock %}

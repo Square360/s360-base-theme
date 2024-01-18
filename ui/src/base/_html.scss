@@ -1,0 +1,8 @@
+@use "sass:math";
+@use "sass:map";
+@use "@s360-base-theme/ui-core/site-config";
+
+html {
+  font-size: calc(#{ math.div(map.get(site-config.$SITE_CONFIG, 'font-size-base'), 16) } * 100%);
+  scroll-behavior: smooth;
+}

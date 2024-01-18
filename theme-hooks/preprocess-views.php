@@ -22,12 +22,21 @@ function s360_base_theme_preprocess_views_view(&$variables) {
   $view_id = $view->id();
   $view_dom_id = $view->dom_id;
 
+  $view_formats = [
+    'grid' => 'grid',
+    'html_list' => 'list',
+    'table' => 'table',
+    'default' => 'unformatted',
+  ];
+
+  $view_format = $view_formats[$view_plugin_id];
+
   // Clear any Drupal classes.
   $variables['attributes']['class'] = [];
   $variables['attributes']['class'][] = 'view';
-  $variables['attributes']['class'][] = 'view--' . Html::getClass($view_current_display);
-  $variables['attributes']['class'][] = 'view--display-' . Html::getClass($view_plugin_id);
-  $variables['attributes']['class'][] = 'view--' . Html::getClass($view_id);
+  $variables['attributes']['class'][] = Html::getClass("view--$view_current_display");
+  $variables['attributes']['class'][] = Html::getClass("view--$view_format");
+  $variables['attributes']['class'][] = Html::getClass("view--$view_id");
   $variables['attributes']['class'][] = 'js-view-dom-id-' . $view_dom_id;
 
   if ($view_plugin_id == 'grid') {

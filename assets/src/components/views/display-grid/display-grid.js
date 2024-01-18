@@ -1,1 +1,0 @@
-import './display-grid.scss';

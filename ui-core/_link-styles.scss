@@ -1,0 +1,41 @@
+@use "./colors";
+
+%a {
+  background-color: var(--a-background-color, transparent);
+  border:
+    var(--a-border-width, 0)
+    var(--a-border-style, solid)
+    var(--a-border-color, transparent);
+  border-radius: var(--a-border-radius);
+  color: var(--a-color);
+  cursor: pointer;
+  display: var(--a-display, inline-block);
+  font-family: var(--a-font-family);
+  font-size: var(--a-font-size);
+  font-weight: var(--a-font-weight);
+  letter-spacing: var(--a-letter-spacing);
+  line-height: var(--a-line-height);
+  margin: var(--a-margin, 0);
+  outline:
+    var(--a-outline-width, 0)
+    var(--a-outline-style, dashed)
+    var(--a-outline-color, currentColor);
+  outline-offset: var(--a-outline-offset, 4px);
+  padding: var(--a-padding, 0);
+  pointer-events: var(--a-pointer-events, all);
+  text-decoration: var(--a-text-decoration, none);
+  text-transform: var(--a-text-transform);
+  transition: var(--a-transition, all 200ms ease-in-out);
+  width: var(--a-width);
+
+  &:focus {
+    [data-whatintent="keyboard"] & {
+      --a-outline-width: 4px;
+    }
+  }
+
+  &:focus,
+  &:hover {
+    color: var(--a-color-hover, var(--a-color, currentColor));
+  }
+}

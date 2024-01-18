@@ -1,0 +1,15 @@
+{% set classes = [
+  'node',
+  'node--page',
+  'node--full',
+  is_front ?? 'node--is-front'
+] %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'page') %}
+
+{% extends "@ui-node/full/node--full.html.twig" %}
+
+{% block node_content %}
+
+{% endblock %}

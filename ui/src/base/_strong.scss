@@ -1,0 +1,5 @@
+@use "@s360-base-theme/ui-core/typography";
+
+strong {
+  font-weight: typography.$font-weight-bold;
+}

@@ -1,0 +1,10 @@
+@use "@s360-base-theme/ui-core/site-config";
+@use "s360-scss-toolkit";
+
+.media--remote-video {
+  width: 100%;
+
+  .media__video-wrapper {
+    @extend %responsive-video;
+  }
+}

@@ -1,0 +1,22 @@
+@use "@s360-base-theme/ui-core/site-config";
+@use "s360-scss-toolkit";
+
+.pager {
+  &__items {
+    @extend %semantic-list;
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item {
+    + .pager__item {
+      margin-left: site-config.$spacer-0;
+    }
+
+    // Drupal class.
+    &.is-active {
+    }
+  }
+}

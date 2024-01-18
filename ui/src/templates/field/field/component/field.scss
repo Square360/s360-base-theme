@@ -1,0 +1,22 @@
+@use "@s360-base-theme/ui-core/colors";
+@use "@s360-base-theme/ui-core/typography";
+@use "s360-scss-toolkit";
+
+.field {
+  --dl-padding: 1rem;
+
+  border: 1px solid colors.$black;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  max-width: 100%;
+  word-break: break-word;
+
+  &__term {
+    --dt-font-weight: #{ typography.$font-weight-bold };
+  }
+
+  &__description {
+    --dd-display: block;
+    --dd-padding: 1rem;
+  }
+}

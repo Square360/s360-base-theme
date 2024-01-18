@@ -1,0 +1,8 @@
+@use "@s360-base-theme/ui-core/accordion-styles";
+@use "@s360-base-theme/ui-core/colors";
+
+.layout--accordion {
+  .layout__details {
+    @extend %accordion;
+  }
+}

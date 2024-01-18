@@ -1,0 +1,20 @@
+<header class="site-header" data-js="site-header">
+  <div class="site-header__content">
+    <div class="site-header__branding">
+      {{ site_header_branding_block }}
+    </div>
+
+    {% if site_header_main_menu %}
+      <button class="menu-toggle" data-js="menu-toggle" aria-controls="block-main" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="site-header__main-menu">
+        {{ site_header_main_menu }}
+      </div>
+    {% endif %}
+  </div>
+</header>
+

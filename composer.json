@@ -11,8 +11,8 @@
     "minimum-stability": "dev",
     "scripts": {
         "code-sniff": [
-            "./vendor/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,info --ignore=node_modules,bower_components,vendor,assets .",
-            "./vendor/bin/phpcs --standard=DrupalPractice --extensions=php,module,inc,install,test,profile,theme,info --ignore=node_modules,bower_components,vendor,assets ."
+            "./vendor/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,info --ignore=node_modules,bower_components,vendor,ui .",
+            "./vendor/bin/phpcs --standard=DrupalPractice --extensions=php,module,inc,install,test,profile,theme,info --ignore=node_modules,bower_components,vendor,ui ."
         ]
     },
     "require-dev": {

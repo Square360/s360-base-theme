@@ -1,0 +1,67 @@
+@use "sass:math";
+@use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/colors";
+@use "@s360-base-theme/ui-core/mq";
+@use "s360-scss-toolkit";
+
+$_toggle-height: 24px;
+$_toggle-width: 30px;
+$_span-height: 3px;
+
+.menu-toggle {
+  --button-font-size: 1rem;
+
+  width: $_toggle-width;
+  height: $_toggle-height;
+  position: relative;
+  outline: none;
+  z-index: 101;
+  margin-left: calc(100% - #{ $_toggle-width });
+
+  span {
+    display: block;
+    background-color: colors.$black;
+    width: 100%;
+    height: $_span-height;
+    transition: all 200ms ease-in-out;
+    position: absolute;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2) {
+      top: calc(50%);
+      transform: translateY(-50%);
+    }
+
+    &:nth-child(3) {
+      top: calc(100% - #{ $_span-height});
+    }
+  }
+
+  &[aria-expanded="true"] {
+    span {
+      &:nth-child(1) {
+        transform: translateY(-50%) rotate(45deg);
+        top: 50%;
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: translateY(-50%) rotate(-45deg);
+        top: 50%;
+      }
+    }
+  }
+
+  // **************************************************
+  /// MEDIA QUERIES
+
+  @media (site-config.$main-menu-mq) {
+    --button-display: none;
+  }
+}

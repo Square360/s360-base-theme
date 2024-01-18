@@ -1,9 +1,0 @@
-{% if view_title %}
-  <h2 class="view__heading">{{ view_title }}</h2>
-{% endif %}
-
-{% for row in rows %}
-  <div{{ row.attributes }}>
-    {{- row.content -}}
-  </div>
-{% endfor %}

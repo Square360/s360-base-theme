@@ -1,0 +1,55 @@
+{% if title %}
+  <h2 class="view__heading">{{ title }}</h2>
+{% endif %}
+
+{% set compare_view_title = title|striptags|trim %}
+{% set compare_view_caption = caption|first|striptags|trim %}
+
+<table{{ attributes.addClass('view__table') }}>
+  {% if
+    caption_needed and (
+      (caption and (compare_view_caption != compare_view_title)) or
+      summary_element is not empty
+    )
+  %}
+    <caption class="view__caption">
+      {% if caption and (compare_view_caption != compare_view_title) %}
+        {{ caption }}
+      {% endif %}
+
+      {% if (summary_element is not empty) %}
+        {{ summary_element }}
+      {% endif %}
+    </caption>
+  {% endif %}
+
+  {% if header %}
+    <thead>
+      <tr>
+        {% for key, column in header %}
+          <th{{ column.attributes.setAttribute('scope', 'col') }}>
+            {%- if column.url -%}
+              <a href="{{ column.url }}" title="{{ column.title }}" rel="nofollow">{{ column.content }}{{ column.sort_indicator }}</a>
+            {%- else -%}
+              {{- column.content }}
+            {%- endif -%}
+          </th>
+        {% endfor %}
+      </tr>
+    </thead>
+  {% endif %}
+
+  <tbody>
+    {% for row in rows %}
+      <tr{{ row.attributes }}>
+        {% for key, column in row.columns %}
+          <td{{ column.attributes.setAttribute('data-cell', header[key].content) }}>
+            {% for content in column.content %}
+              {{- content.separator }}{{ content.field_output -}}
+            {% endfor %}
+          </td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
