@@ -188,6 +188,7 @@ function get_files_to_alter() {
     's360_base_theme.breakpoints.yml',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
+    's360_base_theme.style_options.yml',
     's360_base_theme.theme',
   ];
 }

@@ -11,6 +11,9 @@ module.exports = async ({ config }) => {
 
   config.resolve.alias['@ui-base'] = path.resolve(path.join('src', 'base'));
   config.resolve.alias['@ui-layouts'] = path.resolve(path.join('src', 'layouts'));
+  config.resolve.alias['SRC_IMAGES'] = path.resolve(path.join('src', 'images'));
+
+  config.resolve.alias['@ui-block'] = path.resolve(path.join('src', 'templates', 'block'));
   config.resolve.alias['@ui-layout'] = path.resolve(path.join('src', 'templates', 'layout'));
   config.resolve.alias['@ui-field'] = path.resolve(path.join('src', 'templates', 'field'));
   config.resolve.alias['@ui-form'] = path.resolve(path.join('src', 'templates', 'form'));
@@ -20,11 +23,9 @@ module.exports = async ({ config }) => {
   config.resolve.alias['@ui-paragraph'] = path.resolve(path.join('src', 'templates', 'paragraph'));
   config.resolve.alias['@ui-views'] = path.resolve(path.join('src', 'templates', 'views'));
 
-  config.resolve.alias['SRC_IMAGES'] = path.resolve(path.join('src', 'images'));
-
-  // SCSS
+  // SASS, SCSS, or CSS
   config.module.rules.push({
-    test: /\.s[ac]ss$/i,
+    test: /\.s?[a?c]ss$/i,
     use: [
       'style-loader',
       { loader: 'css-loader',
@@ -52,7 +53,7 @@ module.exports = async ({ config }) => {
     ],
   });
 
-  // YAML
+  // YAML or YML
   config.module.rules.push({
     test: /\.ya?ml$/,
     loader: 'js-yaml-loader',

@@ -4,56 +4,58 @@
 @use "@s360-base-theme/ui-core/mq";
 @use "s360-scss-toolkit";
 
-$_toggle-height: 24px;
-$_toggle-width: 30px;
-$_span-height: 3px;
+$_height: 30px;
+$_width: 30px;
+$_span-height: 2px;
 
 .menu-toggle {
-  --button-font-size: 1rem;
-
-  width: $_toggle-width;
-  height: $_toggle-height;
-  position: relative;
-  outline: none;
-  z-index: 101;
-  margin-left: calc(100% - #{ $_toggle-width });
+  height: $_height;
+  width: $_width;
 
   span {
     display: block;
-    background-color: colors.$black;
-    width: 100%;
     height: $_span-height;
+    width: 100%;
+    background: #0e2431;
+    position: relative;
     transition: all 200ms ease-in-out;
-    position: absolute;
 
-    &:nth-child(1) {
-      top: 0;
+    &::before,
+    &::after {
+      content: '';
+      height: $_bar-height;
+      position: absolute;
+      width: 100%;
+      background: #0e2431;
+      transition: all 200ms ease-in-out;
     }
 
-    &:nth-child(2) {
-      top: calc(50%);
-      transform: translateY(-50%);
+    &::before {
+      top: calc(calc((#{ $_height } / 2) - #{ $_span-height }) * -1);
     }
 
-    &:nth-child(3) {
-      top: calc(100% - #{ $_span-height});
+    &::after {
+      bottom: calc(calc((#{ $_height } / 2) - #{ $_span-height }) * -1);
     }
+  }
+
+  &[aria-expanded="false"] {
+
   }
 
   &[aria-expanded="true"] {
     span {
-      &:nth-child(1) {
-        transform: translateY(-50%) rotate(45deg);
-        top: 50%;
+      width: 100%;
+      background: transparent;
+
+      &::before {
+        top: 0;
+        rotate: 45deg;
       }
 
-      &:nth-child(2) {
-        opacity: 0;
-      }
-
-      &:nth-child(3) {
-        transform: translateY(-50%) rotate(-45deg);
-        top: 50%;
+      &::after {
+        bottom: 0;
+        rotate: -45deg;
       }
     }
   }
