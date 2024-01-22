@@ -1,9 +1,10 @@
-base:
-  css:
-    base:
-      ui/dist/base/base.js: {}
+global:
   dependencies:
     - core/drupal
+
+base:
+  js:
+    ui/dist/base/base.js: {}
 
 layout:
   css:
@@ -36,7 +37,7 @@ field.field:
 form:
   css:
     component:
-      ui/dist/form/form.css: {}
+      ui/dist/form/form/form.css: {}
 
 form.user-login-form:
   css:
