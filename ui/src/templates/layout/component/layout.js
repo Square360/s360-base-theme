@@ -19,12 +19,10 @@ Drupal.behaviors.layout = {
       // Hide the menu.
       if (MENU_TOGGLE.getAttribute('aria-expanded') === 'true') {
         hideBlockMainMenu();
-        collapseMenuToggle();
       }
       // Show the menu.
       else {
         showBlockMainMenu();
-        expandMenuToggle();
       }
     });
 
@@ -40,7 +38,6 @@ Drupal.behaviors.layout = {
       // Desktop
       if (e.matches) {
         showBlockMainMenu();
-        collapseMenuToggle();
       }
       // Mobile
       else {
@@ -54,22 +51,6 @@ Drupal.behaviors.layout = {
 
     function hideBlockMainMenu() {
       BLOCK_MAIN_MENU.setAttribute('aria-hidden', 'true');
-    }
-
-    /**
-     * Mobile only!
-     * Prevent scrolling of the body.
-     */
-    function expandMenuToggle() {
-      MENU_TOGGLE.setAttribute('aria-expanded', 'true');
-    }
-
-    /**
-     * Mobile only!
-     * Resume normal scrolling of the body.
-     */
-    function collapseMenuToggle() {
-      MENU_TOGGLE.setAttribute('aria-expanded', 'false');
     }
 
     // Kickoff!
