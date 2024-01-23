@@ -5,12 +5,10 @@
   container-name: layout;
   container-type: inline-size;
 
-  > .layout__content {
-    > .layout__regions {
-      display: grid;
-      row-gap: site-config.$spacer-0;
-      column-gap: site-config.$column-gap;
-    }
+  > .layout__content > .layout__regions {
+    display: grid;
+    row-gap: site-config.$spacer-0;
+    column-gap: site-config.$column-gap;
   }
 
   // Make sure paragraphs inside regions don't touch each other.
@@ -21,10 +19,18 @@
     grid-auto-rows: min-content;
     grid-template-columns: minmax(0, 1fr);
     row-gap: site-config.$spacer-0;
-  }
 
-  &:last-child {
-    margin-bottom: 0;
+    &--spacing-sm {
+      row-gap: site-config.$spacer-0;
+    }
+
+    &--spacing-md {
+      row-gap: site-config.$spacer-0;
+    }
+
+    &--spacing-lg {
+      row-gap: site-config.$spacer-0;
+    }
   }
 
   // **************************************************
@@ -40,5 +46,9 @@
 
   &.layout--margin-bottom-lg {
     margin-bottom: site-config.$spacer-0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }

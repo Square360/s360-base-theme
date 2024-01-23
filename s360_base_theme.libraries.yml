@@ -12,6 +12,14 @@ layout:
       ui/dist/layout/site-footer/site-footer.css: {}
   js:
     ui/dist/layout/layout.js: {}
+    ui/dist/layout/menu-toggle/menu-toggle.js: {}
+
+# ##################################################
+# Block Libraries
+
+block.branding-block:
+  js:
+    ui/dist/block/branding-block/branding-block.js: {}
 
 # ##################################################
 # Field Libraries

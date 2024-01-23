@@ -16,6 +16,24 @@ options:
         label: 'Large'
         class: 'layout--margin-bottom-lg'
 
+  layout_region_item_spacing_options:
+    plugin: css_class
+    label: Item Spacing
+    default: small
+    description: The amount of space between items in this region.
+    options:
+      none:
+        label: '- None -'
+      small:
+        label: 'Small'
+        class: 'layout__region--spacing-sm'
+      medium:
+        label: 'Medium'
+        class: 'layout__region--spacing-md'
+      large:
+        label: 'Large'
+        class: 'layout__region--spacing-lg'
+
   layout_two_column_ratio_options:
     plugin: css_class
     label: Column Ratio
@@ -42,6 +60,18 @@ options:
       25_75:
         label: '25%/75%'
         class: 'layout--25-75'
+
+  layout_two_column_mobile_order_options:
+    plugin: css_class
+    label: Mobile Order
+    default: 1_2
+    options:
+      1_2:
+        label: 'Column 1 - Column 2'
+        class: 'layout--mobile-order-1-2'
+      2_1:
+        label: 'Column 2 - Column 1'
+        class: 'layout--mobile-order-2-1'
 
   layout_three_column_ratio_options:
     plugin: css_class
@@ -103,10 +133,15 @@ contexts:
       options:
         layout_margin_bottom_options:
           layout: true
+        layout_region_item_spacing_options:
+          layout: false
+          regions: true
 
     layout_custom_two_column:
       options:
         layout_two_column_ratio_options:
+          layout: true
+        layout_two_column_mobile_order_options:
           layout: true
 
     layout_custom_three_column:
