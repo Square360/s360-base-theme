@@ -1,62 +1,62 @@
 @use "@s360-base-theme/ui-core/site-config";
 @use "@s360-base-theme/ui-core/mq";
-@use "s360-scss-toolkit";
 
 .layout--three-column {
+  --layout-three-column-regions-gta:
+    "lr1"
+    "lr2"
+    "lr3";
+
+  > .layout__content > .layout__regions {
+    grid-template-areas: var(--layout-three-column-regions-gta);
+
+    > .layout__region--first {
+      grid-area: lr1;
+    }
+
+    > .layout__region--second {
+      grid-area: lr2;
+    }
+
+    > .layout__region--third {
+      grid-area: lr3;
+    }
+  }
+
   // **************************************************
   // MEDIA QUERIES
 
   @media (min-width: mq.$mq-1024) {
     > .layout__content > .layout__regions {
       grid-template-columns: repeat(site-config.$grid-columns, minmax(0, 1fr));
-
-      > .layout__region--first {
-        grid-column: var(--layout-three-column-region-first-grid-column);
-      }
-
-      > .layout__region--second {
-        grid-column: var(--layout-three-column-region-second-grid-column);
-      }
-
-      > .layout__region--third {
-        grid-column: var(--layout-three-column-region-third-grid-column);
-      }
     }
 
     // **************************************************
     // 33-33-33 SPLIT
 
     &.layout--33-33-33 {
-      --layout-three-column-region-first-grid-column: span 4;
-      --layout-three-column-region-second-grid-column: span 4;
-      --layout-three-column-region-third-grid-column: span 4;
+      --layout-three-column-regions-gta: "lr1 lr1 lr1 lr1 lr2 lr2 lr2 lr2 lr3 lr3 lr3 lr3"
     }
 
     // **************************************************
     // 25-50-25 SPLIT
 
     &.layout--25-50-25 {
-      --layout-three-column-region-first-grid-column: 1 / 4;
-      --layout-three-column-region-second-grid-column: 4 / 10;
-      --layout-three-column-region-third-grid-column: 10 / 13;
+      --layout-three-column-regions-gta: "lr1 lr1 lr1 lr2 lr2 lr2 lr2 lr2 lr2 lr3 lr3 lr3"
     }
 
     // **************************************************
     // 50-25-25 SPLIT
 
     &.layout--50-25-25 {
-      --layout-three-column-region-first-grid-column: 1 / 7;
-      --layout-three-column-region-second-grid-column: 7 / 10;
-      --layout-three-column-region-third-grid-column: 10 / 13;
+      --layout-three-column-regions-gta: "lr1 lr1 lr1 lr1 lr1 lr1 lr2 lr2 lr2 lr3 lr3 lr3"
     }
 
     // **************************************************
     // 25-25-50 SPLIT
 
     &.layout--25-25-50 {
-      --layout-three-column-region-first-grid-column: 1 / 4;
-      --layout-three-column-region-second-grid-column: 4 / 7;
-      --layout-three-column-region-third-grid-column: 7 / 13;
+      --layout-three-column-regions-gta: "lr1 lr1 lr1 lr2 lr2 lr2 lr3 lr3 lr3 lr3 lr3 lr3"
     }
   }
 }
