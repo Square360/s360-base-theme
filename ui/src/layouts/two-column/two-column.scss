@@ -3,67 +3,82 @@
 @use "s360-scss-toolkit";
 
 .layout--two-column {
+  --layout-two-column-regions-gta:
+    "lr1"
+    "lr2";
+
+  > .layout__content > .layout__regions {
+    grid-template-areas: var(--layout-two-column-regions-gta);
+
+    > .layout__region--first {
+      grid-area: lr1;
+    }
+
+    > .layout__region--second {
+      grid-area: lr2;
+    }
+  }
+
   // **************************************************
   // MEDIA QUERIES
+
+  @media (max-width: mq.$mq-1024) {
+    &.layout--mobile-order-1-2 {
+      > .layout__content > .layout__regions {
+        --layout-two-column-regions-gta: "lr1" "lr2"
+      }
+    }
+
+    &.layout--mobile-order-2-1 {
+      > .layout__content > .layout__regions {
+        --layout-two-column-regions-gta: "lr2" "lr1"
+      }
+    }
+  }
 
   @media (min-width: mq.$mq-1024) {
     > .layout__content > .layout__regions {
       grid-template-columns: repeat(site-config.$grid-columns, minmax(0, 1fr));
-
-      > .layout__region--first {
-        grid-column: var(--layout-two-column-region-first-grid-column);
-      }
-
-      > .layout__region--second {
-        grid-column: var(--layout-two-column-region-second-grid-column);
-      }
     }
 
     // **************************************************
     // 50-50 SPLIT
 
     &.layout--50-50 {
-      --layout-two-column-region-first-grid-column: span 6;
-      --layout-two-column-region-second-grid-column: span 6;
+      --layout-two-column-regions-gta: "lr1 lr1 lr1 lr1 lr1 lr1 lr2 lr2 lr2 lr2 lr2 lr2";
     }
 
     // **************************************************
     // 60-40 / 40-60 SPLITS
 
     &.layout--60-40 {
-      --layout-two-column-region-first-grid-column: span 7;
-      --layout-two-column-region-second-grid-column: span 5;
+      --layout-two-column-regions-gta: "lr1 lr1 lr1 lr1 lr1 lr1 lr1 lr2 lr2 lr2 lr2 lr2";
     }
 
     &.layout--40-60 {
-      --layout-two-column-region-first-grid-column: span 5;
-      --layout-two-column-region-second-grid-column: span 7;
+      --layout-two-column-regions-gta: "lr1 lr1 lr1 lr1 lr1 lr2 lr2 lr2 lr2 lr2 lr2 lr2";
     }
 
     // **************************************************
     // 70-30 / 30-70 SPLITS
 
     &.layout--70-30 {
-      --layout-two-column-region-first-grid-column: span 8;
-      --layout-two-column-region-second-grid-column: span 4;
+      --layout-two-column-regions-gta: "lr1 lr1 lr1 lr1 lr1 lr1 lr1 lr1 lr2 lr2 lr2 lr2";
     }
 
     &.layout--30-70 {
-      --layout-two-column-region-first-grid-column: span 4;
-      --layout-two-column-region-second-grid-column: span 8;
+      --layout-two-column-regions-gta: "lr1 lr1 lr1 lr1 lr2 lr2 lr2 lr2 lr2 lr2 lr2 lr2";
     }
 
     // **************************************************
     // 75-25 / 25-75 SPLITS
 
     &.layout--75-25 {
-      --layout-two-column-region-first-grid-column: span 9;
-      --layout-two-column-region-second-grid-column: span 3;
+      --layout-two-column-regions-gta: "lr1 lr1 lr1 lr1 lr1 lr1 lr1 lr1 lr1 lr2 lr2 lr2";
     }
 
     &.layout--25-75 {
-      --layout-two-column-region-first-grid-column: span 3;
-      --layout-two-column-region-second-grid-column: span 9;
+      --layout-two-column-regions-gta: "lr1 lr1 lr1 lr2 lr2 lr2 lr2 lr2 lr2 lr2 lr2 lr2";
     }
   }
 }
