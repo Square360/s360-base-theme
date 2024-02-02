@@ -15,6 +15,11 @@ setupTwig(Twig);
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   layout: 'none',
+  /* Uncomment if you want to enabled user prefers @media queries.
+  cssUserPrefs: {
+    "prefers-color-scheme": "dark",
+  },
+  */
 };
 
 export const decorators = [
@@ -23,3 +28,15 @@ export const decorators = [
     return storyFn();
   }
 ];
+
+/* Uncomment if you want to setup visual themes '[data-theme="theme name"]'.
+export const globalTypes = {
+  dataThemes: {
+    defaultValue: {
+      list: [
+        { name: "Theme Name", dataTheme: "theme-name", color: "#ffffff" },
+      ],
+    },
+  },
+};
+*/
