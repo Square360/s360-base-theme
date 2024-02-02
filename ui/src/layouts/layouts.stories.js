@@ -1,7 +1,14 @@
 import oneColumTwig from './one-column/_one-column.twig';
+import './one-column/one-column.js';
+
 import twoColumTwig from './two-column/_two-column.twig';
+import './two-column/two-column.js';
+
 import threeColumTwig from './three-column/_three-column.twig';
+import './three-column/three-column.js';
+
 import fourColumTwig from './four-column/_four-column.twig';
+import './four-column/four-column.js';
 
 import layoutData from './layouts.yml';
 import './layouts.js';
