@@ -10,13 +10,18 @@ $SITE_CONFIG: (
 // **************************************************
 // SPACING
 
-$spacer-down-1: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-1), 'rem');
-$spacer-0: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(0), 'rem');
-$spacer-up-1: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(1), 'rem');
-$spacer-up-2: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(2), 'rem');
-$spacer-up-3: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(3), 'rem');
-$spacer-up-4: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(4), 'rem');
-$spacer-up-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(5), 'rem');
+$spacer-up-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(5), 'px');
+$spacer-up-4: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(4), 'px');
+$spacer-up-3: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(3), 'px');
+$spacer-up-2: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(2), 'px');
+$spacer-up-1: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(1), 'px');
+$spacer-0: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(0), 'px');
+$spacer-down-1: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-1), 'px');
+$spacer-down-2: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-2), 'px');
+$spacer-down-3: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-3), 'px');
+$spacer-down-4: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-4), 'px');
+$spacer-down-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-5), 'px');
+
 
 // **************************************************
 // GAPS AND GRIDS
