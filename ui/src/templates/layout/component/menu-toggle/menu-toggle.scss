@@ -16,17 +16,17 @@ $_span-height: 2px;
     display: block;
     height: $_span-height;
     width: 100%;
-    background: #0e2431;
+    background: currentColor;
     position: relative;
     transition: all 200ms ease-in-out;
 
     &::before,
     &::after {
       content: '';
-      height: $_bar-height;
+      height: $_span-height;
       position: absolute;
       width: 100%;
-      background: #0e2431;
+      background: currentColor;
       transition: all 200ms ease-in-out;
     }
 
@@ -64,6 +64,6 @@ $_span-height: 2px;
   /// MEDIA QUERIES
 
   @media (site-config.$main-menu-mq) {
-    --button-display: none;
+    // --button-display: none;
   }
 }

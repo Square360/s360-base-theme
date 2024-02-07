@@ -12,6 +12,8 @@
   font-weight: var(--heading-font-weight);
   text-transform: var(--heading-text-transform);
   transition: var(--heading-transition, all 200ms ease-in-out);
+  margin-top: var(--heading-margin-top);
+  margin-bottom: var(--heading-margin-bottom);
 }
 
 %heading-as-h1 {

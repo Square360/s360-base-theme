@@ -16,6 +16,7 @@ ckeditor5-stylesheets:
 libraries:
   - 's360_base_theme/global'
   - 's360_base_theme/base'
+  - 's360_base_theme/layout'
 
 libraries-override:
   webform/webform.element.flexbox: false
