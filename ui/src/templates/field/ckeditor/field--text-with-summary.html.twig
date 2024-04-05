@@ -1,5 +1,13 @@
-{{ attach_library('s360_base_theme/field.ckeditor') }}
+{% if label_hidden %}
+  {{ attach_library('s360_base_theme/field.ckeditor') }}
 
-{% include "@ui-field/ckeditor/component/ckeditor.twig" with {
-  field_items: items
-} %}
+  {% include "@ui-field/ckeditor/component/ckeditor.twig" with {
+    field_items: items
+  } %}
+{% else %}
+  {{ attach_library('s360_base_theme/field.field') }}
+
+  {% include "@ui-field/field/component/field.twig" with {
+    field_items: items
+  } %}
+{% endif %}
