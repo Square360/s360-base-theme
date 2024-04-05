@@ -5,10 +5,11 @@
  * preprocess-paragraph.php
  *
  * Define all paragraph preprocess HOOKs. Each bundle should provide it's own
- * hook function. e.g. `s360_base_theme_preprocess_paragaraph__[bundle]`
+ * hook function. e.g. `s360_base_theme_preprocess_paragraph__[bundle]`
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Render\Markup;
 
 /**
  * Implements hook_preprocess_paragraph().
@@ -42,7 +43,7 @@ function s360_base_theme_preprocess_paragraph__curated_content(&$variables) {
     $field_ern_content = $paragraph->get('field_ern_content');
 
     if ($field_ern_content->count()) {
-      $node_id = $field_ern_content->first()->getString();
+      $node_id = $field_ern_content->getString();
     }
   }
 
@@ -50,7 +51,7 @@ function s360_base_theme_preprocess_paragraph__curated_content(&$variables) {
     $field_content_view_mode = $paragraph->get('field_content_view_mode');
 
     if ($field_content_view_mode->count()) {
-      $content_view_mode = $field_content_view_mode->first()->getString();
+      $content_view_mode = $field_content_view_mode->getString();
     }
   }
 
@@ -63,9 +64,6 @@ function s360_base_theme_preprocess_paragraph__curated_content(&$variables) {
       $render_controller = $entity_type_manager->getViewBuilder('node');
       $variables['paragraph_curated_node'] = $render_controller->view($node, $content_view_mode);
     }
-  }
-  else {
-    $variables['paragraph_curated_node'] = '';
   }
 }
 

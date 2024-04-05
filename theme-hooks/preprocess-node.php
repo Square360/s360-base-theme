@@ -21,17 +21,25 @@ function s360_base_theme_preprocess_node(&$variables) {
   /** @var \Drupal\node\Entity\Node $node */
   $node = $variables['node'];
   $node_bundle = $node->bundle();
-
   $node_view_mode = $elements['#view_mode'];
 
   if ($node_view_mode !== 'full') {
     $label_url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
 
-    if ($node->hasField('field_source_link')) {
-      $field_source_link = $node->get('field_source_link');
+    $is_passthrough_checked = false;
+    if ($node->hasField('field_passthrough')) {
+      $field_passthrough = $node->get('field_passthrough');
 
-      if ($field_source_link->count()) {
-        $label_url = Url::fromUri($field_source_link->getString());
+      $is_passthrough_checked = $field_passthrough->getString();
+    }
+
+    if ($is_passthrough_checked) {
+      if ($node->hasField('field_source_link')) {
+        $field_source_link = $node->get('field_source_link');
+
+        if ($field_source_link->count()) {
+          $label_url = Url::fromUri($field_source_link->getString());
+        }
       }
     }
 

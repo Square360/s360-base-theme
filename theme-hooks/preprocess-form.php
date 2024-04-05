@@ -17,6 +17,8 @@ use Drupal\Core\Template\Attribute;
 function s360_base_theme_preprocess_form(&$variables) {
   $element = $variables['element'];
 
+  $variables['form_name'] = Html::getClass($element['#form_id']);
+
   // Clear any Drupal classes.
   $variables['attributes']['class'] = [];
 
@@ -29,6 +31,8 @@ function s360_base_theme_preprocess_form(&$variables) {
  */
 function s360_base_theme_preprocess_webform(&$variables) {
   $element = $variables['element'];
+
+  $variables['form_name'] = Html::getClass($element['#webform_id']);
 
   $variables['attributes']['class'][] = 'form';
   $variables['attributes']['class'][] = 'form--webform';
@@ -43,7 +47,6 @@ function s360_base_theme_preprocess_form_element(&$variables) {
 
   // Clear any Drupal classes.
   $variables['attributes']['class'] = [];
-
   $variables['attributes']['class'][] = 'form__element';
 
   if (isset($element['#theme'])) {
@@ -75,6 +78,7 @@ function s360_base_theme_preprocess_form_element(&$variables) {
   $variables['error']['attributes'] = new Attribute();
   $variables['error']['attributes']['class'] = 'form__element-error-message';
 
+  // Create a description attribute.
   $variables['description']['attributes']['class'] = new Attribute();
   $variables['description']['attributes']['class'][] = 'form__description';
 }
