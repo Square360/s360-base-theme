@@ -11,12 +11,13 @@ $_span-height: 2px;
 .menu-toggle {
   height: $_height;
   width: $_width;
+  display: var(--menu-toggle-display);
 
   span {
     display: block;
     height: $_span-height;
     width: 100%;
-    background: currentColor;
+    background-color: var(--menu-toggle-background-color);
     position: relative;
     transition: all 200ms ease-in-out;
 
@@ -26,7 +27,7 @@ $_span-height: 2px;
       height: $_span-height;
       position: absolute;
       width: 100%;
-      background: currentColor;
+      background-color: var(--menu-toggle-background-color);
       transition: all 200ms ease-in-out;
     }
 
@@ -64,6 +65,6 @@ $_span-height: 2px;
   /// MEDIA QUERIES
 
   @media (site-config.$main-menu-mq) {
-    // --button-display: none;
+    --menu-toggle-display: none;
   }
 }
