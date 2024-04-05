@@ -3,7 +3,7 @@ layout_one_column:
     class:
       - layout
       - layout--one-column
-  paragraph_layout_region_content:
+  paragraph_layout_region_first:
     paragraph_field_title: 'Content Region'
 
 layout_two_column:

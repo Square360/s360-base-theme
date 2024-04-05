@@ -2,13 +2,15 @@
 @use "@s360-base-theme/ui-core/content-containers";
 
 .layout {
-  container-name: layout;
-  container-type: inline-size;
+  > .layout__content {
+    container-name: layout-content;
+    container-type: inline-size;
 
-  > .layout__content > .layout__regions {
-    display: grid;
-    row-gap: site-config.$spacer-0;
-    column-gap: site-config.$column-gap;
+    > .layout__regions {
+      display: grid;
+      row-gap: site-config.$spacer-0;
+      column-gap: site-config.$column-gap;
+    }
   }
 
   .layout__region {
@@ -17,19 +19,7 @@
     display: grid;
     grid-auto-rows: min-content;
     grid-template-columns: minmax(0, 1fr);
-    row-gap: site-config.$spacer-0;
-
-    &--spacing-sm {
-      row-gap: site-config.$spacer-0;
-    }
-
-    &--spacing-md {
-      row-gap: site-config.$spacer-0;
-    }
-
-    &--spacing-lg {
-      row-gap: site-config.$spacer-0;
-    }
+    row-gap: var(--layout-region-gap);
   }
 
   // **************************************************
@@ -49,5 +39,20 @@
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  // **************************************************
+  // REGION GAP
+
+  &.layout--region-gap-sm {
+    --layout-region-gap: #{ site-config.$spacer-up-2 };
+  }
+
+  &.layout--region-gap-md {
+    --layout-region-gap: #{ site-config.$spacer-up-3 };
+  }
+
+  &.layout--region-gap-lg {
+    --layout-region-gap: #{ site-config.$spacer-up-5 };
   }
 }

@@ -46,12 +46,23 @@ options:
         class: 'layout--region-gap-lg'
 
   # ##################################################
+  # One Column Specific Options
+
+  layout_one_column_width_options:
+    plugin: css_class
+    label: Width
+    default: normal
+    options:
+      normal:
+        label: '- Normal -'
+
+  # ##################################################
   # Two Column Specific Options
 
   layout_two_column_ratio_options:
     plugin: css_class
     label: Column Ratio
-    default: 50_50
+    default: cr_50_50
     options:
       50_50:
         label: '50%/50%'

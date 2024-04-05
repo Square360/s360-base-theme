@@ -1,14 +1,7 @@
 import oneColumTwig from './one-column/_one-column.twig';
-import './one-column/one-column.js';
-
 import twoColumTwig from './two-column/_two-column.twig';
-import './two-column/two-column.js';
-
 import threeColumTwig from './three-column/_three-column.twig';
-import './three-column/three-column.js';
-
 import fourColumTwig from './four-column/_four-column.twig';
-import './four-column/four-column.js';
 
 import layoutData from './layouts.yml';
 import './layouts.js';
@@ -22,21 +15,62 @@ import drupalAttribute from 'drupal-attribute';
  */
 export default { title: 'Layouts/Layouts' };
 
+const LAYOUT_REGION_GAP_OPTIONS = {
+  '': '- None -',
+  'layout--region-gap-sm': 'Small',
+  'layout--region-gap-md': 'Medium',
+  'layout--region-gap-lg': 'Large',
+};
+
+const LAYOUT_COLOR_SCHEME_OPTIONS = {
+  '': '- None -',
+}
+
 // **************************************************
 // ONE COLUMN LAYOUTS
 
-export const oneColumn = () => {
-  let paragraphClasses = [...layoutData.layout_one_column.paragraph_attributes.class];
+const LAYOUT_ONE_COLUMN_WIDTH_OPTIONS = {
+  '': '- Normal -',
+};
+
+export const oneColumn = ({ color_scheme, region_gap, width }) => {
+  let paragraphClasses = [...layoutData.layout_one_column.paragraph_attributes.class, color_scheme, region_gap, width];
   let paragraphAttributes = Object.assign({}, layoutData.layout_one_column.paragraph_attributes);
 
   paragraphAttributes.class = paragraphClasses;
 
   return oneColumTwig({
-    paragraph_layout_region_content: placeholder({ ...layoutData.layout_one_column.paragraph_layout_region_content }),
+    paragraph_layout_region_content: [
+      placeholder({ ...layoutData.layout_one_column.paragraph_layout_region_content }),
+    ].join(''),
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
 oneColumn.argTypes = {
+  color_scheme: {
+    name: 'Color Scheme',
+    options: Object.keys(LAYOUT_COLOR_SCHEME_OPTIONS),
+    control: {
+      type: 'select',
+      labels: LAYOUT_COLOR_SCHEME_OPTIONS
+    }
+  },
+  region_gap: {
+    name: 'Component Margin Bottom',
+    options: Object.keys(LAYOUT_REGION_GAP_OPTIONS),
+    control: {
+      type: 'select',
+      labels: LAYOUT_REGION_GAP_OPTIONS
+    }
+  },
+  width: {
+    name: 'Width',
+    options: Object.keys(LAYOUT_ONE_COLUMN_WIDTH_OPTIONS),
+    control: {
+      type: 'select',
+      labels: LAYOUT_ONE_COLUMN_WIDTH_OPTIONS
+    }
+  }
 };
 oneColumn.args = {
 };
