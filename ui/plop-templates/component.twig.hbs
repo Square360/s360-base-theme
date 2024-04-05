@@ -2,7 +2,7 @@
   '{{ entityType }}',
   '{{ entityType }}--{{ kebabCase bundle }}',
   {{#if viewMode }}'{{ entityType }}--{{ viewMode }}',{{/if}}
-  is_front ?? '{{ entityType }}--is-front'
+  is_front ? '{{ entityType }}--is-front' : ''
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -11,5 +11,5 @@
 {% extends "@ui-{{ entityType }}/{{#if viewMode }}{{ viewMode }}/{{/if}}{{ entityType }}{{#if viewMode }}--{{ viewMode }}{{/if}}.html.twig" %}
 
 {% block {{ entityType }}_content %}
-
+  \{{ content }}
 {% endblock %}
