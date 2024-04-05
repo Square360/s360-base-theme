@@ -46,7 +46,7 @@
 /// %placeholders should cannot be used inside "@media" queries.
 
 @mixin trim-left {
-  margin-left: calc(var(--safe-area-left) * -1);
+  margin-left: calc(var(--safe-area-inline) * -1);
 }
 
 /// @requires {mixin} trim-left
@@ -55,7 +55,7 @@
 }
 
 @mixin trim-right {
-  margin-right: calc(var(--safe-area-right) * -1);
+  margin-right: calc(var(--safe-area-inline) * -1);
 }
 
 /// @requires {mixin} trim-right
@@ -86,7 +86,7 @@
 /// %placeholders should cannot be used inside "@media" queries.
 
 @mixin live-left {
-  padding-left: var(--safe-area-left);
+  padding-left: var(--safe-area-inline);
 }
 
 /// @requires {mixin} live-left
@@ -95,7 +95,7 @@
 }
 
 @mixin live-right {
-  padding-right: var(--safe-area-right);
+  padding-right: var(--safe-area-inline);
 }
 
 /// @requires {mixin} live-right
@@ -116,20 +116,4 @@
 /// @requires {mixin} live
 %content-container-live {
   @include live;
-}
-
-//  **************************************************
-/// INSET
-
-@mixin inset-left($columns: 1) {
-  margin-left: calc(#{ site-config.column-width() } * #{ $columns });
-}
-
-@mixin inset-right($columns: 1) {
-  margin-right: calc(#{ site-config.column-width() } * #{ $columns });
-}
-
-@mixin inset($columns: 1) {
-  @include inset-left($columns);
-  @include inset-right($columns);
 }

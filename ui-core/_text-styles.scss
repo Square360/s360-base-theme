@@ -25,27 +25,17 @@
   @extend %heading-base;
 }
 
-%text-as-h5 {
-  @extend %heading-as-h5;
-  @extend %heading-base;
-}
-
-%text-as-h6 {
-  @extend %heading-as-h6;
-  @extend %heading-base;
-}
-
 %text-as-p {
-  color: var(--p-color);
-  display: var(--p-display, block);
-  font-family: var(--p-font-family);
-  font-size: var(--p-font-size);
-  font-style: var(--p-font-style);
-  font-weight: var(--p-font-weight);
-  line-height: var(--p-line-height);
-  margin: var(--p-margin, 0 0 1em 0);
-  padding: var(--p-padding, 0);
-  max-width: var(--p-max-width);
+  color: var(--p--color);
+  display: var(--p--display, block);
+  font-family: var(--p--font-family);
+  font-size: var(--p--font-size);
+  font-style: var(--p--font-style);
+  font-weight: var(--p--font-weight);
+  line-height: var(--p--line-height);
+  margin: var(--p--margin, 0 0 1em 0);
+  padding: var(--p--padding, 0);
+  max-width: var(--p--max-width);
 
   &:last-of-type {
     margin-bottom: 0;
@@ -53,13 +43,13 @@
 }
 
 %text-as-blockquote {
-  --p-font-family: var(--blockquote-font-family);
-  --p-font-style: var(--blockquote-font-style);
-  --p-line-height: var(--blockquote-line-height);
-  --p-font-size: var(--blockquote-font-size);
-  --p-font-weight: var(--blockquote-font-weight);
+  --p--font-family: var(--blockquote--font-family);
+  --p--font-style: var(--blockquote--font-style);
+  --p--line-height: var(--blockquote--line-height);
+  --p--font-size: var(--blockquote--font-size);
+  --p--font-weight: var(--blockquote--font-weight);
 
-  margin: var(--blockquote-margin, 0);
-  padding: var(--blockquote-padding, 0);
+  margin: var(--blockquote--margin, 0);
+  padding: var(--blockquote--padding, 0);
   position: relative;
 }

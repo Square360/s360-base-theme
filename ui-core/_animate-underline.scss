@@ -2,17 +2,17 @@
   display: inline;
   background-image: linear-gradient(
     0deg,
-    var(--animate-underline-gradient-color-1, currentColor) 0%,
-    var(--animate-underline-gradient-color-2, var(--animate-underline-gradient-color-1, currentColor)) 100%
+    var(--animate-underline--gradient-color, currentColor) 0%,
+    var(--animate-underline--gradient-color, var(--animate-underline--gradient-color, currentColor)) 100%
   );
   background-size:
-    var(--animate-underline-background-size-width, 0%)
-    var(--animate-underline-background-size-height, 1px);
+    var(--animate-underline--background-size-width, 0%)
+    var(--animate-underline--background-size-height, 1px);
   background-repeat: no-repeat;
-  background-position: var(--animate-underline-background-position-x, left) bottom;
+  background-position: var(--animate-underline--background-position-x, left) bottom;
   transition: all 200ms ease-in-out;
 
   &:hover {
-    --animate-underline-background-size-width: var(--animate-underline-background-size-width-hover, 100%);
+    --animate-underline--background-size-width: var(--animate-underline--background-size-width--hover, 100%);
   }
 }

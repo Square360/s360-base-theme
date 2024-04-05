@@ -29,9 +29,9 @@ $spacer-down-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-5), '
 $grid-columns: 12;
 $column-gap: $spacer-0;
 
-@function column-width() {
-  @return calc(#{ $site-content-area / $grid-columns });
-}
+// @function column-width() {
+//   @return calc(#{ $site-content-area / $grid-columns });
+// }
 
 // **************************************************
 // LAYOUT

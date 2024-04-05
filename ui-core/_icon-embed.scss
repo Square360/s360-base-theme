@@ -1,10 +1,10 @@
 %icon-embed {
-  background-color: var(--icon-embed-background-color, currentColor);
+  background-color: var(--icon-embed--background-color, currentColor);
   content: "";
   display: block;
   height: 1em;
-  font-size: var(--icon-embed-font-size);
-  mask-image: var(--icon-embed-mask-image);
+  font-size: var(--icon-embed--font-size);
+  mask-image: var(--icon-embed--mask-image);
   mask-position: center;
   mask-repeat: no-repeat;
   width: 1em;
