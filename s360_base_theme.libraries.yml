@@ -6,13 +6,18 @@ base:
   js:
     ui/dist/base/base.js: {}
 
-layout:
+layouts:
   css:
     base:
-      ui/dist/layout/site-footer/site-footer.css: {}
+      ui/dist/layouts/layouts.css: {}
+
+site-layout:
+  css:
+    base:
+      ui/dist/site-layout/site-footer/site-footer.css: {}
   js:
-    ui/dist/layout/layout.js: {}
-    ui/dist/layout/menu-toggle/menu-toggle.js: {}
+    ui/dist/site-layout/site-layout.js: {}
+    ui/dist/site-layout/main-menu-toggle/main-menu-toggle.js: {}
 
 # ##################################################
 # Block Libraries
@@ -20,6 +25,9 @@ layout:
 block.branding-block:
   js:
     ui/dist/block/branding-block/branding-block.js: {}
+
+# ##################################################
+# Component Libraries
 
 # ##################################################
 # Field Libraries
@@ -116,13 +124,10 @@ menu.social:
     component:
       ui/dist/navigation/social/social.css: {}
 
-# ##################################################
-# Node Libraries
-
-node.full:
+menu.corporate:
   css:
     component:
-      ui/dist/node/full/node.full.css: {}
+      ui/dist/navigation/corporate/corporate.css: {}
 
 # ##################################################
 # Node Page Libraries
@@ -131,8 +136,6 @@ node.page.full:
   css:
     component:
       ui/dist/node/page/full/page.full.css: {}
-  dependencies:
-    - s360_base_theme/node.full
 
 # ##################################################
 # Paragraph Libraries
@@ -194,8 +197,6 @@ views.[view_name]:
   css:
     component:
       ui/dist/views/[view_name]/[view_name].css: {}
-  dependencies:
-    - s360_base_theme/view.view
 
 # ##################################################
 # Views Format Libraries

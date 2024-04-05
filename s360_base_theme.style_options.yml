@@ -1,4 +1,15 @@
 options:
+  # ##################################################
+  # Generic Options (Could be applied to any layout)
+
+  layout_color_scheme_options:
+    plugin: css_class
+    label: Color Scheme
+    default: none
+    options:
+      none:
+        label: '- None -'
+
   layout_margin_bottom_options:
     plugin: css_class
     label: Margin Bottom
@@ -16,9 +27,9 @@ options:
         label: 'Large'
         class: 'layout--margin-bottom-lg'
 
-  layout_region_item_spacing_options:
+  layout_region_gap_options:
     plugin: css_class
-    label: Item Spacing
+    label: Item Component Margin Bottom
     default: small
     description: The amount of space between items in this region.
     options:
@@ -26,13 +37,16 @@ options:
         label: '- None -'
       small:
         label: 'Small'
-        class: 'layout__region--spacing-sm'
+        class: 'layout--region-gap-sm'
       medium:
         label: 'Medium'
-        class: 'layout__region--spacing-md'
+        class: 'layout--region-gap-md'
       large:
         label: 'Large'
-        class: 'layout__region--spacing-lg'
+        class: 'layout--region-gap-lg'
+
+  # ##################################################
+  # Two Column Specific Options
 
   layout_two_column_ratio_options:
     plugin: css_class
@@ -73,6 +87,9 @@ options:
         label: 'Column 2 - Column 1'
         class: 'layout--mobile-order-2-1'
 
+  # ##################################################
+  # Three Column Specific Options
+
   layout_three_column_ratio_options:
     plugin: css_class
     label: Column Ratio
@@ -90,6 +107,9 @@ options:
       25_25_50:
         label: '25%/25%/50%'
         class: 'layout--25-25-50'
+
+  # ##################################################
+  # Flex Specific Options
 
   layout_flex_justify_options:
     plugin: css_class
@@ -133,9 +153,8 @@ contexts:
       options:
         layout_margin_bottom_options:
           layout: true
-        layout_region_item_spacing_options:
-          layout: false
-          regions: true
+        layout_region_gap_options:
+          layout: true
 
     layout_custom_two_column:
       options:

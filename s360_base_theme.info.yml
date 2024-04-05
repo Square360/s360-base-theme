@@ -16,7 +16,8 @@ ckeditor5-stylesheets:
 libraries:
   - 's360_base_theme/global'
   - 's360_base_theme/base'
-  - 's360_base_theme/layout'
+  - 's360_base_theme/site-layout'
+  - 's360_base_theme/layouts'
 
 libraries-override:
   webform/webform.element.flexbox: false
@@ -37,8 +38,8 @@ components:
       - ui/src/templates/field
     ui-form:
       - ui/src/templates/form
-    ui-layout:
-      - ui/src/templates/layout
+    ui-site-layout:
+      - ui/src/templates/site-layout
     ui-media:
       - ui/src/templates/media
     ui-navigation:
@@ -49,5 +50,5 @@ components:
       - ui/src/templates/paragraph
     ui-views:
       - ui/src/templates/views
-    ui-taxonomy:
-      - ui/src/templates/taxonomy
+    # ui-taxonomy:
+    #   - ui/src/templates/taxonomy
