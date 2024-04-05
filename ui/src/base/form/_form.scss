@@ -4,10 +4,10 @@
 @use "s360-scss-toolkit";
 
 form {
-  margin: var(--form-margin, 0);
-  padding: var(--form-padding, 0);
-  display: var(--form-display, grid);
-  gap: var(--form-gap, 0);
+  margin: var(--form--margin, 0);
+  padding: var(--form--padding, 0);
+  display: var(--form--display, grid);
+  gap: var(--form--gap, 0);
 
   input[type="email"],
   input[type="password"],
@@ -17,27 +17,29 @@ form {
   input[type="search"],
   input[type="url"],
   input[type="date"],
+  input[type="month"],
+  input[type="number"],
   select,
   textarea {
-    background-color: var(--form-input-background-color, #{ colors.$white });
+    background-color: var(--form-input--background-color, #{ colors.$white });
     border:
-      var(--form-input-border-width, 1px)
-      var(--form-input-border-style, solid)
-      var(--form-input-border-color, transparent);
-    border-radius: var(--form-input-border-radius, 0);
-    color: var(--form-input-color);
-    display: var(--form-input-display, block);
-    font-family: var(--form-input-font-family);
-    font-size: var(--form-input-font-size);
-    margin: var(--form-input-margin, 0);
-    overflow: var(--form-input-overflow, visible);
-    padding: var(--form-input-padding);
-    width: var(--form-input-width, 100%);
-    transition: var(--form-transition, all 200ms ease-in-out);
+      var(--form-input--border-width, 1px)
+      var(--form-input--border-style, solid)
+      var(--form-input--border-color, transparent);
+    border-radius: var(--form-input--border-radius, 0);
+    color: var(--form-input--color);
+    display: var(--form-input--display, block);
+    font-family: var(--form-input--font-family);
+    font-size: var(--form-input--font-size);
+    margin: var(--form-input--margin, 0);
+    overflow: var(--form-input--overflow, visible);
+    padding: var(--form-input--padding);
+    width: var(--form-input--width, 100%);
+    transition: var(--form--transition, all 200ms ease-in-out);
     outline:
-      var(--form-input-outline-width, 0)
-      var(--form-input-outline-style, dashed)
-      var(--form-input-outline-color, currentColor);
+      var(--form-input--outline-width, 0)
+      var(--form-input--outline-style, dashed)
+      var(--form-input--outline-color, currentColor);
 
     &:invalid {
       box-shadow: none;
@@ -45,7 +47,7 @@ form {
   }
 
   textarea {
-    --form-input-overflow: auto;
+    --form-input--overflow: auto;
 
     resize: vertical;
   }
@@ -59,14 +61,14 @@ form {
   }
 
   input[type="date"] {
-    --form-input-width: auto;
+    --form-input--width: auto;
   }
 
   label {
-    color: var(--form-label-color);
+    color: var(--form--label-color);
     cursor: pointer;
-    font-family: var(--form-label-font-family);
-    font-size: var(--form-label-font-size);
+    font-family: var(--form--label-font-family);
+    font-size: var(--form--label-font-size);
 
     &:has(+ *[required]) {
       &::after {

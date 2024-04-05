@@ -1,28 +1,28 @@
 ul,
 ol {
-  margin: var(--list-margin, 1em 0);
-  padding: var(--list-padding, 0 0 0 2em);
-  display: var(--list-display, block);
-  line-height: var(--list-line-height);
+  margin: var(--list--margin, 1em 0);
+  padding: var(--list--padding, 0 0 0 2em);
+  display: var(--list--display, block);
+  line-height: var(--list--line-height);
 
   li {
-    padding: var(--li-padding, 0);
-    margin: var(--li-margin, 0);
-    list-style-type: var(--li-style-type);
+    padding: var(--li--padding, 0);
+    margin: var(--li--margin, 0);
+    list-style-type: var(--li--style-type);
 
     &::marker {
-      color: var(--li-marker-color);
-      font-family: var(--li-marker-font-family);
-      font-size: var(--li-marker-font-size);
-      font-weight: var(--li-marker-font-weight);
+      color: var(--li--marker-color);
+      font-family: var(--li--marker-font-family);
+      font-size: var(--li--marker-font-size);
+      font-weight: var(--li--marker-font-weight);
     }
   }
 }
 
 ul {
-  --li-style-type: disc;
+  --li--style-type: disc;
 }
 
 ol {
-  --li-style-type: decimal;
+  --li--style-type: decimal;
 }

@@ -1,7 +1,6 @@
 @use "@s360-base-theme/ui-core/site-config";
 
 :root {
-  --safe-area-left: #{ site-config.$site-side-margin };
-  --safe-area-right: #{ site-config.$site-side-margin };
+  --safe-area-inline: #{ site-config.$site-side-margin };
   --main-menu-mq: #{ site-config.$main-menu-mq };
 }
