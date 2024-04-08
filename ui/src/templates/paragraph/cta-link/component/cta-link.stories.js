@@ -14,16 +14,18 @@ const CTA_LINK_STYLE_OPTIONS = {
   'secondary': 'Secondary'
 }
 
-export const ctaLink = ({ ctaLinkStyle }) => {
+export const ctaLink = ({ paragraph_field_cta_link_style }) => {
   return ctaLinkTwig({
     ...ctaLinkData,
-    paragraph_field_cta_link_style: ctaLinkStyle,
+    paragraph_field_cta_link_style: (paragraph_field_cta_link_style == undefined)
+      ? ctaLinkData.paragraph_field_cta_link_style
+      : paragraph_field_cta_link_style,
     paragraph_field_link: linkTwig({ ...ctaLinkData.paragraph_field_link }),
   });
 }
 
 ctaLink.argTypes = {
-  ctaLinkStyle: {
+  paragraph_field_cta_link_style: {
     name: 'CTA Link Style',
     options: Object.keys(CTA_LINK_STYLE_OPTIONS),
     control: {
@@ -33,5 +35,5 @@ ctaLink.argTypes = {
   }
 };
 ctaLink.args = {
-  ctaLinkStyle: '',
+  paragraph_field_cta_link_style: 'primary',
 }
