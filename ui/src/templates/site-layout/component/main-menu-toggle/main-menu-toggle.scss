@@ -8,26 +8,30 @@ $_height: 30px;
 $_width: 30px;
 $_span-height: 2px;
 
-.menu-toggle {
+.main-menu-toggle {
   height: $_height;
-  width: $_width;
-  display: var(--menu-toggle-display);
+  min-width: $_width;
+  max-width: $_width;
+  display: var(--main-menu-toggle--display);
 
   span {
     display: block;
     height: $_span-height;
     width: 100%;
-    background-color: var(--menu-toggle-background-color);
+    color: var(--main-menu-toggle--color, colors.$black);
+    background-color: currentColor;
     position: relative;
     transition: all 200ms ease-in-out;
+    border-radius: 100vw/100vw;
 
     &::before,
     &::after {
       content: '';
+      border-radius: 100vw/100vw;
       height: $_span-height;
       position: absolute;
       width: 100%;
-      background-color: var(--menu-toggle-background-color);
+      background-color: currentColor;
       transition: all 200ms ease-in-out;
     }
 
@@ -65,6 +69,6 @@ $_span-height: 2px;
   /// MEDIA QUERIES
 
   @media (site-config.$main-menu-mq) {
-    --menu-toggle-display: none;
+    --main-menu-toggle--display: none;
   }
 }
