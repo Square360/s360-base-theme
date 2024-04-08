@@ -2,32 +2,39 @@
 @use "@s360-base-theme/ui-core/mq";
 @use "s360-scss-toolkit";
 
-.view--display-grid {
+.view--grid {
   > .view__content > .view__rows {
     display: grid;
-    grid-template-columns: repeat(var(--view-grid-template-columns, 1), 1fr);
+    grid-template-columns: repeat(var(--view-grid--gtc, 1), 1fr);
     column-gap: site-config.$column-gap;
-    row-gap: var(--view-grid-row-gap, #{ site-config.$spacer-0 });
+    row-gap: var(--view-grid--view-rows--row-gap, #{ site-config.$spacer-0 });
   }
 
-  // **************************************************
-  // MEDIA QUERIES
-
-  @media (min-width: mq.$mq-768) {
-    &.view--2-columns,
-    &.view--3-columns,
-    &.view--4-columns {
-      --view-grid-template-columns: 2;
+  &.view--2-columns,
+  &.view--3-columns,
+  &.view--4-columns {
+    .view__rows {
+      @container (width > 768px) {
+        --view-grid--gtc: 2;
+      }
     }
   }
 
-  @media (min-width: mq.$mq-1024) {
-    &.view--3-columns {
-      --view-grid-template-columns: 3;
-    }
-
-    &.view--4-columns {
-      --view-grid-template-columns: 4;
+  &.view--3-columns,
+  &.view--4-columns {
+    .view__rows {
+      @container (width > 1024px) {
+        --view-grid--gtc: 3;
+      }
     }
   }
+
+  &.view--4-columns {
+    .view__rows {
+      @container (width > 1280px) {
+        --view-grid--gtc: 4;
+      }
+    }
+  }
+
 }

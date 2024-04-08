@@ -1,8 +1,8 @@
 @use "@s360-base-theme/ui-core/site-config";
 @use "s360-scss-toolkit";
 
-.view--display-default {
+.view--unformatted {
   .view__row + .view__row {
-    margin-top: var(--view-default-view-row-margin-top, #{ site-config.$spacer-0 });
+    margin-top: var(--view-unformatted--view-row--margin-top, #{ site-config.$spacer-0 });
   }
 }
