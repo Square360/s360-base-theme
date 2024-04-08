@@ -1,11 +1,7 @@
-menu_name: Footer
+menu_name: footer
 items:
   - title: 'Footer Menu Link'
     url: '#'
-  - title: 'Footer Menu Label'
-    url:
-      isrouted: true
-      routeName: <nolink>
     below:
       - title: 'Footer Link'
         url: '#'

@@ -1,20 +1,21 @@
-pager_heading_id: pagination-heading--CxVFK-mAoGB
-pager_first:
-  href: '#'
-pager_previous:
-  href: '#'
-pager_ellipses_previous: true
-pager_pages:
-  1:
+heading_id: pagination-heading--CxVFK-mAoGB
+items:
+  first:
     href: '#'
-  2:
+  previous:
     href: '#'
-  3:
+  ellipses_previous: true
+  pages:
+    1:
+      href: '#'
+    2:
+      href: '#'
+    3:
+      href: '#'
+  ellipses_next: true
+  next:
     href: '#'
-pager_ellipses_next: true
-pager_next:
-  href: '#'
-pager_last:
-  href: '#'
+  last:
+    href: '#'
 
 current: 1

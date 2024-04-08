@@ -6,31 +6,34 @@
   @extend %semantic-list;
 
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   z-index: 2;
   position: fixed;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 0;
+  right: 0;
+  background: colors.$white;
+  justify-content: center;
+  gap: 1em;
 
   a {
-    --a-color: #{ colors.$black };
-    --a-background-color: #{ rgba(colors.$white, 0.7) };
-    --a-padding: 0.5em;
-    --a-border-color: #{ colors.$black };
-    --a-border-width: 1px;
-    --a-display: block;
+    --a--color: #{ colors.$black };
+    --a--background-color: #{ rgba(colors.$white, 0.7) };
+    --a--padding: 0.5em;
+    --a--border-color: #{ colors.$black };
+    --a--border-width: 1px;
+    --a--display: block;
 
     &:focus {
-      --a-outline-color: currentColor;
+      --a--outline-color: currentColor;
     }
 
     &:focus,
     &:hover,
     // Drupal class.
     &.is-active {
-      --a-color: #{ colors.$black };
-      --a-background-color: #{ colors.$white };
+      --a--color: #{ colors.$black };
+      --a--background-color: #{ colors.$white };
     }
   }
 
