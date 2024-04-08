@@ -19,9 +19,6 @@ function s360_base_theme_preprocess_form(&$variables) {
 
   $variables['form_name'] = Html::getClass($element['#form_id']);
 
-  // Clear any Drupal classes.
-  $variables['attributes']['class'] = [];
-
   $variables['attributes']['class'][] = 'form';
   $variables['attributes']['class'][] = Html::getClass('form--' . $element['#form_id']);
 }
@@ -36,7 +33,7 @@ function s360_base_theme_preprocess_webform(&$variables) {
 
   $variables['attributes']['class'][] = 'form';
   $variables['attributes']['class'][] = 'form--webform';
-  $variables['attributes']['class'][] = 'form--' . Html::getClass($element['#webform_id']);
+  $variables['attributes']['class'][] = Html::getClass('form--' . $element['#webform_id']);
 }
 
 /**
