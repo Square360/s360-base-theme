@@ -10,8 +10,10 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    'storybook-addon-css-user-preferences',
-    'storybook-addon-data-theme-switcher'
+    // Uncomment if you want to enabled user prefers @media queries.
+    // 'storybook-addon-css-user-preferences',
+    // Uncomment if you want to setup visual themes '[data-theme="*"]'.
+    // 'storybook-addon-data-theme-switcher'
   ],
   staticDirs: [
     '../dist/',
