@@ -15,7 +15,7 @@ module.exports = async ({ config }) => {
 
   config.resolve.alias['@ui-components'] = path.resolve(path.join('src', 'components'));
   config.resolve.alias['@ui-block'] = path.resolve(path.join('src', 'templates', 'block'));
-  config.resolve.alias['@ui-layout'] = path.resolve(path.join('src', 'templates', 'layout'));
+  config.resolve.alias['@ui-site-layout'] = path.resolve(path.join('src', 'templates', 'site-layout'));
   config.resolve.alias['@ui-field'] = path.resolve(path.join('src', 'templates', 'field'));
   config.resolve.alias['@ui-form'] = path.resolve(path.join('src', 'templates', 'form'));
   config.resolve.alias['@ui-media'] = path.resolve(path.join('src', 'templates', 'media'));

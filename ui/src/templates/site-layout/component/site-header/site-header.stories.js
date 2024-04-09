@@ -4,7 +4,7 @@ import './site-header.js';
 
 // There is no story to import because the template is included in the twig
 // file, so we just need the JS file to pick up the style and interaction.
-import '@ui-layout/component/menu-toggle/menu-toggle.js';
+import '@ui-site-layout/component/main-menu-toggle/main-menu-toggle.js';
 
 import { main } from '@ui-navigation/navigation.stories';
 import { brandingBlock } from '@ui-block/branding-block/component/branding-block.stories';

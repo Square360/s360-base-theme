@@ -7,7 +7,7 @@ import './drupal.js';
 
 // GLOBAL CSS
 import '../src/base/base.js';
-import '../src/templates/layout/component/layout.js';
+import '../src/templates/site-layout/component/site-layout.js';
 import '../src/templates/field/ckeditor/component/ckeditor.js';
 
 setupTwig(Twig);
@@ -15,11 +15,7 @@ setupTwig(Twig);
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   layout: 'none',
-  /* Uncomment if you want to enabled user prefers @media queries.
-  cssUserPrefs: {
-    "prefers-color-scheme": "dark",
-  },
-  */
+  backgrounds: { disable: true },
 };
 
 export const decorators = [
