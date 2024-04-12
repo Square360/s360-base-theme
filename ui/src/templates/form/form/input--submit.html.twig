@@ -1,0 +1,9 @@
+{#
+  By default the "submit" button is an input, which really should be a button.
+  When converting this over to a button, the value provided to attributes
+  cannot be used since we do not want that to be the value submitted into
+  the form. We do however, need to display that value as the button's label.
+#}
+<button{{ attributes|without('value') }}>
+  {{ attributes.value }}
+</button>

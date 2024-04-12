@@ -56,7 +56,7 @@ form {
     appearance: none;
   }
 
-  input[type="submit"] {
+  button[type="submit"] {
     @extend %cta-primary;
   }
 
