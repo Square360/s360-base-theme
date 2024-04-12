@@ -37,13 +37,13 @@ options:
         label: '- None -'
       small:
         label: 'Small'
-        class: 'layout--region-gap-sm'
+        class: 'layout__region--gap-sm'
       medium:
         label: 'Medium'
-        class: 'layout--region-gap-md'
+        class: 'layout__region--gap-md'
       large:
         label: 'Large'
-        class: 'layout--region-gap-lg'
+        class: 'layout__region--gap-lg'
 
   # ##################################################
   # One Column Specific Options
@@ -64,37 +64,37 @@ options:
     label: Column Ratio
     default: cr_50_50
     options:
-      50_50:
+      cr_50_50:
         label: '50%/50%'
         class: 'layout--50-50'
-      60_40:
+      cr_60_40:
         label: '60%/40%'
         class: 'layout--60-40'
-      40_60:
+      cr_40_60:
         label: '40%/60%'
         class: 'layout--40-60'
-      70_30:
+      cr_70_30:
         label: '70%/30%'
         class: 'layout--70-30'
-      30_70:
+      cr_30_70:
         label: '30%/70%'
         class: 'layout--30-70'
-      72_25:
+      cr_72_25:
         label: '75%/25%'
         class: 'layout--75-25'
-      25_75:
+      cr_25_75:
         label: '25%/75%'
         class: 'layout--25-75'
 
   layout_two_column_mobile_order_options:
     plugin: css_class
     label: Mobile Order
-    default: 1_2
+    default: mo_1_2
     options:
-      1_2:
+      mo_1_2:
         label: 'Column 1 - Column 2'
         class: 'layout--mobile-order-1-2'
-      2_1:
+      mo_2_1:
         label: 'Column 2 - Column 1'
         class: 'layout--mobile-order-2-1'
 
@@ -104,18 +104,18 @@ options:
   layout_three_column_ratio_options:
     plugin: css_class
     label: Column Ratio
-    default: 33_33_33
+    default: cr_33_33_33
     options:
-      33_33_33:
+      cr_33_33_33:
         label: '33%/33%/33%'
         class: 'layout--33-33-33'
-      25_50_25:
+      cr_25_50_25:
         label: '25%/50%/25%'
         class: 'layout--25-50-25'
-      50_25_25:
+      cr_50_25_25:
         label: '50%/25%/25%'
         class: 'layout--50-25-25'
-      25_25_50:
+      cr_25_25_50:
         label: '25%/25%/50%'
         class: 'layout--25-25-50'
 
@@ -165,7 +165,8 @@ contexts:
         layout_margin_bottom_options:
           layout: true
         layout_region_gap_options:
-          layout: true
+          layout: false
+          regions: true
 
     layout_custom_two_column:
       options:

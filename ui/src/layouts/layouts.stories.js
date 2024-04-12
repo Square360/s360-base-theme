@@ -17,9 +17,9 @@ export default { title: 'Layouts/Layouts' };
 
 const LAYOUT_REGION_GAP_OPTIONS = {
   '': '- None -',
-  'layout--region-gap-sm': 'Small',
-  'layout--region-gap-md': 'Medium',
-  'layout--region-gap-lg': 'Large',
+  'layout__region--gap-sm': 'Small',
+  'layout__region--gap-md': 'Medium',
+  'layout__region--gap-lg': 'Large',
 };
 
 const LAYOUT_COLOR_SCHEME_OPTIONS = {
@@ -40,8 +40,8 @@ export const oneColumn = ({ color_scheme, region_gap, width }) => {
   paragraphAttributes.class = paragraphClasses;
 
   return oneColumTwig({
-    paragraph_layout_region_content: [
-      placeholder({ ...layoutData.layout_one_column.paragraph_layout_region_content }),
+    paragraph_layout_region_first: [
+      placeholder({ ...layoutData.layout_one_column.paragraph_layout_region_first }),
     ].join(''),
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
@@ -55,14 +55,14 @@ oneColumn.argTypes = {
       labels: LAYOUT_COLOR_SCHEME_OPTIONS
     }
   },
-  region_gap: {
-    name: 'Component Margin Bottom',
-    options: Object.keys(LAYOUT_REGION_GAP_OPTIONS),
-    control: {
-      type: 'select',
-      labels: LAYOUT_REGION_GAP_OPTIONS
-    }
-  },
+  // region_gap: {
+  //   name: 'Component Margin Bottom',
+  //   options: Object.keys(LAYOUT_REGION_GAP_OPTIONS),
+  //   control: {
+  //     type: 'select',
+  //     labels: LAYOUT_REGION_GAP_OPTIONS
+  //   }
+  // },
   width: {
     name: 'Width',
     options: Object.keys(LAYOUT_ONE_COLUMN_WIDTH_OPTIONS),

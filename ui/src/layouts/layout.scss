@@ -16,10 +16,20 @@
   .layout__region {
     container-name: layout-region;
     container-type: inline-size;
-    display: grid;
-    grid-auto-rows: min-content;
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: var(--layout-region-gap);
+    display: flex;
+    flex-direction: column;
+
+    &--gap-sm {
+      row-gap: site-config.$spacer-0;
+    }
+
+    &--gap-md {
+      row-gap: site-config.$spacer-0;
+    }
+
+    &--gap-lg {
+      row-gap: site-config.$spacer-0;
+    }
   }
 
   // **************************************************
@@ -39,20 +49,5 @@
 
   &:last-child {
     margin-bottom: 0;
-  }
-
-  // **************************************************
-  // REGION GAP
-
-  &.layout--region-gap-sm {
-    --layout-region-gap: #{ site-config.$spacer-up-2 };
-  }
-
-  &.layout--region-gap-md {
-    --layout-region-gap: #{ site-config.$spacer-up-3 };
-  }
-
-  &.layout--region-gap-lg {
-    --layout-region-gap: #{ site-config.$spacer-up-5 };
   }
 }
