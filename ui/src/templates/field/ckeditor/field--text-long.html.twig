@@ -1,12 +1,12 @@
 {% if label_hidden %}
-  {{ attach_library('hixon/field.ckeditor') }}
+  {{ attach_library('s360_base_theme/field.ckeditor') }}
 
   {% include "@ui-field/ckeditor/component/ckeditor.twig" with {
     field_items: items
   } %}
 
 {% else %}
-  {{ attach_library('hixon/field.field') }}
+  {{ attach_library('s360_base_theme/field.field') }}
 
   {% include "@ui-field/field/component/field.twig" with {
     field_items: items
