@@ -7,6 +7,7 @@
  * Define all view preprocess HOOKs.
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
 
 /**
