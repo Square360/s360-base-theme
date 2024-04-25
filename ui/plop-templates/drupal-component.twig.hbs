@@ -1,0 +1,13 @@
+{% set classes = [
+  {{#each componentClasses}}
+  '{{ this }}',
+  {{/each}}
+] %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+
+{% extends "@ui-{{ drupalEntityTemplatePartial }}" %}
+
+{% block {{ entityType }}_content %}
+  \{{ content }}
+{% endblock %}

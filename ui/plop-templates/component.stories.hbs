@@ -1,14 +1,14 @@
-import {{ camelCase bundle }}Twig from './{{ kebabCase bundle }}{{#if viewMode }}.{{ viewMode }}{{/if}}.twig';
-import {{ camelCase bundle }}Data from './{{ kebabCase bundle }}{{#if viewMode }}.{{ viewMode }}{{/if}}.yml';
-import './{{ kebabCase bundle }}{{#if viewMode }}.{{ viewMode }}{{/if}}.js';
+import {{ componentNameToCamelCase }}Twig from './{{ componentFilenamePartial }}.twig';
+import {{ componentNameToCamelCase }}Data from './{{ componentFilenamePartial }}.yml';
+import './{{ componentFilenamePartial }}.js';
 
 /**
  * Storybook Definition.
  */
-export default { title: '{{ storyBookTitle }}' };
+export default { title: '{{ storybookTitle }}' };
 
-export const {{ camelCase bundle }} = ({}) => {
-  return {{ camelCase bundle }}Twig({
-    ...{{ camelCase bundle }}Data
+export const {{ componentNameToCamelCase }} = ({}) => {
+  return {{ componentNameToCamelCase }}Twig({
+    ...{{ componentNameToCamelCase }}Data
   });
 }
