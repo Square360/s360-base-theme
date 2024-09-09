@@ -7,8 +7,9 @@ import './page.full.js';
  */
 export default { title: 'Content Types/Page' };
 
-export const page = () => {
+export const page = (args) => {
   return pageTwig({
-    ...pageData
+    ...args
   });
-}
+};
+page.args = pageData;
