@@ -138,7 +138,15 @@ function s360_base_theme_preprocess_checkboxes(&$variables) {
  */
 function s360_base_theme_preprocess_input(&$variables) {
   $element = $variables['element'];
+  $id = $element['#id'];
+
+  $type = $element['#type'];
+
+  // Set the form input type "class" to reset.
+  if ($type === 'submit' && str_contains($id, 'reset')) {
+    $type = 'reset';
+  }
 
   $variables['attributes']['class'][] = 'form__input';
-  $variables['attributes']['class'][] = Html::getClass('form__input--' . $element['#type']);
+  $variables['attributes']['class'][] = Html::getClass('form__input--' . $type);
 }

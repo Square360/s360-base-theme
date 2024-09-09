@@ -26,20 +26,11 @@ function s360_base_theme_preprocess_node(&$variables) {
   if ($node_view_mode !== 'full') {
     $label_url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
 
-    $is_passthrough_checked = false;
-    if ($node->hasField('field_passthrough')) {
-      $field_passthrough = $node->get('field_passthrough');
+    if ($node->hasField('field_source_link')) {
+      $field_source_link = $node->get('field_source_link');
 
-      $is_passthrough_checked = $field_passthrough->getString();
-    }
-
-    if ($is_passthrough_checked) {
-      if ($node->hasField('field_source_link')) {
-        $field_source_link = $node->get('field_source_link');
-
-        if ($field_source_link->count()) {
-          $label_url = Url::fromUri($field_source_link->getString());
-        }
+      if ($field_source_link->count()) {
+        $label_url = Url::fromUri($field_source_link->getString());
       }
     }
 
@@ -51,6 +42,7 @@ function s360_base_theme_preprocess_node(&$variables) {
   }
 
   $variables['attributes']['id'] = Html::getClass('node-' . $node_bundle . '-' . $node->id());
+  $variables['view_mode'] = $node_view_mode;
 
   // Remove some attributes.
   unset($variables['attributes']['role']);
