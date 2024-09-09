@@ -1,11 +1,15 @@
 {% set classes = [
-  {{#each componentClasses}}
-  '{{ this }}',
-  {{/each}}
+  '{{ entityType }}',
+  '{{ entityType }}--{{ kebabCase bundle }}',
+  {{#if viewMode }}'{{ entityType }}--{{ viewMode }}',{{/if}}
+  is_front ?? '{{ entityType }}--is-front'
 ] %}
-{% set attributes = create_attribute({}) %}
+{% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', '{{ kebabCase bundle }}') %}
 
-<div{{ attributes }}>
+{% extends "@ui-{{ entityType }}/{{#if viewMode }}{{ viewMode }}/{{/if}}{{ entityType }}{{#if viewMode }}--{{ viewMode }}{{/if}}.html.twig" %}
 
-</div>
+{% block {{ entityType }}_content %}
+
+{% endblock %}

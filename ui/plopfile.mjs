@@ -9,7 +9,7 @@ export default function (plop) {
         choices: [
           { name: 'Content Type', value: 'node' },
           { name: 'Paragraph', value: 'paragraph' },
-          { name: 'Isolated Component', value: 'components' },
+          { name: 'Isolated Component', value: 'component' },
         ]
       },
       {
@@ -25,149 +25,157 @@ export default function (plop) {
         name: 'viewMode',
         message: 'View Mode',
         choices: [
-          { name: 'Full', value: 'full' },
+          'Full',
+          'Teaser',
         ]
       }
     ],
     actions: (data) => {
-      data.componentNameToKebabCase = plop.getHelper('kebabCase')(data.componentName);
-      data.componentNameToCamelCase = plop.getHelper('camelCase')(data.componentName);
-
       let actions = [];
 
-      if (data.entityType == 'paragraph') {
+      if (data.entityType == 'node') {
+        if (plop.getHelper('kebabCase')(data.viewMode) === 'full') {
+          /**
+           * @see component.stories.hbs
+          */
+          data.storybookTitle = `Content Types/${ plop.getHelper('titleCase')(data.componentName) }`;
+          data.storybookStoryFnName = plop.getHelper('camelCase')(data.componentName);
+
+          /**
+           * @see component.twig.hbs
+          */
+          data.drupalTwigTemplate = '@ui-node/node--full.html.twig';
+          data.drupalBlockName = 'node_content';
+        }
+        else if (plop.getHelper('kebabCase')(data.viewMode).includes('teaser')) {
+          data.entityType = 'node-teaser';
+
+          /**
+           * @see component.stories.hbs
+          */
+          // Remove any special chars from the view mode and clean up any double spaces.
+          data.storybookTitle = `Content Types/${ plop.getHelper('titleCase')(data.componentName) }/${ data.viewMode.replace(/[^\w\s]/gi, '').replace(/\s\s/gi, ' ') }`;
+          data.storybookStoryFnName = plop.getHelper('camelCase')(data.viewMode);
+
+          /**
+           * @see component.twig.hbs
+          */
+          data.drupalTwigTemplate = '@ui-node/component/node-teaser/node-teaser.twig';
+          data.drupalBlockName = 'node_teaser_content';
+        }
+
+        /**
+         * @see component.style.hbs
+         */
+        data.componentClassName = `${ data.entityType }--${ plop.getHelper('kebabCase')(data.componentName) }`;
+        data.componentClassModifier = `${ data.entityType }--${ plop.getHelper('kebabCase')(data.viewMode).replace('teaser-', '') }`;
+
+        /**
+         * @see component.script.hbs
+         * @see component.stories.hbs
+         */
+        data.componentName = `${ plop.getHelper('kebabCase')(data.componentName) }.${ plop.getHelper('kebabCase')(data.viewMode) }`;
+
+        /**
+         * @see component.twig.hbs
+        */
+        data.componentClasses = [
+          `${ data.entityType }`,
+          data.componentClassName,
+          data.componentClassModifier
+        ];
+
+        /**
+         * @see drupal-twig.hbs
+         */
+        data.componentTwigTemplate = `@ui-node/${ data.componentName.replace('.', '/') }/component/${ data.componentName }.twig`;
+        data.drupalLibraryAssetPartial = `node.${ data.componentName }`;
+
+        let actionPath = `src/templates/node/${ data.componentName.replace('.', '/') }`;
+
+        actions.push(addComponentScript(`${ actionPath }/component/${ data.componentName }.js`));
+        actions.push(addComponentStyle(`${ actionPath }/component/${ data.componentName }.scss`));
+        actions.push(addComponentStories(`${ actionPath }/component/${ data.componentName }.stories.js`));
+        actions.push(addComponentYml(`${ actionPath }/component/${ data.componentName }.yml`));
+        actions.push(addComponentTwig(`${ actionPath }/component/${ data.componentName }.twig`));
+
+        actions.push(addDrupalTwig(`${ actionPath }/node--${ data.componentName.replace('.', '--') }.html.twig`));
+      }
+      else if (data.entityType == 'paragraph') {
         /**
          * @see component.stories.hbs
          */
         data.storybookTitle = `Layout Components/${ data.componentName }`;
+        data.storybookStoryFnName = plop.getHelper('camelCase')(data.componentName);
+
+        /**
+         * @see component.style.hbs
+         */
+        data.componentClassName = plop.getHelper('kebabCase')(data.componentName);
 
         /**
          * @see component.script.hbs
          * @see component.stories.hbs
          */
-        data.componentFilenamePartial = data.componentNameToKebabCase;
+        data.componentName = plop.getHelper('kebabCase')(data.componentName);
 
         /**
-         * Set the top level class name for the component.
-         * @see component.style.hbs
+         * @see component.twig.hbs
          */
-        data.componentNameCssSelector = data.componentNameToKebabCase;
-
-        /**
-         * Set all the classes for the component.
-         * @see drupal-component.twig.hbs
-        */
+        data.drupalTwigTemplate = '@ui-paragraph/paragraph.html.twig';
+        data.drupalBlockName = 'paragraph_content';
         data.componentClasses = [
-          data.componentNameToKebabCase
+          data.componentClassName
         ];
 
         /**
-         * Set the partial name for the template being extended.
-         * @see drupal-component.twig.hbs
-         */
-        data.drupalEntityTemplatePartial = `${ data.entityType }/${ data.entityType }`;
-
-        /**
-         * Set the partial name for the template being included.
          * @see drupal-twig.hbs
          */
-        data.componentTemplatePartial = `${ data.entityType }/${ data.componentNameToKebabCase }/component/${ data.componentNameToKebabCase }`;
+        data.componentTwigTemplate = `@ui-paragraph/${ data.componentName }/component/${ data.componentName }.twig`;
+        data.drupalLibraryAssetPartial = `paragraph.${ data.componentName }`;
 
-        let actionPath = `src/templates/${ data.entityType }/${ data.componentNameToKebabCase }`;
+        let actionPath = `src/templates/paragraph/${ data.componentName }`;
 
-        actions.push(addComponentScript(`${ actionPath }/component/${ data.componentFilenamePartial }.js`));
-        actions.push(addComponentStyle(`${ actionPath }/component/${ data.componentFilenamePartial }.scss`));
-        actions.push(addComponentStories(`${ actionPath }/component/${ data.componentFilenamePartial }.stories.js`));
-        actions.push(addComponentYml(`${ actionPath }/component/${ data.componentFilenamePartial }.yml`));
+        actions.push(addComponentScript(`${ actionPath }/component/${ data.componentName }.js`));
+        actions.push(addComponentStyle(`${ actionPath }/component/${ data.componentName }.scss`));
+        actions.push(addComponentStories(`${ actionPath }/component/${ data.componentName }.stories.js`));
+        actions.push(addComponentYml(`${ actionPath }/component/${ data.componentName }.yml`));
+        actions.push(addComponentTwig(`${ actionPath }/component/${ data.componentName }.twig`));
 
-        actions.push(addDrupalComponentAction(`${ actionPath }/component/${ data.componentFilenamePartial }.twig`));
-        actions.push(addDrupalTwigAction(`${ actionPath }/${ data.entityType }--${ data.componentNameToKebabCase }.html.twig`));
+        actions.push(addDrupalTwig(`${ actionPath }/paragraph--${ data.componentName }.html.twig`));
       }
-      else if (data.entityType == 'node') {
-        /**
-         * @see component.stories.hbs
-         */
-        data.storybookTitle = `Content Types/${ data.componentName }`;
-
-        /**
-         * @see component.script.hbs
-         * @see component.stories.hbs
-         */
-        data.componentFilenamePartial = `${ data.componentNameToKebabCase }.${ data.viewMode }`;
-
-        /**
-         * Set the top level class name for the component.
-         * @see component.style.hbs
-         */
-        data.componentNameCssSelector = `${ data.entityType }--${ data.componentNameToKebabCase }`;
-
-        /**
-         * Set all the classes for the component.
-         * @see drupal-component.twig.hbs
-        */
-        data.componentClasses = [
-          `${ data.entityType }`,
-          `${ data.entityType }--${ data.componentNameToKebabCase }`,
-          `${ data.entityType }--${ data.viewMode }`
-        ];
-
-        /**
-         * Set the partial name for the template being extended.
-         *
-         * @see drupal-component.twig.hbs
-         */
-        data.drupalEntityTemplatePartial = (data.viewMode === 'full')
-          ? `${ data.entityType }/${ data.entityType }--${ data.viewMode }.html.twig`
-          : `${ data.entityType }/_${ data.entityType }-teaser.twig`;
-
-        /**
-         * Set the partial name for the template being included.
-         * @see drupal-twig.hbs
-         */
-        data.componentTemplatePartial = `${ data.entityType }/${ data.componentNameToKebabCase }/${ data.viewMode }/component/${ data.componentFilenamePartial }`;
-
-        let actionPath = `src/templates/${ data.entityType }/${ data.componentNameToKebabCase }/${ data.viewMode }`;
-
-        actions.push(addComponentScript(`${ actionPath }/component/${ data.componentFilenamePartial }.js`));
-        actions.push(addComponentStyle(`${ actionPath }/component/${ data.componentFilenamePartial }.scss`));
-        actions.push(addComponentStories(`${ actionPath }/component/${ data.componentFilenamePartial }.stories.js`));
-        actions.push(addComponentYml(`${ actionPath }/component/${ data.componentFilenamePartial }.yml`));
-
-        actions.push(addDrupalComponentAction(`${ actionPath }/component/${ data.componentFilenamePartial }.twig`));
-        actions.push(addDrupalTwigAction(`${ actionPath }/${ data.entityType }--${ data.componentNameToKebabCase }--${ data.viewMode }.html.twig`));
-      }
-      else if (data.entityType == 'components') {
+      else if (data.entityType == 'component') {
         /**
          * @see component.stories.hbs
          */
         data.storybookTitle = `Components/${ data.componentName }`;
+        data.storybookStoryFnName = plop.getHelper('camelCase')(data.componentName);
+
+        /**
+         * @see component.style.hbs
+         */
+        data.componentClassName = plop.getHelper('kebabCase')(data.componentName);
 
         /**
          * @see component.script.hbs
          * @see component.stories.hbs
          */
-        data.componentFilenamePartial = data.componentNameToKebabCase;
+        data.componentName = plop.getHelper('kebabCase')(data.componentName);
 
         /**
-         * Set the top level class name for the component.
-         * @see component.style.hbs
-         */
-        data.componentNameCssSelector = data.componentNameToKebabCase;
-
-        /**
-         * Set all the classes for the component.
-         * @see drupal-component.twig.hbs
+         * @see component.twig.hbs
         */
         data.componentClasses = [
-          data.entityType,
+          data.componentClassName,
         ];
 
-        let actionPath = `src/${ data.entityType }/${ data.componentNameToKebabCase }`;
+        let actionPath = `src/components/${ data.componentName }`;
 
-        actions.push(addComponentScript(`${ actionPath }/${ data.componentFilenamePartial }.js`));
-        actions.push(addComponentStyle(`${ actionPath }/${ data.componentFilenamePartial }.scss`));
-        actions.push(addComponentStories(`${ actionPath }/${ data.componentFilenamePartial }.stories.js`));
-        actions.push(addComponentYml(`${ actionPath }/${ data.componentFilenamePartial }.yml`));
+        actions.push(addComponentScript(`${ actionPath }/${ data.componentName }.js`));
+        actions.push(addComponentStyle(`${ actionPath }/${ data.componentName }.scss`));
+        actions.push(addComponentStories(`${ actionPath }/${ data.componentName }.stories.js`));
+        actions.push(addComponentYml(`${ actionPath }/${ data.componentName }.yml`));
+        actions.push(addComponentTwig(`${ actionPath }/${ data.componentName }.twig`));
       }
 
       return actions;
@@ -210,17 +218,16 @@ function addComponentYml(path) {
   }
 }
 
-
-function addDrupalComponentAction(path) {
+function addComponentTwig(path) {
   return {
     type: 'add',
     path,
-    templateFile: './plop-templates/drupal-component.twig.hbs',
+    templateFile: './plop-templates/component.twig.hbs',
     skipIfExists: true
   }
 }
 
-function addDrupalTwigAction(path) {
+function addDrupalTwig(path) {
   return {
     type: 'add',
     path,
