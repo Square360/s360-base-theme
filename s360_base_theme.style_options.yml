@@ -2,13 +2,13 @@ options:
   # ##################################################
   # Generic Options (Could be applied to any layout)
 
-  layout_color_scheme_options:
-    plugin: css_class
-    label: Color Scheme
-    default: none
+  layout_color_theme_options:
+    plugin: data_attribute
+    attribute: 'theme'
+    label: Color Theme
+    default: ''
     options:
-      none:
-        label: '- None -'
+      '': '- None -'
 
   layout_margin_bottom_options:
     plugin: css_class
@@ -45,6 +45,30 @@ options:
         label: 'Large'
         class: 'layout__region--gap-lg'
 
+  layout_region_sticky_options:
+    plugin: checkbox
+    label: Sticky Column
+    default: false
+    class: 'layout__region--sticky'
+
+  layout_vertical_align_options:
+    plugin: css_class
+    label: Vertical Alignment
+    default: align-start
+    options:
+      align-start:
+        label: 'Top'
+        class: 'layout--align-start'
+      align-center:
+        label: 'Middle'
+        class: 'layout--align-center'
+      align-end:
+        label: 'Bottom'
+        class: 'layout--align-end'
+      align-stretch:
+        label: 'Stretch'
+        class: 'layout--align-stretch'
+
   # ##################################################
   # One Column Specific Options
 
@@ -54,7 +78,10 @@ options:
     default: normal
     options:
       normal:
-        label: '- Normal -'
+        label: 'Normal'
+      edge-to-edge:
+        label: 'Edge to Edge'
+        class: 'layout--edge-to-edge'
 
   # ##################################################
   # Two Column Specific Options
@@ -62,39 +89,39 @@ options:
   layout_two_column_ratio_options:
     plugin: css_class
     label: Column Ratio
-    default: cr_50_50
+    default: 50-50
     options:
-      cr_50_50:
+      50-50:
         label: '50%/50%'
         class: 'layout--50-50'
-      cr_60_40:
+      60-40:
         label: '60%/40%'
         class: 'layout--60-40'
-      cr_40_60:
+      40-60:
         label: '40%/60%'
         class: 'layout--40-60'
-      cr_70_30:
+      70-30:
         label: '70%/30%'
         class: 'layout--70-30'
-      cr_30_70:
+      30-70:
         label: '30%/70%'
         class: 'layout--30-70'
-      cr_72_25:
+      72-25:
         label: '75%/25%'
         class: 'layout--75-25'
-      cr_25_75:
+      25-75:
         label: '25%/75%'
         class: 'layout--25-75'
 
   layout_two_column_mobile_order_options:
     plugin: css_class
     label: Mobile Order
-    default: mo_1_2
+    default: column1-column2
     options:
-      mo_1_2:
+      column1-column2:
         label: 'Column 1 - Column 2'
         class: 'layout--mobile-order-1-2'
-      mo_2_1:
+      column2-column1:
         label: 'Column 2 - Column 1'
         class: 'layout--mobile-order-2-1'
 
@@ -104,18 +131,18 @@ options:
   layout_three_column_ratio_options:
     plugin: css_class
     label: Column Ratio
-    default: cr_33_33_33
+    default: 33-33-33
     options:
-      cr_33_33_33:
+      33-33-33:
         label: '33%/33%/33%'
         class: 'layout--33-33-33'
-      cr_25_50_25:
+      25-50-25:
         label: '25%/50%/25%'
         class: 'layout--25-50-25'
-      cr_50_25_25:
+      50-25-25:
         label: '50%/25%/25%'
         class: 'layout--50-25-25'
-      cr_25_25_50:
+      25-25-50:
         label: '25%/25%/50%'
         class: 'layout--25-25-50'
 
@@ -125,38 +152,23 @@ options:
   layout_flex_justify_options:
     plugin: css_class
     label: Horizontal Alignment
-    default: justify_start
+    default: justify-start
     options:
-      justify_start:
+      justify-start:
         label: 'Left'
         class: 'layout--flex-justify-start'
-      justify_center:
+      justify-center:
         label: 'Center'
         class: 'layout--flex-justify-center'
-      justify_end:
+      justify-end:
         label: 'Right'
         class: 'layout--flex-justify-end'
-      justify_between:
+      justify-between:
         label: 'Space Between'
         class: 'layout--flex-justify-between'
-      justify_around:
+      justify-around:
         label: 'Space Around'
         class: 'layout--flex-justify-around'
-
-  layout_flex_align_options:
-    plugin: css_class
-    label: Vertical Alignment
-    default: align_start
-    options:
-      align_start:
-        label: 'Top'
-        class: 'layout--flex-algin-start'
-      align_center:
-        label: 'Middle'
-        class: 'layout--flex-algin-center'
-      align_end:
-        label: 'Bottom'
-        class: 'layout--flex-algin-end'
 
 contexts:
   layout:
@@ -168,21 +180,40 @@ contexts:
           layout: false
           regions: true
 
+    layout_custom_one_column:
+      options:
+        layout_color_theme_options:
+          layout: true
+        layout_one_column_width_options:
+          layout: true
+
     layout_custom_two_column:
       options:
         layout_two_column_ratio_options:
           layout: true
         layout_two_column_mobile_order_options:
           layout: true
+        layout_region_sticky_options:
+          layout: false
+          regions: true
+        layout_vertical_align_options:
+          layout: true
 
     layout_custom_three_column:
       options:
         layout_three_column_ratio_options:
+          layout: true
+        layout_vertical_align_options:
+          layout: true
+
+    layout_custom_four_column:
+      options:
+        layout_vertical_align_options:
           layout: true
 
     layout_custom_flex:
       options:
         layout_flex_justify_options:
           layout: true
-        layout_flex_align_options:
+        layout_vertical_align_options:
           layout: true

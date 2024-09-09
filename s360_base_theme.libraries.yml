@@ -3,21 +3,21 @@ global:
     - core/drupal
 
 base:
+  # css:
+  #   base:
+  #     ui/dist/base/font-face/font-face-.css: {}
   js:
     ui/dist/base/base.js: {}
 
-layouts:
+layout:
   css:
     base:
       ui/dist/layouts/layouts.css: {}
-
-site-layout:
-  css:
-    base:
-      ui/dist/site-layout/site-footer/site-footer.css: {}
   js:
-    ui/dist/site-layout/site-layout.js: {}
-    ui/dist/site-layout/main-menu-toggle/main-menu-toggle.js: {}
+    ui/dist/layout/layout.js: { attributes: { defer: true } }
+
+# ##################################################
+# Components Libraries
 
 # ##################################################
 # Block Libraries
@@ -93,7 +93,7 @@ media.remote-video:
       ui/dist/media/remote-video/remote-video.css: {}
 
 # ##################################################
-# Menu Libraries
+# Navigation Libraries
 
 menu.footer:
   css:
@@ -184,6 +184,16 @@ paragraph.webform:
   css:
     component:
       ui/dist/paragraph/webform/webform.css: {}
+
+# ##################################################
+# Site Layout Library
+
+site-layout:
+  css:
+    base:
+      ui/dist/site-layout/site-footer/site-footer.css: {}
+  js:
+    ui/dist/site-layout/site-layout.js: {}
 
 # ##################################################
 # Views Libraries
