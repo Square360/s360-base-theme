@@ -1,10 +1,8 @@
-@use "@s360-base-theme/ui-core/colors";
-
 table {
   border:
-    var(--table--border-width, 1px)
-    var(--table--border-style, solid)
-    var(--table--border-color, transparent);
+    var(--table--border--width, 1px)
+    var(--table--border--style, solid)
+    var(--table--border--color, transparent);
   padding: var(--table--padding, 0);
   margin: var(--table--margin, 0);
   border-collapse: collapse;
@@ -13,37 +11,34 @@ table {
   color: var(--table--color);
 
   tr {
-    background-color: var(--table--tr-background-color);
+    background-color: var(--tr--bg-color);
     border:
-      var(--table--border-width, 1px)
-      var(--table--border-style, solid)
-      var(--table--border-color);
+      var(--tr--border--width, 1px)
+      var(--tr--border--style, solid)
+      var(--tr--border--color);
   }
 
   th {
-    font-size: var(--table--th-font-size);
-    font-family: var(--table--th-font-family);
-    font-weight: var(--table--th-font-weight);
-    padding: var(--table--th-padding, 1rem);
-    text-align: var(--table--th-text-align);
-    text-transform: var(--table--th-text-transform);
+    font-size: var(--th--font-size);
+    font-family: var(--th--font-family);
+    font-weight: var(--th--font-weight);
+    padding: var(--th--padding, 1rem);
+    text-align: var(--th--text-align);
+    text-transform: var(--th--text-transform);
     border:
-      var(--table--th-border-width, 1px)
-      var(--table--th-border-style, solid)
-      var(--table--th-border-color);
+      var(--th--border--width, 1px)
+      var(--th--border--style, solid)
+      var(--th--border--color);
   }
 
   td {
-    font-size: var(--table--td-font-size);
-    font-family: var(--table--td-font-family);
-    font-weight: var(--table--td-font-weight);
-    padding: var(--table--td-padding, 1rem);
-    text-align: var(--table--td-text-align);
-    vertical-align: var(--table--td-vertical-align);
-    border-top:
-      var(--table--td-border-width, 1px)
-      var(--table--td-border-style, solid)
-      var(--table--td-border-color);
+    padding: var(--td--padding, 1rem);
+    text-align: var(--td--text-align);
+    vertical-align: var(--td--vertical-align);
+    border:
+      var(--td--border--width, 1px)
+      var(--td--border--style, solid)
+      var(--td--border--color);
   }
 
   &:last-child {

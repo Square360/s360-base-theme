@@ -14,8 +14,17 @@ export const headings = () => {
   }).join('');
 };
 
-export const paragraph = () => {
-  return paragraphData.map((paragraph) => {
-    return pTwig(paragraph)
+export const paragraph = (args) => {
+  let { paragraph_text } = args;
+
+  let paragraphs = paragraph_text.split(/\r?\n|\r|\n/g);
+
+  return paragraphs.map((paragraph_text) => {
+    if (!paragraph_text) {
+      paragraph_text = '&nbsp;';
+    }
+
+    return pTwig({ paragraph_text });
   }).join('');
 }
+paragraph.args = paragraphData;

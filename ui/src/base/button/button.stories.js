@@ -6,8 +6,9 @@ import buttonData from './button.yml';
  */
 export default { title: 'Foundations/Buttons' };
 
-export const button = () => {
+export const button = (args) => {
   return buttonTwig({
-    ...buttonData,
+    ...args,
   });
-}
+};
+button.args = buttonData;
