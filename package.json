@@ -3,5 +3,6 @@
   "workspaces": [
     "ui",
     "ui-core"
-  ]
+  ],
+  "packageManager": "yarn@4.4.1"
 }
