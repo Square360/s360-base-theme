@@ -22,12 +22,10 @@ $_span-height: 2px;
     background-color: currentColor;
     position: relative;
     transition: all 200ms ease-in-out;
-    border-radius: 100vw/100vw;
 
     &::before,
     &::after {
       content: '';
-      border-radius: 100vw/100vw;
       height: $_span-height;
       position: absolute;
       width: 100%;
@@ -66,7 +64,7 @@ $_span-height: 2px;
   }
 
   // **************************************************
-  /// MEDIA QUERIES
+  // MEDIA QUERIES
 
   @media (site-config.$main-menu-mq) {
     --main-menu-toggle--display: none;

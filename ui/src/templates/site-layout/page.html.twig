@@ -16,11 +16,6 @@
 } %}
 
 {% include "@ui-site-layout/component/site-footer/site-footer.twig" with {
-  site_footer_corporate_menu: drupal_block('system_menu_block:corporate', {
-    label: 'Corporate Menu'|t,
-    id: 'corporate',
-    label_display: false
-  }),
   site_footer_social_menu: drupal_block('system_menu_block:social', {
     label: 'Social Menu'|t,
     id: 'social',

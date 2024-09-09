@@ -14,10 +14,11 @@ import { brandingBlock } from '@ui-block/branding-block/component/branding-block
  */
 export default { title: 'Layout/Site Header' };
 
-export const siteHeader = () => {
+export const siteHeader = (args) => {
   return siteHeaderTwig({
-    ...siteHeaderData,
+    ...args,
     site_header_branding_block: brandingBlock(),
     site_header_main_menu: main(),
   });
 }
+siteHeader.args = siteHeaderData;

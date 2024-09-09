@@ -1,4 +1,4 @@
-Drupal.behaviors.layout = {
+Drupal.behaviors.siteLayout = {
   attach(context) {
     const MAIN_MENU_MQ = window.matchMedia(`(${ getComputedStyle(document.documentElement).getPropertyValue('--main-menu-mq') })`);
     const ROOT = document.documentElement;
