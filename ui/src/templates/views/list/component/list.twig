@@ -1,10 +1,13 @@
-{% if title %}
-  <h2 class="view__heading">{{ title }}</h2>
+{% if view_title %}
+  <h2 class="view__heading">{{ view_title }}</h2>
 {% endif %}
 
 <{{ list.type }} class="view__list">
   {% for row in rows %}
-    <li{{ row.attributes }}>
+    {% set row_attributes = row.attributes|default(create_attribute({})) %}
+    {% set row_attributes = row_attributes.addClass('view__row view__row--' ~ loop.index) %}
+
+    <li{{ row_attributes }}>
       {{- row.content -}}
     </li>
   {% endfor %}
