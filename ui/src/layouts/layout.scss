@@ -2,15 +2,13 @@
 @use "@s360-base-theme/ui-core/content-containers";
 
 .layout {
-  > .layout__content {
-    container-name: layout-content;
-    container-type: inline-size;
+  container-name: layout;
+  container-type: inline-size;
 
-    > .layout__regions {
-      display: grid;
-      row-gap: site-config.$spacer-0;
-      column-gap: site-config.$column-gap;
-    }
+  > .layout__content > .layout__regions {
+    display: grid;
+    row-gap: site-config.$spacer-0;
+    column-gap: site-config.$column-gap;
   }
 
   .layout__region {
@@ -18,6 +16,9 @@
     container-type: inline-size;
     display: flex;
     flex-direction: column;
+    opacity: var(--layout-region--opacity);
+    transition: all 500ms ease-in-out var(--layout-region--transition-delay, 0ms);
+    translate: var(--layout-region--translate);
 
     &--gap-sm {
       row-gap: site-config.$spacer-0;

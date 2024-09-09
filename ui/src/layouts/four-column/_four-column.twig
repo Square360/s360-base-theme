@@ -1,6 +1,6 @@
 {# NOTE: This file is for Storybook display purposes only. #}
 
-<div{{ attributes }}>
+<div{{ attributes.addClass(['layout', 'layout--four-column']) }}>
   <div class="layout__content">
     {% if paragraph_layout_header %}
       <div class="layout__header">
@@ -9,19 +9,19 @@
     {% endif %}
 
     <div class="layout__regions">
-      <div class="layout__region layout__region--first">
+      <div class="layout__region layout__region--first layout__region--gap-sm">
         {{ paragraph_layout_region_first }}
       </div>
 
-      <div class="layout__region layout__region--second">
+      <div class="layout__region layout__region--second layout__region--gap-sm">
         {{ paragraph_layout_region_second }}
       </div>
 
-      <div class="layout__region layout__region--third">
+      <div class="layout__region layout__region--third layout__region--gap-sm">
         {{ paragraph_layout_region_third }}
       </div>
 
-      <div class="layout__region layout__region--fourth">
+      <div class="layout__region layout__region--fourth layout__region--gap-sm">
         {{ paragraph_layout_region_fourth }}
       </div>
     </div>
