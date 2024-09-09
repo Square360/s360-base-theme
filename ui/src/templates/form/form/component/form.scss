@@ -1,10 +1,17 @@
 @use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/colors";
+@use "@s360-base-theme/ui-core/icon-embed";
 @use "s360-scss-toolkit";
 
 .form {
   .form__description {
     margin-top: 0.25em;
     color: inherit;
+  }
+
+  .form__element:has(:focus-visible):not(.form__element--actions) {
+    outline: 5px solid colors.$black;
+    outline-offset: 4px;
   }
 
   .form__select-wrapper {
@@ -15,19 +22,15 @@
     }
 
     &::after {
-      content: '';
-      background-color: currentColor;
-      mask-image: site-config.$circle-chevron-down;
-      mask-repeat: no-repeat;
-      mask-position: center;
-      font-size: s360-scss-toolkit.font-size-ms(1);
+      --icon-embed--bg-color: var(--text--color);
+      --icon-embed--translate: 0 -50%;
+      --icon-embed--mask-image: #{ site-config.$chevron-down };
+      @extend %icon-embed;
+
       top: 50%;
-      transform: translateY(-50%);
-      right: 1em;
+      right: 0;
       position: absolute;
       pointer-events: none;
-      width: 1em;
-      height: 1em;
     }
   }
 }
