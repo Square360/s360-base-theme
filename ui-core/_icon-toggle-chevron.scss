@@ -1,0 +1,48 @@
+%icon-toggle-chevron {
+  $_toggle-weight: 1px;
+  $_toggle-size: 1rem;
+
+  display: inline-block;
+  margin-left: calc(#{ $_toggle-size } * 0.5);
+  position: relative;
+  translate: 0 -0.125rem;
+  width: calc(#{ $_toggle-size } * 0.5);
+
+  &::after,
+  &::before {
+    background-color: var(--icon-toggle-chevron--color, currentColor);
+    border-top: #{ $_toggle-weight } solid var(--icon-toggle-chevron--color, currentColor);
+    border-bottom: #{ $_toggle-weight } solid var(--icon-toggle-chevron--color, currentColor);
+    content: '';
+    height: 0;
+    position: absolute;
+    display: block;
+    right: 0;
+    top: var(--icon-toggle-chevron--top, calc(50% - #{ $_toggle-weight }));
+    transition:
+      all 200ms ease-in-out,
+      transform 200ms ease-in-out 200ms;
+    width: 100%;
+  }
+
+  &::before {
+    transform: translate(calc(-75% + #{ $_toggle-weight }), calc(#{ $_toggle-weight } * 0.5)) rotate(45deg);
+    transform-origin: right top;
+  }
+
+  &::after {
+    transform: translate(calc(25% + #{ $_toggle-weight } * -0.25), 0) rotate(-45deg);
+    transform-origin: left bottom;
+  }
+}
+
+%icon-toggle-chevron-open {
+  // Translate the elements so that the join point stays connected
+  &::before {
+    transform: translate(calc(-100% + #{ $_toggle-weight }), calc(#{ $_toggle-size } * -0.5 - #{ $_toggle-weight } * -0.5)) rotate(-45deg);
+  }
+
+  &::after {
+    transform: translate(calc(0% + #{ $_toggle-weight } * -0.25), calc(#{ $_toggle-size } * -0.5)) rotate(45deg);
+  }
+}

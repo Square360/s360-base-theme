@@ -1,11 +1,13 @@
 %icon-embed {
-  background-color: var(--icon-embed--background-color, currentColor);
+  aspect-ratio: 1 / 1;
+  background-color: var(--icon-embed--bg-color, currentColor);
   content: "";
-  display: block;
-  height: 1em;
-  font-size: var(--icon-embed--font-size);
+  display: var(--icon-embed--display, inline-block);
   mask-image: var(--icon-embed--mask-image);
+  margin-inline: var(--icon-embed--margin-inline);
   mask-position: center;
   mask-repeat: no-repeat;
-  width: 1em;
+  transition: all 100ms ease-in-out;
+  translate: var(--icon-embed--translate, 0 0);
+  min-width: var(--icon-embed--min-width, 1em);
 }

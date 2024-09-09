@@ -1,0 +1,66 @@
+%_animate-background {
+  display: inline;
+  line-height: 1;
+  background-image: linear-gradient(0deg,
+    var(--animate-background--gradient-color) 0%,
+    var(--animate-background--gradient-color) 100%
+  );
+  background-size:
+    var(--animate-background--background-size--width, 0%)
+    var(--animate-background--background-size--height, 0%);
+  background-repeat: no-repeat;
+  background-position: var(--animate-background--background-position);
+  color: var(--animate-background--color);
+  transition: all 200ms ease-in-out;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--animate-background--color--active, var(--animate-background--color));
+  }
+}
+
+%animate-background-to-top {
+  --animate-background--background-size--width: 100%;
+  --animate-background--background-position: bottom;
+  @extend %_animate-background;
+
+  &:hover,
+  &:focus-visible {
+    --animate-background--background-size--height: 100%;
+  }
+}
+
+%animate-background-to-bottom {
+  --animate-background--background-size--width: 100%;
+  --animate-background--background-position: top;
+  @extend %_animate-background;
+
+  &:hover,
+  &:focus-visible {
+    --animate-background--background-size--height: 100%;
+  }
+}
+
+%animate-background-to-left {
+  --animate-background--background-size--height: 100%;
+  --animate-background--background-size--width: 0%;
+  --animate-background--background-position: left;
+  @extend %_animate-background;
+
+  &:hover,
+  &:focus-visible {
+    --animate-background--background-size--width: 100%;
+  }
+}
+
+%animate-background-to-right {
+  --animate-background--background-size--height: 100%;
+  --animate-background--background-size--width: 0%;
+  --animate-background--background-position: right;
+  @extend %_animate-background;
+
+  &:hover,
+  &:focus-visible {
+    --animate-background--background-size--width: 100%;
+  }
+}

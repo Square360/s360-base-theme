@@ -1,28 +1,23 @@
 @use "./site-config";
 @use "./colors";
-@use "./heading-font-sizes";
 @use "./heading-styles";
 @use "./typography";
 @use "s360-scss-toolkit";
 
 %text-as-h1 {
   @extend %heading-as-h1;
-  @extend %heading-base;
 }
 
 %text-as-h2 {
   @extend %heading-as-h2;
-  @extend %heading-base;
 }
 
 %text-as-h3 {
   @extend %heading-as-h3;
-  @extend %heading-base;
 }
 
 %text-as-h4 {
   @extend %heading-as-h4;
-  @extend %heading-base;
 }
 
 %text-as-p {
@@ -32,10 +27,10 @@
   font-size: var(--p--font-size);
   font-style: var(--p--font-style);
   font-weight: var(--p--font-weight);
-  line-height: var(--p--line-height);
+  line-height: var(--p--line-height, 1.6);
   margin: var(--p--margin, 0 0 1em 0);
   padding: var(--p--padding, 0);
-  max-width: var(--p--max-width);
+  max-width: var(--p--max-width, #{ site-config.$max-line-length });
 
   &:last-of-type {
     margin-bottom: 0;
@@ -44,10 +39,10 @@
 
 %text-as-blockquote {
   --p--font-family: var(--blockquote--font-family);
-  --p--font-style: var(--blockquote--font-style);
-  --p--line-height: var(--blockquote--line-height);
+  // --p--font-style: var(--blockquote--font-style);
+  // --p--line-height: var(--blockquote--line-height);
   --p--font-size: var(--blockquote--font-size);
-  --p--font-weight: var(--blockquote--font-weight);
+  // --p--font-weight: var(--blockquote--font-weight);
 
   margin: var(--blockquote--margin, 0);
   padding: var(--blockquote--padding, 0);

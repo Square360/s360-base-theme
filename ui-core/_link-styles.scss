@@ -1,12 +1,6 @@
 @use "./colors";
 
 %a {
-  background-color: var(--a--background-color, transparent);
-  border:
-    var(--a--border-width, 0)
-    var(--a--border-style, solid)
-    var(--a--border-color, transparent);
-  border-radius: var(--a--border-radius);
   color: var(--a--color);
   cursor: pointer;
   display: var(--a--display, inline-block);
@@ -17,24 +11,26 @@
   line-height: var(--a--line-height);
   margin: var(--a--margin, 0);
   outline:
-    var(--a--outline-width, 0)
-    var(--a--outline-style, dashed)
-    var(--a--outline-color, currentColor);
-  outline-offset: var(--a--outline-offset, 4px);
+    var(--a--outline--width, 0)
+    dashed
+    var(--a--outline--color, currentColor);
+  outline-offset: 4px;
   padding: var(--a--padding, 0);
   pointer-events: var(--a--pointer-events, all);
   position: var(--a--position, relative);
-  text-decoration: var(--a--text-decoration, none);
+  text-decoration-line: var(--a--text-decoration-line, none);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
   text-transform: var(--a--text-transform);
   transition: var(--a--transition, all 200ms ease-in-out);
   width: var(--a--width);
 
   &:focus-visible {
-    --a--outline-width: 4px;
+    --a--outline--width: 4px;
   }
 
-  &:focus,
-  &:hover {
-    color: var(--a--color--hover, var(--a--color, currentColor));
+  &:hover,
+  &:focus {
+    color: var(--a--color--active, var(--a--color, currentColor));
   }
 }

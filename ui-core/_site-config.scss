@@ -1,6 +1,6 @@
 $SITE_CONFIG: (
   font-size-base: 16,
-  modular-scale-ratio: 1,
+  modular-scale-ratio: 1.333,
 );
 
 @use "sass:math";
@@ -22,6 +22,9 @@ $spacer-down-3: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-3), '
 $spacer-down-4: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-4), 'px');
 $spacer-down-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-5), 'px');
 
+@function spacer($amount: 0) {
+  @return s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale($amount), 'px');
+}
 
 // **************************************************
 // GAPS AND GRIDS
@@ -29,19 +32,40 @@ $spacer-down-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-5), '
 $grid-columns: 12;
 $column-gap: $spacer-0;
 
-// @function column-width() {
-//   @return calc(#{ $site-content-area / $grid-columns });
-// }
+/// Converts a $count of columns into a fixed value when the container width is unknown.
+///
+/// @author Steven Keiser
+/// @author Brian Milea
+///
+/// @param {number} $count
+///   The number of columns.
+///
+/// @param {number} $content-area-width
+///   The width of the content area. Defaults to $site-content-area, but accepts percentages.
+///
+/// @example
+///   column-width(4, 100%);
+///
+/// @return {number}
+///   The given $count converted to a calc().
+@function column-width($count: 1, $content-area-width: $site-content-area) {
+  // Remove the gutters to get a true column width.
+  // Add back gutters for multiple columns.
+  $_content-gutters: $column-gap * ($grid-columns - 1);
+  @return calc((#{ $content-area-width } - #{ $_content-gutters }) / #{ $grid-columns} * #{ $count } + #{ $column-gap * ($count - 1) });
+}
 
 // **************************************************
-// LAYOUT
+// TEXT AND LAYOUT
 
 $site-max-width: 1440px;
 $site-side-margin: s360-scss-toolkit.linear-scale($spacer-0, $spacer-0);
 $site-content-area: calc(#{ $site-max-width } - calc(#{ $site-side-margin } * 2));
 $main-menu-mq: 'min-width: #{ mq.$mq-1024 }';
+$max-line-length: 80ch;
+$default-line-height: 1;
 
 // **************************************************
 // UI
 
-$circle-chevron-down: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgUHJvIDYuMS4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlIChDb21tZXJjaWFsIExpY2Vuc2UpIENvcHlyaWdodCAyMDIyIEZvbnRpY29ucywgSW5jLiAtLT48cGF0aCBkPSJNMzU2LjcgMjEyLjdMMjU2IDMxMy40TDE1NS4zIDIxMi43Yy02LjI1LTYuMjUtMTYuMzgtNi4yNS0yMi42MiAwcy02LjI1IDE2LjM4IDAgMjIuNjJsMTEyIDExMkMyNDcuOCAzNTAuNCAyNTEuOSAzNTIgMjU2IDM1MnM4LjE4OC0xLjU2MiAxMS4zMS00LjY4OGwxMTItMTEyYzYuMjUtNi4yNSA2LjI1LTE2LjM4IDAtMjIuNjJTMzYyLjkgMjA2LjQgMzU2LjcgMjEyLjd6TTI1NiAwQzExNC42IDAgMCAxMTQuNiAwIDI1NnMxMTQuNiAyNTYgMjU2IDI1NnMyNTYtMTE0LjYgMjU2LTI1NlMzOTcuNCAwIDI1NiAwek0yNTYgNDgwYy0xMjMuNSAwLTIyNC0xMDAuNS0yMjQtMjI0czEwMC41LTIyNCAyMjQtMjI0czIyNCAxMDAuNSAyMjQgMjI0UzM3OS41IDQ4MCAyNTYgNDgweiIvPjwvc3ZnPg==");
+$chevron-down: '';
