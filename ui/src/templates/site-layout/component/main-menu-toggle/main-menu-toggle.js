@@ -1,8 +1,8 @@
-import './menu-toggle.scss';
+import './main-menu-toggle.scss';
 
 Drupal.behaviors.menuToggle = {
   attach(context) {
-    const MENU_TOGGLE = context.querySelector('[data-js="menu-toggle"]');
+    const MENU_TOGGLE = context.querySelector('[data-js="main-menu-toggle"]');
     if (!MENU_TOGGLE) return;
 
     MENU_TOGGLE.addEventListener('click', () => {

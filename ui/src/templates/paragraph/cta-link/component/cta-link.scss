@@ -1,18 +1,6 @@
 @use "@s360-base-theme/ui-core/site-config";
-@use "@s360-base-theme/ui-core/cta-primary";
-@use "@s360-base-theme/ui-core/cta-secondary";
 @use "s360-scss-toolkit";
 
 .cta-link {
-  &.cta-link--primary {
-    a {
-      @extend %cta-primary;
-    }
-  }
 
-  &.cta-link--secondary {
-    a {
-      @extend %cta-secondary;
-    }
-  }
 }
