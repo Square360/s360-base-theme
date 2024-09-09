@@ -15,7 +15,11 @@ setupTwig(Twig);
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   layout: 'none',
-  backgrounds: { disable: true },
+  /* Uncomment if you want to enabled user prefers @media queries.
+  cssUserPrefs: {
+    "prefers-color-scheme": "dark",
+  },
+  */
 };
 
 export const decorators = [
