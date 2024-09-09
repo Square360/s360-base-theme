@@ -1,4 +1,4 @@
-menu_name: social
+menu_name: Social
 items:
   - title: '<i class="fab fa-twitter"></i>'
     url: '#'

@@ -1,6 +1,4 @@
-{{ attach_library("s360_base_theme/menu." ~ menu_name) }}
-
-{% macro menu_links(items, attributes, menu_level, menu_name, item_title) %}
+{% macro menu_links(items, attributes, menu_level, menu_name, item_title, node_id) %}
   {% import _self as menus %}
 
   {% if items %}
@@ -12,8 +10,7 @@
           'menu--level-' ~ menu_level
         ]
       %}
-      <ul{{ attributes.addClass(classes).setAttribute('data-js', menu_name ~ '-menu') }}>
-
+      <ul{{ attributes.addClass(classes) }}>
     {% else %}
       {%
         set classes = [
@@ -27,15 +24,24 @@
     {% endif %}
 
     {% for item in items %}
+      {% set menu_attributes = menus_attribute(items|keys[loop.index0]) %}
+
+      {# Only set active trail for routed urls that are node. #}
+      {% if item.url.isrouted and item.url.routeParameters.node %}
+        {# The routed node must match the node_id. #}
+        {% if item.url.routeParameters.node == node_id %}
+          {% set item = item|merge({
+            in_active_trail: 'true'
+          }) %}
+        {% endif %}
+      {% endif %}
+
       {% if item.url.isrouted and item.url.routeName == '<nolink>' %}
         {% set menu_item_type = 'nolink' %}
-
       {% elseif item.url.isrouted and item.url.routeName == '<button>' %}
         {% set menu_item_type = 'button' %}
-
       {% elseif item.url.isrouted and item.below and menu_level == 0 and (menu_name in ['main']) %}
         {% set menu_item_type = 'details_summary' %}
-
       {% else %}
         {% set menu_item_type = 'link' %}
       {% endif %}
@@ -45,14 +51,42 @@
           'menu__item',
           item.below ? 'menu__item--has-submenu' : '',
           item.in_active_trail ? 'menu__item--active' : '',
+          menu_attributes.item.class ? menu_attributes.item.class
         ]
       %}
 
+      {# {% if not menu_attributes.link %}
+        {% set menu_attributes = menu_attributes|merge({'link': {}}) %}
+      {% endif %} #}
+
+      {# {% if item.in_active_trail %}
+        {% set menu_attributes = menu_attributes|merge({
+          link: menu_attributes.link|merge({
+            'aria-current': ['page']
+          })
+        }) %}
+      {% endif %} #}
+
       <li{{ item.attributes.addClass(item_classes) }}>
+        {% if menu_attributes.item.id %}
+          {{ item.attributes.setAttribute('id', menu_attributes.item.id) }}
+        {% endif %}
+
+        {% if menu_attributes.item.style %}
+          {{ item.attributes.setAttribute('style', menu_attributes.item.style) }}
+        {% endif %}
+
         {% if menu_item_type == 'details_summary' %}
+          {% set link_text = item.title %}
+
+          {% if menu_name == 'main' and menu_level == 0 %}
+            {% set tmp = item.title ~ '<div class="menu__expand"></div>' %}
+            {% set link_text %}{{ tmp|raw }}{% endset %}
+          {% endif %}
+
           <details class="menu__details">
             <summary class="menu__summary">
-              {{ link(item.title, item.url, (item.in_active_trail ? { 'aria-current': ['page'] } : {})) }}
+              {{ link(link_text, item.url, (item.in_active_trail ? { 'aria-current': ['page'] } : {})) }}
             </summary>
             <div class="menu__submenu-wrapper">
               <div class="menu__submenu-wrapper-content">
@@ -62,16 +96,16 @@
           </details>
 
         {% elseif menu_item_type == 'link' %}
-          {{ link(item.title, item.url, (item.in_active_trail ? { 'aria-current': ['page'] } : {})) }}
-          {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item.title) }}
+          {{ link(item.title, item.url, menu_attributes.link) }}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item.title, node_id) }}
 
         {% elseif menu_item_type == 'nolink' %}
           <span>{{ item.title }}</span>
-          {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item.title) }}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item.title, node_id) }}
 
         {% elseif menu_item_type == 'button' %}
           <button>{{ item.title }}</button>
-          {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item.title) }}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item.title, node_id) }}
         {% endif %}
       </li>
     {% endfor %}

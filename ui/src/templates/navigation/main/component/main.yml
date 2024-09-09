@@ -1,4 +1,4 @@
-menu_name: main
+menu_name: Main
 items:
   - title: 'Main Menu Link'
     url: '#'
