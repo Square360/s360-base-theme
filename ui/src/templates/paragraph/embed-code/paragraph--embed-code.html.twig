@@ -1,3 +1,13 @@
+{#
+/**
+ * Available Variables:
+ * - embed_code: The HTML code representing the embed.
+ * - embed_type: The type of being embedded.
+ *
+ * @see s360_base_theme_preprocess_paragraph__embed_code()
+ */
+#}
+
 {{ attach_library('s360_base_theme/paragraph.embed-code') }}
 
 {% include "@ui-paragraph/embed-code/component/embed-code.twig" with {
