@@ -37,16 +37,33 @@ function s360_base_theme_get_media_info(int $mid) {
 
   /** @var Drupal\media\Entity\Media $media */
   $media = $entity_type_manager->getStorage('media')->load($mid);
+
+  // No media found!
+  if (!$media) {
+    \Drupal::logger('s360_base_theme.theme')->error('Error loading media (mid: @mid)', ['@mid' => $mid]);
+
+    return NULL;
+  }
+
   $media_bundle = $media->bundle();
   $media_info = [
     'media' => [
+      'name' => $media->getName(),
       'entity' => $media,
       'type' => $media_bundle,
       'label' => $media->label(),
     ]
   ];
 
-  $thumbnail_fid = $media->thumbnail->target_id;
+  $media_info['media']['caption'] = '';
+
+  $field_media_caption = $media->field_media_caption?->first()?->getValue();
+
+  if ($field_media_caption) {
+    $media_info['media']['caption'] = $field_media_caption['value'];
+  }
+
+  $thumbnail_fid = $media->thumbnail?->target_id;
 
   if ($thumbnail_fid) {
     $thumbnail = s360_base_theme_get_file_info($thumbnail_fid);
@@ -66,6 +83,10 @@ function s360_base_theme_get_media_info(int $mid) {
       $media_info = array_merge($media_info, s360_base_theme_get_media_remote_video_info($media));
       break;
 
+    case 'remote_audio':
+      $media_info = array_merge($media_info, s360_base_theme_get_media_remote_audio_info($media));
+      break;
+
     default:
       break;
   }
@@ -83,49 +104,15 @@ function s360_base_theme_get_media_info(int $mid) {
  *   Either an array of information for the media or false.
  */
 function s360_base_theme_get_media_document_info(Drupal\media\Entity\Media $media) {
-  if (!$media->hasField('field_media_document')) {
+  $field_media_document = $media->field_media_document?->target_id;
+
+  if (!$field_media_document) {
     return FALSE;
   }
 
-  $field_media_document = $media->get('field_media_document');
+  $file_info = s360_base_theme_get_file_info($field_media_document);
 
-  if (!$field_media_document->count()) {
-    return FALSE;
-  }
-
-  $file_info = s360_base_theme_get_file_info($field_media_document->target_id);
-
-  // Get a file icon based on the mime type.
-  switch ($file_info['file']['mime_type']) {
-    // .pdf extension.
-    case 'application/pdf':
-      $icon = 'fa-file-pdf';
-      break;
-
-    // .doc and .docx extensions.
-    case 'application/msword':
-    case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-      $icon = 'fa-file-word';
-      break;
-
-    // .xls and .xlsx extensions.
-    case 'application/vnd.ms-excel':
-    case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-      $icon = 'fa-file-excel';
-      break;
-
-    // .ppt and .pptx extensions.
-    case 'application/vnd.ms-powerpoint':
-    case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
-      $icon = 'fa-file-powerpoint';
-      break;
-
-    default:
-      $icon = 'fa-file';
-      break;
-  }
-
-  return array_merge($file_info, ['icon' => $icon]);
+  return $file_info;
 }
 
 /**
@@ -138,21 +125,17 @@ function s360_base_theme_get_media_document_info(Drupal\media\Entity\Media $medi
  *   Either an array of information for the media or false.
  */
 function s360_base_theme_get_media_image_info(Drupal\media\Entity\Media $media) {
-  if (!$media->hasField('field_media_image')) {
+  $field_media_image = $media->field_media_image;
+
+  if (!$field_media_image) {
     return FALSE;
   }
 
-  $field_media_image = $media->get('field_media_image');
+  $file_info = s360_base_theme_get_file_info($field_media_image?->target_id);
 
-  if (!$field_media_image->count()) {
-    return FALSE;
-  }
-
-  $file_info = s360_base_theme_get_file_info($field_media_image->target_id);
-
-  $file_info['file']['width'] = $field_media_image->width . 'px';
-  $file_info['file']['height'] = $field_media_image->height . 'px';
-  $file_info['file']['alt'] = $field_media_image->alt;
+  $file_info['file']['width'] = $field_media_image?->width . 'px';
+  $file_info['file']['height'] = $field_media_image?->height . 'px';
+  $file_info['file']['alt'] = $field_media_image?->alt;
 
   return $file_info;
 }
@@ -167,18 +150,36 @@ function s360_base_theme_get_media_image_info(Drupal\media\Entity\Media $media) 
  *   Either an array of information for the media or false.
  */
 function s360_base_theme_get_media_remote_video_info(Drupal\media\Entity\Media $media) {
-  if (!$media->hasField('field_media_oembed_video')) {
-    return FALSE;
-  }
+  $field_media_oembed_video = $media->field_media_oembed_video?->getString();
 
-  $field_media_oembed_video = $media->get('field_media_oembed_video');
-
-  if (!$field_media_oembed_video->count()) {
+  if (!$field_media_oembed_video) {
     return FALSE;
   }
 
   return [
-    'url' => Url::fromUri($field_media_oembed_video->getString()),
+    'url' => Url::fromUri($field_media_oembed_video),
+    'icon' => 'fa-circle-play',
+  ];
+}
+
+/**
+ * Get file information about the media remote audio.
+ *
+ * @param \Drupal\media\Entity\Media $media
+ *   The Drupal media entity.
+ *
+ * @return bool|array
+ *   Either an array of information for the media or false.
+ */
+function s360_base_theme_get_media_remote_audio_info(Media $media) {
+  $field_media_oembed_audio = $media->field_media_oembed_audio?->getString();
+
+  if (!$field_media_oembed_audio) {
+    return FALSE;
+  }
+
+  return [
+    'url' => Url::fromUri($field_media_oembed_audio),
     'icon' => 'fa-circle-play',
   ];
 }
@@ -197,18 +198,26 @@ function s360_base_theme_get_file_info(int $fid) {
 
   /** @var Drupal\file\Entity\File $file */
   $file = $entity_type_manager->getStorage('file')->load($fid);
+
+  // No media found!
+  if (!$file) {
+    \Drupal::logger('s360_base_theme.theme')->error('Error loading file (fid: @fid)', ['@fid' => $fid]);
+
+    return NULL;
+  }
+
   $file_mime_type = $file->getMimeType();
   $file_size = $file->getSize();
   $file_filename = $file->getFilename();
   $file_url = $file->createFileUrl();
   $file_uri = $file->getFileUri();
 
-  $mime_type_conversion = _s360_base_theme_file_mime_type_conversion($file_mime_type);
+  $mime_type_conversion = _s360_base_theme_file_mime_type_conversion((string) $file_mime_type);
 
   return [
     'file' => [
       'entity' => $file,
-      'size' => _s360_base_theme_file_size_conversion($file_size),
+      'size' => $file_size ? _s360_base_theme_file_size_conversion($file_size) : 0,
       'filename' => $file_filename,
       'mime_type' => $file_mime_type,
       'relative_url' => $file_url,
@@ -239,7 +248,8 @@ function s360_base_theme_get_social_icon(string $social_name) {
 
     case 'X Twitter':
     case 'Twitter X':
-      return 'fab fab-x-twitter';
+    case 'X':
+      return 'fab fa-x-twitter';
 
     case 'Facebook':
       return 'fab fa-facebook';
@@ -258,6 +268,10 @@ function s360_base_theme_get_social_icon(string $social_name) {
     case 'Flickr':
     case 'Flicker':
       return 'fab fa-flickr';
+
+    case 'Threads':
+    case 'Thread':
+      return 'fab fa-threads';
 
     default:
       return 'fal fa-globe';
@@ -292,30 +306,31 @@ function _s360_base_theme_file_size_conversion($file_size) {
   $power = floor(log($file_size, $one_kb));
 
   // Format and return the converted filesize to human readable.
-  return number_format($file_size / pow($one_kb, $power), 2, '.', ',') . '' . $units[$power];
+  return number_format($file_size / pow($one_kb, $power), 2, '.', ',') . $units[$power];
 }
 
 /**
  * Converts a mime type into an icon and file type.
  *
  * @param string $file_mime_type
- * @return An array containing icon and file type.
+ * @return
+ *   An array containing icon and file type.
  */
 function _s360_base_theme_file_mime_type_conversion(string $file_mime_type) {
   switch ($file_mime_type) {
     case 'image/jpeg':
       $icon = 'fa-file-image';
-      $file_type = 'jpg';
+      $file_type = 'JPG';
       break;
 
     case 'image/png':
       $icon = 'fa-file-image';
-      $file_type = 'png';
+      $file_type = 'PNG';
       break;
 
     case 'image/gif':
       $icon = 'fa-file-image';
-      $file_type = 'gif';
+      $file_type = 'GIF';
       break;
 
     case 'application/pdf':
