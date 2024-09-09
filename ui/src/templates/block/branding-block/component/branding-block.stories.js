@@ -7,6 +7,9 @@ import './branding-block.js';
  */
 export default { title: 'Layout/Branding Block' };
 
-export const brandingBlock = () => {
-  return brandingBlockTwig({ ...brandingBlockData });
+export const brandingBlock = (args) => {
+  return brandingBlockTwig({
+    ...args
+  });
 }
+brandingBlock.args = brandingBlockData;
