@@ -8,13 +8,13 @@
 /// @access public
 ///
 %cta-primary {
-  background-color: var(--cta-primary--background-color);
+  background-color: var(--cta-primary--bg-color);
   color: var(--cta-primary--color);
   text-decoration: none;
 
   &:hover,
   &:focus {
-    background-color: var(--cta-primary--background-color--hover, var(--cta-primary--background-color));
+    background-color: var(--cta-primary--bg-color--hover, var(--cta-primary--bg-color));
     color: var(--cta-primary--color--hover, var(--cta-primary-color));
   }
 }

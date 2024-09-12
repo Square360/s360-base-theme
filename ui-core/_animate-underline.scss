@@ -5,7 +5,11 @@
 
   &:hover,
   &:focus {
-    text-decoration-line: var(--animate-underline--text-decoration-line--active, var(--animate-underline--text-decoration-line, underline));
-    text-underline-offset: var(--animate-underline--text-underline-offset--active, var(--animate-underline--text-underline-offset, 0.125em));
+    @extend %animate-underline-active;
   }
+}
+
+%animate-underline-active {
+  text-decoration-line: var(--animate-underline--text-decoration-line--active, var(--animate-underline--text-decoration-line, underline));
+  text-underline-offset: var(--animate-underline--text-underline-offset--active, var(--animate-underline--text-underline-offset, 0.125em));
 }

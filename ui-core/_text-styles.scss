@@ -27,7 +27,7 @@
   font-size: var(--p--font-size);
   font-style: var(--p--font-style);
   font-weight: var(--p--font-weight);
-  line-height: var(--p--line-height, 1.6);
+  line-height: var(--p--line-height, #{ site-config.$text-line-height });
   margin: var(--p--margin, 0 0 1em 0);
   padding: var(--p--padding, 0);
   max-width: var(--p--max-width, #{ site-config.$max-line-length });

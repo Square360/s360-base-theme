@@ -43,7 +43,6 @@
 
 %animate-background-to-left {
   --animate-background--background-size--height: 100%;
-  --animate-background--background-size--width: 0%;
   --animate-background--background-position: left;
   @extend %_animate-background;
 
@@ -55,7 +54,6 @@
 
 %animate-background-to-right {
   --animate-background--background-size--height: 100%;
-  --animate-background--background-size--width: 0%;
   --animate-background--background-position: right;
   @extend %_animate-background;
 

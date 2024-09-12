@@ -19,8 +19,8 @@
   pointer-events: var(--a--pointer-events, all);
   position: var(--a--position, relative);
   text-decoration-line: var(--a--text-decoration-line, none);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.25em;
+  text-decoration-thickness: var(--a--text-decoration-thickness, 1px);
+  text-underline-offset: var(--a--text-underline-offset, 0.25em);
   text-transform: var(--a--text-transform);
   transition: var(--a--transition, all 200ms ease-in-out);
   width: var(--a--width);

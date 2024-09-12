@@ -16,7 +16,7 @@
 
     &::before,
     &::after {
-      --icon-embed-mask-image: '';
+      --icon-embed--mask-image: '';
       @extend %icon-embed;
 
       position: absolute;
