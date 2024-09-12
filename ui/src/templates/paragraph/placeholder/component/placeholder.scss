@@ -1,10 +1,15 @@
 @use "@s360-base-theme/ui-core/site-config";
 @use "@s360-base-theme/ui-core/colors";
+@use "@s360-base-theme/ui-core/text-styles";
 @use "s360-scss-toolkit";
 
 .placeholder {
   border: 4px dashed currentColor;
   padding: 1em;
+
+  &__title {
+    @extend %text-as-h3;
+  }
 
   > * + * {
     margin-top: 0.5em;
