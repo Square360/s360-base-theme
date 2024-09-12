@@ -1,7 +1,8 @@
-import pTwig from './p/_p.twig';
 import paragraphData from './p/p.yml';
 import headingsTwig from './headings/_headings.twig';
 import headingsData from './headings/headings.yml';
+
+import { formatParagraphText } from '.storybook/_utils.js';
 
 /**
  * Storybook Definition.
@@ -17,14 +18,6 @@ export const headings = () => {
 export const paragraph = (args) => {
   let { paragraph_text } = args;
 
-  let paragraphs = paragraph_text.split(/\r?\n|\r|\n/g);
-
-  return paragraphs.map((paragraph_text) => {
-    if (!paragraph_text) {
-      paragraph_text = '&nbsp;';
-    }
-
-    return pTwig({ paragraph_text });
-  }).join('');
+  return formatParagraphText(paragraph_text);
 }
 paragraph.args = paragraphData;
