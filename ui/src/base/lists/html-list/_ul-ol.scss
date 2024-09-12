@@ -3,12 +3,12 @@ ol {
   margin: var(--list--margin, 1em 0);
   padding: var(--list--padding, 0 0 0 2em);
   display: var(--list--display, block);
-  line-height: var(--list--line-height, 1.6);
+  line-height: var(--list--line-height, 1);
+  max-width: var(--list--max-width);
 
   &[class] {
     --list--margin: 0;
     --list--padding: 0;
-    --list--line-height: 1;
     --li--style-type: none;
   }
 
