@@ -3,6 +3,10 @@
 @use "s360-scss-toolkit";
 
 .ck-content {
+  // Set ul/ol vars.
+  --list--line-height: #{ site-config.$text-line-height };
+  --list--max-width: #{ site-config.$max-line-length };
+
   :is(h2, h3, h4, h5, h6):first-child {
     --heading--margin-top: 0;
   }
@@ -21,9 +25,5 @@
       margin-left: site-config.$spacer-0;
       float: right;
     }
-  }
-
-  ul, ol {
-    max-width: site-config.$max-line-length;
   }
 }
