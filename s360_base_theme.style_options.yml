@@ -27,9 +27,9 @@ options:
         label: 'Large'
         class: 'layout--margin-bottom-lg'
 
-  layout_region_gap_options:
+  layout_region_component_gap_options:
     plugin: css_class
-    label: Item Component Margin Bottom
+    label: Component Gap
     default: small
     description: The amount of space between items in this region.
     options:
@@ -45,7 +45,7 @@ options:
         label: 'Large'
         class: 'layout__region--gap-lg'
 
-  layout_region_sticky_options:
+  layout_region_sticky_column_options:
     plugin: checkbox
     label: Sticky Column
     default: false
@@ -86,7 +86,7 @@ options:
   # ##################################################
   # Two Column Specific Options
 
-  layout_two_column_ratio_options:
+  layout_two_column_column_ratio_options:
     plugin: css_class
     label: Column Ratio
     default: 50-50
@@ -128,7 +128,7 @@ options:
   # ##################################################
   # Three Column Specific Options
 
-  layout_three_column_ratio_options:
+  layout_three_column_column_ratio_options:
     plugin: css_class
     label: Column Ratio
     default: 33-33-33
@@ -149,7 +149,7 @@ options:
   # ##################################################
   # Flex Specific Options
 
-  layout_flex_justify_options:
+  layout_flex_horizontal_align_options:
     plugin: css_class
     label: Horizontal Alignment
     default: justify-start
@@ -176,7 +176,7 @@ contexts:
       options:
         layout_margin_bottom_options:
           layout: true
-        layout_region_gap_options:
+        layout_region_component_gap_options:
           layout: false
           regions: true
 
@@ -189,11 +189,11 @@ contexts:
 
     layout_custom_two_column:
       options:
-        layout_two_column_ratio_options:
+        layout_two_column_column_ratio_options:
           layout: true
         layout_two_column_mobile_order_options:
           layout: true
-        layout_region_sticky_options:
+        layout_region_sticky_column_options:
           layout: false
           regions: true
         layout_vertical_align_options:
@@ -201,7 +201,7 @@ contexts:
 
     layout_custom_three_column:
       options:
-        layout_three_column_ratio_options:
+        layout_three_column_column_ratio_options:
           layout: true
         layout_vertical_align_options:
           layout: true
@@ -213,7 +213,7 @@ contexts:
 
     layout_custom_flex:
       options:
-        layout_flex_justify_options:
+        layout_flex_horizontal_align_options:
           layout: true
         layout_vertical_align_options:
           layout: true
