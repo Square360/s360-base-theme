@@ -7,34 +7,16 @@ import './placeholder.js';
  */
 export default { title: 'Layout Components/Placeholder' };
 
-export const placeholder = ({ paragraph_field_title, paragraph_field_body }) => {
+export const placeholder = (args) => {
+  let { paragraph_field_title, paragraph_field_body } = args ?? '';
+
   paragraph_field_title = (paragraph_field_title)
-    ? paragraph_field_title || placeholderData.paragraph_field_title
-    : '';
-  paragraph_field_body = (paragraph_field_body)
-    ? paragraph_field_body || placeholderData.paragraph_field_body
-    : '';
+    ? paragraph_field_title
+    : placeholderData.paragraph_field_title;
 
   return placeholderTwig({
     paragraph_field_title,
-    paragraph_field_body,
+    paragraph_field_body
   });
-}
-placeholder.argTypes = {
-  paragraph_field_body: {
-    name: 'label',
-    control: {
-      type: 'text',
-    }
-  },
-  paragraph_field_title: {
-    name: 'label',
-    control: {
-      type: 'text',
-    }
-  }
-}
-placeholder.args = {
-  paragraph_field_title: placeholderData.paragraph_field_title,
-  paragraph_field_body: placeholderData.paragraph_field_body
-}
+};
+placeholder.args = placeholderData;

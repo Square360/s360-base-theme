@@ -1,21 +1,29 @@
 {% set view_tag = view_tag|default('div') %}
 
-<{{ view_tag }}{{ attributes }}>
-  {% block view_sticky %}
-    {{ view_sticky }}
-  {% endblock %}
+{% set classes = [
+  'view',
+  'view--' ~ id|clean_class,
+  'view--' ~ display_id|clean_class,
+  'view--' ~ view_format,
+  view_columns ? 'view--' ~ view_columns ~ '-columns' : '',
+  dom_id ? 'js-view-dom-id-' ~ dom_id : '',
+] %}
 
-  {% if exposed or header %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+
+<{{ view_tag }}{{ attributes }}>
+  {% if view_exposed or view_header %}
     <header class="view__header">
-      {% if exposed %}
+      {% if view_exposed %}
         <div class="view__filters">
-          {{ exposed }}
+          {{ view_exposed }}
         </div>
       {% endif %}
 
-      {% if header %}
+      {% if view_header %}
         <div class="view__header-content">
-          {{ header }}
+          {{ view_header }}
         </div>
       {% endif %}
     </header>
@@ -23,33 +31,33 @@
 
   <div class="view__content">
     {% block view_content %}
-      {% if attachment_before %}
+      {% if view_attachment_before %}
         <div class="view__attachment view__attachment--before">
-          {{ attachment_before }}
+          {{ view_attachment_before }}
         </div>
       {% endif %}
 
-      {% if rows %}
+      {% if view_rows %}
         <div class="view__rows">
-          {{ rows }}
+          {{ view_rows }}
         </div>
       {% endif %}
 
-      {{ empty }}
+      {{ view_empty }}
 
-      {% if pager %}
+      {% if view_pager %}
         <div class="view__pager">
-          {{ pager }}
+          {{ view_pager }}
         </div>
       {% endif %}
 
-      {% if attachment_after %}
+      {% if view_attachment_after %}
         <div class="view__attachment view__attachment--after">
-          {{ attachment_after }}
+          {{ view_attachment_after }}
         </div>
       {% endif %}
 
-      {% if more %}
+      {% if view_more %}
         <div class="view__more-link">
           {{ view_more }}
         </div>
@@ -57,9 +65,9 @@
     {% endblock %}
   </div>
 
-  {% if footer %}
+  {% if view_footer %}
     <footer class="view__footer">
-      {{ footer }}
+      {{ view_footer }}
     </footer>
   {% endif %}
 </{{ view_tag }}>

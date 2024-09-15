@@ -1,7 +1,6 @@
 {% set classes = [
-  'paragraph',
-  'paragraph--document-list',
-  paragraph_field_document_view_mode ? 'paragraph--' ~ paragraph_field_document_view_mode : ''
+  'document-list',
+  paragraph_field_document_view_mode ? 'document-list--' ~ paragraph_field_document_view_mode : ''
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -13,7 +12,7 @@
   {{ paragraph_field_header }}
 
   {% if paragraph_documents %}
-    <div class="paragraph__documents">
+    <div class="document-list__documents">
       {{ paragraph_documents }}
     </div>
   {% endif %}

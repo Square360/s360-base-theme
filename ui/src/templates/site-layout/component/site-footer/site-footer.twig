@@ -1,0 +1,15 @@
+<footer class="site-footer">
+  <div class="site-footer__content">
+    {% if site_footer_menu %}
+      <div class="site-footer__footer-menu">
+        {{ site_footer_menu }}
+      </div>
+    {% endif %}
+
+    {% if site_footer_social_menu %}
+      <div class="site-footer__social-menu">
+        {{ site_footer_social_menu }}
+      </div>
+    {% endif %}
+  </div>
+</footer>

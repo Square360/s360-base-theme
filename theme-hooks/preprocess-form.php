@@ -17,8 +17,7 @@ use Drupal\Core\Template\Attribute;
 function s360_base_theme_preprocess_form(&$variables) {
   $element = $variables['element'];
 
-  // Clear any Drupal classes.
-  $variables['attributes']['class'] = [];
+  $variables['form_name'] = Html::getClass($element['#form_id']);
 
   $variables['attributes']['class'][] = 'form';
   $variables['attributes']['class'][] = Html::getClass('form--' . $element['#form_id']);
@@ -30,9 +29,11 @@ function s360_base_theme_preprocess_form(&$variables) {
 function s360_base_theme_preprocess_webform(&$variables) {
   $element = $variables['element'];
 
+  $variables['form_name'] = Html::getClass($element['#webform_id']);
+
   $variables['attributes']['class'][] = 'form';
   $variables['attributes']['class'][] = 'form--webform';
-  $variables['attributes']['class'][] = 'form--' . Html::getClass($element['#webform_id']);
+  $variables['attributes']['class'][] = Html::getClass('form--' . $element['#webform_id']);
 }
 
 /**
@@ -43,7 +44,6 @@ function s360_base_theme_preprocess_form_element(&$variables) {
 
   // Clear any Drupal classes.
   $variables['attributes']['class'] = [];
-
   $variables['attributes']['class'][] = 'form__element';
 
   if (isset($element['#theme'])) {
@@ -75,6 +75,7 @@ function s360_base_theme_preprocess_form_element(&$variables) {
   $variables['error']['attributes'] = new Attribute();
   $variables['error']['attributes']['class'] = 'form__element-error-message';
 
+  // Create a description attribute.
   $variables['description']['attributes']['class'] = new Attribute();
   $variables['description']['attributes']['class'][] = 'form__description';
 }
@@ -137,7 +138,15 @@ function s360_base_theme_preprocess_checkboxes(&$variables) {
  */
 function s360_base_theme_preprocess_input(&$variables) {
   $element = $variables['element'];
+  $id = $element['#id'];
+
+  $type = $element['#type'];
+
+  // Set the form input type "class" to reset.
+  if ($type === 'submit' && str_contains($id, 'reset')) {
+    $type = 'reset';
+  }
 
   $variables['attributes']['class'][] = 'form__input';
-  $variables['attributes']['class'][] = Html::getClass('form__input--' . $element['#type']);
+  $variables['attributes']['class'][] = Html::getClass('form__input--' . $type);
 }

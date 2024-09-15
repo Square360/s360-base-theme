@@ -5,6 +5,8 @@
  * page-attachments.php
  */
 
+use Drupal\Core\Render\Markup;
+
 /**
  * Implements hook_page_attachments_alter().
  */
@@ -14,10 +16,10 @@ function s360_base_theme_page_attachments_alter(array &$page) {
   $critical_css_files = [
     'base/base.css',
     'block/branding-block/branding-block.css',
-    'layout/site-header/site-header.css',
-    'layout/site-main/site-main.css',
-    'layout/menu-block/menu-block.css',
-    'layout/menu-toggle/menu-toggle.css',
+    'site-layout/site-header/site-header.css',
+    'site-layout/site-main/site-main.css',
+    'site-layout/menu-block/menu-block.css',
+    'site-layout/main-menu-toggle/main-menu-toggle.css',
   ];
 
   if (!empty($critical_css_files)) {
@@ -27,9 +29,9 @@ function s360_base_theme_page_attachments_alter(array &$page) {
       $page['#attached']['html_head'][] = [
         [
           '#tag' => 'style',
-          '#value' => $css,
+          '#value' => Markup::create($css),
         ],
-        $css_file
+        $css_file,
       ];
     }
   }

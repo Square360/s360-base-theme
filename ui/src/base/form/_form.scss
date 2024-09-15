@@ -7,7 +7,7 @@ form {
   margin: var(--form-margin, 0);
   padding: var(--form-padding, 0);
   display: var(--form-display, grid);
-  gap: var(--form-gap, 0);
+  gap: var(--form-gap, #{ site-config.$spacer-0 });
 
   input[type="email"],
   input[type="password"],
@@ -19,28 +19,22 @@ form {
   input[type="date"],
   select,
   textarea {
-    background-color: var(--form-input-background-color, #{ colors.$white });
-    border:
-      var(--form-input-border-width, 1px)
-      var(--form-input-border-style, solid)
-      var(--form-input-border-color, transparent);
-    border-radius: var(--form-input-border-radius, 0);
-    color: var(--form-input-color);
-    display: var(--form-input-display, block);
-    font-family: var(--form-input-font-family);
-    font-size: var(--form-input-font-size);
-    margin: var(--form-input-margin, 0);
-    overflow: var(--form-input-overflow, visible);
-    padding: var(--form-input-padding);
-    width: var(--form-input-width, 100%);
-    transition: var(--form-transition, all 200ms ease-in-out);
-    outline:
-      var(--form-input-outline-width, 0)
-      var(--form-input-outline-style, dashed)
-      var(--form-input-outline-color, currentColor);
+    color: var(--form-input--color);
+    display: var(--form-input--display, block);
+    padding: var(--form-input--padding);
+    width: var(--form-input--width, 100%);
+    outline: 0;
 
     &:invalid {
       box-shadow: none;
+    }
+
+    &:focus-visible {
+      --form-input--outline--width: 5px;
+    }
+
+    &::placeholder {
+      color: colors.$black;
     }
   }
 
@@ -71,7 +65,7 @@ form {
     &:has(+ *[required]) {
       &::after {
         content: "\002A";
-        color: #ef0909;
+        color: currentColor;
         margin-left: 0.25em;
       }
     }

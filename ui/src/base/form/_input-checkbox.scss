@@ -2,14 +2,14 @@
 
 input[type="checkbox"] {
   appearance: none;
-  background-color: colors.$white;
-  border: 1px solid;
+  border: 1px solid currentColor;
   cursor: pointer;
   width: 1em;
   height: 1em;
   transform: translateY(-0.075em);
   display: inline-grid;
   place-content: center;
+  outline: 0;
 
   &::before {
     content: "";

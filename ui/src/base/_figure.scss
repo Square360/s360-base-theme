@@ -1,14 +1,21 @@
+@use "s360-scss-toolkit";
+
 figure {
-  height: var(--figure-height, auto);
-  width: var(--figure-width, auto);
-  display: var(--figure-display);
+  height: var(--figure--height, auto);
+  width: var(--figure--width, auto);
+  display: var(--figure--display, block);
+
+  &:has(figcaption) {
+    --figure--display: table;
+  }
 
   figcaption {
-    font-size: var(--figcaption-font-size);
-    font-weight: var(--figcaption-font-weight);
-    margin: var(--figcaption-margin, 0.5em 0 0 0);
-    display: var(--figcaption-display, table-caption);
-    caption-side: var(--figcaption-caption-side, bottom);
-    line-height: var(--figcaption-line-height);
+    --p--font-family: inherit;
+    --p--font-size: #{ s360-scss-toolkit.font-size-ms(0) };
+    --p--margin: 0.5em 0 0 0;
+
+    display: var(--figcaption--display, table-caption);
+    caption-side: var(--figcaption--caption-side, bottom);
+    line-height: var(--figcaption--line-height);
   }
 }

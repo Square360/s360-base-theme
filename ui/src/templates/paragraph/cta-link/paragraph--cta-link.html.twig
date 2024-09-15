@@ -2,5 +2,5 @@
 
 {% include "@ui-paragraph/cta-link/component/cta-link.twig" with {
   paragraph_field_link: (content.field_link.0) ? content.field_link : '',
-  paragraph_field_cta_link_style: (content.field_cta_link_style.0) ? content.field_cta_link_style.0 : '',
+  paragraph_field_cta_link_style: (content.field_cta_link_style.0) ? content.field_cta_link_style.0['#markup'] : '',
 } %}

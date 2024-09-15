@@ -1,4 +1,5 @@
 import brandingBlockTwig from './branding-block.twig';
+import brandingBlockData from './branding-block.yml';
 import './branding-block.js';
 
 /**
@@ -6,6 +7,9 @@ import './branding-block.js';
  */
 export default { title: 'Layout/Branding Block' };
 
-export const brandingBlock = () => {
-  return brandingBlockTwig();
+export const brandingBlock = (args) => {
+  return brandingBlockTwig({
+    ...args
+  });
 }
+brandingBlock.args = brandingBlockData;

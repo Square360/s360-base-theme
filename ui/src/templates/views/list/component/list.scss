@@ -3,10 +3,8 @@
 
 .view--display-html-list {
   .view__list {
-    @extend %semantic-list;
-
     .view__row + .view__row {
-      margin-top: var(--view-html-list-view-row-margin-top, #{ site-config.$spacer-0 });
+      margin-top: var(--view-list--view-row--margin-top, #{ site-config.$spacer-0 });
     }
   }
 }

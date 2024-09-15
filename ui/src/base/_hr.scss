@@ -1,8 +1,8 @@
 hr {
   border:
-    var(--hr-border-width, 1px)
-    var(--hr-border-style, solid)
-    var(--hr-border-color, threedface);
-  margin: var(--hr-margin, 0.5em 0);
+    var(--hr--border-width, 1px)
+    var(--hr--border-style, solid)
+    var(--hr--border-color, threedface);
+  margin: var(--hr--margin, 0.5em 0);
   transform: scaleY(0.5);
 }
