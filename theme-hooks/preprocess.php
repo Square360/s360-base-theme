@@ -24,13 +24,9 @@ function s360_base_theme_preprocess(array &$variables) {
  * Implements hook_preprocess_html().
  */
 function s360_base_theme_preprocess_html(array &$variables) {
-  $variables['attributes']['data-roles'] = $variables['user_roles'];
-
-  // Clear any Drupal classes.
-  $variables['attributes']['class'] = [];
-
   // Add the new class names to the array of classes.
   $variables['attributes']['class'][] = 'site-page';
+  $variables['attributes']['data-roles'] = $variables['user_roles'];
 
   if (isset($variables['node_type'])) {
     $variables['attributes']['class'][] = Html::getClass('site-page--node-' . $variables['node_type']);

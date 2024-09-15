@@ -1,7 +1,8 @@
-import pTwig from './p/_p.twig';
 import paragraphData from './p/p.yml';
 import headingsTwig from './headings/_headings.twig';
 import headingsData from './headings/headings.yml';
+
+import { formatParagraphText } from '.storybook/utils';
 
 /**
  * Storybook Definition.
@@ -14,8 +15,9 @@ export const headings = () => {
   }).join('');
 };
 
-export const paragraph = () => {
-  return paragraphData.map((paragraph) => {
-    return pTwig(paragraph)
-  }).join('');
+export const paragraph = (args) => {
+  let { paragraph_text } = args;
+
+  return formatParagraphText(paragraph_text);
 }
+paragraph.args = paragraphData;

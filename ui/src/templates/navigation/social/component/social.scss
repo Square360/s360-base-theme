@@ -2,8 +2,6 @@
 @use "s360-scss-toolkit";
 
 .menu--social {
-  @extend %semantic-list;
-
   display: flex;
 
   .menu__item + .menu__item {

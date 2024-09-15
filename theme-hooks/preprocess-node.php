@@ -21,7 +21,6 @@ function s360_base_theme_preprocess_node(&$variables) {
   /** @var \Drupal\node\Entity\Node $node */
   $node = $variables['node'];
   $node_bundle = $node->bundle();
-
   $node_view_mode = $elements['#view_mode'];
 
   if ($node_view_mode !== 'full') {
@@ -43,6 +42,7 @@ function s360_base_theme_preprocess_node(&$variables) {
   }
 
   $variables['attributes']['id'] = Html::getClass('node-' . $node_bundle . '-' . $node->id());
+  $variables['view_mode'] = $node_view_mode;
 
   // Remove some attributes.
   unset($variables['attributes']['role']);

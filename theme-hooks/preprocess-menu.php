@@ -7,6 +7,7 @@
  * Define all view preprocess HOOKs.
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
 
 /**
@@ -14,6 +15,8 @@ use Drupal\Core\Render\Markup;
  */
 function s360_base_theme_preprocess_menu(&$variables) {
   $menu_name = $variables['menu_name'];
+
+  $variables['menu_name'] = Html::getClass($menu_name);
 
   if (!in_array($menu_name, ['admin', 'devel'])) {
     // Clear any Drupal classes.

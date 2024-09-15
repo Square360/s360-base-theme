@@ -1,3 +1,6 @@
 {{ attach_library('s360_base_theme/view.list') }}
 
-{% include "@ui-views/list/component/list.twig" %}
+{% include "@ui-views/list/component/list.twig" with {
+  view_title: title,
+  view_rows: rows,
+} %}

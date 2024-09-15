@@ -1,6 +1,5 @@
 {% set classes = [
-  'paragraph',
-  'paragraph--link-list',
+  'link-list',
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -12,7 +11,7 @@
   {{ paragraph_field_header }}
 
   {% if paragraph_field_links %}
-    <div class="paragraph__links">
+    <div class="link-list__links">
       {{ paragraph_field_links }}
     </div>
   {% endif %}

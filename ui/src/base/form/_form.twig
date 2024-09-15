@@ -1,48 +1,48 @@
 <form class="form">
   <div class="form__element form__element--input-textfield">
     <label for="edit-name" class="form__label form__label--username form__label--required">Required Input</label>
-    <input aria-describedby="edit-name--description" type="text" id="edit-name" name="name" value="" size="60" maxlength="60" class="form-text required form__input form__input--textfield" required="required" aria-required="true">
-    <div id="edit-name--description" class="form__description description">
+    <input aria-describedby="edit-name--description" type="text" id="edit-name" name="name" value="" size="60" maxlength="60" class="form__input form__input--textfield" required="required" aria-required="true">
+    <div id="edit-name--description" class="form__description">
       Username.
     </div>
   </div>
 
   <div class="form__element form__element--input-password">
     <label for="edit-pass" class="form__label form__label--password">Regular Input</label>
-    <input aria-describedby="edit-pass--description" type="text" id="edit-pass" name="pass" size="60" maxlength="128" class="form-text required form__input form__input--password" required="required" aria-required="true">
-    <div id="edit-pass--description" class="form__description description">
+    <input aria-describedby="edit-pass--description" type="text" id="edit-pass" name="pass" size="60" maxlength="128" class="form__input form__input--password" required="required" aria-required="true">
+    <div id="edit-pass--description" class="form__description">
       Password.
     </div>
   </div>
 
-  <div class="form__element form__element--select js-form-item form-item js-form-type-select form-item-select js-form-item-select">
-    <label for="edit-select" class="form__label form__label--select form-element__label--required js-form-required form-required">Select</label>
+  <div class="form__element form__element--select">
+    <label for="edit-select" class="form__label form__label--select form-element__label--required">Select</label>
     <div class="form__select-wrapper">
-      <select id="edit-select" name="select" class="form-select required" required="required" aria-required="true">
-        <option value="" selected="selected">- Select -</option>
-        <option value="" selected="selected">Option 1</option>
+      <select id="edit-select" name="select" required="required" aria-required="true">
+        <option value="">- Select -</option>
+        <option value="">Option 1</option>
         <option value="" selected="selected">Option 2</option>
-        <option value="" selected="selected">Option 3</option>
+        <option value="">Option 3</option>
       </select>
     </div>
   </div>
 
-  <div class="form__element form__element--input-date form__element--date js-form-item form-item js-form-type-date form-item-date js-form-item-date">
+  <div class="form__element form__element--input-date form__element--date">
     <label for="edit-date" class="form__label form__label--date">Date</label>
-    <input type="date" data-drupal-selector="edit-date" id="edit-date" name="date" value="" class="form-date form__input form__input--date">
+    <input type="date" id="edit-date" name="date" value="" class="form__input form__input--date">
   </div>
 
-  <div class="form__element form__element--input-radio form__element--radio js-form-item form-item js-form-type-radio form-item-radio js-form-item-radio">
-    <input data-drupal-selector="edit-radio" type="radio" id="edit-radio" name="radio" value="Service &amp; Maintenance" class="form-radio form__input form__input--radio">
+  <div class="form__element form__element--input-radio form__element--radio">
+    <input type="radio" id="edit-radio" name="radio" value="Service &amp; Maintenance" class="form__input form__input--radio">
     <label for="edit-radio" class="form__label form__label--radio option">Radio Option</label>
   </div>
 
-  <div class="form__element form__element--input-checkbox form__element--checkbox js-form-item form-item js-form-type-checkbox form-item-checkbox js-form-item-checkbox">
-    <input data-drupal-selector="edit-checkbox" type="checkbox" id="edit-checkbox" name="checkbox" value="Service &amp; Maintenance" class="form-checkbox form__input form__input--checkbox">
+  <div class="form__element form__element--input-checkbox form__element--checkbox">
+    <input type="checkbox" id="edit-checkbox" name="checkbox" value="Service &amp; Maintenance" class="form__input form__input--checkbox">
     <label for="edit-checkbox" class="form__label form__label--checkbox option">Checkbox Option</label>
   </div>
 
   <div class="form__element form__element--actions" id="edit-actions">
-    <input type="submit" id="edit-submit" name="op" value="Submit" class="button js-form-submit form-submit form__input form__input--submit">
+    <button type="submit" id="edit-submit" name="op" class="form__input form__input--submit">Submit</button>
   </div>
 </form>
