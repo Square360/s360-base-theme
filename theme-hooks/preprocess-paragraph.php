@@ -26,9 +26,6 @@ function s360_base_theme_preprocess_paragraph(&$variables) {
  * Implements hook_preprocess_paragraph() for document_list.
  */
 function s360_base_theme_preprocess_paragraph__document_list(&$variables) {
-  /** @var \Drupal\paragraph\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-
   $variables['documents'] = '';
 }
 
@@ -77,7 +74,4 @@ function s360_base_theme_preprocess_paragraph__embed_code(&$variables) {
  * Implements hook_preprocess_paragraph() for in_this_section.
  */
 function s360_base_theme_preprocess_paragraph__in_this_section(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-
 }
