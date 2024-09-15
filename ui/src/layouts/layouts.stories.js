@@ -5,7 +5,7 @@ import fourColumTwig from './four-column/_four-column.twig';
 
 import './layouts.js';
 
-import { COLOR_THEME_OPTIONS } from '.storybook/options.js';
+import { COLOR_THEME_OPTIONS } from '.storybook/utils';
 
 import { ctaLink } from '@ui-paragraph/cta-link/component/cta-link.stories.js';
 import { placeholder } from '@ui-paragraph/placeholder/component/placeholder.stories.js';

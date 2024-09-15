@@ -103,12 +103,8 @@
   @include live-right;
 }
 
-/// @requires {mixin} live-left
-/// @requires {mixin} live-right
 @mixin live {
-  @include live-left;
-  @include live-right;
-
+  padding-inline: var(--safe-area-inline);
   max-width: site-config.$site-max-width;
   margin: 0 auto;
 }

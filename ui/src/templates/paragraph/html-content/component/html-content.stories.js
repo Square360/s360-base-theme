@@ -3,7 +3,7 @@ import htmlContentData from './html-content.yml';
 import './html-content.js';
 
 import ckEditorTwig from '@ui-field/ckeditor/component/ckeditor.twig';
-import { formatParagraphText } from '.storybook/_utils.js';
+import { formatParagraphText } from '.storybook/utils';
 
 /**
  * Storybook Definition.

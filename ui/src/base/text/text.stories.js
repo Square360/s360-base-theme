@@ -2,7 +2,7 @@ import paragraphData from './p/p.yml';
 import headingsTwig from './headings/_headings.twig';
 import headingsData from './headings/headings.yml';
 
-import { formatParagraphText } from '.storybook/_utils.js';
+import { formatParagraphText } from '.storybook/utils';
 
 /**
  * Storybook Definition.

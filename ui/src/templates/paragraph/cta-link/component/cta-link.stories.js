@@ -4,7 +4,7 @@ import './cta-link.js';
 
 import linkTwig from '@ui-base/link/_link.twig';
 
-import { paragraphFieldCtaLinkStyle } from '.storybook/options.js';
+import { paragraphFieldCtaLinkStyle } from '.storybook/utils';
 
 /**
  * Storybook Definition.
