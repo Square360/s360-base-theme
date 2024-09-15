@@ -3,8 +3,14 @@
   'media--image',
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
-{% set attributes = attributes.setAttribute('class', classes) %}
 {% set attributes = attributes.setAttribute('data-js', 'media-image') %}
+
+{% if not attributes.class %}
+  {% set attributes = attributes.setAttribute('class', create_attribute({})) %}
+{% endif %}
+
+{# merge classes into attributes.class #}
+{% set attributes = attributes.setAttribute('class', attributes.class|merge(classes)) %}
 
 {% extends "@ui-media/media.html.twig" %}
 

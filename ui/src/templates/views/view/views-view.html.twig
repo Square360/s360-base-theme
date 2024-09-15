@@ -2,9 +2,26 @@
 /**
  * Available variables:
  * - css_name: A CSS-safe version of the view name provided by Drupal.
+ * - format: The format of the view.
+ * - columns: The number of columns for "grid" format only.
+ *
+ * @see s360_base_theme_preprocess_views_view().
  */
 #}
 
-{{ attach_library('s360_base_theme/view.' ~ css_name) }}
+{{ attach_library('s360_base_theme/views.view') }}
+{{ attach_library('s360_base_theme/views.' ~ css_name) }}
 
-{% include "@ui-views/view/component/view.twig" %}
+{% include "@ui-views/view/component/view.twig" with {
+  view_exposed: exposed,
+  view_header: header,
+  view_attachment_before: attachment_before,
+  view_rows: rows,
+  view_empty: empty,
+  view_pager: pager,
+  view_attachment_after: attachment_after,
+  view_more: more,
+  view_footer: footer,
+  view_format: format,
+  view_columns: columns,
+} %}

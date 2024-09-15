@@ -1,3 +1,6 @@
+import corporateData from './corporate/component/corporate.yml';
+import './corporate/component/corporate.js';
+
 import footerData from './footer/component/footer.yml';
 import './footer/component/footer.js';
 
@@ -11,7 +14,7 @@ import './pager/component/pager.js';
 import socialData from './social/component/social.yml';
 import './social/component/social.js';
 
-import menuTwig from './menu.twig';
+import menuTwig from './menu.html.twig';
 
 import drupalAttribute from 'drupal-attribute';
 
@@ -31,6 +34,16 @@ function setItemAttribues(item) {
   }
 }
 // end - isolated function
+
+corporateData.items.forEach(item => {
+  setItemAttribues(item);
+});
+export const corporate = () => {
+  return menuTwig({
+    ...corporateData,
+    attributes: new drupalAttribute(),
+  });
+}
 
 footerData.items.forEach(item => {
   setItemAttribues(item);

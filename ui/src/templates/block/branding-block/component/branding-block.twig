@@ -1,6 +1,5 @@
 {% set classes = [
-  'block',
-  'block--branding-block',
+  'branding-block',
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -13,8 +12,12 @@
     aria-label="Go to {{ block_site_name }} homepage"
     rel="home"
   >
-    <img
-      src="{{ block_site_logo }}"
-      alt="Logo">
+    {% if block_site_logo %}
+      <img
+        src="{{ block_site_logo }}"
+        alt="Logo">
+    {% else %}
+      {{ block_site_name }}
+    {% endif %}
   </a>
 </div>

@@ -3,8 +3,6 @@
 
 .pager {
   &__items {
-    @extend %semantic-list;
-
     align-items: center;
     display: flex;
     justify-content: center;

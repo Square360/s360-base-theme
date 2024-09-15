@@ -1,18 +1,15 @@
 %animate-underline {
-  display: inline;
-  background-image: linear-gradient(
-    0deg,
-    var(--animate-underline-gradient-color-1, currentColor) 0%,
-    var(--animate-underline-gradient-color-2, var(--animate-underline-gradient-color-1, currentColor)) 100%
-  );
-  background-size:
-    var(--animate-underline-background-size-width, 0%)
-    var(--animate-underline-background-size-height, 1px);
-  background-repeat: no-repeat;
-  background-position: var(--animate-underline-background-position-x, left) bottom;
-  transition: all 200ms ease-in-out;
+  text-decoration-line: var(--animate-underline--text-decoration-line, none);
+  text-decoration-thickness: var(--animate-underline--text-decoration-thickness, 2px);
+  text-underline-offset: var(--animate-underline--text-underline-offset, 0.25em);
 
-  &:hover {
-    --animate-underline-background-size-width: var(--animate-underline-background-size-width-hover, 100%);
+  &:hover,
+  &:focus {
+    @extend %animate-underline-active;
   }
+}
+
+%animate-underline-active {
+  text-decoration-line: var(--animate-underline--text-decoration-line--active, var(--animate-underline--text-decoration-line, underline));
+  text-underline-offset: var(--animate-underline--text-underline-offset--active, var(--animate-underline--text-underline-offset, 0.125em));
 }

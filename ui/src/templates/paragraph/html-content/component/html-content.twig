@@ -1,6 +1,5 @@
 {% set classes = [
-  'paragraph',
-  'paragraph--html-content',
+  'html-content',
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
@@ -12,7 +11,7 @@
   {{ paragraph_field_header }}
 
   {% if paragraph_field_body %}
-    <div class="paragraph__body">
+    <div class="html-content__body">
       {{ paragraph_field_body }}
     </div>
   {% endif %}

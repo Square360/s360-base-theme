@@ -1,12 +1,12 @@
 svg {
-  display: var(--svg-display, block);
-  height: var(--svg-height);
-  margin: var(--svg-margin);
-  max-width: var(--svg-max-width);
-  width: var(--svg-width);
+  display: var(--svg--display, block);
+  height: var(--svg--height);
+  margin: var(--svg--margin);
+  max-width: var(--svg--max-width);
+  width: var(--svg--width);
 
   path {
-    fill: var(--svg-path-fill, currentColor);
-    transition: var(--svg-path-transition, all 200ms ease-in-out);
+    fill: var(--svg--path--fill, currentColor);
+    transition: var(--svg--path--transition, all 200ms ease-in-out);
   }
 }

@@ -18,5 +18,10 @@ module.exports.setupTwig = function setupTwig(twig) {
   addDrupalExtensions(twig, {
   });
 
+  // Fake the menu_attribute function provided by the Drupal module.
+  twig.extendFunction("menus_attribute", function() {
+    return true;
+  });
+
   return twig;
 };

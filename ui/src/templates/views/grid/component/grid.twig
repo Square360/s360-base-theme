@@ -1,19 +1,25 @@
-{% if title %}
-  <h2 class="view__heading">{{ title }}</h2>
+{% if view_title %}
+  <h2 class="view__heading">{{ view_title }}</h2>
 {% endif %}
 
 {% if options.alignment == 'horizontal' %}
-  {% for row in items %}
+  {% for row in view_items %}
     {% for column in row.content %}
-      <div{{ column.attributes }}>
+      {% set column_attributes = column.attributes|default(create_attribute({})) %}
+      {% set column_attributes = column_attributes.addClass('view__row view__row--' ~ loop.index) %}
+
+      <div{{ column_attributes }}>
         {{- column.content -}}
       </div>
     {% endfor %}
   {% endfor %}
 {% else %}
-  {% for column in items %}
+  {% for column in view_items %}
     {% for row in column.content %}
-      <div{{ row.attributes }}>
+      {% set row_attributes = row.attributes|default(create_attribute({})) %}
+      {% set row_attributes = row_attributes.addClass('view__row view__row--' ~ loop.index) %}
+
+      <div{{ row_attributes }}>
         {{- row.content -}}
       </div>
     {% endfor %}

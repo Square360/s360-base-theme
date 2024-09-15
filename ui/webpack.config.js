@@ -182,11 +182,7 @@ module.exports.module.rules.push({
 module.exports.module.rules.push({
   test: /\.(woff|woff2)(\?\S*)?$/,
   include: [/(web)?fonts?/],
-  type: 'asset/resource',
-  generator: {
-    publicPath: '',
-    filename: 'fonts/[name][ext]'
-  }
+  type: 'asset/inline',
 });
 
 /**

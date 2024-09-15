@@ -3,24 +3,27 @@
 @use "s360-scss-toolkit";
 
 .ck-content {
+  // Set ul/ol vars.
+  --list--line-height: #{ site-config.$text-line-height };
+  --list--max-width: #{ site-config.$max-line-length };
+
   :is(h2, h3, h4, h5, h6):first-child {
-    --heading-margin-top: 0;
+    --heading--margin-top: 0;
   }
 
   figure {
-    --figure-display: table;
-  }
+    --figure--display: table;
 
-  figure,
-  img {
     margin-bottom: site-config.$spacer-0;
 
     &.align-left {
       margin-right: site-config.$spacer-0;
+      float: left;
     }
 
     &.align-right {
       margin-left: site-config.$spacer-0;
+      float: right;
     }
   }
 }

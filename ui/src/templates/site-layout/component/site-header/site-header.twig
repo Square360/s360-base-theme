@@ -1,0 +1,15 @@
+<header class="site-header" data-js="site-header">
+  <div class="site-header__content">
+    <div class="site-header__branding">
+      {{ site_header_branding_block }}
+    </div>
+
+    {% if site_header_main_menu %}
+      <div class="site-header__main-menu">
+        {% include "@ui-site-layout/component/main-menu-toggle/main-menu-toggle.twig" %}
+
+        {{ site_header_main_menu }}
+      </div>
+    {% endif %}
+  </div>
+</header>

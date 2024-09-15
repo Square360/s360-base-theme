@@ -1,21 +1,26 @@
 details {
   summary {
-    align-items: center;
-    background-color: var(--summary-background-color);
-    color: var(--summary-colo);
-    cursor: var(--summary-cursor, pointer);
-    display: var(--summary-display, inline-flex);
-    font-family: var(--summary-font-family);
-    font-weight: var(--summary-font-weight);
-    font-size: var(--summary-font-size);
-    line-height: var(--summary-line-height, 1);
-    margin: var(--summary-margin, 0);
-    outline: var(--summary-outline);
-    outline-offset: var(--summary-outline-offset, 4px);
-    padding: var(--summary-padding, 0);
+    align-items: var(--summary--align-items, center);
+    background-color: var(--summary--bg-color, transparent);
+    color: var(--summary--color);
+    cursor: var(--summary--cursor, pointer);
+    display: var(--summary--display, inline-flex);
+    font-family: var(--summary--font-family);
+    font-weight: var(--summary--font-weight);
+    font-style: var(--summary--font-style);
+    font-size: var(--summary--font-size);
+    line-height: var(--summary--line-height, 1);
+    margin: var(--summary--margin, 0);
+    outline:
+      var(--summary--outline--width, 0)
+      var(--summary--outline--style, solid)
+      var(--summary--outline--color, currentColor);
+    outline-offset: var(--summary--outline-offset, 4px);
+    padding: var(--summary--padding, 0);
+    pointer-events: var(--summary--pointer-events, all);
     position: relative;
-    text-transform: var(--summary-text-transform);
-    transition: var(--summary-transition, all 200ms ease-in-out);
+    text-transform: var(--summary--text-transform);
+    transition: var(--summary--transition, all 200ms ease-in-out);
 
     &::-webkit-details-marker,
     &::marker {
@@ -23,21 +28,19 @@ details {
       display: none;
     }
 
-    &:focus {
-      [data-whatintent="keyboard"] & {
-        --summary-outline: 4px dashed currentColor;
-      }
+    &:focus-visible {
+      --summary--outline--width: 5px;
     }
 
     &:hover,
     &:focus {
-      color: var(--summary-color-hover, var(--summary-color));
+      color: var(--summary--color--active, var(--summary--color));
     }
   }
 
   &[open] {
     summary {
-      margin: var(--summary-margin-open, var(--summary-margin));
+      margin: var(--summary--margin--open, var(--summary--margin));
     }
   }
 }

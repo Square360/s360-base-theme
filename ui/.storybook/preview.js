@@ -7,7 +7,7 @@ import './drupal.js';
 
 // GLOBAL CSS
 import '../src/base/base.js';
-import '../src/templates/layout/component/layout.js';
+import '../src/templates/site-layout/component/site-layout.js';
 import '../src/templates/field/ckeditor/component/ckeditor.js';
 
 setupTwig(Twig);

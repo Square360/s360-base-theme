@@ -1,0 +1,72 @@
+@use "sass:math";
+@use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/colors";
+@use "@s360-base-theme/ui-core/mq";
+@use "s360-scss-toolkit";
+
+$_height: 30px;
+$_width: 30px;
+$_span-height: 2px;
+
+.main-menu-toggle {
+  height: $_height;
+  min-width: $_width;
+  max-width: $_width;
+  display: var(--main-menu-toggle--display);
+
+  span {
+    display: block;
+    height: $_span-height;
+    width: 100%;
+    color: var(--main-menu-toggle--color, colors.$black);
+    background-color: currentColor;
+    position: relative;
+    transition: all 200ms ease-in-out;
+
+    &::before,
+    &::after {
+      content: '';
+      height: $_span-height;
+      position: absolute;
+      width: 100%;
+      background-color: currentColor;
+      transition: all 200ms ease-in-out;
+    }
+
+    &::before {
+      top: calc(calc((#{ $_height } / 2) - #{ $_span-height }) * -1);
+    }
+
+    &::after {
+      bottom: calc(calc((#{ $_height } / 2) - #{ $_span-height }) * -1);
+    }
+  }
+
+  &[aria-expanded="false"] {
+
+  }
+
+  &[aria-expanded="true"] {
+    span {
+      width: 100%;
+      background: transparent;
+
+      &::before {
+        top: 0;
+        rotate: 45deg;
+      }
+
+      &::after {
+        bottom: 0;
+        rotate: -45deg;
+      }
+    }
+  }
+
+  // **************************************************
+  // MEDIA QUERIES
+
+  @media (site-config.$main-menu-mq) {
+    --main-menu-toggle--display: none;
+  }
+}

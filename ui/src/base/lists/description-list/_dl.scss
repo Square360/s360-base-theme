@@ -1,26 +1,26 @@
 @use "@s360-base-theme/ui-core/site-config";
 
 dl {
-  display: var(--dl-display, block);
-  margin: var(--dl-margin, 0);
-  padding: var(--dl-padding, 2em);
-  line-height: var(--dl-line-height);
+  display: var(--dl--display, block);
+  margin: var(--dl--margin, 0);
+  padding: var(--dl--padding, 2em);
+  line-height: var(--dl--line-height);
 
   dt {
-    display: var(--dt-display);
-    font-size: var(--dt-font-size);
-    font-family: var(--dt-font-family);
-    font-weight: var(--dt-font-weight);
-    margin: var(--dt-margin, 0);
-    padding: var(--dt-padding, 0);
+    display: var(--dt--display);
+    font-size: var(--dt--font-size);
+    font-family: var(--dt--font-family);
+    font-weight: var(--dt--font-weight);
+    margin: var(--dt--margin, 0);
+    padding: var(--dt--padding, 0);
   }
 
   dd {
-    display: var(--dd-display);
-    font-size: var(--dd-font-size);
-    font-family: var(--dd-font-family);
-    font-weight: var(--dd-font-weight);
-    margin: var(--dd-margin, 0);
-    padding: var(--dd-padding, 2em);
+    display: var(--dd--display);
+    font-size: var(--dd--font-size);
+    font-family: var(--dd--font-family);
+    font-weight: var(--dd--font-weight);
+    margin: var(--dd--margin, 0);
+    padding: var(--dd--padding, 2em);
   }
 }
