@@ -1,3 +1,5 @@
+/// @author Brian Milea
+///
 %icon-toggle-chevron {
   $_toggle-weight: 1px;
   $_toggle-size: 1rem;
@@ -36,6 +38,8 @@
   }
 }
 
+/// @author Brian Milea
+///
 %icon-toggle-chevron-open {
   // Translate the elements so that the join point stays connected
   &::before {
