@@ -7,7 +7,7 @@ import { formatParagraphText } from '.storybook/utils';
 /**
  * Storybook Definition.
  */
-export default { title: 'Foundations/Text' };
+export default { title: 'Foundation/Text' };
 
 export const headings = () => {
   return headingsData.map((heading) => {

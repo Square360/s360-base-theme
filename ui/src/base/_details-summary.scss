@@ -9,7 +9,7 @@ details {
     font-weight: var(--summary--font-weight);
     font-style: var(--summary--font-style);
     font-size: var(--summary--font-size);
-    line-height: var(--summary--line-height, 1);
+    line-height: var(--summary--line-height);
     margin: var(--summary--margin, 0);
     outline:
       var(--summary--outline--width, 0)
@@ -29,7 +29,7 @@ details {
     }
 
     &:focus-visible {
-      --summary--outline--width: 5px;
+      --summary--outline--width: 4px;
     }
 
     &:hover,

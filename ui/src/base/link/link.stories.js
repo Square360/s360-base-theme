@@ -4,10 +4,20 @@ import linkData from './link.yml';
 /**
  * Storybook Definition.
  */
-export default { title: 'Foundations/Links' };
+export default { title: 'Foundation/Links' };
 
-export const link = () => {
+export const link = (args) => {
   return linkTwig({
-    ...linkData,
+    ...args
   });
+}
+
+link.args = linkData;
+link.argTypes = {
+  link_text: {
+    name: 'Link text'
+  },
+  link_url: {
+    name: 'Url',
+  }
 }

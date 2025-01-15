@@ -3,7 +3,7 @@ import tableTwig from './_table.twig';
 /**
  * Storybook Definition.
  */
-export default { title: 'Foundations/Tables' };
+export default { title: 'Foundation/Tables' };
 
 export const table = () => {
   return tableTwig();

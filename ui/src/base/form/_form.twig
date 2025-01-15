@@ -1,5 +1,5 @@
 <form class="form">
-  <div class="form__element form__element--input-textfield">
+  <div class="form__element form__element--input-textfield form__element--has-label form__element--has-description">
     <label for="edit-name" class="form__label form__label--username form__label--required">Required Input</label>
     <input aria-describedby="edit-name--description" type="text" id="edit-name" name="name" value="" size="60" maxlength="60" class="form__input form__input--textfield" required="required" aria-required="true">
     <div id="edit-name--description" class="form__description">
@@ -7,15 +7,15 @@
     </div>
   </div>
 
-  <div class="form__element form__element--input-password">
-    <label for="edit-pass" class="form__label form__label--password">Regular Input</label>
-    <input aria-describedby="edit-pass--description" type="text" id="edit-pass" name="pass" size="60" maxlength="128" class="form__input form__input--password" required="required" aria-required="true">
+  <div class="form__element form__element--input-password form__element--has-label form__element--has-description">
+    <label for="edit-pass" class="form__label form__label--password form-element__label--required">Password Input</label>
+    <input aria-describedby="edit-pass--description" type="password" id="edit-pass" name="pass" size="60" maxlength="128" class="form__input form__input--password" required="required" aria-required="true">
     <div id="edit-pass--description" class="form__description">
       Password.
     </div>
   </div>
 
-  <div class="form__element form__element--select">
+  <div class="form__element form__element--select form__element--has-label">
     <label for="edit-select" class="form__label form__label--select form-element__label--required">Select</label>
     <div class="form__select-wrapper">
       <select id="edit-select" name="select" required="required" aria-required="true">
@@ -27,17 +27,17 @@
     </div>
   </div>
 
-  <div class="form__element form__element--input-date form__element--date">
+  <div class="form__element form__element--input-date form__element--date form__element--has-label">
     <label for="edit-date" class="form__label form__label--date">Date</label>
     <input type="date" id="edit-date" name="date" value="" class="form__input form__input--date">
   </div>
 
-  <div class="form__element form__element--input-radio form__element--radio">
+  <div class="form__element form__element--input-radio form__element--radio form__element--has-label">
     <input type="radio" id="edit-radio" name="radio" value="Service &amp; Maintenance" class="form__input form__input--radio">
     <label for="edit-radio" class="form__label form__label--radio option">Radio Option</label>
   </div>
 
-  <div class="form__element form__element--input-checkbox form__element--checkbox">
+  <div class="form__element form__element--input-checkbox form__element--checkbox form__element--has-label">
     <input type="checkbox" id="edit-checkbox" name="checkbox" value="Service &amp; Maintenance" class="form__input form__input--checkbox">
     <label for="edit-checkbox" class="form__label form__label--checkbox option">Checkbox Option</label>
   </div>

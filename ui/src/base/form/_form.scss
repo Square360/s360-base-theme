@@ -39,8 +39,6 @@ form {
   }
 
   textarea {
-    --form-input-overflow: auto;
-
     resize: vertical;
   }
 
@@ -53,7 +51,7 @@ form {
   }
 
   input[type="date"] {
-    --form-input-width: auto;
+    --form-input--width: auto;
   }
 
   label {
