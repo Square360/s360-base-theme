@@ -9,6 +9,7 @@ const TerserPlugin = require('terser-webpack-plugin');
  * Create entry points based on the pattern passed.
  *
  * @param {string} pattern
+ *
  * @returns {object}
  */
 function getEntries(pattern) {
@@ -29,7 +30,7 @@ function getEntries(pattern) {
   return entries;
 }
 
-module.exports = {
+const WEBPACK_CONFIG = {
   /**
    * Application entry files for building.
    *
@@ -148,7 +149,7 @@ module.exports = {
  *
  * @type {Object}
  */
-module.exports.module.rules.push({
+WEBPACK_CONFIG.module.rules.push({
   test: /\.s?[a?c]ss/i,
   use: [
     { loader: MiniCssExtractPlugin.loader },
@@ -168,7 +169,11 @@ module.exports.module.rules.push({
     { loader: 'sass-loader',
       options: {
         // Use dart-sass.
-        implementation: require('sass')
+        implementation: require('sass'),
+        sassOptions: {
+          // Silence deprecation warnings.
+          // quietDeps: true
+        }
       }
     }
   ]
@@ -179,7 +184,7 @@ module.exports.module.rules.push({
  *
  * @type {Object}
  */
-module.exports.module.rules.push({
+WEBPACK_CONFIG.module.rules.push({
   test: /\.(woff|woff2)(\?\S*)?$/,
   include: [/(web)?fonts?/],
   type: 'asset/inline',
@@ -190,7 +195,7 @@ module.exports.module.rules.push({
  *
  * @type {Object}
  */
-module.exports.module.rules.push({
+WEBPACK_CONFIG.module.rules.push({
   test: /\.(gif|png|jpe?g|svg)$/,
   include: path.resolve('src/images'),
   exclude: path.resolve('src/images/icons'),
@@ -240,10 +245,15 @@ module.exports.module.rules.push({
  *
  * @type {Object}
  */
-module.exports.module.rules.push({
+WEBPACK_CONFIG.module.rules.push({
   test: /^(?!.*\.(stories|component)\.(js|ts)$).*\.(js|ts)$/,
   use: [
     { loader: 'babel-loader' }
   ],
   exclude: /node_modules/
 });
+
+
+module.exports = [
+  WEBPACK_CONFIG,
+];
