@@ -7,10 +7,14 @@ Drupal.behaviors.brandingBlock = {
     const BRANDING_BLOCK = context.querySelector('[data-js="branding-block"]');
     if (!BRANDING_BLOCK) return;
 
-    window.addEventListener('resize', () => {
+    const updateBrandingBlockHeight = () => {
       ROOT.style.setProperty('--branding-block-height', `${ BRANDING_BLOCK.clientHeight }px`);
+    }
+
+    window.addEventListener('resize', () => {
+      updateBrandingBlockHeight();
     });
 
-    window.dispatchEvent(new Event('resize'));
+    updateBrandingBlockHeight();
   }
 }
