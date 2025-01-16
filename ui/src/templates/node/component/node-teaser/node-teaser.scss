@@ -1,0 +1,8 @@
+@use "@s360-base-theme/ui-core/site-config";
+@use "s360-scss-toolkit";
+
+.node-teaser {
+  opacity: var(--node-teaser--opacity);
+  transition: all 500ms ease-in-out var(--node-teaser--transition-delay, 0ms);
+  translate: var(--node-teaser--translate);
+}
