@@ -1,6 +1,6 @@
-import ctaLinkTwig from './cta-link.twig';
-import ctaLinkData from './cta-link.yml';
-import './cta-link.js';
+import ctaLinkTwig from './paragraph.cta-link.twig';
+import ctaLinkData from './paragraph.cta-link.yml';
+import './paragraph.cta-link.js';
 
 import linkTwig from '@ui-base/link/_link.twig';
 

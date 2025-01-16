@@ -1,6 +1,6 @@
-import linkListTwig from './link-list.twig';
-import linkListData from './link-list.yml';
-import './link-list.js';
+import linkListTwig from './paragraph.link-list.twig';
+import linkListData from './paragraph.link-list.yml';
+import './paragraph.link-list.js';
 
 import linkTwig from '@ui-base/link/_link.twig';
 

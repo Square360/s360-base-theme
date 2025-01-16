@@ -1,6 +1,6 @@
-import documentListTwig from './document-list.twig';
-import documentListData from './document-list.yml';
-import './document-list.js';
+import documentListTwig from './paragraph.document-list.twig';
+import documentListData from './paragraph.document-list.yml';
+import './paragraph.document-list.js';
 
 /**
  * Storybook Definition.

@@ -1,6 +1,6 @@
-import htmlContentTwig from './html-content.twig';
-import htmlContentData from './html-content.yml';
-import './html-content.js';
+import htmlContentTwig from './paragraph.html-content.twig';
+import htmlContentData from './paragraph.html-content.yml';
+import './paragraph.html-content.js';
 
 import ckEditorTwig from '@ui-field/ckeditor/component/ckeditor.twig';
 import { formatParagraphText } from '.storybook/utils';

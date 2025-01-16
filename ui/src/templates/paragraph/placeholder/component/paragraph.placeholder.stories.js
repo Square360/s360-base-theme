@@ -1,6 +1,6 @@
-import placeholderTwig from './placeholder.twig';
-import placeholderData from './placeholder.yml';
-import './placeholder.js';
+import placeholderTwig from './paragraph.placeholder.twig';
+import placeholderData from './paragraph.placeholder.yml';
+import './paragraph.placeholder.js';
 
 /**
  * Storybook Definition.

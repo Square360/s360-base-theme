@@ -1,6 +1,6 @@
-import imageTwig from './image.twig';
-import imageData from './image.yml';
-import './image.js';
+import imageTwig from './paragraph.image.twig';
+import imageData from './paragraph.image.yml';
+import './paragraph.image.js';
 
 import imgTwig from '@ui-base/img/_img.twig';
 
