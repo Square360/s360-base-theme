@@ -19,4 +19,13 @@ export const placeholder = (args) => {
     paragraph_field_body
   });
 };
+
+placeholder.argTypes = {
+  paragraph_field_title: {
+    name: 'Title'
+  },
+  paragraph_field_body: {
+    name: 'Body'
+  }
+};
 placeholder.args = placeholderData;

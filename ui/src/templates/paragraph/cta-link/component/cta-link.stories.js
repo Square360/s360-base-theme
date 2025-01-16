@@ -28,6 +28,7 @@ export const ctaLink = (args) => {
     paragraph_field_link: linkTwig({ link_content: paragraph_field_link }),
   });
 };
+
 ctaLink.argTypes = {
   paragraph_field_cta_link_style: paragraphFieldCtaLinkStyle,
 };

@@ -12,7 +12,11 @@
 
   {% if paragraph_field_links %}
     <div class="link-list__links">
-      {{ paragraph_field_links }}
+      {% for link in paragraph_field_links %}
+        <div class="link-list__link-wrapper">
+          {{ link }}
+        </div>
+      {% endfor %}
     </div>
   {% endif %}
 {% endblock %}

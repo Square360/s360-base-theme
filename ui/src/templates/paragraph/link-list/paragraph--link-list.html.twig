@@ -2,7 +2,7 @@
 
 {% include "@ui-paragraph/link-list/component/link-list.twig" with {
   paragraph_field_header: (content.field_header.0) ? content.field_header : '',
-  paragraph_field_links: (content.field_links.0) ? content.field_links : '',
+  paragraph_field_links: (content.field_links.0) ? content.field_links|field_value : '',
 
   paragraph_tag: (content.field_header.0) ? 'section' : 'div'
 } %}

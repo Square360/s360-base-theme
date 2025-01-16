@@ -18,6 +18,6 @@ export const linkList = () => {
 
   return linkListTwig({
     ...linkListData,
-    paragraph_field_links: links,
+    paragraph_field_links: links
   });
 };
