@@ -1,6 +1,6 @@
-import remoteVideoTwig from './remote-video.twig';
-import remoteVideoData from './remote-video.yml';
-import './remote-video.js';
+import remoteVideoTwig from './media.remote-video.twig';
+import remoteVideoData from './media.remote-video.yml';
+import './media.remote-video.js';
 
 /**
  * Storybook Definition.
