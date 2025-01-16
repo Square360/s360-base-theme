@@ -3,6 +3,6 @@
 
 .view--display-default {
   .view__row + .view__row {
-    margin-top: var(--view-default-view-row-margin-top, #{ site-config.$spacer-0 });
+    margin-top: var(--view-default--view-row--margin-top, #{ site-config.$spacer-0 });
   }
 }

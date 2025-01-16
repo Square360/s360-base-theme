@@ -13,6 +13,9 @@
 {{ attach_library('s360_base_theme/views.' ~ css_name) }}
 
 {% include "@ui-views/view/component/view.twig" with {
+  view_id: id|clean_class,
+  view_display_id: display_id|clean_class,
+  view_dom_id: dom_id,
   view_exposed: exposed,
   view_header: header,
   view_attachment_before: attachment_before,
@@ -22,6 +25,7 @@
   view_attachment_after: attachment_after,
   view_more: more,
   view_footer: footer,
+
   view_format: format,
   view_columns: columns,
 } %}

@@ -1,3 +1,10 @@
-{{ attach_library('s360_base_theme/view.table') }}
+{{ attach_library('s360_base_theme/views.table') }}
 
-{% include "@ui-views/table/component/table.twig" %}
+{% include "@ui-views/table/component/table.twig" with {
+  view_caption_needed: caption_needed,
+  view_caption: caption,
+  view_title: title,
+  view_summary_element: summary_element,
+  view_header: header,
+  view_rows: rows,
+} %}
