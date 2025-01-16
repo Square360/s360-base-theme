@@ -2,4 +2,7 @@
 
 {% include "@ui-node/page/full/component/page.full.twig" with {
   node_field_label: label,
+
+  node_is_front: is_front,
+  node_is_published: node.isPublished(),
 } %}

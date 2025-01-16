@@ -2,11 +2,12 @@
   'node',
   'node--page',
   'node--full',
-  is_front ? 'node--is-front' : ''
+  node_is_front ? 'node--is-front' : '',
+  not node_is_published ? 'node--unpublished' : '',
 ] %}
 {% set attributes = attributes|default(create_attribute({})) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
-{% set attributes = attributes.setAttribute('data-js', 'page') %}
+{# {% set attributes = attributes.setAttribute('data-js', 'node-page') %} #}
 
 {% extends "@ui-node/node--full.html.twig" %}
 
