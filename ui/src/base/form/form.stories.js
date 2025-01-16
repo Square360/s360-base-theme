@@ -5,7 +5,7 @@ import "@ui-form/form/component/form.scss";
 /**
  * Storybook Definition.
  */
-export default { title: 'Foundation/Forms' };
+export default { title: 'Foundation/Form' };
 
 export const form = () => {
   return formTwig();

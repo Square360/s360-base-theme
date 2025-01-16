@@ -15,9 +15,9 @@ export const blockquote = (args) => {
   });
 };
 
-blockquote.args = blockquoteData;
 blockquote.argTypes = {
   blockquote_content: {
     name: 'Quote'
   }
-}
+};
+blockquote.args = blockquoteData;

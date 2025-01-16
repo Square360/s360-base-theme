@@ -4,7 +4,7 @@ import linkData from './link.yml';
 /**
  * Storybook Definition.
  */
-export default { title: 'Foundation/Links' };
+export default { title: 'Foundation/Link' };
 
 export const link = (args) => {
   return linkTwig({
@@ -12,7 +12,6 @@ export const link = (args) => {
   });
 }
 
-link.args = linkData;
 link.argTypes = {
   link_text: {
     name: 'Link text'
@@ -20,4 +19,5 @@ link.argTypes = {
   link_url: {
     name: 'Url',
   }
-}
+};
+link.args = linkData;

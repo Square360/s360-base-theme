@@ -4,7 +4,7 @@ import buttonData from './button.yml';
 /**
  * Storybook Definition.
  */
-export default { title: 'Foundation/Buttons' };
+export default { title: 'Foundation/Button' };
 
 export const button = (args) => {
   return buttonTwig({
