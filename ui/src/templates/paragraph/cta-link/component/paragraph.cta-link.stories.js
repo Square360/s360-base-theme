@@ -25,7 +25,7 @@ export const ctaLink = (args) => {
   return ctaLinkTwig({
     ...args,
     paragraph_field_cta_link_style: paragraph_field_cta_link_style,
-    paragraph_field_link: linkTwig({ link_content: paragraph_field_link }),
+    paragraph_field_link: linkTwig({ ...paragraph_field_link }),
   });
 };
 

@@ -8,7 +8,7 @@ import './layouts.js';
 
 import { COLOR_THEME_OPTIONS } from '.storybook/utils';
 
-import { placeholder } from '@ui-paragraph/placeholder/component/placeholder.stories.js';
+import { placeholder } from '@ui-paragraph/placeholder/component/paragraph.placeholder.stories.js';
 
 import drupalAttribute from 'drupal-attribute';
 
