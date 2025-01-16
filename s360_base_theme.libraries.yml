@@ -201,20 +201,12 @@ site-layout:
     ui/dist/site-layout/site-layout.js: {}
 
 # ##################################################
-# Views Libraries
+# Base Views Libraries
 
 views.view:
   css:
     component:
       ui/dist/views/view/view.css: {}
-
-views.[view_name]:
-  css:
-    component:
-      ui/dist/views/[view_name]/[view_name].css: {}
-
-# ##################################################
-# Views Format Libraries
 
 views.grid:
   css:
@@ -235,3 +227,11 @@ views.unformatted:
   css:
     component:
       ui/dist/views/unformatted/unformatted.css: {}
+
+# ##################################################
+# Views Libraries
+
+views.[view_name]:
+  css:
+    component:
+      ui/dist/views/[view_name]/[view_name].css: {}
