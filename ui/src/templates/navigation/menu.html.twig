@@ -43,7 +43,7 @@
         {% set menu_item_type = 'nolink' %}
       {% elseif item.url.isrouted and item.url.routeName == '<button>' %}
         {% set menu_item_type = 'button' %}
-      {% elseif item.url.isrouted and item.below and menu_level == 0 and (menu_name in ['main', 'group-menu']) %}
+      {% elseif item.url.isrouted and item.below and menu_level == 0 and (menu_name in ['main']) %}
         {% set menu_item_type = 'details_summary' %}
       {% else %}
         {% set menu_item_type = 'link' %}
@@ -57,7 +57,9 @@
       ] %}
 
       {% if not menu_attributes.link %}
-        {% set menu_attributes = menu_attributes|merge({'link': {}}) %}
+        {% set menu_attributes = menu_attributes|merge({
+          'link': {}
+        }) %}
       {% endif %}
 
       {% if item.in_active_trail %}
