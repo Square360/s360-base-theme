@@ -1,6 +1,6 @@
-import pageTwig from './page.full.twig';
-import pageData from './page.full.yml';
-import './page.full.js';
+import pageTwig from './node.page.full.twig';
+import pageData from './node.page.full.yml';
+import './node.page.full.js';
 
 /**
  * Storybook Definition.

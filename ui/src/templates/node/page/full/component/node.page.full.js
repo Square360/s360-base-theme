@@ -1,1 +1,1 @@
-import './page.full.scss';
+import './node.page.full.scss';

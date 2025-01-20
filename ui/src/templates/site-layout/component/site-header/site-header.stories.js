@@ -7,7 +7,7 @@ import './site-header.js';
 import '@ui-site-layout/component/main-menu-toggle/main-menu-toggle.js';
 
 import { main } from '@ui-navigation/navigation.stories';
-import { brandingBlock } from '@ui-block/branding-block/component/branding-block.stories';
+import { brandingBlock } from '@ui-block/branding-block/component/block.branding-block.stories';
 
 /**
  * Storybook Definition.
