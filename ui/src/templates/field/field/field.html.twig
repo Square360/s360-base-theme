@@ -6,7 +6,7 @@
 {% else %}
   {{ attach_library('s360_base_theme/field.field') }}
 
-  {% include "@ui-field/field/component/field.twig" with {
+  {% include "@ui-field/field/component/field.field.twig" with {
     field_items: items
   } %}
 {% endif %}
