@@ -1,4 +1,4 @@
-import './branding-block.scss';
+import './block.branding-block.scss';
 
 Drupal.behaviors.brandingBlock = {
   attach(context) {

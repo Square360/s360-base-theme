@@ -1,6 +1,6 @@
-import brandingBlockTwig from './branding-block.twig';
-import brandingBlockData from './branding-block.yml';
-import './branding-block.js';
+import brandingBlockTwig from './block.branding-block.twig';
+import brandingBlockData from './block.branding-block.yml';
+import './block.branding-block.js';
 
 /**
  * Storybook Definition.
