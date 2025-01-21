@@ -2605,7 +2605,7 @@ __metadata:
     postcss-scss: "npm:4.0.9"
     react: "npm:19.0.0"
     react-dom: "npm:19.0.0"
-    s360-scss-toolkit: "git+https://bitbucket.org/sq360_sysadmin/s360-scss-toolkit.git#1.0.0"
+    s360-scss-toolkit: "git+https://bitbucket.org/sq360_sysadmin/s360-scss-toolkit.git#1.1.6"
     sass: "npm:1.83.4"
     sass-loader: "npm:16.0.4"
     storybook: "npm:7.6.20"
@@ -12686,10 +12686,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"s360-scss-toolkit@git+https://bitbucket.org/sq360_sysadmin/s360-scss-toolkit.git#1.0.0":
-  version: 6.0.2
-  resolution: "s360-scss-toolkit@https://bitbucket.org/sq360_sysadmin/s360-scss-toolkit.git#commit=6193d462172463ee568146513ea2b8072bdadbe4"
-  checksum: 10c0/7274f752fa717032a5a23eb21757ed97c7fe8e07ad9e54b8ad976c827533b8197ca94bdf3de1b2980b1cf05ec922d9320d044217d01331d779e5d3b5230dba75
+"s360-scss-toolkit@git+https://bitbucket.org/sq360_sysadmin/s360-scss-toolkit.git#1.1.6":
+  version: 1.1.6
+  resolution: "s360-scss-toolkit@https://bitbucket.org/sq360_sysadmin/s360-scss-toolkit.git#commit=46650533491654deead158bed5efd4641e04fb78"
+  checksum: 10c0/6c50ad8ccc84c45130f31761aeb2e278a8a3ec4e8ab32874ee3e3f3e1d9d14745153bc34262e1062dd94d2ee0a8bc3ce44fb1cf0a0123132514fe0ca9cb23891
   languageName: node
   linkType: hard
 

@@ -31,7 +31,7 @@
   "dependencies": {
     "@s360-base-theme/ui-core": "workspace:^1.0.0",
     "add-attributes-twig-extension": "0.1.0",
-    "s360-scss-toolkit": "git+https://bitbucket.org/sq360_sysadmin/s360-scss-toolkit.git#1.0.0",
+    "s360-scss-toolkit": "git+https://bitbucket.org/sq360_sysadmin/s360-scss-toolkit.git#1.1.6",
     "twig-drupal-filters": "3.2.0"
   },
   "devDependencies": {
