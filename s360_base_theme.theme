@@ -8,6 +8,7 @@
  */
 
 use Drupal\Core\Url;
+use Drupal\media\Entity\Media;
 
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-block.php';
@@ -52,7 +53,7 @@ function s360_base_theme_get_media_info(int $mid) {
       'entity' => $media,
       'type' => $media_bundle,
       'label' => $media->label(),
-    ]
+    ],
   ];
 
   $media_info['media']['caption'] = '';
@@ -103,7 +104,7 @@ function s360_base_theme_get_media_info(int $mid) {
  * @return bool|array
  *   Either an array of information for the media or false.
  */
-function s360_base_theme_get_media_document_info(Drupal\media\Entity\Media $media) {
+function s360_base_theme_get_media_document_info(Media $media) {
   $field_media_document = $media->field_media_document?->target_id;
 
   if (!$field_media_document) {
@@ -124,7 +125,7 @@ function s360_base_theme_get_media_document_info(Drupal\media\Entity\Media $medi
  * @return bool|array
  *   Either an array of information for the media or false.
  */
-function s360_base_theme_get_media_image_info(Drupal\media\Entity\Media $media) {
+function s360_base_theme_get_media_image_info(Media $media) {
   $field_media_image = $media->field_media_image;
 
   if (!$field_media_image) {
@@ -149,7 +150,7 @@ function s360_base_theme_get_media_image_info(Drupal\media\Entity\Media $media) 
  * @return bool|array
  *   Either an array of information for the media or false.
  */
-function s360_base_theme_get_media_remote_video_info(Drupal\media\Entity\Media $media) {
+function s360_base_theme_get_media_remote_video_info(Media $media) {
   $field_media_oembed_video = $media->field_media_oembed_video?->getString();
 
   if (!$field_media_oembed_video) {
@@ -281,8 +282,9 @@ function s360_base_theme_get_social_icon(string $social_name) {
 /**
  * Converts a file size into a human readable format.
  *
- * @param string|number $file_size
+ * @param string|int $file_size
  *   The original file size.
+ *
  * @return string
  *   The converted file size with unit.
  */
@@ -299,7 +301,7 @@ function _s360_base_theme_file_size_conversion($file_size) {
     'PB',
     'EB',
     'ZB',
-    'YB'
+    'YB',
   ];
 
   // Figure out which unit to use.
@@ -313,7 +315,9 @@ function _s360_base_theme_file_size_conversion($file_size) {
  * Converts a mime type into an icon and file type.
  *
  * @param string $file_mime_type
- * @return
+ *   The type of mime.
+ *
+ * @return array
  *   An array containing icon and file type.
  */
 function _s360_base_theme_file_mime_type_conversion(string $file_mime_type) {

@@ -71,9 +71,8 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
   print "$theme_name theme created! Happy theming!" . PHP_EOL;
 }
 
-/**
- * **************************************************
- * COPY FUNCTIONS.
+/* **************************************************
+ * Copy functions
  */
 
 /**
@@ -165,9 +164,8 @@ function copy_files(array $files, string $theme_path) {
   return TRUE;
 }
 
-/**
- * **************************************************
- * ALTER FUNCTIONS.
+/* **************************************************
+ * Alter functions
  */
 
 /**
@@ -278,9 +276,8 @@ function set_alterations(string $theme_name, string $machine_name, string $kebab
   ];
 }
 
-/**
- * **************************************************
- * RENAME FUNCTIONS.
+/* **************************************************
+ * Rename functions
  */
 
 /**
@@ -323,9 +320,8 @@ function rename_files(array $files_to_rename, string $theme_path, string $machin
   return TRUE;
 }
 
-/**
- * **************************************************
- * UTILITY FUNCTIONS.
+/* **************************************************
+ * Utility functions
  */
 
 /**
