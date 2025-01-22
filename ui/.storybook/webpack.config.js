@@ -50,6 +50,10 @@ module.exports = async ({ config }) => {
       { loader: 'sass-loader',
         options: {
           implementation: require('sass'),
+          sassOptions: {
+            // Silence deprecation warnings.
+            quietDeps: true
+          }
         },
       },
     ],

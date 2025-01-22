@@ -1,15 +1,11 @@
-{% if title %}
-  <h2 class="view__heading">{{ title }}</h2>
-{% endif %}
-
-{% set compare_view_title = title|striptags|trim %}
-{% set compare_view_caption = caption|first|striptags|trim %}
+{% set compare_view_title = view_title|striptags|trim %}
+{% set compare_view_caption = view_caption|first|striptags|trim %}
 
 <table{{ attributes.addClass('view__table') }}>
   {% if
-    caption_needed and (
-      (caption and (compare_view_caption != compare_view_title)) or
-      summary_element is not empty
+    view_caption_needed and (
+      (view_caption and (compare_view_caption != compare_view_title)) or
+      view_summary_element is not empty
     )
   %}
     <caption class="view__caption">
@@ -17,16 +13,20 @@
         {{ caption }}
       {% endif %}
 
-      {% if (summary_element is not empty) %}
-        {{ summary_element }}
+      {% if (view_summary_element is not empty) %}
+        {{ view_summary_element }}
       {% endif %}
     </caption>
+  {% else %}
+    {% if view_title %}
+      <h2 class="view__heading">{{ view_title }}</h2>
+    {% endif %}
   {% endif %}
 
-  {% if header %}
+  {% if view_header %}
     <thead>
       <tr>
-        {% for key, column in header %}
+        {% for key, column in view_header %}
           <th{{ column.attributes.setAttribute('scope', 'col') }}>
             {%- if column.url -%}
               <a href="{{ column.url }}" title="{{ column.title }}" rel="nofollow">{{ column.content }}{{ column.sort_indicator }}</a>
@@ -40,10 +40,10 @@
   {% endif %}
 
   <tbody>
-    {% for row in rows %}
+    {% for row in view_rows %}
       <tr{{ row.attributes }}>
         {% for key, column in row.columns %}
-          <td{{ column.attributes.setAttribute('data-cell', header[key].content) }}>
+          <td{{ column.attributes.setAttribute('data-cell', view_header[key].content) }}>
             {% for content in column.content %}
               {{- content.separator }}{{ content.field_output -}}
             {% endfor %}

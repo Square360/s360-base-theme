@@ -5,7 +5,7 @@ import olTwig from './html-list/_ol.twig';
 /**
  * Storybook Definition.
  */
-export default { title: 'Foundations/Lists' };
+export default { title: 'Foundation/Lists' };
 
 export const descriptionList = () => {
   return dlTwig();

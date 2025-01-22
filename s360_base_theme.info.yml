@@ -7,6 +7,7 @@ dependencies:
   - components:components
   - style_options:style_options
   - twig_tweak:twig_tweak
+  - menus_attribute:menus_attribute
   - twig_field_value:twig_field_value
   - s360_base_paragraphs:s360_base_paragraphs
   - s360_layout_builder:s360_layout_builder
@@ -29,18 +30,20 @@ regions:
 
 components:
   namespaces:
+    # Non-Drupal components
     ui-components:
       - ui/src/components
+
+    # Paragraph Layouts
     ui-layouts:
       - ui/src/layouts
+
     ui-block:
       - ui/src/templates/block
     ui-field:
       - ui/src/templates/field
     ui-form:
       - ui/src/templates/form
-    ui-layout:
-      - ui/src/templates/layout
     ui-media:
       - ui/src/templates/media
     ui-navigation:
@@ -53,5 +56,5 @@ components:
       - ui/src/templates/site-layout
     ui-views:
       - ui/src/templates/views
-    # ui-taxonomy:
-    #   - ui/src/templates/taxonomy
+    ui-taxonomy:
+      - ui/src/templates/taxonomy

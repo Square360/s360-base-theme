@@ -1,20 +1,20 @@
-import corporateData from './corporate/component/corporate.yml';
-import './corporate/component/corporate.js';
+import menuTwig from './menu.html.twig';
 
-import footerData from './footer/component/footer.yml';
-import './footer/component/footer.js';
+import corporateData from './corporate/component/menu.corporate.yml';
+import './corporate/component/menu.corporate.js';
 
-import mainData from './main/component/main.yml';
-import './main/component/main.js';
+import footerData from './footer/component/menu.footer.yml';
+import './footer/component/menu.footer.js';
+
+import mainData from './main/component/menu.main.yml';
+import './main/component/menu.main.js';
+
+import socialData from './social/component/menu.social.yml';
+import './social/component/menu.social.js';
 
 import pagerTwig from './pager/component/pager.twig';
 import pagerData from './pager/component/pager.yml';
 import './pager/component/pager.js';
-
-import socialData from './social/component/social.yml';
-import './social/component/social.js';
-
-import menuTwig from './menu.html.twig';
 
 import drupalAttribute from 'drupal-attribute';
 
@@ -65,12 +65,6 @@ export const main = () => {
   });
 }
 
-export const pager = () => {
-  return pagerTwig({
-    ...pagerData,
-  });
-}
-
 socialData.items.forEach(item => {
   setItemAttribues(item);
 });
@@ -78,5 +72,11 @@ export const social = () => {
   return menuTwig({
     ...socialData,
     attributes: new drupalAttribute(),
+  });
+}
+
+export const pager = () => {
+  return pagerTwig({
+    ...pagerData,
   });
 }

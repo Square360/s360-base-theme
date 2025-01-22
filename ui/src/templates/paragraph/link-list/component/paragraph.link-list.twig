@@ -1,0 +1,22 @@
+{% set classes = [
+  'link-list',
+] %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'link-list') %}
+
+{% extends "@ui-paragraph/paragraph.html.twig" %}
+
+{% block paragraph_content %}
+  {{ paragraph_field_header }}
+
+  {% if paragraph_field_links %}
+    <div class="link-list__links">
+      {% for link in paragraph_field_links %}
+        <div class="link-list__link-wrapper">
+          {{ link }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}

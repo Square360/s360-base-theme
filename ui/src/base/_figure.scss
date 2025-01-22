@@ -1,12 +1,13 @@
 @use "s360-scss-toolkit";
 
 figure {
+  display: var(--figure--display, block);
   height: var(--figure--height, auto);
   width: var(--figure--width, auto);
-  display: var(--figure--display, block);
 
   &:has(figcaption) {
     --figure--display: table;
+    --figure--width: 100%;
   }
 
   figcaption {

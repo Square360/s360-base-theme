@@ -1,0 +1,7 @@
+paragraph_field_links:
+  - link_url: '#'
+    link_text: 'Link 1'
+  - link_url: '#'
+    link_text: 'Link 2'
+  - link_url: '#'
+    link_text: 'Link 3'
