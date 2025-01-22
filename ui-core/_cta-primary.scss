@@ -14,7 +14,7 @@
 
   &:hover,
   &:focus {
-    background-color: var(--cta-primary--bg-color--hover, var(--cta-primary--bg-color));
-    color: var(--cta-primary--color--hover, var(--cta-primary-color));
+    background-color: var(--cta-primary--bg-color--active, var(--cta-primary--bg-color));
+    color: var(--cta-primary--color--active, var(--cta-primary--color));
   }
 }

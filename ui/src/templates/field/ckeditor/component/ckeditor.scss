@@ -2,7 +2,7 @@
 @use "@s360-base-theme/ui-core/colors";
 @use "s360-scss-toolkit";
 
-.ck-content {
+.ckeditor {
   // Set ul/ol vars.
   --list--line-height: #{ site-config.$text-line-height };
   --list--max-width: #{ site-config.$max-line-length };

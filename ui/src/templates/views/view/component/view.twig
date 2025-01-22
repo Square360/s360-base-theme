@@ -2,11 +2,11 @@
 
 {% set classes = [
   'view',
-  'view--' ~ id|clean_class,
-  'view--' ~ display_id|clean_class,
+  'view--' ~ view_id,
+  'view--' ~ view_display_id,
   'view--' ~ view_format,
   view_columns ? 'view--' ~ view_columns ~ '-columns' : '',
-  dom_id ? 'js-view-dom-id-' ~ dom_id : '',
+  view_dom_id ? 'js-view-dom-id-' ~ view_dom_id : '',
 ] %}
 
 {% set attributes = attributes|default(create_attribute({})) %}

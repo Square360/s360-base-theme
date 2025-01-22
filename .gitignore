@@ -1,2 +1,5 @@
 /vendor/
 node_modules
+.yarn
+ui/dist/*
+!ui/dist/.gitkeep

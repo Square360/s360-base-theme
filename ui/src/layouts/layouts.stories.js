@@ -1,3 +1,4 @@
+import accordionTwig from './accordion/_accordion.twig';
 import oneColumTwig from './one-column/_one-column.twig';
 import twoColumTwig from './two-column/_two-column.twig';
 import threeColumTwig from './three-column/_three-column.twig';
@@ -7,8 +8,7 @@ import './layouts.js';
 
 import { COLOR_THEME_OPTIONS } from '.storybook/utils';
 
-import { ctaLink } from '@ui-paragraph/cta-link/component/cta-link.stories.js';
-import { placeholder } from '@ui-paragraph/placeholder/component/placeholder.stories.js';
+import { placeholder } from '@ui-paragraph/placeholder/component/paragraph.placeholder.stories.js';
 
 import drupalAttribute from 'drupal-attribute';
 
@@ -18,7 +18,7 @@ import drupalAttribute from 'drupal-attribute';
 export default { title: 'Layouts/Layouts' };
 
 // **************************************************
-// ONE COLUMN LAYOUTS
+// ONE COLUMN LAYOUT
 
 export const oneColumn = (args) => {
   let { color_theme } = args;
@@ -32,11 +32,12 @@ export const oneColumn = (args) => {
   return oneColumTwig({
     paragraph_layout_region_first: [
       '<h1>Heading</h1>',
-      ctaLink({ paragraph_field_cta_link_style: 'Primary' }),
+      placeholder(),
     ],
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
+
 oneColumn.argTypes = {
   color_theme: {
     name: 'Color Theme',
@@ -52,7 +53,7 @@ oneColumn.args = {
 };
 
 // **************************************************
-// TWO COLUMN LAYOUTS
+// TWO COLUMN LAYOUT
 
 const LAYOUT_TWO_COLUMN_RATIO_OPTIONS = {
   'layout--50-50': '50%/50%',
@@ -77,6 +78,7 @@ export const twoColumn = (args) => {
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
+
 twoColumn.argTypes = {
   column_ratio: {
     name: 'Column Ratio',
@@ -92,7 +94,7 @@ twoColumn.args = {
 };
 
 // **************************************************
-// THREE COLUMN LAYOUTS
+// THREE COLUMN LAYOUT
 
 const LAYOUT_THREE_COLUMN_RATIO_OPTIONS = {
   'layout--33-33-33': '33%/33%/33%',
@@ -115,6 +117,7 @@ export const threeColumn = (args) => {
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
+
 threeColumn.argTypes = {
   column_ratio: {
     name: 'Column Ratio',
@@ -130,7 +133,7 @@ threeColumn.args = {
 };
 
 // **************************************************
-// FOUR COLUMN LAYOUTS
+// FOUR COLUMN LAYOUT
 
 export const fourColumn = () => {
   let paragraphAttributes = Object.assign({});
@@ -143,7 +146,26 @@ export const fourColumn = () => {
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
+
 fourColumn.argTypes = {
 };
 fourColumn.args = {
+};
+
+// **************************************************
+// ACCORDION LAYOUT
+
+export const accordionColumn = () => {
+  let paragraphAttributes = Object.assign({});
+
+  return accordionTwig({
+    paragraph_layout_header: 'Accordion',
+    paragraph_layout_region_first: placeholder(),
+    attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
+  });
+};
+
+accordionColumn.argTypes = {
+};
+accordionColumn.args = {
 };

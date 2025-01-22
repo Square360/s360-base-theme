@@ -4,7 +4,7 @@ import blockquoteData from './blockquote.yml';
 /**
  * Storybook Definition.
  */
-export default { title: 'Foundations/Blockquote' };
+export default { title: 'Foundation/Blockquote' };
 
 export const blockquote = (args) => {
   let { blockquote_content } = args;
@@ -13,5 +13,11 @@ export const blockquote = (args) => {
     ...args,
     blockquote_content: `<p>${ blockquote_content }</p>`
   });
+};
+
+blockquote.argTypes = {
+  blockquote_content: {
+    name: 'Quote'
+  }
 };
 blockquote.args = blockquoteData;

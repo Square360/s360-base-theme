@@ -5,7 +5,7 @@
 /// entire viewport, infinitely.
 ///
 /// @mixin should only be used inside "@media" queries.
-/// %placeholders should cannot be used inside "@media" queries.
+/// %placeholders cannot be used inside "@media" queries.
 
 @mixin bleed-left {
   margin-left: calc(calc(-50vw + 50%) - (var(--scrollbar-width, 0px) / 2 * -1));
@@ -43,7 +43,7 @@
 /// "safe-area" of the site. (i.e. side margins).
 ///
 /// @mixin should only be used inside "@media" queries.
-/// %placeholders should cannot be used inside "@media" queries.
+/// %placeholders cannot be used inside "@media" queries.
 
 @mixin trim-left {
   margin-left: calc(var(--safe-area-inline) * -1);
@@ -83,7 +83,7 @@
 /// "bleed" or "trim" otherwise you'll get odd indenting.
 ///
 /// @mixin should only be used inside "@media" queries.
-/// %placeholders should cannot be used inside "@media" queries.
+/// %placeholders cannot be used inside "@media" queries.
 
 @mixin live-left {
   padding-left: var(--safe-area-inline);

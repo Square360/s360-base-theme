@@ -1,6 +1,6 @@
 import './form.scss';
 
-let queryForm = function(e) {
+const queryForm = function(e) {
   let t = !(!e || !e.reset) && e.reset;
   let n = window.location.toString().split('?');
 

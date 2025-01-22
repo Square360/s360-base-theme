@@ -1,6 +1,6 @@
 $SITE_CONFIG: (
   font-size-base: 16,
-  modular-scale-ratio: 1.333,
+  modular-scale-ratio: 1,
 );
 
 @use "sass:math";
@@ -37,6 +37,8 @@ $column-gap: $spacer-0;
 /// @author Steven Keiser
 /// @author Brian Milea
 ///
+/// @access public
+///
 /// @param {number} $count
 ///   The number of columns.
 ///
@@ -48,6 +50,7 @@ $column-gap: $spacer-0;
 ///
 /// @return {number}
 ///   The given $count converted to a calc().
+
 @function column-width($count: 1, $content-area-width: $site-content-area) {
   // Remove the gutters to get a true column width.
   // Add back gutters for multiple columns.
