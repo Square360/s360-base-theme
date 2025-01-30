@@ -1,4 +1,5 @@
 import pTwig from '@ui-base/text/p/_p.twig';
+import drupalAttribute from 'drupal-attribute';
 
 export const CTA_LINK_STYLE_OPTIONS = {
   'primary': 'Primary',
@@ -27,4 +28,29 @@ export function formatParagraphText(paragraph_text) {
 
     return pTwig({ paragraph_text });
   }).join('');
+}
+
+/**
+ *
+ * @param {string} storyTheme - The theme the story needs to render correctly.
+ * @param {string} activeTheme - The current theme that is selected.
+ * @param {string} story - The story to render.
+ * @returns
+ */
+export function renderStoryWithTheme(storyTheme, activeTheme, story) {
+  if (activeTheme !== storyTheme) {
+    return `Sorry, this story can only be rendered using the <strong>${ storyTheme }</strong> theme.`;
+  }
+
+  return story;
+}
+
+export function setMenuItemAttribues(item) {
+  item.attributes = new drupalAttribute();
+
+  if (item.below) {
+    item.below.forEach(childItem => {
+      setMenuItemAttribues(childItem);
+    })
+  }
 }
