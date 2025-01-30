@@ -24,7 +24,7 @@ layouts:
 
 block.branding-block:
   js:
-    ui/dist/block/branding-block/branding-block.js: {}
+    ui/dist/block/branding-block/block.branding-block.js: {}
 
 # ##################################################
 # Component Libraries
@@ -35,17 +35,17 @@ block.branding-block:
 field.advanced-header-field:
   css:
     component:
-      ui/dist/field/advanced-header-field/advanced-header-field.css: {}
+      ui/dist/field/advanced-header-field/field.advanced-header-field.css: {}
 
 field.ckeditor:
   css:
     component:
-      ui/dist/field/ckeditor/ckeditor.css: {}
+      ui/dist/field/ckeditor/field.ckeditor.css: {}
 
 field.field:
   css:
     component:
-      ui/dist/field/field/field.css: {}
+      ui/dist/field/field/field.field.css: {}
 
 # ##################################################
 # Form Libraries
@@ -80,37 +80,47 @@ form.webform:
 media.document:
   css:
     component:
-      ui/dist/media/document/document.css: {}
+      ui/dist/media/document/media.document.css: {}
 
 media.image:
   css:
     component:
-      ui/dist/media/image/image.css: {}
+      ui/dist/media/image/media.image.css: {}
 
 media.remote-video:
   css:
     component:
-      ui/dist/media/remote-video/remote-video.css: {}
+      ui/dist/media/remote-video/media.remote-video.css: {}
 
 # ##################################################
 # Navigation Libraries
 
+menu.corporate:
+  css:
+    component:
+      ui/dist/navigation/corporate/menu.corporate.css: {}
+
 menu.footer:
   css:
     component:
-      ui/dist/navigation/footer/footer.css: {}
+      ui/dist/navigation/footer/menu.footer.css: {}
+
+menu.header:
+  css:
+    component:
+      ui/dist/navigation/header/menu.header.css: {}
 
 menu.local-tasks:
   css:
     component:
-      ui/dist/navigation/local-tasks/local-tasks.css: {}
+      ui/dist/navigation/local-tasks/menu.local-tasks.css: {}
 
 menu.main:
   css:
     component:
-      ui/dist/navigation/main/main.css: {}
+      ui/dist/navigation/main/menu.main.css: {}
   js:
-    ui/dist/navigation/main/main.js: {}
+    ui/dist/navigation/main/menu.main.js: {}
   dependencies:
     - core/drupal
 
@@ -122,12 +132,7 @@ menu.pager:
 menu.social:
   css:
     component:
-      ui/dist/navigation/social/social.css: {}
-
-menu.corporate:
-  css:
-    component:
-      ui/dist/navigation/corporate/corporate.css: {}
+      ui/dist/navigation/social/menu.social.css: {}
 
 # ##################################################
 # Node Page Libraries
@@ -143,52 +148,52 @@ node.page.full:
 paragraph.cta-link:
   css:
     component:
-      ui/dist/paragraph/cta-link/cta-link.css: {}
+      ui/dist/paragraph/cta-link/paragraph.cta-link.css: {}
 
 paragraph.document-list:
   css:
     component:
-      ui/dist/paragraph/document-list/document-list.css: {}
+      ui/dist/paragraph/document-list/paragraph.document-list.css: {}
 
 paragraph.embed-code:
   css:
     component:
-      ui/dist/paragraph/embed-code/embed-code.css: {}
+      ui/dist/paragraph/embed-code/paragraph.embed-code.css: {}
 
 paragraph.html-content:
   css:
     component:
-      ui/dist/paragraph/html-content/html-content.css: {}
+      ui/dist/paragraph/html-content/paragraph.html-content.css: {}
 
 paragraph.image:
   css:
     component:
-      ui/dist/paragraph/image/image.css: {}
+      ui/dist/paragraph/image/paragraph.image.css: {}
 
 paragraph.link-list:
   css:
     component:
-      ui/dist/paragraph/link-list/link-list.css: {}
+      ui/dist/paragraph/link-list/paragraph.link-list.css: {}
 
 paragraph.placeholder:
   css:
     component:
-      ui/dist/paragraph/placeholder/placeholder.css: {}
+      ui/dist/paragraph/placeholder/paragraph.placeholder.css: {}
 
 paragraph.video:
   css:
     component:
-      ui/dist/paragraph/video/video.css: {}
+      ui/dist/paragraph/video/paragraph.video.css: {}
 
 paragraph.view-block:
   css:
     component:
-      ui/dist/paragraph/view-block/view-block.css: {}
+      ui/dist/paragraph/view-block/paragraph.view-block.css: {}
 
 paragraph.webform:
   css:
     component:
-      ui/dist/paragraph/webform/webform.css: {}
+      ui/dist/paragraph/webform/paragraph.webform.css: {}
 
 # ##################################################
 # Site Layout Library
