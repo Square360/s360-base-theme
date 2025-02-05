@@ -4,7 +4,7 @@ import './paragraph.cta-link.js';
 
 import linkTwig from '@ui-base/link/_link.twig';
 
-import { paragraphFieldCtaLinkStyle } from '.storybook/utils';
+import { ctaLinkStyleControl } from '.storybook/utils';
 
 /**
  * Storybook Definition.
@@ -23,13 +23,12 @@ export const ctaLink = (args) => {
     : ctaLinkData.paragraph_field_cta_link_style;
 
   return ctaLinkTwig({
-    ...args,
     paragraph_field_cta_link_style: paragraph_field_cta_link_style,
-    paragraph_field_link: linkTwig({ ...paragraph_field_link }),
+    paragraph_field_link: linkTwig({ link_text: paragraph_field_link }),
   });
 };
 
-ctaLink.argTypes = {
-  paragraph_field_cta_link_style: paragraphFieldCtaLinkStyle,
-};
 ctaLink.args = ctaLinkData;
+ctaLink.argTypes = {
+  paragraph_field_cta_link_style: ctaLinkStyleControl,
+};

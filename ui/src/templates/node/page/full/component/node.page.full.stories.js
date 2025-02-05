@@ -8,6 +8,8 @@ import './node.page.full.js';
 export default { title: 'Content Types/Page' };
 
 export const page = (args) => {
+  let {  } = args ?? '';
+
   return pageTwig({
     ...args
   });

@@ -7,8 +7,11 @@ import './{{ componentFilename }}.js';
  */
 export default { title: '{{ storybookTitle }}' };
 
-export const {{ storybookFunctionName }} = ({}) => {
+export const {{ storybookFunctionName }} = (args) => {
+  let {  } = args ?? '';
+
   return {{ storybookComponentName }}Twig({
-    ...{{ storybookComponentName }}Data
+    ...args
   });
 }
+{{ storybookFunctionName }}.args = {{ storybookComponentName }}Data;

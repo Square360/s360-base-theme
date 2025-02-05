@@ -10,14 +10,15 @@ import linkTwig from '@ui-base/link/_link.twig';
 export default { title: 'Layout Components/Link List' };
 
 export const linkList = () => {
+  let { paragraph_field_links } = args ?? '';
   let links = [];
 
-  linkListData.paragraph_field_links.forEach(link => {
-    links.push(linkTwig({ ...link }));
+  paragraph_field_links.forEach(link => {
+    links.push(linkTwig({ link_text: link }));
   });
 
   return linkListTwig({
-    ...linkListData,
     paragraph_field_links: links
   });
 };
+linkList.args = linkListData;

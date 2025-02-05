@@ -2,6 +2,8 @@ import placeholderTwig from './paragraph.placeholder.twig';
 import placeholderData from './paragraph.placeholder.yml';
 import './paragraph.placeholder.js';
 
+import { formatParagraphText } from '.storybook/utils';
+
 /**
  * Storybook Definition.
  */
@@ -14,18 +16,13 @@ export const placeholder = (args) => {
     ? paragraph_field_title
     : placeholderData.paragraph_field_title;
 
+  paragraph_field_body = (paragraph_field_body)
+    ? paragraph_field_body
+    : placeholderData.paragraph_field_body;
+
   return placeholderTwig({
     paragraph_field_title,
-    paragraph_field_body
+    paragraph_field_body: formatParagraphText(paragraph_field_body)
   });
-};
-
-placeholder.argTypes = {
-  paragraph_field_title: {
-    name: 'Title'
-  },
-  paragraph_field_body: {
-    name: 'Body'
-  }
 };
 placeholder.args = placeholderData;

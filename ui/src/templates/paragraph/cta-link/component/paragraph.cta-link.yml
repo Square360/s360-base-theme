@@ -1,4 +1,2 @@
-paragraph_field_link:
-  link_url: '#'
-  link_text: 'CTA Link Text'
+paragraph_field_link: 'CTA Link Text'
 paragraph_field_cta_link_style: 'primary'
