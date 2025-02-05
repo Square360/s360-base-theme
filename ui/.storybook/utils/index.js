@@ -10,7 +10,7 @@ export const COLOR_THEME_OPTIONS = {
   '': '- None -',
 };
 
-export const paragraphFieldCtaLinkStyle = {
+export const ctaLinkStyleControl = {
   options: Object.keys(CTA_LINK_STYLE_OPTIONS),
   control: {
     type: 'select',
@@ -18,6 +18,11 @@ export const paragraphFieldCtaLinkStyle = {
   },
 }
 
+/**
+ *
+ * @param {string} paragraph_text
+ * @returns
+ */
 export function formatParagraphText(paragraph_text) {
   let paragraphs = paragraph_text.split(/\r?\n|\r|\n/g);
 
@@ -31,6 +36,8 @@ export function formatParagraphText(paragraph_text) {
 }
 
 /**
+ * Checks the storyTheme againsts the activeTheme and if they are different
+ * display a message to the user. Otherwise, render the story.
  *
  * @param {string} storyTheme - The theme the story needs to render correctly.
  * @param {string} activeTheme - The current theme that is selected.
@@ -45,6 +52,11 @@ export function renderStoryWithTheme(storyTheme, activeTheme, story) {
   return story;
 }
 
+/**
+ * Sets the Drupal attributes on the menu item.
+ *
+ * @param {object} item The menu item.
+ */
 export function setMenuItemAttribues(item) {
   item.attributes = new drupalAttribute();
 
