@@ -8,17 +8,17 @@ $_height: 30px;
 $_width: 30px;
 $_span-height: 2px;
 
-.main-menu-toggle {
+.menu-toggle {
   height: $_height;
   min-width: $_width;
   max-width: $_width;
-  display: var(--main-menu-toggle--display);
+  display: var(--menu-toggle--display);
 
   span {
     display: block;
     height: $_span-height;
     width: 100%;
-    color: var(--main-menu-toggle--color, colors.$black);
+    color: var(--menu-toggle--color, colors.$black);
     background-color: currentColor;
     position: relative;
     transition: all 200ms ease-in-out;
@@ -43,7 +43,10 @@ $_span-height: 2px;
   }
 
   &[aria-expanded="false"] {
-
+    &:hover,
+    &:focus {
+      --_menu-toggle--span--offset: -0.75;
+    }
   }
 
   &[aria-expanded="true"] {
@@ -67,6 +70,6 @@ $_span-height: 2px;
   // MEDIA QUERIES
 
   @media (site-config.$main-menu-mq) {
-    --main-menu-toggle--display: none;
+    --menu-toggle--display: none;
   }
 }
