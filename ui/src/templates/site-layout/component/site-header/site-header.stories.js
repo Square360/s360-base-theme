@@ -12,7 +12,7 @@ import { brandingBlock } from '@ui-block/branding-block/component/block.branding
 /**
  * Storybook Definition.
  */
-export default { title: 'Layout/Site Header' };
+export default { title: 'Site Layout/Site Header' };
 
 export const siteHeader = (args) => {
   return siteHeaderTwig({

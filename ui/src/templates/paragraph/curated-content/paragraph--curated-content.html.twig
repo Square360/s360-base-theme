@@ -1,5 +1,14 @@
+{#
+/**
+ * Available Variables:
+ * - curated_node: The rendered node.
+ *
+ * @see s360_base_theme_preprocess_paragraph__curated_content()
+ */
+#}
+
 {% extends "@ui-paragraph/paragraph.html.twig" %}
 
 {% block paragraph_content %}
-  {{ paragraph_curated_node }}
+  {{ curated_node }}
 {% endblock %}

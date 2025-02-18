@@ -7,7 +7,7 @@ import { footer, social } from '@ui-navigation/navigation.stories';
 /**
  * Storybook Definition.
  */
-export default { title: 'Layout/Site Footer' };
+export default { title: 'Site Layout/Site Footer' };
 
 export const siteFooter = (args) => {
   return siteFooterTwig({
