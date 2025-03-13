@@ -1,6 +1,6 @@
 @use "@s360-base-theme/ui-core/site-config";
 @use "@s360-base-theme/ui-core/colors";
-@use "@s360-base-theme/ui-core/animate-underline";
+@use "@economics-base/ui-core/typography";
 @use "s360-scss-toolkit";
 
 .menu--local-tasks {
@@ -10,19 +10,23 @@
   position: fixed;
   inset: 0;
   top: unset;
-  justify-content: center;
   border-top: 3px solid colors.$black;
   gap: 0.5em;
+  background-color: colors.$white;
 
   a {
     --a--color: #{ colors.$black };
     --a--padding: 0.5em;
     --a--display: block;
-    @extend %animate-underline;
 
     // Drupal class.
     &.is-active {
-      @extend %animate-underline-active;
     }
+  }
+
+  .menu__item--node-id {
+    align-self: center;
+    margin-inline: auto 0.5em;
+    font-weight: typography.$font-weight-bold;
   }
 }
