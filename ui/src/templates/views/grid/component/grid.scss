@@ -2,7 +2,7 @@
 @use "@s360-base-theme/ui-core/mq";
 @use "s360-scss-toolkit";
 
-.view--display-grid {
+.view--grid {
   > .view__content > .view__rows {
     display: grid;
     grid-template-columns: repeat(var(--view-grid--view-rows--gtc, 1), 1fr);
