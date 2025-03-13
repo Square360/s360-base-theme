@@ -28,8 +28,17 @@ function s360_base_theme_preprocess_html(array &$variables) {
   $variables['attributes']['class'][] = 'site-page';
   $variables['attributes']['data-roles'] = $variables['user_roles'];
 
-  if (isset($variables['node_type'])) {
-    $variables['attributes']['class'][] = Html::getClass('site-page--node-' . $variables['node_type']);
+  /** @var Symfony\Component\Routing\Route $route */
+  $route = \Drupal::routeMatch()->getRouteObject();
+  $path = $route->getPath();
+
+  if (str_starts_with($path, '/node')) {
+    /** @var \Drupal\node\Entity\Node $node */
+    $node = \Drupal::routeMatch()->getParameter('node');
+
+    if (isset($variables['node_type'])) {
+      $variables['attributes']['class'][] = Html::getClass('site-page--node-' . $variables['node_type']);
+    }
   }
 
   if (isset($variables['is_front']) && $variables['is_front'] === TRUE) {
