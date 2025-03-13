@@ -1,5 +1,11 @@
 <a {{ attributes }} href="{{ link_url }}">
   {% spaceless %}
+    {% if span_wrap %}
+      <span>
+    {% endif %}
     {{ link_text }}
+    {% if span_wrap %}
+      </span>
+    {% endif %}
   {% endspaceless %}
 </a>
