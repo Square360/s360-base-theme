@@ -68,7 +68,7 @@ function s360_base_theme_preprocess_paragraph__embed_code(&$variables) {
 
   if ($field_embedded_media) {
     $variables['embed_code'] = Markup::create($field_embedded_media['second']);
-    $variables['embed_type'] . Html::getClass($field_embedded_media['first']);
+    $variables['embed_type'] = Html::getClass($field_embedded_media['first']);
   }
 }
 
