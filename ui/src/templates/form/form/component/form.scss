@@ -33,4 +33,15 @@
       pointer-events: none;
     }
   }
+
+  .form__element--input-checkbox,
+  .form__element--input-radio {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5em;
+
+    &:not(:last-child) {
+      margin-bottom: 0.5em;
+    }
+  }
 }

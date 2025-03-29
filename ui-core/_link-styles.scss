@@ -2,6 +2,7 @@
 
 %a {
   color: var(--a--color);
+  background-color: var(--a--bg-color);
   cursor: pointer;
   display: var(--a--display, inline-block);
   font-family: var(--a--font-family);
@@ -32,5 +33,6 @@
   &:hover,
   &:focus {
     color: var(--a--color--active, var(--a--color, currentColor));
+    background-color: var(--a--bg-color--active, var(--a--bg-color));
   }
 }

@@ -84,6 +84,7 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
 function get_files_to_copy() {
   return [
     'config',
+    'libraries',
     'theme-hooks',
     'ui/.storybook',
     'ui/dist',

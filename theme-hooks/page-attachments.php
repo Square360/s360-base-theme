@@ -31,7 +31,7 @@ function s360_base_theme_page_attachments_alter(array &$page) {
           '#tag' => 'style',
           '#value' => Markup::create($css),
         ],
-        $css_file,
+        "s360_base_theme.{$css_file}",
       ];
     }
   }

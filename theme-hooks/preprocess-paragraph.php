@@ -74,6 +74,8 @@ function s360_base_theme_preprocess_paragraph__embed_code(&$variables) {
 
 /**
  * Implements hook_preprocess_paragraph() for in_this_section.
+ *
+ * TODO: Needs work!
  */
 function s360_base_theme_preprocess_paragraph__in_this_section(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */

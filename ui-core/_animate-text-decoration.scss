@@ -1,0 +1,73 @@
+$_default-thickness: 1px;
+
+/// @require {placeholder} %animate-text-decoration-active
+%_animate-text-decoration {
+  text-decoration-line: var(--_animate-text-decoration--line);
+  text-decoration-thickness: var(--animate-text-decoration--thickness, #{ $_default-thickness });
+  text-underline-offset: var(--_animate-text-decoration--offset, 0.25em);
+  text-decoration-color: var(--animation-text-decoration-color, var(--underline--color));
+
+  &:hover,
+  &:focus {
+    @extend %animate-text-decoration-active;
+  }
+}
+
+/// Animates the text decoration line "underline" property up.
+/// The line is always shown.
+///
+/// @access public
+///
+/// @require {placeholder} %_animate-text-decoration
+%animate-text-decoration-underline-up {
+  --_animate-text-decoration--line: underline;
+  @extend %_animate-text-decoration;
+}
+
+/// Animates the text decoration line "underline" property up.
+/// The line is shown upon hover/focus.
+///
+/// @access public
+///
+/// @require {placeholder} %_animate-text-decoration
+%animate-text-decoration-underline-in-and-up {
+  --_animate-text-decoration--line: none;
+  --_animate-text-decoration--line--active: underline;
+  @extend %_animate-text-decoration;
+}
+
+/// Animates the text decoration line "underline" property down.
+/// The line is always shown.
+///
+/// @access public
+///
+/// @require {placeholder} %_animate-text-decoration
+%animate-text-decoration-underline-down {
+  --_animate-text-decoration--line: underline;
+  --_animate-text-decoration--offset: 0.125em;
+  --_animate-text-decoration--offset--active: 0.25em;
+  @extend %_animate-text-decoration;
+}
+
+/// Animates the text decoration line "underline" property down.
+/// The line is shown upon hover/focus.
+///
+/// @access public
+///
+/// @require {placeholder} %_animate-text-decoration
+%animate-text-decoration-underline-in-and-down {
+  --_animate-text-decoration--line: none;
+  --_animate-text-decoration--line--active: underline;
+  --_animate-text-decoration--offset: 0.125em;
+  --_animate-text-decoration--offset--active: 0.25em;
+  @extend %_animate-text-decoration;
+}
+
+/// The active state for text decoration line "underline" when hover/focus.
+///
+/// @access public
+%animate-text-decoration-active {
+  text-decoration-line: var(--_animate-text-decoration--line--active, var(--_animate-text-decoration--line, underline));
+  text-decoration-thickness: var(--animate-text-decoration--thickness--active, var(--animate-text-decoration--thickness, #{ $_default-thickness }));
+  text-underline-offset: var(--_animate-text-decoration--offset--active, var(--_animate-text-decoration--offset, 0.125em));
+}

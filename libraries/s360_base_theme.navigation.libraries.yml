@@ -1,0 +1,38 @@
+menu.corporate:
+  css:
+    component:
+      ui/dist/navigation/corporate/menu.corporate.css: {}
+
+menu.footer:
+  css:
+    component:
+      ui/dist/navigation/footer/menu.footer.css: {}
+
+menu.header:
+  css:
+    component:
+      ui/dist/navigation/header/menu.header.css: {}
+
+menu.local-tasks:
+  css:
+    component:
+      ui/dist/navigation/local-tasks/menu.local-tasks.css: {}
+
+menu.main:
+  css:
+    component:
+      ui/dist/navigation/main/menu.main.css: {}
+  js:
+    ui/dist/navigation/main/menu.main.js: {}
+  dependencies:
+    - core/drupal
+
+menu.pager:
+  css:
+    component:
+      ui/dist/navigation/pager/pager.css: {}
+
+menu.social:
+  css:
+    component:
+      ui/dist/navigation/social/menu.social.css: {}

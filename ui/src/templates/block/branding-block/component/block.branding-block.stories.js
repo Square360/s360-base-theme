@@ -8,20 +8,10 @@ import './block.branding-block.js';
 export default { title: 'Site Layout/Branding Block' };
 
 export const brandingBlock = (args) => {
-  let { block_site_name, block_site_logo } = args ?? '';
-
-  block_site_name = (block_site_name)
-    ? block_site_name
-    : brandingBlockData.block_site_name;
-
-  block_site_logo = (block_site_logo)
-    ? block_site_logo
-    : brandingBlockData.block_site_logo;
-
+  let data = args ?? brandingBlockData;
 
   return brandingBlockTwig({
-    block_site_name,
-    block_site_logo
+    ...data,
   });
 }
 brandingBlock.args = brandingBlockData;

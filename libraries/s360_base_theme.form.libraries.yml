@@ -1,0 +1,23 @@
+form:
+  css:
+    component:
+      ui/dist/form/form/form.css: {}
+
+form.user-login-form:
+  css:
+    component:
+      ui/dist/form/user-login-form/user-login-form.css: {}
+  dependencies:
+    - s360_base_theme/form
+
+form.views-exposed-form:
+  css:
+    component:
+      ui/dist/form/views-exposed-form/views-exposed-form.css: {}
+
+form.webform:
+  css:
+    component:
+      ui/dist/form/webform/webform.css: {}
+  dependencies:
+    - s360_base_theme/form

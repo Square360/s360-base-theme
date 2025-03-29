@@ -1,0 +1,35 @@
+# ##################################################
+# Base Views Libraries
+
+views.view:
+  css:
+    component:
+      ui/dist/views/view/view.css: {}
+
+views.grid:
+  css:
+    component:
+      ui/dist/views/grid/grid.css: {}
+
+views.list:
+  css:
+    component:
+      ui/dist/views/list/list.css: {}
+
+views.table:
+  css:
+    component:
+      ui/dist/views/table/table.css: {}
+
+views.unformatted:
+  css:
+    component:
+      ui/dist/views/unformatted/unformatted.css: {}
+
+# ##################################################
+# Views Libraries
+
+views.[view_name]:
+  css:
+    component:
+      ui/dist/views/[view_name]/[view_name].css: {}

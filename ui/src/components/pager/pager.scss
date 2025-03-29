@@ -1,0 +1,47 @@
+@use "@economics-base/ui-core/site-config";
+@use "@economics-base/ui-core/animate-underline";
+@use "@economics-base/ui-core/animate-text-decoration";
+@use "s360-scss-toolkit";
+
+.pager {
+  &__items {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+
+  &__item {
+    &--first,
+    &--previous {
+      a {
+        @extend %animate-underline-in-to-left;
+      }
+    }
+
+    &--page {
+      a {
+        --animate-text-decoration--thickness: 2px;
+        @extend %animate-text-decoration-underline-in-and-up;
+      }
+    }
+
+    &--next,
+    &--last {
+      a {
+        @extend %animate-underline-in-to-right;
+      }
+    }
+
+    + .pager__item {
+      margin-left: site-config.spacer(0);
+    }
+
+    // Drupal class.
+    &.is-active {
+      a {
+        @extend %animate-text-decoration-active;
+      }
+    }
+  }
+}

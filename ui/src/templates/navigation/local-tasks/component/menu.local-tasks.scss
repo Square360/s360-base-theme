@@ -24,9 +24,19 @@
     }
   }
 
-  .menu__item--node-id {
-    align-self: center;
-    margin-inline: auto 0.5em;
-    font-weight: typography.$font-weight-bold;
+  .menu__item {
+    &:first-child {
+      --li--margin: 0 0 0 var(--safe-area-inline);
+    }
+
+    &:last-child {
+      --li--margin: 0 var(--safe-area-inline) 0 0;
+    }
+
+    &--node-id {
+      align-self: center;
+      margin-left: auto;
+      font-weight: typography.$font-weight-bold;
+    }
   }
 }

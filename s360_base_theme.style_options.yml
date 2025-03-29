@@ -56,16 +56,16 @@ options:
     label: Vertical Alignment
     default: align-start
     options:
-      align-start:
+      va_align_start:
         label: 'Top'
         class: 'layout--align-start'
-      align-center:
+      va_align_center:
         label: 'Middle'
         class: 'layout--align-center'
-      align-end:
+      va_align_end:
         label: 'Bottom'
         class: 'layout--align-end'
-      align-stretch:
+      va_align_stretch:
         label: 'Stretch'
         class: 'layout--align-stretch'
 
@@ -79,9 +79,12 @@ options:
     options:
       normal:
         label: 'Normal'
-      edge-to-edge:
+      edge_to_edge:
         label: 'Edge to Edge'
         class: 'layout--edge-to-edge'
+      inset:
+        label: 'Inset'
+        class: 'layout--inset'
 
   # ##################################################
   # Two Column Specific Options
@@ -91,25 +94,25 @@ options:
     label: Column Ratio
     default: 50-50
     options:
-      50-50:
+      cr_50-50:
         label: '50%/50%'
         class: 'layout--50-50'
-      60-40:
+      cr_60_40:
         label: '60%/40%'
         class: 'layout--60-40'
-      40-60:
+      cr_40_60:
         label: '40%/60%'
         class: 'layout--40-60'
-      70-30:
+      cr_70_30:
         label: '70%/30%'
         class: 'layout--70-30'
-      30-70:
+      cr_30_70:
         label: '30%/70%'
         class: 'layout--30-70'
-      72-25:
+      cr_72_25:
         label: '75%/25%'
         class: 'layout--75-25'
-      25-75:
+      cr_25_75:
         label: '25%/75%'
         class: 'layout--25-75'
 
@@ -118,10 +121,10 @@ options:
     label: Mobile Order
     default: column1-column2
     options:
-      column1-column2:
+      mo_1_2:
         label: 'Column 1 - Column 2'
         class: 'layout--mobile-order-1-2'
-      column2-column1:
+      mo_2_1:
         label: 'Column 2 - Column 1'
         class: 'layout--mobile-order-2-1'
 
@@ -133,16 +136,16 @@ options:
     label: Column Ratio
     default: 33-33-33
     options:
-      33-33-33:
+      cr_33_33_33:
         label: '33%/33%/33%'
         class: 'layout--33-33-33'
-      25-50-25:
+      cr_25_50_25:
         label: '25%/50%/25%'
         class: 'layout--25-50-25'
-      50-25-25:
+      cr_50_25_25:
         label: '50%/25%/25%'
         class: 'layout--50-25-25'
-      25-25-50:
+      cr_25_25_50:
         label: '25%/25%/50%'
         class: 'layout--25-25-50'
 
@@ -154,19 +157,19 @@ options:
     label: Horizontal Alignment
     default: justify-start
     options:
-      justify-start:
+      ha_justify_start:
         label: 'Left'
         class: 'layout--flex-justify-start'
-      justify-center:
+      ha_justify_center:
         label: 'Center'
         class: 'layout--flex-justify-center'
-      justify-end:
+      ha_justify_end:
         label: 'Right'
         class: 'layout--flex-justify-end'
-      justify-between:
+      ha_justify_between:
         label: 'Space Between'
         class: 'layout--flex-justify-between'
-      justify-around:
+      ha_justify_around:
         label: 'Space Around'
         class: 'layout--flex-justify-around'
 

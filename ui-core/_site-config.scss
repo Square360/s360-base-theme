@@ -10,18 +10,6 @@ $SITE_CONFIG: (
 // **************************************************
 // SPACING
 
-$spacer-up-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(5), 'px');
-$spacer-up-4: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(4), 'px');
-$spacer-up-3: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(3), 'px');
-$spacer-up-2: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(2), 'px');
-$spacer-up-1: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(1), 'px');
-$spacer-0: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(0), 'px');
-$spacer-down-1: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-1), 'px');
-$spacer-down-2: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-2), 'px');
-$spacer-down-3: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-3), 'px');
-$spacer-down-4: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-4), 'px');
-$spacer-down-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-5), 'px');
-
 @function spacer($amount: 0) {
   @return s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale($amount), 'px');
 }
@@ -30,7 +18,7 @@ $spacer-down-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-5), '
 // GAPS AND GRIDS
 
 $grid-columns: 12;
-$column-gap: $spacer-0;
+$column-gap: spacer(0);
 
 /// Converts a $count of columns into a fixed value when the container width is unknown.
 ///
