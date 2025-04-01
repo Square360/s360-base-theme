@@ -10,19 +10,11 @@ import { formatParagraphText } from '.storybook/utils';
 export default { title: 'Layout Components/Placeholder' };
 
 export const placeholder = (args) => {
-  let { paragraph_field_title, paragraph_field_body } = args ?? '';
-
-  paragraph_field_title = (paragraph_field_title)
-    ? paragraph_field_title
-    : placeholderData.paragraph_field_title;
-
-  paragraph_field_body = (paragraph_field_body)
-    ? paragraph_field_body
-    : placeholderData.paragraph_field_body;
+  let data = args ?? placeholderData;
 
   return placeholderTwig({
-    paragraph_field_title,
-    paragraph_field_body: formatParagraphText(paragraph_field_body)
+    ...data,
+    paragraph_field_body: formatParagraphText(data.paragraph_field_body)
   });
 };
 placeholder.args = placeholderData;

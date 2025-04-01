@@ -15,18 +15,18 @@
 <{{ view_tag }}{{ attributes }}>
   {% if view_exposed or view_header %}
     <header class="view__header">
-      {% if view_exposed %}
-        <div class="view__filters">
-          {{ view_exposed }}
-        </div>
-      {% endif %}
-
       {% if view_header %}
         <div class="view__header-content">
           {{ view_header }}
         </div>
       {% endif %}
     </header>
+  {% endif %}
+
+  {% if view_exposed %}
+    <div class="view__filters">
+      {{ view_exposed }}
+    </div>
   {% endif %}
 
   <div class="view__content">

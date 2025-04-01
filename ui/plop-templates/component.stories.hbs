@@ -8,10 +8,10 @@ import './{{ componentFilename }}.js';
 export default { title: '{{ storybookTitle }}' };
 
 export const {{ storybookFunctionName }} = (args) => {
-  let {  } = args ?? '';
+  let data = args ?? {{ storybookComponentName }}Data;
 
   return {{ storybookComponentName }}Twig({
-    ...args
+    ...data,
   });
 }
 {{ storybookFunctionName }}.args = {{ storybookComponentName }}Data;
