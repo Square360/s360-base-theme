@@ -12,12 +12,4 @@ export const link = (args) => {
   });
 }
 
-link.argTypes = {
-  link_text: {
-    name: 'Link text'
-  },
-  link_url: {
-    name: 'Url',
-  }
-};
 link.args = linkData;

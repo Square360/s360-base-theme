@@ -1,6 +1,8 @@
 import blockquoteTwig from './_blockquote.twig';
 import blockquoteData from './blockquote.yml';
 
+import { formatParagraphText } from '.storybook/utils';
+
 /**
  * Storybook Definition.
  */
@@ -11,13 +13,8 @@ export const blockquote = (args) => {
 
   return blockquoteTwig({
     ...args,
-    blockquote_content: `<p>${ blockquote_content }</p>`
+    blockquote_content: formatParagraphText(args.blockquote_content),
   });
 };
 
-blockquote.argTypes = {
-  blockquote_content: {
-    name: 'Quote'
-  }
-};
 blockquote.args = blockquoteData;

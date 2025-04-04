@@ -7,7 +7,7 @@ form {
   margin: var(--form-margin, 0);
   padding: var(--form-padding, 0);
   display: var(--form-display, grid);
-  gap: var(--form-gap, #{ site-config.$spacer-0 });
+  gap: var(--form-gap, #{ site-config.spacer(0) });
 
   input[type="email"],
   input[type="password"],
@@ -46,7 +46,7 @@ form {
     appearance: none;
   }
 
-  input[type="submit"] {
+  button[type="submit"]:first-child {
     @extend %cta-primary;
   }
 

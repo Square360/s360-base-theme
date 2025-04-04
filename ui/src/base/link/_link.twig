@@ -1,11 +1,7 @@
-<a {{ attributes }} href="{{ link_url }}">
+{% set wrap_in_span = wrap_in_span|default(true) %}
+
+{% if link_text %}
   {% spaceless %}
-    {% if span_wrap %}
-      <span>
-    {% endif %}
-    {{ link_text }}
-    {% if span_wrap %}
-      </span>
-    {% endif %}
+  <a {{ attributes }} href="{{ link_url|default('#') }}">{% if wrap_in_span %}<span>{% endif %}{{- link_text -}}{% if wrap_in_span %}</span>{% endif %}</a>
   {% endspaceless %}
-</a>
+{% endif %}
