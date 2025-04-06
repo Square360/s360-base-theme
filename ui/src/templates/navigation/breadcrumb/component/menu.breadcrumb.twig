@@ -1,0 +1,24 @@
+<nav role="navigation" aria-labelledby="system-breadcrumb">
+  <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
+
+  <ol id="menu-breadcrumb" class="menu menu--breadcrumb" data-js="breadcrumb">
+    {% for item in breadcrumb %}
+      <li class="menu__item">
+        {% spaceless %}
+          {% if item.url %}
+            <a href="{{ item.url }}"><span>{{ item.text }}</span></a>
+          {% else %}
+            {{ item.text }}
+          {% endif %}
+        {% endspaceless %}
+
+        {% if not loop.last %}
+          <div class="menu__item-seperator">
+            <i class="fal fa-chevron-right"></i>
+          </div>
+        {% endif %}
+
+      </li>
+    {% endfor %}
+  </ol>
+</nav>
