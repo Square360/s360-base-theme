@@ -1,4 +1,4 @@
-import menuTwig from './menu.html.twig';
+import menuTwig from '@ui-navigation/menu.html.twig';
 
 import headerData from './menu.header.yml';
 import './menu.header.js';
