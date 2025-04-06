@@ -24,7 +24,7 @@
     &::after {
       --icon-embed--bg-color: var(--text--color);
       --icon-embed--translate: 0 -50%;
-      --icon-embed--mask-image: #{ site-config.$chevron-down };
+      --icon-embed--mask-image: '';
       @extend %icon-embed;
 
       top: 50%;
