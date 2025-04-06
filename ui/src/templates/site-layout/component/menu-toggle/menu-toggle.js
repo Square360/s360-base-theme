@@ -1,1 +1,1 @@
-import './main-menu-toggle.scss';
+import './menu-toggle.scss';
