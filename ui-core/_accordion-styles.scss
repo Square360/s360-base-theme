@@ -15,7 +15,7 @@
     &::before {
       --icon-embed--margin-inline: 0 0.5em;
       --icon-embed--bg-color: '';
-      --icon-embed--mask-image: '#{ site-config.$circle-chevron-right }';
+      --icon-embed--mask-image: '';
       @extend %icon-embed;
 
       transition: rotate 200ms ease-in-out;

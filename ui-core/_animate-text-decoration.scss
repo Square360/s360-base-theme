@@ -5,7 +5,7 @@ $_default-thickness: 1px;
   text-decoration-line: var(--_animate-text-decoration--line);
   text-decoration-thickness: var(--animate-text-decoration--thickness, #{ $_default-thickness });
   text-underline-offset: var(--_animate-text-decoration--offset, 0.25em);
-  text-decoration-color: var(--animation-text-decoration-color, var(--underline--color));
+  text-decoration-color: var(--animation-text-decoration-color, currentColor);
 
   &:hover,
   &:focus {
