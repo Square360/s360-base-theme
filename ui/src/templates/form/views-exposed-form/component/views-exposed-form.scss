@@ -3,6 +3,8 @@
 
 .form--views-exposed-form {
   .form__element--actions {
-
+    // This should be the reset button.
+    button[type="submit"]:last-child:not(:only-child) {
+    }
   }
 }

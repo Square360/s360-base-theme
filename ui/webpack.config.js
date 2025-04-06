@@ -256,6 +256,8 @@ module.exports = [
   WEBPACK_CONFIG,
 ];
 
+// If using multiple themes copy this into "module.exports" and replace
+// [THEME_NAME] with the name of the theme.
 // Object.assign({}, WEBPACK_CONFIG, {
 //   name: '[THEME_NAME]',
 //   entry: getEntries(path.resolve("../themes/[THEME_NAME]/ui/src/**/!(_*|*.stories|*.component|*.min|*.test).js")),

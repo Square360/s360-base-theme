@@ -66,7 +66,7 @@ const LAYOUT_TWO_COLUMN_RATIO_OPTIONS = {
 };
 
 export const twoColumn = (args) => {
-  let { column_ratio } = args;
+  let column_ratio = args.column_ratio ?? 'layout--50-50';
   let paragraphClasses = [column_ratio];
   let paragraphAttributes = Object.assign({});
 
@@ -78,7 +78,6 @@ export const twoColumn = (args) => {
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
-
 twoColumn.argTypes = {
   column_ratio: {
     name: 'Column Ratio',
@@ -104,7 +103,7 @@ const LAYOUT_THREE_COLUMN_RATIO_OPTIONS = {
 };
 
 export const threeColumn = (args) => {
-  let { column_ratio } = args;
+  let column_ratio = args.column_ratio ?? 'layout--33-33-33';
   let paragraphClasses = [column_ratio];
   let paragraphAttributes = Object.assign({});
 
@@ -117,7 +116,6 @@ export const threeColumn = (args) => {
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
-
 threeColumn.argTypes = {
   column_ratio: {
     name: 'Column Ratio',
@@ -146,7 +144,6 @@ export const fourColumn = () => {
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
-
 fourColumn.argTypes = {
 };
 fourColumn.args = {
@@ -164,7 +161,6 @@ export const accordionColumn = () => {
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
-
 accordionColumn.argTypes = {
 };
 accordionColumn.args = {
