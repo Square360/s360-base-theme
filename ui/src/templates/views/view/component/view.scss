@@ -15,10 +15,13 @@
 
   &__row {
     container-type: inline-size;
+
+    + .view__row {
+      margin-top: var(--view--row--margin-top, #{ site-config.spacer(0) });
+    }
   }
 
   &__footer {
     margin-top: site-config.spacer(0);
   }
-
 }

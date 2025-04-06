@@ -2,26 +2,28 @@
   <h2 class="view__heading">{{ view_title }}</h2>
 {% endif %}
 
-{% if options.alignment == 'horizontal' %}
-  {% for row in view_items %}
-    {% for column in row.content %}
-      {% set column_attributes = column.attributes|default(create_attribute({})) %}
-      {% set column_attributes = column_attributes.addClass('view__row view__row--' ~ loop.index) %}
+<div class="view__grid">
+  {% if options.alignment == 'horizontal' %}
+    {% for row in view_items %}
+      {% for column in row.content %}
+        {% set column_attributes = column.attributes|default(create_attribute({})) %}
+        {% set column_attributes = column_attributes.addClass('view__grid-item view__grid-item--' ~ loop.index) %}
 
-      <div{{ column_attributes }}>
-        {{- column.content -}}
-      </div>
+        <div{{ column_attributes }}>
+          {{- column.content -}}
+        </div>
+      {% endfor %}
     {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for column in view_items %}
-    {% for row in column.content %}
-      {% set row_attributes = row.attributes|default(create_attribute({})) %}
-      {% set row_attributes = row_attributes.addClass('view__row view__row--' ~ loop.index) %}
+  {% else %}
+    {% for column in view_items %}
+      {% for row in column.content %}
+        {% set row_attributes = row.attributes|default(create_attribute({})) %}
+        {% set row_attributes = row_attributes.addClass('view__grid-item view__grid-item--' ~ loop.index) %}
 
-      <div{{ row_attributes }}>
-        {{- row.content -}}
-      </div>
+        <div{{ row_attributes }}>
+          {{- row.content -}}
+        </div>
+      {% endfor %}
     {% endfor %}
-  {% endfor %}
-{% endif %}
+  {% endif %}
+</div>

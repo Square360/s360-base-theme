@@ -2,7 +2,5 @@
 @use "s360-scss-toolkit";
 
 .view--unformatted {
-  .view__row + .view__row {
-    margin-top: var(--view-default--view-row--margin-top, #{ site-config.$spacer-0 });
-  }
+
 }
