@@ -1,6 +1,6 @@
-@use "@economics-base/ui-core/site-config";
-@use "@economics-base/ui-core/animate-underline";
-@use "@economics-base/ui-core/animate-text-decoration";
+@use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/animate-underline";
+@use "@s360-base-theme/ui-core/animate-text-decoration";
 @use "s360-scss-toolkit";
 
 .pager {
@@ -9,7 +9,6 @@
     display: flex;
     justify-content: center;
   }
-
 
   &__item {
     &--first,
