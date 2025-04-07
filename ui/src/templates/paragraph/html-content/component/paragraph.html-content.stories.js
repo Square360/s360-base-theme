@@ -2,8 +2,7 @@ import htmlContentTwig from './paragraph.html-content.twig';
 import htmlContentData from './paragraph.html-content.yml';
 import './paragraph.html-content.js';
 
-import ckEditorTwig from '@ui-field/ckeditor/component/ckeditor.twig';
-import { formatParagraphText } from '.storybook/utils';
+import { formatParagraphCKEditor } from '.storybook/utils';
 
 /**
  * Storybook Definition.
@@ -11,9 +10,11 @@ import { formatParagraphText } from '.storybook/utils';
 export default { title: 'Layout Components/Html Content' };
 
 export const htmlContent = (args) => {
+  let data = args ?? htmlContentData;
+
   return htmlContentTwig({
-    ...htmlContentData,
-    paragraph_field_body: ckEditorTwig({ field_items: [{ content: formatParagraphText(args.paragraph_field_body) }] }),
+    ...data,
+    paragraph_field_body: formatParagraphCKEditor(data.paragraph_field_body)
   });
 };
 htmlContent.args = htmlContentData;

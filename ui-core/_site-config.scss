@@ -10,18 +10,6 @@ $SITE_CONFIG: (
 // **************************************************
 // SPACING
 
-$spacer-up-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(5), 'px');
-$spacer-up-4: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(4), 'px');
-$spacer-up-3: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(3), 'px');
-$spacer-up-2: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(2), 'px');
-$spacer-up-1: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(1), 'px');
-$spacer-0: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(0), 'px');
-$spacer-down-1: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-1), 'px');
-$spacer-down-2: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-2), 'px');
-$spacer-down-3: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-3), 'px');
-$spacer-down-4: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-4), 'px');
-$spacer-down-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-5), 'px');
-
 @function spacer($amount: 0) {
   @return s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale($amount), 'px');
 }
@@ -29,8 +17,8 @@ $spacer-down-5: s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale(-5), '
 // **************************************************
 // GAPS AND GRIDS
 
-$grid-columns: 12;
-$column-gap: $spacer-0;
+$_grid-columns: 12;
+$column-gap: spacer(0);
 
 /// Converts a $count of columns into a fixed value when the container width is unknown.
 ///
@@ -54,7 +42,7 @@ $column-gap: $spacer-0;
 @function column-width($count: 1, $content-area-width: $site-content-area) {
   // Remove the gutters to get a true column width.
   // Add back gutters for multiple columns.
-  $_content-gutters: $column-gap * ($grid-columns - 1);
+  $_content-gutters: $column-gap * ($_grid-columns - 1);
 
   @return calc((#{ $content-area-width } - #{ $_content-gutters }) / #{ $grid-columns} * #{ $count } + #{ $column-gap * ($count - 1) });
 }
@@ -63,7 +51,7 @@ $column-gap: $spacer-0;
 // TEXT AND LAYOUT
 
 $site-max-width: 1440px;
-$site-side-margin: s360-scss-toolkit.linear-scale($spacer-0, $spacer-0);
+$site-side-margin: s360-scss-toolkit.linear-scale(spacer(0), spacer(0));
 $site-content-area: calc(#{ $site-max-width } - calc(#{ $site-side-margin } * 2));
 $main-menu-mq: 'min-width: #{ mq.$mq-1024 }';
 $max-line-length: 80ch;

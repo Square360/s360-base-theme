@@ -1,6 +1,8 @@
 {{ attach_library('s360_base_theme/block.branding-block') }}
 
 {% include "@ui-block/branding-block/component/block.branding-block.twig" with {
-  block_site_name: site_name,
+  block_site_name: link(site_name, 'internal:' ~ path('<front>'), {
+    'aria-label': site_name ~ ' homepage'
+  }),
   block_site_logo: site_logo
 } %}

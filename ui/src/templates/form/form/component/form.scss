@@ -24,13 +24,24 @@
     &::after {
       --icon-embed--bg-color: var(--text--color);
       --icon-embed--translate: 0 -50%;
-      --icon-embed--mask-image: #{ site-config.$chevron-down };
+      --icon-embed--mask-image: '';
       @extend %icon-embed;
 
       top: 50%;
       right: 0;
       position: absolute;
       pointer-events: none;
+    }
+  }
+
+  .form__element--input-checkbox,
+  .form__element--input-radio {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5em;
+
+    &:not(:last-child) {
+      margin-bottom: 0.5em;
     }
   }
 }

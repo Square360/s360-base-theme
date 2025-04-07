@@ -2,7 +2,6 @@ const glob = require('glob');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 /**
@@ -47,6 +46,7 @@ const WEBPACK_CONFIG = {
    */
   output: {
     path: path.resolve(`${ __dirname }/dist`),
+    clean: true,
   },
 
   /**
@@ -122,8 +122,7 @@ const WEBPACK_CONFIG = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
-    }),
-    new CleanWebpackPlugin()
+    })
   ],
 
   /**
@@ -253,7 +252,17 @@ WEBPACK_CONFIG.module.rules.push({
   exclude: /node_modules/
 });
 
-
 module.exports = [
   WEBPACK_CONFIG,
 ];
+
+// If using multiple themes copy this into "module.exports" and replace
+// [THEME_NAME] with the name of the theme.
+// Object.assign({}, WEBPACK_CONFIG, {
+//   name: '[THEME_NAME]',
+//   entry: getEntries(path.resolve("../themes/[THEME_NAME]/ui/src/**/!(_*|*.stories|*.component|*.min|*.test).js")),
+//   output: {
+//     path: path.resolve('../themes/[THEME_NAME]/ui/dist'),
+//     clean: true,
+//   },
+// }),

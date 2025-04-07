@@ -1,0 +1,49 @@
+paragraph.cta-link:
+  css:
+    component:
+      ui/dist/paragraph/cta-link/paragraph.cta-link.css: {}
+
+paragraph.document-list:
+  css:
+    component:
+      ui/dist/paragraph/document-list/paragraph.document-list.css: {}
+
+paragraph.embed-code:
+  css:
+    component:
+      ui/dist/paragraph/embed-code/paragraph.embed-code.css: {}
+
+paragraph.html-content:
+  css:
+    component:
+      ui/dist/paragraph/html-content/paragraph.html-content.css: {}
+
+paragraph.image:
+  css:
+    component:
+      ui/dist/paragraph/image/paragraph.image.css: {}
+
+paragraph.link-list:
+  css:
+    component:
+      ui/dist/paragraph/link-list/paragraph.link-list.css: {}
+
+paragraph.placeholder:
+  css:
+    component:
+      ui/dist/paragraph/placeholder/paragraph.placeholder.css: {}
+
+paragraph.video:
+  css:
+    component:
+      ui/dist/paragraph/video/paragraph.video.css: {}
+
+paragraph.view-block:
+  css:
+    component:
+      ui/dist/paragraph/view-block/paragraph.view-block.css: {}
+
+paragraph.webform:
+  css:
+    component:
+      ui/dist/paragraph/webform/paragraph.webform.css: {}

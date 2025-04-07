@@ -2,14 +2,16 @@
 
 dl {
   display: var(--dl--display, block);
+  line-height: var(--dl--line-height);
   margin: var(--dl--margin, 0);
   padding: var(--dl--padding, 2em);
-  line-height: var(--dl--line-height);
+  font-size: var(--dl--font-size);
+  font-weight: var(--dl--font-weight);
 
   dt {
     display: var(--dt--display);
-    font-size: var(--dt--font-size);
     font-family: var(--dt--font-family);
+    font-size: var(--dt--font-size);
     font-weight: var(--dt--font-weight);
     margin: var(--dt--margin, 0);
     padding: var(--dt--padding, 0);
@@ -17,8 +19,8 @@ dl {
 
   dd {
     display: var(--dd--display);
-    font-size: var(--dd--font-size);
     font-family: var(--dd--font-family);
+    font-size: var(--dd--font-size);
     font-weight: var(--dd--font-weight);
     margin: var(--dd--margin, 0);
     padding: var(--dd--padding, 2em);

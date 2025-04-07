@@ -1,0 +1,4 @@
+node.page.full:
+  css:
+    component:
+      ui/dist/node/page/full/page.full.css: {}

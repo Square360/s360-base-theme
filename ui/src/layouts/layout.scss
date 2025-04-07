@@ -7,7 +7,7 @@
 
   > .layout__content > .layout__regions {
     display: grid;
-    row-gap: site-config.$spacer-0;
+    row-gap: site-config.spacer(0);
     column-gap: site-config.$column-gap;
   }
 
@@ -21,15 +21,15 @@
     translate: var(--layout-region--translate);
 
     &--gap-sm {
-      row-gap: site-config.$spacer-0;
+      row-gap: site-config.spacer(0);
     }
 
     &--gap-md {
-      row-gap: site-config.$spacer-0;
+      row-gap: site-config.spacer(0);
     }
 
     &--gap-lg {
-      row-gap: site-config.$spacer-0;
+      row-gap: site-config.spacer(0);
     }
   }
 
@@ -37,15 +37,15 @@
   // BOTTOM MARGINS
 
   &.layout--margin-bottom-sm {
-    margin-bottom: site-config.$spacer-0;
+    margin-bottom: site-config.spacer(0);
   }
 
   &.layout--margin-bottom-md {
-    margin-bottom: site-config.$spacer-0;
+    margin-bottom: site-config.spacer(0);
   }
 
   &.layout--margin-bottom-lg {
-    margin-bottom: site-config.$spacer-0;
+    margin-bottom: site-config.spacer(0);
   }
 
   &:last-child {

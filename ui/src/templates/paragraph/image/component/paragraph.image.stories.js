@@ -10,8 +10,12 @@ import imgTwig from '@ui-base/img/_img.twig';
 export default { title: 'Layout Components/Image' };
 
 export const image = (args) => {
+  let { paragraph_field_erm_image } = args ?? '';
+
   return imageTwig({
-    paragraph_field_erm_image: imgTwig({ image_src: args.paragraph_field_erm_image }),
+    paragraph_field_erm_image: imgTwig({
+      image_src: paragraph_field_erm_image
+    }),
   });
 };
 image.args = imageData;

@@ -6,31 +6,26 @@
 
 %accordion {
   summary {
-    --summary--color: #{ colors.$black };
-    --summary--font-size: #{ s360-scss-toolkit.font-size-ms(0) };
-    --summary--font-weight: #{ typography.$font-weight-bold };
-    --summary--margin: 0.5em 0 0 0;
-    --summary--margin--open: 0.5em 0 0.75em 0;
+    --summary--font-size: var(--accordion--summary--font-size);
+    --summary--font-weight: var(--accordion--summary--font-weight);
+    --summary--margin: var(--accordion--summary--margin, 0.5em 0 0 0);
+    --summary--margin--open: var(--accordion--summary--margin--open, 0.5em 0 0.75em 0);
+    --summary--display: var(--accordion--summary--display);
 
-    padding-left: calc(var(--summary--font-size) * 1.5);
-
-    &::before,
-    &::after {
+    &::before {
+      --icon-embed--margin-inline: 0 0.5em;
+      --icon-embed--bg-color: '';
       --icon-embed--mask-image: '';
       @extend %icon-embed;
 
-      position: absolute;
-      left: 0;
-      top: 0;
       transition: rotate 200ms ease-in-out;
-    }
-
-    &::after {
-      rotate: var(--summary--after--rotate, -90deg);
+      rotate: var(--accordion--summary--rotate, 0);
     }
   }
 
   &[open] {
-    --summary--after--rotate: 0;
+    > summary {
+      --accordion--summary--rotate: 0;
+    }
   }
 }

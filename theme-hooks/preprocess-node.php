@@ -24,20 +24,13 @@ function s360_base_theme_preprocess_node(&$variables) {
   $node_view_mode = $elements['#view_mode'];
 
   if ($node_view_mode !== 'full') {
-    $label_url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
+    $url = economics_base_get_node_url($node);
 
-    if ($node->hasField('field_source_link')) {
-      $field_source_link = $node->get('field_source_link');
-
-      if ($field_source_link->count()) {
-        $label_url = Url::fromUri($field_source_link->getString());
-      }
-    }
-
+    $variables['cta_url'] = $url;
     $variables['label_as_link'] = [
       '#type' => 'link',
-      '#title' => Markup::create('<span>' . $node->label() . '</span>'),
-      '#url' => $label_url,
+      '#title' => Markup::create('<span>' . trim($node->label()) . '</span>'),
+      '#url' => $url,
     ];
   }
 

@@ -7,26 +7,12 @@ import './paragraph.document-list.js';
  */
 export default { title: 'Layout Components/Document List' };
 
-const DOCUMENT_VIEW_MODE_OPTIONS = {
-}
+export const documentList = () => {
+  let data = args ?? documentListData;
 
-export const documentList = ({ documentViewMode }) => {
   return documentListTwig({
-    ...documentListData,
-    paragraph_field_document_view_mode: documentViewMode
+    ...data,
   });
 }
 
-documentList.argTypes = {
-  documentViewMode: {
-    name: 'Document View Mode',
-    options: Object.keys(DOCUMENT_VIEW_MODE_OPTIONS),
-    control: {
-      type: 'select',
-      labels: DOCUMENT_VIEW_MODE_OPTIONS
-    },
-  }
-};
-documentList.args = {
-  documentViewMode: '',
-}
+documentList.args = documentListData;

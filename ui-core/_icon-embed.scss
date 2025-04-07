@@ -7,7 +7,7 @@
   margin-inline: var(--icon-embed--margin-inline);
   mask-position: center;
   mask-repeat: no-repeat;
-  transition: all 100ms ease-in-out;
+  transition: all 200ms ease-in-out var(--icon-embed--transition-delay, 0ms);
   translate: var(--icon-embed--translate, 0 0);
   min-width: var(--icon-embed--min-width, 1em);
 }

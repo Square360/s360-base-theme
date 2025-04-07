@@ -11,6 +11,7 @@ input[type="radio"] {
   place-content: center;
   border-radius: 50%;
   outline: 0;
+  aspect-ratio: 1 / 1;
 
   &::before {
     border-radius: 50%;

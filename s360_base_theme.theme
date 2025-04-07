@@ -7,8 +7,12 @@
  * Defines custom hooks for the theme.
  */
 
+use Drupal\Component\Serialization\Exception\InvalidDataTypeException;
+use Drupal\Component\Serialization\Yaml;
+use Drupal\Core\Asset\Exception\InvalidLibraryFileException;
 use Drupal\Core\Url;
 use Drupal\media\Entity\Media;
+use Drupal\node\Entity\Node;
 
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess.php';
 require_once \Drupal::service('extension.list.theme')->getPath('s360_base_theme') . '/theme-hooks/preprocess-block.php';
@@ -370,4 +374,71 @@ function _s360_base_theme_file_mime_type_conversion(string $file_mime_type) {
     'icon' => $icon,
     'file_type' => $file_type,
   ];
+}
+
+/**
+* Implements hook_library_info_alter().
+*/
+function s360_base_theme_library_info_alter(&$libraries, $extension) {
+  // Get the name of the theme where this function is being called
+  $theme_name = 's360_base_theme';
+
+  // Get the path of the theme where this function is being called
+  $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
+
+  // Alter only the library definitions of the current theme.
+  if ($extension == $theme_name) {
+    $directory_iterator = new RecursiveDirectoryIterator($theme_path . '/libraries/');
+
+    // Iterate over all the files found.
+    foreach (new RecursiveIteratorIterator($directory_iterator) as $file) {
+      // Filter out all the files that don't contain "libraries.yml".
+      if (str_contains($file->getFilename(), 'libraries.yml')) {
+        try {
+          // Decode the libraries.yml
+          $new_libraries = Yaml::decode(file_get_contents($file->getRealPath()));
+
+          // Each libraries.yml could have multiple library-definitions
+          foreach ($new_libraries as $key => $new_library) {
+            if (isset($libraries[$key])) {
+              // If the library is defined somewhere else already,
+              // throw a warning that we have multiple definitions of
+              // the same library within the same theme.
+              \Drupal::messenger()
+                ->addWarning(t('The library @key from the theme @themename has multiple definitions.', [
+                  '@key' => $key,
+                  '@themename' => $theme_name,
+                ]));
+            }
+            else {
+              $libraries[$key] = $new_library;
+            }
+          }
+        }
+        catch (InvalidDataTypeException $e) {
+          // Throw a helpful exception to provide context.
+          throw new InvalidLibraryFileException(sprintf('Invalid library definition in %s: %s', $file->getRealPath(), $e->getMessage()), 0, $e);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * If there is a source link, uses it. Otherwise use the node canonical route.
+ *
+ * @param \Drupal\node\Entity\Node $node
+ *
+ * @return string
+ */
+function s360_base_theme_get_node_url(Node $node) {
+  $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
+
+  $field_source_link = $node?->field_source_link?->getString();
+
+  if ($field_source_link) {
+    $url = Url::fromUri($field_source_link);
+  }
+
+  return $url;
 }

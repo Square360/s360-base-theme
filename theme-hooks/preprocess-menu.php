@@ -9,6 +9,7 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_preprocess_menu().
@@ -25,11 +26,38 @@ function s360_base_theme_preprocess_menu(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_menu_local_tasks().
+ */
+function s360_base_theme_preprocess_menu_local_tasks(&$variables) {
+  /** @var Symfony\Component\Routing\Route $route */
+  $route = \Drupal::routeMatch()->getRouteObject();
+  $path = $route->getPath();
+
+  if (str_starts_with($path, '/node')) {
+    /** @var \Drupal\node\Entity\Node $node */
+    $node = \Drupal::routeMatch()->getParameter('node');
+
+    $variables['primary']['node.id'] = [
+      '#theme' => 'menu_local_task',
+      '#link' => [
+        'title' => 'Node ID: ' . $node->id(),
+        'url' => Url::fromRoute('<nolink>'),
+      ],
+      '#weight' => 1000,
+    ];
+  }
+}
+
+/**
  * Implements hook_preprocess_menu_local_task().
  */
 function s360_base_theme_preprocess_menu_local_task(&$variables) {
   $variables['attributes']['class'] = [];
   $variables['attributes']['class'][] = 'menu__item';
+
+  if ($variables['link']['#url']->getRouteName() === '<nolink>') {
+    $variables['attributes']['class'][] = 'menu__item--node-id';
+  }
 }
 
 /**
