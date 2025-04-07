@@ -1,0 +1,14 @@
+media.document:
+  css:
+    component:
+      ui/dist/media/document/media.document.css: {}
+
+media.image:
+  css:
+    component:
+      ui/dist/media/image/media.image.css: {}
+
+media.remote-video:
+  css:
+    component:
+      ui/dist/media/remote-video/media.remote-video.css: {}

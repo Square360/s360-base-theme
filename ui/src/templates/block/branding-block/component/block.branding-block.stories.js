@@ -5,11 +5,13 @@ import './block.branding-block.js';
 /**
  * Storybook Definition.
  */
-export default { title: 'Layout/Branding Block' };
+export default { title: 'Site Layout/Branding Block' };
 
 export const brandingBlock = (args) => {
+  let data = args ?? brandingBlockData;
+
   return brandingBlockTwig({
-    ...args
+    ...data,
   });
 }
 brandingBlock.args = brandingBlockData;

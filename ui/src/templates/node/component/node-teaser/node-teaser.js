@@ -1,7 +1,5 @@
 import './node-teaser.scss';
 
-// Uncomment the following to enable "fade in animation".
-/*
 Drupal.behaviors.nodeTeaser = {
   attach(context) {
     const TEASERS = context.querySelectorAll('.node-teaser');
@@ -48,4 +46,3 @@ Drupal.behaviors.nodeTeaser = {
     });
   }
 }
-*/

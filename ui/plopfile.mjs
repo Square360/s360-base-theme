@@ -107,7 +107,7 @@ export default function (plop) {
         /**
          * @see component.stories.hbs
          */
-        data.storybookTitle = `Content Types/${ plop.getHelper('titleCase')(data.componentName).replace(/[^\w\s]/gi, ' ') }`;
+        data.storybookTitle = `Layout Components/${ plop.getHelper('titleCase')(data.componentName).replace(/[^\w\s]/gi, ' ') }`;
         data.storybookFunctionName = plop.getHelper('camelCase')(data.componentName);
         data.storybookComponentName = plop.getHelper('camelCase')(data.componentName);
 
@@ -139,7 +139,7 @@ export default function (plop) {
         /**
          * @see drupal-twig.hbs
          */
-        data.componentTwigTemplate = `@ui-paragraph/${ data.componentName }/component/${ data.componentName }.twig`;
+        data.componentTwigTemplate = `@ui-paragraph/${ data.componentName }/component/${ data.componentFilename }.twig`;
 
         actionPath = `src/templates/paragraph/${ data.componentName }`;
 

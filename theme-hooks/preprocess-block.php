@@ -10,23 +10,17 @@
 use Drupal\Component\Utility\Html;
 
 /**
- * Implements hook_preprocess_block().
+ * Implements hook_preprocess_block() for system_menu_block.
  */
-function s360_base_theme_preprocess_block(array &$variables) {
+function s360_base_theme_preprocess_block__system_menu_block(array &$variables) {
   $elements = $variables['elements'];
 
   $block_name = $elements['#id'];
-  $base_plugin_id = $variables['base_plugin_id'];
 
-  // Clear any Drupal classes.
-  $variables['attributes']['class'] = [];
+  $variables['attributes']['data-js'] = 'block-' . Html::getClass($block_name) . '-menu';
+  $variables['attributes']['class'][] = 'block-' . Html::getClass($block_name) . '-menu';
 
-  if ($base_plugin_id === 'system_menu_block') {
-    $variables['attributes']['data-js'] = 'block-' . Html::getClass($block_name) . '-menu';
-    $variables['attributes']['class'][] = 'block-' . Html::getClass($block_name) . '-menu';
-
-    if ($block_name === 'main') {
-      $variables['attributes']['style'][] = 'opacity: 0;';
-    }
+  if ($block_name === 'main') {
+    $variables['attributes']['style'][] = 'opacity: 0;';
   }
 }

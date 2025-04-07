@@ -41,6 +41,7 @@ details {
   &[open] {
     summary {
       margin: var(--summary--margin--open, var(--summary--margin));
+      color: var(--summary--color--open, var(--summary--color));
     }
   }
 }

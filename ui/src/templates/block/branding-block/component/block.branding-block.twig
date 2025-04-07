@@ -6,19 +6,16 @@
 {% set attributes = attributes.setAttribute('data-js', 'branding-block') %}
 
 <div{{ attributes }}>
-  <a
-    href="{{ path('<front>') }}"
-    title="{{ 'Home'|t }}"
-    aria-label="Go to {{ block_site_name }} homepage"
-    rel="home"
-  >
-    {% if block_site_logo %}
-      <img
-        src="{{ block_site_logo }}"
-        alt="Logo">
+  {% if block_site_logo %}
+    <img
+      src="{{ block_site_logo }}"
+      alt="Logo">
 
-    {% else %}
-      {{ block_site_name }}
+  {% else %}
+    {% if block_site_name %}
+      <div class="branding-block__site-name">
+        {{ block_site_name }}
+      </div>
     {% endif %}
-  </a>
+  {% endif %}
 </div>

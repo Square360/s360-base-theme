@@ -1,9 +1,11 @@
+@use "@s360-base-theme/ui-core/site-config";
+
 ul,
 ol {
   margin: var(--list--margin, 1em 0);
   padding: var(--list--padding, 0 0 0 2em);
   display: var(--list--display, block);
-  line-height: var(--list--line-height, 1);
+  line-height: var(--list--line-height, #{ site-config.$text-line-height });
   max-width: var(--list--max-width);
 
   &[class] {

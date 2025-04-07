@@ -1,3 +1,5 @@
+@use "@s360-base-theme/ui-core/site-config";
+
 table {
   border:
     var(--table--border--width, 1px)
@@ -16,15 +18,17 @@ table {
       var(--tr--border--width, 1px)
       var(--tr--border--style, solid)
       var(--tr--border--color);
+    vertical-align: var(--tr--vertical-align, middle);
   }
 
   th {
     font-size: var(--th--font-size);
     font-family: var(--th--font-family);
     font-weight: var(--th--font-weight);
-    padding: var(--th--padding, 1rem);
+    padding: var(--th--padding, #{ site-config.spacer(0) });
     text-align: var(--th--text-align);
     text-transform: var(--th--text-transform);
+    vertical-align: var(--th--vertical-align, middle);
     border:
       var(--th--border--width, 1px)
       var(--th--border--style, solid)
@@ -32,13 +36,14 @@ table {
   }
 
   td {
-    padding: var(--td--padding, 1rem);
+    padding: var(--td--padding, #{ site-config.spacer(0) });
     text-align: var(--td--text-align);
-    vertical-align: var(--td--vertical-align);
+    vertical-align: var(--td--vertical-align, middle);
     border:
       var(--td--border--width, 1px)
       var(--td--border--style, solid)
       var(--td--border--color);
+    line-height: var(--td--line-height);
   }
 
   &:last-child {

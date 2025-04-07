@@ -1,10 +1,6 @@
 @use "@s360-base-theme/ui-core/site-config";
 @use "s360-scss-toolkit";
 
-.view--display-html-list {
-  .view__list {
-    .view__row + .view__row {
-      margin-top: var(--view-list--view-row--margin-top, #{ site-config.$spacer-0 });
-    }
-  }
+.view--list {
+
 }

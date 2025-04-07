@@ -2,7 +2,7 @@
   <h2 class="view__heading">{{ view_title }}</h2>
 {% endif %}
 
-<{{ list.type }} class="view__list">
+<{{ list.type }} class="view__rows">
   {% for row in view_rows %}
     {% set row_attributes = row.attributes|default(create_attribute({})) %}
     {% set row_attributes = row_attributes.addClass('view__row view__row--' ~ loop.index) %}
