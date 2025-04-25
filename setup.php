@@ -290,6 +290,15 @@ function set_alterations(string $theme_name, string $machine_name, string $kebab
  */
 function get_files_to_rename() {
   return [
+    'libraries/s360_base_theme.block.libraries.yml',
+    'libraries/s360_base_theme.component.libraries.yml',
+    'libraries/s360_base_theme.field.libraries.yml',
+    'libraries/s360_base_theme.form.libraries.yml',
+    'libraries/s360_base_theme.media.libraries.yml',
+    'libraries/s360_base_theme.navigation.libraries.yml',
+    'libraries/s360_base_theme.node.libraries.yml',
+    'libraries/s360_base_theme.paragraph.libraries.yml',
+    'libraries/s360_base_theme.views.libraries.yml',
     'config/install/block.block.s360_base_theme_content.yml',
     'config/install/block.block.s360_base_theme_messages.yml',
     'config/install/block.block.s360_base_theme_tabs.yml',

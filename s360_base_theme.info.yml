@@ -16,10 +16,10 @@ ckeditor5-stylesheets:
   - ui/dist/field/ckeditor/ckeditor-admin.css
 
 libraries:
-  - 's360_base_theme/global'
-  - 's360_base_theme/base'
-  - 's360_base_theme/layouts'
-  - 's360_base_theme/site-layout'
+  - s360_base_theme/global
+  - s360_base_theme/base
+  - s360_base_theme/layouts
+  - s360_base_theme/site-layout
 
 libraries-override:
   webform/webform.element.flexbox: false
@@ -30,9 +30,9 @@ regions:
 
 components:
   namespaces:
-    # Non-Drupal components
-    ui-components:
-      - ui/src/components
+    # Non-Drupal Components
+    ui-component:
+      - ui/src/component
 
     # Paragraph Layouts
     ui-layouts:

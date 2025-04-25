@@ -152,7 +152,19 @@ WEBPACK_CONFIG.module.rules.push({
   test: /\.s?[a?c]ss/i,
   use: [
     { loader: MiniCssExtractPlugin.loader },
-    { loader: 'css-loader' },
+    { loader: 'css-loader',
+      options: {
+        url: {
+          filter: (url, resourcePath) => {
+            if (/\.(gif|png|jpe?g|svg)/.test(url)) {
+              return false;
+            }
+
+            return true;
+          }
+        }
+      }
+    },
     { loader: 'postcss-loader',
       options: {
         postcssOptions: {

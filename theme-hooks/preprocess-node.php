@@ -10,7 +10,6 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
-use Drupal\Core\Url;
 
 /**
  * Implements hook_preprocess_node().
@@ -24,7 +23,7 @@ function s360_base_theme_preprocess_node(&$variables) {
   $node_view_mode = $elements['#view_mode'];
 
   if ($node_view_mode !== 'full') {
-    $url = economics_base_get_node_url($node);
+    $url = s360_base_theme_get_node_url($node);
 
     $variables['cta_url'] = $url;
     $variables['label_as_link'] = [
