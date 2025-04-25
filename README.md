@@ -21,7 +21,7 @@ Update to "repositories" section of your `composer.json` file.
 ```bash
 $ composer require square360/s360_base_theme
 ```
-**NOTE:** There is no reason to enable this theme, so DON'T!
+**DO NOT ENABLE THIS THEME!**
 
 ## Setup
 After this theme is installed:
