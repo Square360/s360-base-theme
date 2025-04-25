@@ -5,7 +5,8 @@ module.exports = {
   },
   stories: [
     '../src/**/*.stories.@(js|ts)',
-    '../../themes/**/src/**/*.stories.@(js|ts)'
+    // Uncomment if using multiple themes.
+    // '../../themes/**/src/**/*.stories.@(js|ts)'
   ],
   addons: [
     '@storybook/addon-a11y',
