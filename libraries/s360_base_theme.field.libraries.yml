@@ -6,7 +6,7 @@ field.advanced-header-field:
 field.ckeditor:
   css:
     component:
-      ui/dist/field/ckeditor/field.ckeditor.css: {}
+      ui/dist/field/ckeditor/ckeditor.css: {}
 
 field.field:
   css:
