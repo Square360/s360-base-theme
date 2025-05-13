@@ -4,7 +4,7 @@
 @use "./heading-font-sizes";
 @use "s360-scss-toolkit";
 
-%_heading {
+%heading-style-base {
   font-size: var(--heading--font-size);
   color: var(--heading--color);
   line-height: var(--heading--line-height, 1);
@@ -28,22 +28,18 @@
   --heading--margin-bottom: 0.5em;
 }
 
-%heading-as-h1 {
+%heading-style-h1 {
   --heading--font-size: var(--h1--font-size, #{ heading-font-sizes.h1-font-size() });
-  @extend %_heading;
 }
 
-%heading-as-h2 {
+%heading-style-h2 {
   --heading--font-size: var(--h2--font-size, #{ heading-font-sizes.h2-font-size() });
-  @extend %_heading;
 }
 
-%heading-as-h3 {
+%heading-style-h3 {
   --heading--font-size: var(--h3--font-size, #{ heading-font-sizes.h3-font-size() });
-  @extend %_heading;
 }
 
-%heading-as-h4 {
+%heading-style-h4 {
   --heading--font-size: var(--h4--font-size, #{ heading-font-sizes.h4-font-size() });
-  @extend %_heading;
 }
