@@ -4,20 +4,24 @@
 @use "./typography";
 @use "s360-scss-toolkit";
 
-%text-as-h1 {
-  @extend %heading-as-h1;
+%text-style-h1 {
+  @extend %heading-style-h1;
+  @extend %heading-style-base;
 }
 
-%text-as-h2 {
-  @extend %heading-as-h2;
+%text-style-h2 {
+  @extend %heading-style-h2;
+  @extend %heading-style-base;
 }
 
-%text-as-h3 {
-  @extend %heading-as-h3;
+%text-style-h3 {
+  @extend %heading-style-h3;
+  @extend %heading-style-base;
 }
 
-%text-as-h4 {
-  @extend %heading-as-h4;
+%text-style-h4 {
+  @extend %heading-style-h4;
+  @extend %heading-style-base;
 }
 
 %text-as-p {
