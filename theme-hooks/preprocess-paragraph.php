@@ -159,3 +159,11 @@ function s360_base_theme_preprocess_paragraph__in_this_section(&$variables) {
   $variables['parent_label'] = $parent_menu_title;
   $variables['parent_label_link'] = $parent_menu_link;
 }
+
+/**
+ * Implements hook_preprocess_paragraph() for views_reference.
+ */
+function s360_base_theme_preprocess_paragraph__views_reference($variables) {
+  // Add the url (complete) as a cache context to field_views_reference.
+  $variables["content"]["field_views_reference"]["#cache"]["contexts"][] = 'url';
+}

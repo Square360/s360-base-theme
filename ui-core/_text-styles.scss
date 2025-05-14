@@ -24,7 +24,7 @@
   @extend %heading-style-base;
 }
 
-%text-as-p {
+%text-style-p {
   color: var(--p--color);
   display: var(--p--display, block);
   font-family: var(--p--font-family);

@@ -72,6 +72,7 @@
     "storybook-addon-css-user-preferences": "0.0.3",
     "storybook-addon-data-theme-switcher": "0.4.2",
     "style-loader": "4.0.0",
+    "svg-sprite-loader": "6.0.11",
     "terser-webpack-plugin": "5.3.14",
     "twig": "1.17.1",
     "twigjs-loader": "1.0.3",

@@ -17,8 +17,19 @@ setupTwig(Twig);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
-  layout: 'none',
   backgrounds: { disable: true },
+  options: {
+    storySort: {
+      method: "alphabetical",
+      order: [
+        "Foundation",
+        "Content Types",
+        "Taxonomy",
+        "Components",
+        "Site Layout"
+      ]
+    }
+  }
 };
 
 export const decorators = [

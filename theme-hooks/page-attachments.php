@@ -15,7 +15,7 @@ function s360_base_theme_page_attachments_alter(array &$page) {
 
   $critical_css_files = [
     'base/base.css',
-    'block/branding-block/branding-block.css',
+    'block/branding-block/block.branding-block.css',
     'site-layout/site-header/site-header.css',
     'site-layout/site-main/site-main.css',
     'site-layout/menu-block/menu-block.css',
