@@ -19,7 +19,7 @@ function s360_base_theme_page_attachments_alter(array &$page) {
     'site-layout/site-header/site-header.css',
     'site-layout/site-main/site-main.css',
     'site-layout/menu-block/menu-block.css',
-    'site-layout/main-menu-toggle/main-menu-toggle.css',
+    'site-layout/menu-toggle/menu-toggle.css',
   ];
 
   if (!empty($critical_css_files)) {
