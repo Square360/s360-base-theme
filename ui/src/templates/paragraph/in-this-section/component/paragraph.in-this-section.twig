@@ -1,0 +1,28 @@
+{% set classes = [
+  'in-this-section',
+] %}
+{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes.setAttribute('data-js', 'in-this-section') %}
+
+{% if paragraph_menu %}
+  <details {{ attributes }} open>
+    <summary class="in-this-section">
+      {{ paragraph_summary }}
+    </summary>
+
+    <div class="in-this-section">
+      <h3 class="in-this-section">
+        {% if paragraph_parent_label_link %}
+          <a href="{{ paragraph_parent_label_link }}">{{ paragraph_parent_label }}</a>
+        {% else %}
+          {{ paragraph_parent_label }}
+        {% endif %}
+      </h3>
+
+      <div class="in-this-section">
+        {{ paragraph_menu }}
+      </div>
+    </div>
+  </details>
+{% endif %}
