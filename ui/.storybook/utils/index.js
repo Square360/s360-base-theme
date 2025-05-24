@@ -17,15 +17,15 @@ export const ctaLinkStyleControl = {
   },
 }
 
-export const COLOR_THEME_OPTIONS = {
+export const COLOR_SCHEME_OPTIONS = {
   '': '- None -',
 };
 
-export const colorThemeControl = {
-  options: Object.keys(COLOR_THEME_OPTIONS),
+export const colorSchemeControl = {
+  options: Object.keys(COLOR_SCHEME_OPTIONS),
   control: {
     type: 'select',
-    labels: COLOR_THEME_OPTIONS
+    labels: COLOR_SCHEME_OPTIONS
   },
 }
 

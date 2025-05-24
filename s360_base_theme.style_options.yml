@@ -4,7 +4,7 @@ options:
 
   layout_color_scheme_options:
     plugin: data_attribute
-    attribute: 'scheme'
+    attribute: 'color-scheme'
     label: Color Scheme
     default: ''
     options:
