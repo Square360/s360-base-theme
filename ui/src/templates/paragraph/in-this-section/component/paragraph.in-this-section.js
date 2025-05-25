@@ -1,4 +1,4 @@
-import './section-menu.scss';
+import './paragraph.in-this-section.scss';
 
 Drupal.behaviors.sectionMenu = {
   attach(context) {
@@ -8,7 +8,7 @@ Drupal.behaviors.sectionMenu = {
 
     const MQ_1024 = window.matchMedia('(min-width: 1024px)');
 
-    const SECTION_MENUS = document.querySelectorAll('[data-js="section-menu"]');
+    const SECTION_MENUS = document.querySelectorAll('[data-js="in-this-section"]');
     if (!SECTION_MENUS) return;
 
     // **************************************************
@@ -21,12 +21,10 @@ Drupal.behaviors.sectionMenu = {
     function mq1024OnChange(e) {
       SECTION_MENUS.forEach(sectionMenu => {
         sectionMenu.removeAttribute('open');
-        sectionMenu.setAttribute('data-dark-mode', true);
 
         // Desktop
         if (e.matches) {
           sectionMenu.setAttribute('open', true);
-          sectionMenu.removeAttribute('data-dark-mode');
         }
       });
     }
