@@ -1,8 +1,16 @@
-<article{{ attributes }}>
+{% set node_classes = node_classes|default([
+  'node',
+  'node--' ~ node.bundle|clean_class,
+]) %}
+<article{{ attributes.addClass(node_classes) }}>
   <header class="node__header" data-js="node-header">
     {% block node_header %}
       <h1 class="node__heading">
-        {{ node_field_label }}
+        {% if node_field_label %}
+          {{ node_field_label }}
+        {% else %}
+          {{ label }}
+        {% endif %}
       </h1>
     {% endblock %}
   </header>
