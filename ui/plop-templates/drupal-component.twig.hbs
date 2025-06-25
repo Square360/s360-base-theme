@@ -1,0 +1,12 @@
+{% set {{entityType}}_classes = [
+  {{#each componentClasses}}
+  '{{ this }}',
+  {{/each}}
+] %}
+{% set attributes = attributes|default(create_attribute()) %}
+
+{% extends "{{ drupalTwigTemplate }}" %}
+
+{% block {{ drupalBlockName }} %}
+  \{{ content }}
+{% endblock %}
