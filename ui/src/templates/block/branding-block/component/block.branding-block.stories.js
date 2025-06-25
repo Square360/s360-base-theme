@@ -8,7 +8,7 @@ import './block.branding-block.js';
 export default { title: 'Site Layout/Branding Block' };
 
 export const brandingBlock = (args) => {
-  let data = args ?? brandingBlockData;
+  let data = Object.assign(brandingBlockData, args);
 
   return brandingBlockTwig({
     ...data,

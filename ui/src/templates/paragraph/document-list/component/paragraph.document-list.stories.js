@@ -7,8 +7,8 @@ import './paragraph.document-list.js';
  */
 export default { title: 'Layout Components/Document List' };
 
-export const documentList = () => {
-  let data = args ?? documentListData;
+export const documentList = (args) => {
+  let data = Object.assign(documentListData, args);
 
   return documentListTwig({
     ...data,

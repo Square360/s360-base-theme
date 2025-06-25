@@ -16,7 +16,7 @@ import { brandingBlock } from '@ui-block/branding-block/component/block.branding
 export default { title: 'Site Layout/Site Header' };
 
 export const siteHeader = (args) => {
-  let data = args ?? siteHeaderData;
+  let data = Object.assign(siteHeaderData, args);
 
   return siteHeaderTwig({
     ...data,

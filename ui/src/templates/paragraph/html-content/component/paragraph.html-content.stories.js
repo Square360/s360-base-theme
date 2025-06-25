@@ -10,7 +10,7 @@ import { formatParagraphCKEditor } from '.storybook/utils';
 export default { title: 'Layout Components/Html Content' };
 
 export const htmlContent = (args) => {
-  let data = args ?? htmlContentData;
+  let data = Object.assign(htmlContentData, args);
 
   return htmlContentTwig({
     ...data,

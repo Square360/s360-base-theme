@@ -10,7 +10,7 @@ import { formatParagraphText } from '.storybook/utils';
 export default { title: 'Layout Components/Placeholder' };
 
 export const placeholder = (args) => {
-  let data = args ?? placeholderData;
+  let data = Object.assign(placeholderData, args);
 
   return placeholderTwig({
     ...data,

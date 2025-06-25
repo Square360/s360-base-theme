@@ -11,7 +11,7 @@ import { ctaLinkStyleControl } from '.storybook/utils';
 export default { title: 'Layout Components/Cta Link' };
 
 export const ctaLink = (args) => {
-  let data = args ?? ctaLinkData;
+  let data = Object.assign(ctaLinkData, args);
 
   return ctaLinkTwig({
     ...data,

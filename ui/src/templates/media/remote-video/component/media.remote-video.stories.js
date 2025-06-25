@@ -8,7 +8,7 @@ import './media.remote-video.js';
 export default { title: 'Media/Remote Video' };
 
 export const remoteVideo = (args) => {
-  let data = args ?? remoteVideoData;
+  let data = Object.assign(remoteVideoData, args);
 
   return remoteVideoTwig({
     ...data,
