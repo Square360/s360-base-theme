@@ -1,0 +1,6 @@
+{{ attach_library('s360_base_theme/misc.status-messages') }}
+
+{% include "@ui-misc/status-messages/component/status-messages.twig" with {
+  status_messages_type: type,
+  status_messages_message_list: message_list
+} %}
