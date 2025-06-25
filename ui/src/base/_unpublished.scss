@@ -1,0 +1,52 @@
+@use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/colors";
+@use "@s360-base-theme/ui-core/typography";
+
+[data-unpublished="node"] {
+  background-color: colors.$unpublished;
+}
+
+[data-unpublished="paragraph"] {
+  position: relative;
+
+  &::after {
+    $_background-pattern-color: rgba(colors.$unpublished, 0.125);
+
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        $_background-pattern-color 25%,
+        transparent 25%,
+        transparent 75%,
+        $_background-pattern-color 75%,
+        $_background-pattern-color
+      ),
+      repeating-linear-gradient(
+        45deg,
+        $_background-pattern-color 25%,
+        transparent 25%,
+        transparent 75%,
+        $_background-pattern-color 75%,
+        $_background-pattern-color
+      );
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+    content: '';
+    inset: 0;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    position: absolute;
+    z-index: 100;
+  }
+
+  &::before {
+    background-color: #FFC0CB;
+    color: colors.$black;
+    content: 'Unpublished';
+    display: block;
+    font-size: 0.75em;
+    font-weight: typography.$font-weight-bold;
+    padding: 1em;
+    pointer-events: none;
+  }
+}
