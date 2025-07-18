@@ -1,7 +1,14 @@
-{% set node_classes = node_classes|default([
+{% set node_classes = node_classes|default([])|merge([
   'node',
-  'node--' ~ node.bundle|clean_class,
+  'node--full',
+  node.bundle ? 'node--' ~ node.bundle|clean_class : '',
+  node_is_front ? 'node--is-front' : '',
 ]) %}
+
+{% if not node.isPublished() %}
+  {% set attributes = attributes.setAttribute('data-unpublished', 'node') %}
+{% endif %}
+
 <article{{ attributes.addClass(node_classes) }}>
   <header class="node__header" data-js="node-header">
     {% block node_header %}
