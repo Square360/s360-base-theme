@@ -48,6 +48,7 @@ const WEBPACK_CONFIG = {
   output: {
     path: path.resolve(`${ __dirname }/dist`),
     clean: true,
+    pathinfo: false,
   },
 
   /**
