@@ -46,29 +46,29 @@ export const imagePositionControl = {
 
 /**
  *
- * @param {string} paragraph_text
+ * @param {string} paragraphText
  * @returns
  */
-export function formatParagraphText(paragraph_text) {
-  if (!paragraph_text) return '';
+export function formatParagraphText(paragraphText) {
+  if (!paragraphText) return '';
 
-  let paragraphs = paragraph_text.split(/\r?\n|\r|\n/g);
+  let paragraphs = paragraphText.split(/\r?\n|\r|\n/g);
 
-  return paragraphs.map((paragraph_text) => {
-    if (!paragraph_text) {
-      paragraph_text = '&nbsp;';
+  return paragraphs.map((paragraphText) => {
+    if (!paragraphText) {
+      paragraphText = '&nbsp;';
     }
 
-    return pTwig({ paragraph_text });
+    return pTwig({ paragraphText });
   }).join('');
 }
 
-export function formatParagraphCKEditor(paragraph_text) {
-  if (!paragraph_text) return '';
+export function formatParagraphCKEditor(paragraphText) {
+  if (!paragraphText) return '';
 
   return ckEditorTwig({
     field_items: [{
-      content: formatParagraphText(paragraph_text)
+      content: formatParagraphText(paragraphText)
     }]
   });
 }
@@ -113,6 +113,14 @@ export function setMenuItemAttribues(item) {
  * @param {string} menu The menu rendered as a string.
  * @returns {string}
  */
-export function fakeSystemMenuBlock(menu) {
+export function fakeDrupalMainMenuBlock(menu) {
   return `<nav class="block-main-menu" data-js="block-main-menu">${ menu }</nav>`;
+}
+
+export function setPublishedStatus(status) {
+  return {
+    isPublished() {
+      return status;
+    }
+  }
 }
