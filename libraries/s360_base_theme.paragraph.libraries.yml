@@ -42,13 +42,3 @@ paragraph.video:
   css:
     component:
       ui/dist/paragraph/video/paragraph.video.css: {}
-
-paragraph.view-block:
-  css:
-    component:
-      ui/dist/paragraph/view-block/paragraph.view-block.css: {}
-
-paragraph.webform:
-  css:
-    component:
-      ui/dist/paragraph/webform/paragraph.webform.css: {}
