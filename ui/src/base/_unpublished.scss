@@ -48,5 +48,6 @@
     font-weight: typography.$font-weight-bold;
     padding: 1em;
     pointer-events: none;
+    margin-bottom: site-config.spacer(0);
   }
 }
