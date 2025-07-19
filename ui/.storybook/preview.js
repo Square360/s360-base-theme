@@ -1,4 +1,4 @@
-import { useEffect } from '@storybook/client-api';
+import { useEffect } from '@storybook/preview-api';
 import Twig from 'twig';
 import { setupTwig } from './setupTwig';
 
@@ -47,6 +47,7 @@ export const globalTypes = {
       list: [
         { name: "Theme Name", dataTheme: "theme-name", color: "#ffffff" },
       ],
+      dataAttribute: "data-theme",
     },
   },
 };
