@@ -59,7 +59,7 @@ export function formatParagraphText(paragraphText) {
       paragraphText = '&nbsp;';
     }
 
-    return pTwig({ paragraphText });
+    return pTwig({ paragraph_text: paragraphText });
   }).join('');
 }
 
