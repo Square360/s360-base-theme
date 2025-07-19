@@ -1,8 +1,7 @@
-{% set classes = [
+{% set paragraph_classes = [
   'in-this-section',
 ] %}
 {% set attributes = attributes|default(create_attribute()) %}
-{% set attributes = attributes.setAttribute('class', classes) %}
 {% set attributes = attributes.setAttribute('data-js', 'in-this-section') %}
 
 {% if paragraph_menu %}

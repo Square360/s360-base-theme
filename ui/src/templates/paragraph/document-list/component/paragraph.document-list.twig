@@ -1,9 +1,8 @@
-{% set classes = [
+{% set paragraph_classes = [
   'document-list',
   paragraph_field_document_view_mode ? 'document-list--' ~ paragraph_field_document_view_mode : ''
 ] %}
 {% set attributes = attributes|default(create_attribute()) %}
-{% set attributes = attributes.setAttribute('class', classes) %}
 {% set attributes = attributes.setAttribute('data-js', 'document-list') %}
 
 {% extends "@ui-paragraph/paragraph.html.twig" %}

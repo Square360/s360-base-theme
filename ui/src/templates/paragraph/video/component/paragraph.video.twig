@@ -1,8 +1,7 @@
-{% set classes = [
+{% set paragraph_classes = [
   'video',
 ] %}
 {% set attributes = attributes|default(create_attribute()) %}
-{% set attributes = attributes.setAttribute('class', classes) %}
 {% set attributes = attributes.setAttribute('data-js', 'video') %}
 
 {% extends "@ui-paragraph/paragraph.html.twig" %}
