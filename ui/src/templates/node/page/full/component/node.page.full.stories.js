@@ -8,18 +8,18 @@ import { setPublishedStatus } from '.storybook/utils';
  * Storybook Definition.
  */
 export default {
-  title: 'Content Types/Page',
+  title: 'Content Types/Page/Full',
   argTypes: {
     node: { control: false }
   }
 };
 
-export const page = (args) => {
-  let data = Object.assign(pageData, args);
+export const full = (args) => {
+  let data = Object.assign(pageData ?? {}, args);
   data.node = setPublishedStatus(data.node_is_published);
 
   return pageTwig({
     ...data,
   });
 };
-page.args = pageData;
+full.args = pageData;
