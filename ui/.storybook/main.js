@@ -12,7 +12,7 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    'storybook-addon-css-user-preferences',
+    'storybook-addon-render-modes',
 
     // Uncomment if you want to enable theme switching.
     // 'storybook-addon-data-theme-switcher'

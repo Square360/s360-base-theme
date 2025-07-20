@@ -99,7 +99,7 @@ export default function (plop) {
         actions.push(addComponentStyle(`${ actionPath }/component/${ data.componentFilename }.scss`));
         actions.push(addComponentStories(`${ actionPath }/component/${ data.componentFilename }.stories.js`));
         actions.push(addComponentYml(`${ actionPath }/component/${ data.componentFilename }.yml`));
-        actions.push(addComponentTwig(`${ actionPath }/component/${ data.componentFilename }.twig`));
+        actions.push(addDrupalComponentTwig(`${ actionPath }/component/${ data.componentFilename }.twig`));
 
         actions.push(addDrupalTwig(`${ actionPath }/node--${ data.componentName }--${ data.viewMode }.html.twig`));
       }
@@ -147,7 +147,7 @@ export default function (plop) {
         actions.push(addComponentStyle(`${ actionPath }/component/${ data.componentFilename }.scss`));
         actions.push(addComponentStories(`${ actionPath }/component/${ data.componentFilename }.stories.js`));
         actions.push(addComponentYml(`${ actionPath }/component/${ data.componentFilename }.yml`));
-        actions.push(addComponentTwig(`${ actionPath }/component/${ data.componentFilename }.twig`));
+        actions.push(addDrupalComponentTwig(`${ actionPath }/component/${ data.componentFilename }.twig`));
 
         actions.push(addDrupalTwig(`${ actionPath }/paragraph--${ data.componentName }.html.twig`));
       }
@@ -178,7 +178,7 @@ export default function (plop) {
           data.componentClassName,
         ];
 
-        let actionPath = `src/components/${ data.componentName }`;
+        let actionPath = `src/component/${ data.componentName }`;
 
         actions.push(addComponentScript(`${ actionPath }/${ data.componentFilename }.js`));
         actions.push(addComponentStyle(`${ actionPath }/${ data.componentFilename }.scss`));
@@ -232,6 +232,15 @@ function addComponentTwig(path) {
     type: 'add',
     path,
     templateFile: './plop-templates/component.twig.hbs',
+    skipIfExists: true
+  }
+}
+
+function addDrupalComponentTwig(path) {
+  return {
+    type: 'add',
+    path,
+    templateFile: './plop-templates/drupal-component.twig.hbs',
     skipIfExists: true
   }
 }

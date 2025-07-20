@@ -3,15 +3,6 @@
 This project requires Yarn v4. If this is your first time running yarn for this
 project, you must run the following commands first.
 
-```bash
-$ corepack enable
-```
-Then
-```bash
-$ yarn set version stable
-```
-Now you can run `yarn` commands using the latest v4.
-
 ## Creating a new entity
 
 In your terminal run the following command

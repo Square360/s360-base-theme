@@ -6,9 +6,10 @@ import fourColumTwig from './four-column/_four-column.twig';
 
 import './layouts.js';
 
-import { COLOR_THEME_OPTIONS } from '.storybook/utils';
+import { colorSchemeControl } from '.storybook/utils';
 
 import { placeholder } from '@ui-paragraph/placeholder/component/paragraph.placeholder.stories.js';
+import { htmlContent } from '@ui-paragraph/html-content/component/paragraph.html-content.stories.js';
 
 import drupalAttribute from 'drupal-attribute';
 
@@ -20,36 +21,50 @@ export default { title: 'Layouts/Layouts' };
 // **************************************************
 // ONE COLUMN LAYOUT
 
+const ONE_COLUMN_WIDTH_OPTIONS = {
+};
+
 export const oneColumn = (args) => {
-  let { color_theme } = args;
+  let { color_scheme, column_width } = args;
 
   let paragraphAttributes = Object.assign({});
 
-  if (color_theme) {
-    paragraphAttributes['data-theme'] = color_theme;
+  if (color_scheme) {
+    paragraphAttributes['data-color-scheme'] = color_scheme;
+  }
+
+  if (column_width) {
+    paragraphAttributes['class'] = [];
+    paragraphAttributes['class'].push(column_width);
   }
 
   return oneColumTwig({
     paragraph_layout_region_first: [
       '<h1>Heading</h1>',
       placeholder(),
+      htmlContent(),
     ],
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
 
 oneColumn.argTypes = {
-  color_theme: {
-    name: 'Color Theme',
-    options: Object.keys(COLOR_THEME_OPTIONS),
+  color_scheme: {
+    name: 'Color Scheme',
+    ...colorSchemeControl,
+  },
+  column_width: {
+    name: 'Width',
+    options: Object.keys(ONE_COLUMN_WIDTH_OPTIONS),
     control: {
       type: 'select',
-      labels: COLOR_THEME_OPTIONS
+      labels: ONE_COLUMN_WIDTH_OPTIONS
     }
-  },
+  }
 };
 oneColumn.args = {
-  color_theme: '',
+  color_scheme: '',
+  column_width: ''
 };
 
 // **************************************************

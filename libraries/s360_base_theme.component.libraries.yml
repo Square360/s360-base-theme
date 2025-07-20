@@ -1,4 +1,4 @@
 component.pager:
   css:
-  component:
-    ui/dist/component/pager/pager.css: {}
+    component:
+      ui/dist/component/pager/pager.css: {}

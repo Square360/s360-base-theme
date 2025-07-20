@@ -1,4 +1,4 @@
-import { useEffect } from '@storybook/client-api';
+import { useEffect } from '@storybook/preview-api';
 import Twig from 'twig';
 import { setupTwig } from './setupTwig';
 
@@ -17,8 +17,19 @@ setupTwig(Twig);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
-  layout: 'none',
   backgrounds: { disable: true },
+  options: {
+    storySort: {
+      method: "alphabetical",
+      order: [
+        "Foundation",
+        "Content Types",
+        "Taxonomy",
+        "Components",
+        "Site Layout"
+      ]
+    }
+  }
 };
 
 export const decorators = [
@@ -36,6 +47,7 @@ export const globalTypes = {
       list: [
         { name: "Theme Name", dataTheme: "theme-name", color: "#ffffff" },
       ],
+      dataAttribute: "data-theme",
     },
   },
 };

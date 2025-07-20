@@ -3,6 +3,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 /**
  * Create entry points based on the pattern passed.
@@ -47,6 +48,7 @@ const WEBPACK_CONFIG = {
   output: {
     path: path.resolve(`${ __dirname }/dist`),
     clean: true,
+    pathinfo: false,
   },
 
   /**
@@ -74,6 +76,7 @@ const WEBPACK_CONFIG = {
     ],
     alias: {
       SRC_IMAGES$: path.resolve('src/images'),
+      vendors: path.resolve('vendors'),
     }
   },
 
@@ -122,7 +125,8 @@ const WEBPACK_CONFIG = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
-    })
+    }),
+    new SpriteLoaderPlugin(),
   ],
 
   /**
@@ -208,8 +212,8 @@ WEBPACK_CONFIG.module.rules.push({
  */
 WEBPACK_CONFIG.module.rules.push({
   test: /\.(gif|png|jpe?g|svg)$/,
-  include: path.resolve('src/images'),
   exclude: path.resolve('src/images/icons'),
+  include: path.resolve('src/images'),
   use: [
     { loader: 'file-loader',
       options: {
@@ -247,6 +251,25 @@ WEBPACK_CONFIG.module.rules.push({
           interlaced: false
         }
       }
+    }
+  ]
+});
+
+/**
+ * Build rule to handle SVGs files only.
+ *
+ * @type {Object}
+ */
+WEBPACK_CONFIG.module.rules.push({
+  test: /\.(svg)$/,
+  include: path.resolve('src/images/icons'),
+  use: [
+    {
+      loader: 'svg-sprite-loader',
+      options: {
+        extract: true,
+        spriteFilename: 'images/icons.svg',
+      },
     }
   ]
 });

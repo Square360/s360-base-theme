@@ -46,6 +46,8 @@ components:
       - ui/src/templates/form
     ui-media:
       - ui/src/templates/media
+    ui-misc:
+      - ui/src/templates/misc
     ui-navigation:
       - ui/src/templates/navigation
     ui-node:

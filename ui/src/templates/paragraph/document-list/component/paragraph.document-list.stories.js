@@ -2,13 +2,21 @@ import documentListTwig from './paragraph.document-list.twig';
 import documentListData from './paragraph.document-list.yml';
 import './paragraph.document-list.js';
 
+import { setPublishedStatus } from '.storybook/utils';
+
 /**
  * Storybook Definition.
  */
-export default { title: 'Layout Components/Document List' };
+export default {
+  title: 'Layout Components/Document List',
+  argTypes: {
+    paragraph: { control: false }
+  }
+};
 
-export const documentList = () => {
-  let data = args ?? documentListData;
+export const documentList = (args) => {
+  let data = Object.assign(documentListData, args);
+  data.paragraph = setPublishedStatus(data.paragraph_is_published);
 
   return documentListTwig({
     ...data,

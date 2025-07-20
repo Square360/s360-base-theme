@@ -8,7 +8,7 @@
   padding: 1em;
 
   &__title {
-    @extend %text-as-h3;
+    @extend %text-style-h3;
   }
 
   > * + * {

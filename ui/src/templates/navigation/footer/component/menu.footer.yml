@@ -1,4 +1,4 @@
-menu_name: Footer
+menu_name: footer
 items:
   - title: 'Footer Menu Link'
     url: '#'

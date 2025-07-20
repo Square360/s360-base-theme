@@ -5,10 +5,12 @@ import './{{ componentFilename }}.js';
 /**
  * Storybook Definition.
  */
-export default { title: '{{ storybookTitle }}' };
+export default {
+  title: '{{ storybookTitle }}',
+};
 
 export const {{ storybookFunctionName }} = (args) => {
-  let data = args ?? {{ storybookComponentName }}Data;
+  let data = Object.assign({{ storybookComponentName }}Data ?? {}, args);
 
   return {{ storybookComponentName }}Twig({
     ...data,

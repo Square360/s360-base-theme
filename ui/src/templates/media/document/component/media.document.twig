@@ -2,7 +2,7 @@
   'media',
   'media--document',
 ] %}
-{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
 {% set attributes = attributes.setAttribute('data-js', 'media-document') %}
 

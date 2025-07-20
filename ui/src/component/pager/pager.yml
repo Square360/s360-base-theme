@@ -21,8 +21,6 @@ pager:
       href: '#'
       attributes: []
 
-    ellipses_previous: true
-
     pages:
       1:
         href: '#'
@@ -34,8 +32,6 @@ pager:
         href: '#'
         attributes: []
 
-    ellipses_next: true
-
     next:
       href: '#'
       attributes: []
@@ -45,3 +41,7 @@ pager:
       attributes: []
 
   current: 1
+
+  ellipses:
+    next: true
+    previous: true

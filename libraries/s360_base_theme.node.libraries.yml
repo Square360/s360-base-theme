@@ -1,4 +1,17 @@
+# ##################################################
+# Node Component Libraries
+
+node.full:
+  css:
+    component:
+      ui/dist/node/full/node.full.css: {}
+
+# ##################################################
+# Node Page Libraries
+
 node.page.full:
   css:
     component:
-      ui/dist/node/page/full/page.full.css: {}
+      ui/dist/node/page/full/node.page.full.css: {}
+  dependencies:
+    - s360_base_theme/node.full

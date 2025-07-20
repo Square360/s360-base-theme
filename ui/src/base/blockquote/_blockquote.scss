@@ -2,5 +2,5 @@
 @use "s360-scss-toolkit";
 
 blockquote {
-  @extend %text-as-blockquote;
+  @extend %text-style-blockquote;
 }

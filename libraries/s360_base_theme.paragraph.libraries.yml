@@ -23,6 +23,11 @@ paragraph.image:
     component:
       ui/dist/paragraph/image/paragraph.image.css: {}
 
+paragraph.in-this-section:
+  css:
+    component:
+      ui/dist/paragraph/in-this-section/paragraph.in-this-section.css: {}
+
 paragraph.link-list:
   css:
     component:
@@ -37,13 +42,3 @@ paragraph.video:
   css:
     component:
       ui/dist/paragraph/video/paragraph.video.css: {}
-
-paragraph.view-block:
-  css:
-    component:
-      ui/dist/paragraph/view-block/paragraph.view-block.css: {}
-
-paragraph.webform:
-  css:
-    component:
-      ui/dist/paragraph/webform/paragraph.webform.css: {}

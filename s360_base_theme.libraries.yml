@@ -4,7 +4,7 @@ global:
 
 base:
   js:
-    ui/dist/base/base.js: {}
+    ui/dist/base/base.js: { attributes: { defer: true } }
 
 layouts:
   css:
@@ -21,4 +21,4 @@ site-layout:
     base:
       ui/dist/site-layout/site-footer/site-footer.css: {}
   js:
-    ui/dist/site-layout/site-layout.js: {}
+    ui/dist/site-layout/site-layout.js: { attributes: { defer: true } }

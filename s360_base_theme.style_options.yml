@@ -2,10 +2,10 @@ options:
   # ##################################################
   # Generic Options (applies to any layout/region)
 
-  layout_color_theme_options:
+  layout_color_scheme_options:
     plugin: data_attribute
-    attribute: 'theme'
-    label: Color Theme
+    attribute: 'color-scheme'
+    label: Color Scheme
     default: ''
     options:
       '': '- None -'
@@ -185,7 +185,7 @@ contexts:
 
     layout_custom_one_column:
       options:
-        layout_color_theme_options:
+        layout_color_scheme_options:
           layout: true
         layout_one_column_width_options:
           layout: true

@@ -11,7 +11,7 @@ import { footer } from '@ui-navigation/footer/component/menu.footer.stories';
 export default { title: 'Site Layout/Site Footer' };
 
 export const siteFooter = (args) => {
-  let data = args ?? siteFooterData;
+  let data = Object.assign(siteFooterData, args);
 
   return siteFooterTwig({
     ...data,

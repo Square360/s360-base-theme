@@ -3,17 +3,9 @@
   '{{ this }}',
   {{/each}}
 ] %}
-{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = create_attribute() %}
 {% set attributes = attributes.setAttribute('class', classes) %}
 
-{{#if drupalBlockName}}
-{% extends "{{ drupalTwigTemplate }}" %}
-
-{% block {{ drupalBlockName }} %}
-  \{{ content }}
-{% endblock %}
-{{else}}
 <div\{{ attributes }}>
 
 </div>
-{{/if}}

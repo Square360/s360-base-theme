@@ -1,8 +1,17 @@
-{{ attach_library('s360_base_theme/paragraph.webform') }}
+{% set paragraph_tag = (content.field_header.0) ? 'section' : 'div' %}
 
-{% include "@ui-paragraph/webform/component/paragraph.webform.twig" with {
-  paragraph_field_header: (content.field_header.0) ? content.field_header : '',
-  paragraph_field_webform: (content.field_webform.0) ? content.field_webform : '',
+{% if not paragraph.isPublished() %}
+  {% set attributes = attributes.setAttribute('data-unpublished', 'paragraph') %}
+{% endif %}
 
-  paragraph_tag: (content.field_header.0) ? 'section' : 'div'
-} %}
+{% if content.field_header or not paragraph.isPublished() %}
+  <{{ paragraph_tag }}{{ attributes }}>
+{% endif %}
+
+  {{ content.field_header }}
+
+  {{ content.field_webform }}
+
+{% if content.field_header or not paragraph.isPublished() %}
+  </{{ paragraph_tag }}>
+{% endif %}
