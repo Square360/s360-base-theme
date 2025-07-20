@@ -10,7 +10,7 @@ export default {
 };
 
 export const {{ storybookFunctionName }} = (args) => {
-  let data = Object.assign({{ storybookComponentName }}Data, args);
+  let data = Object.assign({{ storybookComponentName }}Data ?? {}, args);
 
   return {{ storybookComponentName }}Twig({
     ...data,
