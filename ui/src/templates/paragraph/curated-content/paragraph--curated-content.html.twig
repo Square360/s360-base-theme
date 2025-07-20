@@ -7,8 +7,12 @@
  */
 #}
 
-{% extends "@ui-paragraph/paragraph.html.twig" %}
+{% if not paragraph.isPublished() %}
+  <div data-unpublished="paragraph">
+{% endif %}
 
-{% block paragraph_content %}
-  {{ curated_node }}
-{% endblock %}
+{{ curated_node }}
+
+{% if not paragraph.isPublished() %}
+  </div>
+{% endif %}

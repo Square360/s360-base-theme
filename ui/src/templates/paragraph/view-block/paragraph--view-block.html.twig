@@ -1,8 +1,17 @@
-{{ attach_library('s360_base_theme/paragraph.view-block') }}
+{% set paragraph_tag = (content.field_header.0) ? 'section' : 'div' %}
 
-{% include "@ui-paragraph/view-block/component/paragraph.view-block.twig" with {
-  paragraph_field_header: (content.field_header.0) ? content.field_header : '',
-  paragraph_field_view: (content.field_view.0) ? content.field_view : '',
+{% if not paragraph.isPublished() %}
+  {% set attributes = attributes.setAttribute('data-unpublished', 'paragraph') %}
+{% endif %}
 
-  paragraph_tag: (content.field_header.0) ? 'section' : 'div'
-} %}
+{% if content.field_header or not paragraph.isPublished() %}
+  <{{ paragraph_tag }}{{ attributes }}>
+{% endif %}
+
+  {{ content.field_header }}
+
+  {{ content.field_view }}
+
+{% if content.field_header or not paragraph.isPublished() %}
+  </{{ paragraph_tag }}>
+{% endif %}

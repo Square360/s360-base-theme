@@ -74,8 +74,6 @@ function s360_base_theme_preprocess_paragraph__embed_code(&$variables) {
 
 /**
  * Implements hook_preprocess_paragraph() for in_this_section.
- *
- * TODO: Needs work!
  */
 function s360_base_theme_preprocess_paragraph__in_this_section(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -152,10 +150,18 @@ function s360_base_theme_preprocess_paragraph__in_this_section(&$variables) {
   $build = $menu_link_tree->build($menu_links);
 
   $build['#cache']['contexts'][] = 'url.path';
-  $build['#menu_name'] = 'section-menu';
-  $build["#theme"] = 'menu__section_menu';
+  $build['#menu_name'] = 'in-this-section-menu';
+  $build["#theme"] = 'menu__in-this-section_menu';
 
   $variables['menu'] = $build;
   $variables['parent_label'] = $parent_menu_title;
   $variables['parent_label_link'] = $parent_menu_link;
+}
+
+/**
+ * Implements hook_preprocess_paragraph() for views_reference.
+ */
+function s360_base_theme_preprocess_paragraph__views_reference($variables) {
+  // Add the url (complete) as a cache context to field_views_reference.
+  $variables["content"]["field_views_reference"]["#cache"]["contexts"][] = 'url';
 }

@@ -1,6 +1,15 @@
 {% set paragraph_tag = paragraph_tag|default('div') %}
 
-<{{ paragraph_tag }}{{ attributes }}>
+{% set paragraph_classes = paragraph_classes|default([
+  'paragraph',
+  paragraph.bundle() ? 'paragraph--' ~ paragraph.bundle()|clean_class : '',
+]) %}
+
+{% if not paragraph.isPublished() %}
+  {% set attributes = attributes.setAttribute('data-unpublished', 'paragraph') %}
+{% endif %}
+
+<{{ paragraph_tag }}{{ attributes.addClass(paragraph_classes) }}>
   {% block paragraph_content %}
     {{ content }}
   {% endblock %}

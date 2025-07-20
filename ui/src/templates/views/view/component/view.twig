@@ -9,7 +9,7 @@
   view_dom_id ? 'js-view-dom-id-' ~ view_dom_id : '',
 ] %}
 
-{% set attributes = attributes|default(create_attribute({})) %}
+{% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.setAttribute('class', classes) %}
 
 <{{ view_tag }}{{ attributes }}>

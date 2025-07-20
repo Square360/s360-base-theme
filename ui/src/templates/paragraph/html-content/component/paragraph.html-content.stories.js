@@ -2,15 +2,21 @@ import htmlContentTwig from './paragraph.html-content.twig';
 import htmlContentData from './paragraph.html-content.yml';
 import './paragraph.html-content.js';
 
-import { formatParagraphCKEditor } from '.storybook/utils';
+import { formatParagraphCKEditor, setPublishedStatus } from '.storybook/utils';
 
 /**
  * Storybook Definition.
  */
-export default { title: 'Layout Components/Html Content' };
+export default {
+  title: 'Layout Components/Html Content',
+  argTypes: {
+    paragraph: { control: false }
+  }
+};
 
 export const htmlContent = (args) => {
-  let data = args ?? htmlContentData;
+  let data = Object.assign(htmlContentData, args);
+  data.paragraph = setPublishedStatus(data.paragraph_is_published);
 
   return htmlContentTwig({
     ...data,

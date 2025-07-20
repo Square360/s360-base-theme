@@ -1,8 +1,7 @@
-{% set classes = [
+{% set paragraph_classes = [
   'link-list',
 ] %}
-{% set attributes = attributes|default(create_attribute({})) %}
-{% set attributes = attributes.setAttribute('class', classes) %}
+{% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.setAttribute('data-js', 'link-list') %}
 
 {% extends "@ui-paragraph/paragraph.html.twig" %}

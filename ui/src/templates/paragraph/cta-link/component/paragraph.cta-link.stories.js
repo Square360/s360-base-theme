@@ -3,15 +3,21 @@ import ctaLinkData from './paragraph.cta-link.yml';
 import './paragraph.cta-link.js';
 
 import linkTwig from '@ui-base/link/_link.twig';
-import { ctaLinkStyleControl } from '.storybook/utils';
+import { ctaLinkStyleControl, setPublishedStatus } from '.storybook/utils';
 
 /**
  * Storybook Definition.
  */
-export default { title: 'Layout Components/Cta Link' };
+export default {
+  title: 'Layout Components/Cta Link',
+  argTypes: {
+    paragraph: { control: false }
+  }
+};
 
 export const ctaLink = (args) => {
-  let data = args ?? ctaLinkData;
+  let data = Object.assign(ctaLinkData, args);
+  data.paragraph = setPublishedStatus(data.paragraph_is_published);
 
   return ctaLinkTwig({
     ...data,

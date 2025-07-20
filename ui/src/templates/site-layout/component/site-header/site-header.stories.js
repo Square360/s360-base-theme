@@ -5,7 +5,7 @@ import './site-header.js';
 import '@ui-site-layout/component/block-menu/block-menu.js';
 import '@ui-site-layout/component/menu-toggle/menu-toggle.js';
 
-import { fakeSystemMenuBlock } from '.storybook/utils';
+import { fakeDrupalMainMenuBlock } from '.storybook/utils';
 
 import { main } from '@ui-navigation/main/component/menu.main.stories';
 import { brandingBlock } from '@ui-block/branding-block/component/block.branding-block.stories';
@@ -16,12 +16,12 @@ import { brandingBlock } from '@ui-block/branding-block/component/block.branding
 export default { title: 'Site Layout/Site Header' };
 
 export const siteHeader = (args) => {
-  let data = args ?? siteHeaderData;
+  let data = Object.assign(siteHeaderData, args);
 
   return siteHeaderTwig({
     ...data,
     site_header_branding_block: brandingBlock(),
-    site_header_main_menu: fakeSystemMenuBlock(main())
+    site_header_main_menu: fakeDrupalMainMenuBlock(main())
   });
 }
 siteHeader.args = siteHeaderData;

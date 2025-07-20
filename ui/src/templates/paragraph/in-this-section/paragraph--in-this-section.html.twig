@@ -1,0 +1,19 @@
+{#
+/**
+ * Available Variables:
+ * - parent_label_link: The label of the parent.
+ * - parent_label: The link to the parent.
+ * - menu: The group menu based on the current
+ *
+ * @see s360_base_theme_preprocess_paragraph__in_this_section()
+ */
+#}
+
+{{ attach_library('s360_base_theme/paragraph.in-this-section') }}
+
+{% include "@ui-paragraph/in-this-section/component/paragraph.in-this-section.twig" with {
+  paragraph_summary: 'In this section'|t,
+  paragraph_parent_label: parent_label,
+  paragraph_parent_label_link: parent_label_link,
+  paragraph_menu: menu,
+} %}

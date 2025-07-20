@@ -23,7 +23,7 @@ menu.main:
     component:
       ui/dist/navigation/main/menu.main.css: {}
   js:
-    ui/dist/navigation/main/menu.main.js: {}
+    ui/dist/navigation/main/menu.main.js: { attributes: { defer: true } }
   dependencies:
     - core/drupal
 

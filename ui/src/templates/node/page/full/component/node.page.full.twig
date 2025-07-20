@@ -1,15 +1,11 @@
-{% set classes = [
-  'node',
-  'node--page',
-  'node--full',
-  node_is_front ? 'node--is-front' : '',
-  not node_is_published ? 'node--unpublished' : '',
+{% set node_classes = [
+  'node--page'
 ] %}
-{% set attributes = attributes|default(create_attribute({})) %}
-{% set attributes = attributes.setAttribute('class', classes) %}
+
+{% set attributes = attributes|default(create_attribute()) %}
 
 {% extends "@ui-node/node--full.html.twig" %}
 
 {% block node_content %}
-
+  {{ content }}
 {% endblock %}

@@ -6,7 +6,7 @@
   {% if options.alignment == 'horizontal' %}
     {% for row in view_items %}
       {% for column in row.content %}
-        {% set column_attributes = column.attributes|default(create_attribute({})) %}
+        {% set column_attributes = column.attributes|default(create_attribute()) %}
         {% set column_attributes = column_attributes.addClass('view__grid-item view__grid-item--' ~ loop.index) %}
 
         <div{{ column_attributes }}>
@@ -17,7 +17,7 @@
   {% else %}
     {% for column in view_items %}
       {% for row in column.content %}
-        {% set row_attributes = row.attributes|default(create_attribute({})) %}
+        {% set row_attributes = row.attributes|default(create_attribute()) %}
         {% set row_attributes = row_attributes.addClass('view__grid-item view__grid-item--' ~ loop.index) %}
 
         <div{{ row_attributes }}>

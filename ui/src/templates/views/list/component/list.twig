@@ -4,7 +4,7 @@
 
 <{{ list.type }} class="view__rows">
   {% for row in view_rows %}
-    {% set row_attributes = row.attributes|default(create_attribute({})) %}
+    {% set row_attributes = row.attributes|default(create_attribute()) %}
     {% set row_attributes = row_attributes.addClass('view__row view__row--' ~ loop.index) %}
 
     <li{{ row_attributes }}>
