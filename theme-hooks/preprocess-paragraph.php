@@ -5,7 +5,7 @@
  * preprocess-paragraph.php
  *
  * Define all paragraph preprocess HOOKs. Each bundle should provide it's own
- * hook function. e.g. `s360_base_theme_preprocess_paragraph__[bundle]`
+ * hook function. e.g. `s360_base_theme_preprocess_paragraph__[bundle]`.
  */
 
 use Drupal\Component\Utility\Html;
@@ -41,20 +41,62 @@ function s360_base_theme_preprocess_paragraph__curated_content(&$variables) {
   $paragraph = $variables['paragraph'];
 
   $content_view_mode = $paragraph?->field_content_view_mode?->getString();
-  $node_id = $paragraph?->field_ern_content?->getString();
 
-  if (!$content_view_mode || !$node_id) {
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = $paragraph?->field_ern_content?->entity;
+
+  // Missing node: hide for anonymous.
+  if (!$node) {
+    if (\Drupal::currentUser()->isAnonymous()) {
+      return;
+    }
+
+    $variables['curated_node'] = [
+      '#type' => 'inline_template',
+      '#template' => "{% trans %} Node was deleted and cannot be displayed. {% endtrans %}",
+    ];
+
     return;
   }
 
-  /** @var \Drupal\node\Entity\Node $node */
-  $node = $entity_type_manager->getStorage('node')->load($node_id);
+  $node_bundle = $node->bundle();
+  $node_title = $node->label();
 
-  // Make sure it's a valid node and we have the proper access to view it.
-  if ($node && $node->access('view')) {
-    $render_controller = $entity_type_manager->getViewBuilder('node');
-    $variables['curated_node'] = $render_controller->view($node, $content_view_mode);
+  // User does not have access to view this node.
+  if (!$node->access('view')) {
+    return;
   }
+
+  $entity_display_repository = \Drupal::service('entity_display.repository')->getViewModeOptionsByBundle('node', $node_bundle);
+
+  $all_view_modes = array_keys($entity_display_repository);
+
+  // Invalid view mode for node bundle.
+  if (!in_array($content_view_mode, $all_view_modes)) {
+    if (\Drupal::currentUser()->isAnonymous()) {
+      return;
+    }
+
+    $paragraph->status = FALSE;
+
+    $variables['curated_node'] = [
+      '#type' => 'inline_template',
+      '#template' => "{% trans %} Node: <strong>'{{ node_title }}'</strong> cannot be display using view mode: <strong>{{ node_view_mode }}</strong>. {% endtrans %}",
+      '#context' => [
+        'node_title' => $node_title,
+        'node_view_mode' => $content_view_mode,
+      ],
+    ];
+
+    return;
+  }
+
+  $view_builder = $entity_type_manager->getViewBuilder('node');
+  $variables['curated_node'] = $view_builder->view($node, $content_view_mode);
+
+  $variables['#cache']['tags'] = $node->getCacheTags();
+  $variables['#cache']['contexts'] = $node->getCacheContexts();
+  $variables['#cache']['max-age'] = $node->getCacheMaxAge();
 }
 
 /**

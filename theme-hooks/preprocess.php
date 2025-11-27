@@ -71,7 +71,6 @@ function s360_base_theme_preprocess_container(array &$variables) {
     if (in_array($element['#type'], ['actions', 'webform_actions'])) {
       // Clear any Drupal classes.
       $variables['attributes']['class'] = [];
-
       $variables['attributes']['class'][] = 'form__element';
       $variables['attributes']['class'][] = 'form__element--actions';
     }

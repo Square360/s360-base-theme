@@ -64,7 +64,7 @@ function s360_base_theme_theme_suggestions_container_alter(array &$suggestions, 
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter().
+ * Implements hook_theme_suggestions_form_alter().
  */
 function s360_base_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
   $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
