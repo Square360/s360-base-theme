@@ -106,15 +106,24 @@ export function setMenuItemAttribues(item) {
 }
 
 /**
- * Wraps the given menu in `<nav></nav>` tags.
-
- * Create a fake `<nav>` tag to wrap the menu.
+ * Create a fake `<nav>` tag to wrap the menu, similar to Drupal.
  *
+ * @param {string} id The name of the menu.
  * @param {string} menu The menu rendered as a string.
+ * @param {string} label
  * @returns {string}
  */
-export function fakeDrupalMainMenuBlock(menu) {
-  return `<nav class="block-main-menu" data-js="block-main-menu">${ menu }</nav>`;
+export function fakeDrupalSystemMenuBlock(id, menu, label) {
+  return `
+    <nav
+      id="block-${id}"
+      class="block-${id}-menu"
+      role="navigation"
+      aria-labelledby="block-${id}-menu"
+      data-js="block-${id}-menu">
+      ${(label) ? `<h2 id="block-${id}-menu">${label}</h2>` : ''}
+      ${ menu }
+    </nav>`;
 }
 
 export function setPublishedStatus(status) {

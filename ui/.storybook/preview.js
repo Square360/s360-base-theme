@@ -4,6 +4,7 @@ import { setupTwig } from './setupTwig';
 
 // DRUPAL JS
 import './drupal.js';
+import './once.global.js';
 
 // GLOBAL CSS
 import '../src/base/base.js';
@@ -18,6 +19,7 @@ setupTwig(Twig);
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   backgrounds: { disable: true },
+  layout: 'none',
   options: {
     storySort: {
       method: "alphabetical",
