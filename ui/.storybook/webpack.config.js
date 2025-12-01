@@ -1,6 +1,8 @@
 const path = require('path');
 
 module.exports = async ({ config }) => {
+  config.resolve.alias['twig'] = require.resolve('twig');
+
   config.resolve.alias['.storybook'] = path.resolve('.storybook');
   config.resolve.alias['@ui-base'] = path.resolve(path.join('src', 'base'));
   config.resolve.alias['@ui-layouts'] = path.resolve(path.join('src', 'layouts'));

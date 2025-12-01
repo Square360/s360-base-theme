@@ -295,9 +295,9 @@ module.exports = [
 // [THEME_NAME] with the name of the theme.
 // Object.assign({}, WEBPACK_CONFIG, {
 //   name: '[THEME_NAME]',
-//   entry: getEntries(path.resolve("../themes/[THEME_NAME]/ui/src/**/!(_*|*.stories|*.component|*.min|*.test).js")),
+//   entry: getEntries(path.resolve("../../[THEME_NAME]/ui/src/**/!(_*|*.stories|*.component|*.min|*.test).js")),
 //   output: {
-//     path: path.resolve('../themes/[THEME_NAME]/ui/dist'),
+//     path: path.resolve('../../[THEME_NAME]/ui/dist'),
 //     clean: true,
 //   },
 // }),
