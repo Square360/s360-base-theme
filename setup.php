@@ -10,25 +10,24 @@
  */
 function init() {
   $theme_name = get_cli_option('theme-name');
+  $parent_theme = get_cli_option('parent-theme');
 
   if (!$theme_name) {
     print 'No theme name provided' . PHP_EOL;
     return FALSE;
   }
 
+  if ($parent_theme && !is_valid_machine_name($parent_theme)) {
+    print 'Parent theme must be a valid Drupal machine name (lowercase letters, numbers, underscores, starting with a letter)' . PHP_EOL;
+    return FALSE;
+  }
+
   $machine_name = str_replace(' ', '_', strtolower($theme_name));
-
-  $search = [
-    // Machine names can only contain letters, numbers and underscores.
-    '/[^a-z0-9_]/',
-    // Machine names must always begin with a letter.
-    '/^[^a-z]+/',
-  ];
-
-  $machine_name = preg_replace($search, '', $machine_name);
+  $machine_name = sanitize_machine_name($machine_name);
   $kebab_name = str_replace('_', '-', $machine_name);
+  $const_name = strtoupper($machine_name);
 
-  create_theme($theme_name, $machine_name, $kebab_name);
+  create_theme($theme_name, $machine_name, $kebab_name, $const_name, $parent_theme);
 }
 
 /**
@@ -40,8 +39,12 @@ function init() {
  *   The machine_name for Drupal.
  * @param string $kebab_name
  *   The package.json name.
+ * @param string $const_name
+ *   The const name for Drupal.
+ * @param string|bool $parent_theme
+ *   The parent theme machine name or FALSE.
  */
-function create_theme(string $theme_name, string $machine_name, string $kebab_name) {
+function create_theme(string $theme_name, string $machine_name, string $kebab_name, string $const_name, $parent_theme = FALSE) {
   $theme_dir = substr(getcwd(), 0, strpos(getcwd(), 'themes') + 6);
   $theme_path = $theme_dir . DIRECTORY_SEPARATOR . 'custom' . DIRECTORY_SEPARATOR . $machine_name;
 
@@ -57,7 +60,7 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
     return FALSE;
   }
 
-  $alterations = set_alterations($theme_name, $machine_name, $kebab_name);
+  $alterations = set_alterations($theme_name, $machine_name, $kebab_name, $const_name, $parent_theme);
   if (alter_files($theme_path, get_files_to_alter(), $alterations) !== TRUE) {
     print 'Failed to alter files' . PHP_EOL;
     return FALSE;
@@ -266,15 +269,23 @@ function alter_file_str_replace(string $file_path, array $find, array $replace) 
  *   The machine_name for Drupal.
  * @param string $kebab_name
  *   The package.json name.
+ * @param string $const_name
+ *   The PHP const name of the theme.
+ * @param string|bool $parent_theme
+ *   The parent theme machine name or FALSE.
  *
  * @return array
  *   An associative array of the original theme with it's new counterparts.
  */
-function set_alterations(string $theme_name, string $machine_name, string $kebab_name) {
+function set_alterations(string $theme_name, string $machine_name, string $kebab_name, string $const_name, $parent_theme = FALSE) {
+  $base_theme_value = $parent_theme ? $parent_theme : FALSE;
+
   return [
     'S360 Base Theme' => $theme_name,
     's360_base_theme' => $machine_name,
     's360-base-theme' => $kebab_name,
+    'S360_BASE_THEME' => $const_name,
+    'base_theme' => strtolower($base_theme_value),
   ];
 }
 
@@ -336,6 +347,41 @@ function rename_files(array $files_to_rename, string $theme_path, string $machin
  */
 
 /**
+ * Validates if a string is a valid Drupal machine name.
+ *
+ * @param string $name
+ *   The name to validate.
+ *
+ * @return bool
+ *   TRUE if valid, FALSE otherwise.
+ */
+function is_valid_machine_name(string $name) {
+  // Machine names can only contain lowercase letters, numbers and underscores.
+  // Machine names must always begin with a letter.
+  return preg_match('/^[a-z][a-z0-9_]*$/', $name) === 1;
+}
+
+/**
+ * Sanitizes a string to be a valid Drupal machine name.
+ *
+ * @param string $name
+ *   The name to sanitize.
+ *
+ * @return string
+ *   The sanitized machine name.
+ */
+function sanitize_machine_name(string $name) {
+  $search = [
+    // Machine names can only contain letters, numbers and underscores.
+    '/[^a-z0-9_]/',
+    // Machine names must always begin with a letter.
+    '/^[^a-z]+/',
+  ];
+
+  return preg_replace($search, '', $name);
+}
+
+/**
  * An unnormalized path.
  *
  * @param string $path
@@ -375,6 +421,10 @@ function get_cli_options() {
     switch ($arg) {
       case '--theme-name':
         $options['theme-name'] = $argv[$key + 1];
+        break;
+
+      case '--parent-theme':
+        $options['parent-theme'] = $argv[$key + 1];
         break;
     }
   }
