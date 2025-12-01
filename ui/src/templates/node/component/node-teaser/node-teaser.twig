@@ -1,16 +1,24 @@
 {% set node_teaser_tag = node_teaser_tag|default('article') %}
 {% set node_teaser_has_content = node_teaser_has_content|default('true') %}
 
+{% set node_teaser_classes = node_teaser_classes|default([])|merge([
+  'node-teaser',
+  node.bundle ? 'node-teaser--' ~ node.bundle|clean_class : '',
+  view_mode ? 'node-' ~ view_mode
+]) %}
+
 <{{ node_teaser_tag }}{{ attributes }}>
   {% block node_teaser %}
     <header class="node-teaser__header">
       {% block node_teaser_header %}
         <div class="node-teaser__heading">
-          {% if node_teaser_label_as_link %}
-            {{ node_teaser_label_as_link }}
-          {% else %}
-            {{ node_teaser_field_label }}
-          {% endif %}
+          {% block node_teaser_heading %}
+            {% if node_teaser_label_as_link %}
+              {{ node_teaser_label_as_link }}
+            {% else %}
+              {{ node_teaser_field_label }}
+            {% endif %}
+          {% endblock %}
         </div>
       {% endblock %}
     </header>

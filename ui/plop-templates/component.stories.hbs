@@ -10,7 +10,9 @@ export default {
 };
 
 export const {{ storybookFunctionName }} = (args) => {
-  let data = Object.assign({{ storybookComponentName }}Data ?? {}, args);
+  // Create deep copy of data and merge args.
+  let data = JSON.parse(JSON.stringify({{ storybookComponentName }}Data ?? {}));
+  data = Object.assign(data, args);
 
   return {{ storybookComponentName }}Twig({
     ...data,

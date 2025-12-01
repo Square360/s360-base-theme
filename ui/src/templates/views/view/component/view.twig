@@ -13,7 +13,7 @@
 {% set attributes = attributes.setAttribute('class', classes) %}
 
 <{{ view_tag }}{{ attributes }}>
-  {% if view_exposed or view_header %}
+  {% if view_header %}
     <header class="view__header">
       {% if view_header %}
         <div class="view__header-content">
