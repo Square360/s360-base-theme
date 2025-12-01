@@ -7,10 +7,14 @@
 
 /**
  * Initial setup before we can create a theme.
+ *
+ * @return bool|void
+ *   FALSE on failure, void on success.
  */
 function init() {
   $theme_name = get_cli_option('theme-name');
   $parent_theme = get_cli_option('parent-theme');
+  $skip_sb = get_cli_option('skip-sb');
 
   if (!$theme_name) {
     print 'No theme name provided' . PHP_EOL;
@@ -27,7 +31,7 @@ function init() {
   $kebab_name = str_replace('_', '-', $machine_name);
   $const_name = strtoupper($machine_name);
 
-  create_theme($theme_name, $machine_name, $kebab_name, $const_name, $parent_theme);
+  create_theme($theme_name, $machine_name, $kebab_name, $const_name, $parent_theme, $skip_sb);
 }
 
 /**
@@ -43,8 +47,13 @@ function init() {
  *   The const name for Drupal.
  * @param string|bool $parent_theme
  *   The parent theme machine name or FALSE.
+ * @param bool $skip_sb
+ *   Should Storybook files be skipped.
+ *
+ * @return bool|void
+ *   FALSE on failure, void on success.
  */
-function create_theme(string $theme_name, string $machine_name, string $kebab_name, string $const_name, $parent_theme = FALSE) {
+function create_theme(string $theme_name, string $machine_name, string $kebab_name, string $const_name, $parent_theme = FALSE, $skip_sb = FALSE) {
   $theme_dir = substr(getcwd(), 0, strpos(getcwd(), 'themes') + 6);
   $theme_path = $theme_dir . DIRECTORY_SEPARATOR . 'custom' . DIRECTORY_SEPARATOR . $machine_name;
 
@@ -55,13 +64,13 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
     }
   }
 
-  if (copy_files(get_files_to_copy(), $theme_path) !== TRUE) {
+  if (copy_files(get_files_to_copy($skip_sb), $theme_path) !== TRUE) {
     print 'Failed to copy files' . PHP_EOL;
     return FALSE;
   }
 
   $alterations = set_alterations($theme_name, $machine_name, $kebab_name, $const_name, $parent_theme);
-  if (alter_files($theme_path, get_files_to_alter(), $alterations) !== TRUE) {
+  if (alter_files($theme_path, get_files_to_alter($skip_sb), $alterations) !== TRUE) {
     print 'Failed to alter files' . PHP_EOL;
     return FALSE;
   }
@@ -75,17 +84,20 @@ function create_theme(string $theme_name, string $machine_name, string $kebab_na
 }
 
 /* **************************************************
- * Copy functions
+ * COPY FUNCTIONS
  */
 
 /**
  * The files that need to be copied into the new theme.
  *
+ * @param bool $skip_sb
+ *   Whether to skip Storybook files.
+ *
  * @return array
  *   An array of files to copy.
  */
-function get_files_to_copy() {
-  return [
+function get_files_to_copy($skip_sb = FALSE) {
+  $files = [
     'config',
     'libraries',
     'theme-hooks',
@@ -109,6 +121,14 @@ function get_files_to_copy() {
     's360_base_theme.style_options.yml',
     's360_base_theme.theme',
   ];
+
+  if ($skip_sb) {
+    $files = array_filter($files, function ($file) {
+      return strpos($file, '.storybook') === FALSE;
+    });
+  }
+
+  return $files;
 }
 
 /**
@@ -146,6 +166,9 @@ function _recursive_copy(string $src, string $dest) {
  *   An array of files to copy, including folders.
  * @param string $theme_path
  *   The path for the new theme.
+ *
+ * @return bool
+ *   TRUE on success.
  */
 function copy_files(array $files, string $theme_path) {
   foreach ($files as $file) {
@@ -169,17 +192,20 @@ function copy_files(array $files, string $theme_path) {
 }
 
 /* **************************************************
- * Alter functions
+ * ALTER FUNCTIONS
  */
 
 /**
  * The files that need to be altered with the new theme name.
  *
+ * @param bool $skip_sb
+ *   Whether to skip Storybook files.
+ *
  * @return array
  *   An array of files to alter.
  */
-function get_files_to_alter() {
-  return [
+function get_files_to_alter($skip_sb = FALSE) {
+  $files = [
     'config',
     'libraries',
     'theme-hooks',
@@ -193,6 +219,14 @@ function get_files_to_alter() {
     's360_base_theme.libraries.yml',
     's360_base_theme.theme',
   ];
+
+  if ($skip_sb) {
+    $files = array_filter($files, function ($file) {
+      return strpos($file, '.storybook') === FALSE;
+    });
+  }
+
+  return $files;
 }
 
 /**
@@ -206,6 +240,9 @@ function get_files_to_alter() {
  *   The associative array of alterations.
  * @param bool $absolute
  *   If the file path is absolute or relative.
+ *
+ * @return bool
+ *   TRUE on success, FALSE on failure.
  */
 function alter_files(string $theme_path, array $files, array $alterations, bool $absolute = FALSE) {
   foreach ($files as $file) {
@@ -248,6 +285,9 @@ function alter_files(string $theme_path, array $files, array $alterations, bool 
  *   The keys of the associative array of alterations.
  * @param array $replace
  *   The associative array of alterations.
+ *
+ * @return bool
+ *   TRUE on success.
  */
 function alter_file_str_replace(string $file_path, array $find, array $replace) {
   $file_path = normalize_path($file_path);
@@ -261,7 +301,7 @@ function alter_file_str_replace(string $file_path, array $find, array $replace) 
 }
 
 /**
- * Creates a new theme.
+ * Sets up the alterations array for string replacements.
  *
  * @param string $theme_name
  *   The human readable name of the theme.
@@ -278,19 +318,19 @@ function alter_file_str_replace(string $file_path, array $find, array $replace) 
  *   An associative array of the original theme with it's new counterparts.
  */
 function set_alterations(string $theme_name, string $machine_name, string $kebab_name, string $const_name, $parent_theme = FALSE) {
-  $base_theme_value = $parent_theme ? $parent_theme : FALSE;
+  $base_theme_value = $parent_theme ?: 'false';
 
   return [
     'S360 Base Theme' => $theme_name,
     's360_base_theme' => $machine_name,
     's360-base-theme' => $kebab_name,
     'S360_BASE_THEME' => $const_name,
-    'base_theme' => strtolower($base_theme_value),
+    'drupal_base_theme' => $base_theme_value,
   ];
 }
 
 /* **************************************************
- * Rename functions
+ * RENAME FUNCTIONS
  */
 
 /**
@@ -330,6 +370,9 @@ function get_files_to_rename() {
  *   The path for the new theme.
  * @param string $machine_name
  *   The machine_name for Drupal.
+ *
+ * @return bool
+ *   TRUE on success.
  */
 function rename_files(array $files_to_rename, string $theme_path, string $machine_name) {
   foreach ($files_to_rename as $file_to_rename) {
@@ -343,7 +386,7 @@ function rename_files(array $files_to_rename, string $theme_path, string $machin
 }
 
 /* **************************************************
- * Utility functions
+ * UTILITY FUNCTIONS
  */
 
 /**
@@ -382,7 +425,7 @@ function sanitize_machine_name(string $name) {
 }
 
 /**
- * An unnormalized path.
+ * Normalizes a path for the current operating system.
  *
  * @param string $path
  *   The path to normalize.
@@ -405,7 +448,7 @@ function normalize_path(string $path) {
  * Returns all the passed in CLI options.
  *
  * @return array|bool
- *   An associative array of the all the CLI options.
+ *   An associative array of all the CLI options, or FALSE on error.
  */
 function get_cli_options() {
   global $argv;
@@ -426,6 +469,10 @@ function get_cli_options() {
       case '--parent-theme':
         $options['parent-theme'] = $argv[$key + 1];
         break;
+
+      case '--skip-sb':
+        $options['skip-sb'] = TRUE;
+        break;
     }
   }
 
@@ -433,13 +480,13 @@ function get_cli_options() {
 }
 
 /**
- * The value of the CLI option.
+ * Gets the value of a specific CLI option.
  *
  * @param string $option
- *   The CLI option.
+ *   The CLI option name.
  *
  * @return string|bool
- *   The value of the CLI option, false if the CLI option wasn't passed.
+ *   The value of the CLI option, or FALSE if the option wasn't passed.
  */
 function get_cli_option(string $option) {
   $cli_options = get_cli_options();
