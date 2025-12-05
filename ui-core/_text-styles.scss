@@ -1,4 +1,5 @@
 @use "./site-config";
+@use "./animate-text-decoration";
 @use "./colors";
 @use "./heading-styles";
 @use "./typography";
@@ -39,6 +40,10 @@
   &:last-of-type {
     margin-bottom: 0;
   }
+
+  a {
+    @extend %animate-text-decoration-underline-up;
+  }
 }
 
 %text-style-blockquote {
@@ -51,4 +56,11 @@
   margin: var(--blockquote--margin, 0);
   padding: var(--blockquote--padding, 0);
   position: relative;
+}
+
+%text-style-caption {
+  --p--font-family: var(--caption--font-family, inherit);
+  --p--font-size: var(--caption--font-size, #{ s360-scss-toolkit.font-size-ms(0) });
+  --p--margin: var(--caption--margin, 0.5em 0 0 0);
+  --p--padding: var(--caption--padding);
 }

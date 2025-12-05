@@ -56,6 +56,7 @@ $site-content-area: calc(#{ $site-max-width } - calc(#{ $site-side-margin } * 2)
 $main-menu-mq: 'min-width: #{ mq.$mq-1024 }';
 $max-line-length: 80ch;
 $text-line-height: 1.3;
+$heading-margin-bottom: 0.625em;
 
 // **************************************************
 // UI

@@ -4,10 +4,10 @@
 {% set node_teaser_classes = node_teaser_classes|default([])|merge([
   'node-teaser',
   node.bundle ? 'node-teaser--' ~ node.bundle|clean_class : '',
-  view_mode ? 'node-' ~ view_mode
+  view_mode ? 'node-' ~ view_mode|replace({ 'teaser_': 'teaser--' })|clean_class : '',
 ]) %}
 
-<{{ node_teaser_tag }}{{ attributes }}>
+<{{ node_teaser_tag }}{{ attributes.addClass(node_teaser_classes) }}>
   {% block node_teaser %}
     <header class="node-teaser__header">
       {% block node_teaser_header %}

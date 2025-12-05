@@ -1,3 +1,8 @@
+menu.breadcrumb:
+  css:
+    component:
+      ui/dist/navigation/breadcrumb/menu.breadcrumb.css: {}
+
 menu.corporate:
   css:
     component:
@@ -17,6 +22,8 @@ menu.local-tasks:
   css:
     component:
       ui/dist/navigation/local-tasks/menu.local-tasks.css: {}
+  js:
+    ui/dist/navigation/local-tasks/menu.local-tasks.js: { attributes: { defer: true } }
 
 menu.main:
   css:
@@ -26,11 +33,6 @@ menu.main:
     ui/dist/navigation/main/menu.main.js: { attributes: { defer: true } }
   dependencies:
     - core/drupal
-
-menu.pager:
-  css:
-    component:
-      ui/dist/navigation/pager/pager.css: {}
 
 menu.social:
   css:

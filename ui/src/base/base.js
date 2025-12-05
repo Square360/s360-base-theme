@@ -11,21 +11,32 @@ document.addEventListener('DOMContentLoaded', () => {
   let resizeObserver;
 
   /**
-   *
+   * Calculates and updates the scrollbar width CSS custom property.
+   * Only updates if the value has changed to avoid unnecessary DOM updates.
    */
   const updateScrollbarWidth = () => {
     let scrollbarWidth = window.innerWidth - HTML.clientWidth;
 
     // Only update if the value has changed to avoid unnecessary DOM updates.
     if (lastScrollbarWidth !== scrollbarWidth) {
-      HTML.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+      HTML.style.setProperty('--scrollbar-width', `${ scrollbarWidth }px`);
 
       lastScrollbarWidth = scrollbarWidth;
     }
   };
 
   /**
+   * Debounced handler for scrollbar width updates.
+   * Used by both resize and mutation observers.
+   */
+  const debouncedScrollbarUpdate = () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateScrollbarWidth, 16);
+  };
+
+  /**
    * Opens details elements based on the current hash in the URL.
+   * Finds the target element and opens its parent details element if present.
    */
   const openDetailsFromHash = () => {
     const hash = window.location.hash.slice(1); // remove #
@@ -39,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       detailsToOpen.open = true;
       detailsToOpen.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }
 
   /**
    * **************************************************
@@ -48,11 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const handleHashchange = () => {
     openDetailsFromHash();
-  };
+  }
 
   const handleResize = () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(updateScrollbarWidth, 16);
+    debouncedScrollbarUpdate();
   };
 
   const handleMutationObserver = () => {
@@ -61,8 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const handleResizeObserver = () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(updateScrollbarWidth, 16);
+    debouncedScrollbarUpdate();
   };
 
   /**
@@ -96,7 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', handleResize, { passive: true });
   window.addEventListener('hashchange', handleHashchange, { passive: true });
 
-  // Initialize
+  /**
+   * **************************************************
+   * Initialize
+   */
+
   openDetailsFromHash();
   updateScrollbarWidth();
 });

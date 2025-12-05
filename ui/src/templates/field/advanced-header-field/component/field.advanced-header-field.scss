@@ -9,7 +9,7 @@
   &:has(.advanced-header-field__subtitle) {
     --heading-margin-bottom: 0;
 
-    margin-bottom: 0.625em;
+    margin-bottom: site-config.$heading-margin-bottom;
 
     &:has(h2),
     &.advanced-header-field--size-h2 {

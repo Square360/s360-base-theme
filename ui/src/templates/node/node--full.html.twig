@@ -9,6 +9,8 @@
   {% set attributes = attributes.setAttribute('data-unpublished', 'node') %}
 {% endif %}
 
+{{ attach_library('s360_base_theme/node.full') }}
+
 <article{{ attributes.addClass(node_classes) }}>
   <header class="node__header" data-js="node-header">
     {% block node_header %}

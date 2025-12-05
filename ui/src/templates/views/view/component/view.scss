@@ -1,4 +1,6 @@
 @use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/animators";
+@use "s360-scss-toolkit";
 
 .view {
   &__pager:has(ul) {
@@ -14,9 +16,11 @@
   }
 
   &__row {
+    @extend %fadein-slideup-animator;
+
     container-type: inline-size;
 
-    + .view__row {
+    + #{&} {
       margin-top: var(--view--row--margin-top, #{ site-config.spacer(0) });
     }
   }

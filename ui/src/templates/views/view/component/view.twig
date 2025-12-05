@@ -14,13 +14,13 @@
 
 <{{ view_tag }}{{ attributes }}>
   {% if view_header %}
-    <header class="view__header">
+    <div class="view__header">
       {% if view_header %}
         <div class="view__header-content">
           {{ view_header }}
         </div>
       {% endif %}
-    </header>
+    </div>
   {% endif %}
 
   {% if view_exposed %}

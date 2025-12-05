@@ -5,6 +5,8 @@ views.view:
   css:
     component:
       ui/dist/views/view/view.css: {}
+  js:
+    ui/dist/views/view/view.js: { attributes: { defer: true } }
 
 views.grid:
   css:

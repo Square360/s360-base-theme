@@ -1,3 +1,5 @@
+@use "@s360-base-theme/ui-core/focus-visible";
+
 details {
   summary {
     align-items: var(--summary--align-items, center);
@@ -11,11 +13,6 @@ details {
     font-size: var(--summary--font-size);
     line-height: var(--summary--line-height);
     margin: var(--summary--margin, 0);
-    outline:
-      var(--summary--outline--width, 0)
-      var(--summary--outline--style, solid)
-      var(--summary--outline--color, currentColor);
-    outline-offset: var(--summary--outline-offset, 4px);
     padding: var(--summary--padding, 0);
     pointer-events: var(--summary--pointer-events, all);
     position: relative;
@@ -29,7 +26,7 @@ details {
     }
 
     &:focus-visible {
-      --summary--outline--width: 4px;
+      @extend %focus-visible;
     }
 
     &:hover,

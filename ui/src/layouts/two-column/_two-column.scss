@@ -1,4 +1,5 @@
 @use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/animatorsmq";
 @use "@s360-base-theme/ui-core/mq";
 @use "s360-scss-toolkit";
 
@@ -12,10 +13,18 @@
 
     > .layout__region--first {
       grid-area: lr1;
+
+      .layout__region-item {
+        @extend %fadein-slideright-animator;
+      }
     }
 
     > .layout__region--second {
       grid-area: lr2;
+
+      .layout__region-item {
+        @extend %fadein-sliderleft-animator;
+      }
     }
   }
 

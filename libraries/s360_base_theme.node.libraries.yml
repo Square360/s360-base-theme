@@ -6,6 +6,11 @@ node.full:
     component:
       ui/dist/node/full/node.full.css: {}
 
+_node-teaser:
+  css:
+    component:
+      ui/dist/node/node-teaser/node-teaser.css: {}
+
 # ##################################################
 # Node Page Libraries
 

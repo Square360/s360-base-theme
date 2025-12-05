@@ -207,3 +207,24 @@ function s360_base_theme_preprocess_paragraph__views_reference($variables) {
   // Add the url (complete) as a cache context to field_views_reference.
   $variables["content"]["field_views_reference"]["#cache"]["contexts"][] = 'url';
 }
+
+/**
+ * Implements hook_preprocess_paragraph() for image.
+ */
+function s360_base_theme_preprocess_paragraph__image(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  if (!$paragraph?->field_caption?->count()) {
+    return;
+  }
+
+  $field_image_caption = $paragraph?->field_caption->view(['label' => 'hidden']);
+  $field_erm_image = $paragraph?->field_erm_image?->referencedEntities();
+
+  if ($field_image_caption && $field_erm_image) {
+    /** @var \Drupal\media\Entity\Media $media */
+    $media = reset($field_erm_image);
+    $media->caption = $field_image_caption;
+  }
+}
