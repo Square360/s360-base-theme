@@ -24,7 +24,7 @@ class PreprocessTaxonomy {
     $term = $variables['taxonomy_term'];
     // $media_bundle = $term->bundle();
 
-    // $media_bundle_method = 'preprocess' . convertToPascalCase($media_bundle);
+    // $media_bundle_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($media_bundle);
     // if (method_exists($this, $media_bundle_method)) {
     //   $this->$media_bundle_method($variables);
     // }

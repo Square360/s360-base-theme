@@ -100,7 +100,7 @@ function get_files_to_copy($skip_sb = FALSE) {
   $files = [
     'config',
     'libraries',
-    'theme-hooks',
+    'src/Hook',
     'ui/.storybook',
     'ui/dist',
     'ui/plop-templates',
@@ -208,7 +208,7 @@ function get_files_to_alter($skip_sb = FALSE) {
   $files = [
     'config',
     'libraries',
-    'theme-hooks',
+    'src/Hook',
     'ui/.storybook',
     'ui/package.json',
     'ui/plop-templates',

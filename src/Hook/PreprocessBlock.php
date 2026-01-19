@@ -6,6 +6,7 @@ namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\s360_base_theme\Conversion;
 
 /**
  * Block preprocesses for s360_base_theme theme.
@@ -21,7 +22,7 @@ class PreprocessBlock {
   public function preprocessBlock(array &$variables): void {
     $base_plugin_id = $variables['base_plugin_id'];
 
-    $block_plugin_method = 'preprocess' . convertToPascalCase($base_plugin_id);
+    $block_plugin_method = 'preprocess' . Conversion::toPascalCase($base_plugin_id);
 
     if (method_exists($this, $block_plugin_method)) {
       $this->$block_plugin_method($variables);

@@ -42,7 +42,7 @@ class PreprocessNode {
     unset($variables['attributes']['role']);
     unset($variables['attributes']['about']);
 
-    $node_bundle_method = 'preprocess' . convertToPascalCase($node_bundle);
+    $node_bundle_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($node_bundle);
     if (method_exists($this, $node_bundle_method)) {
       $this->$node_bundle_method($variables);
     }

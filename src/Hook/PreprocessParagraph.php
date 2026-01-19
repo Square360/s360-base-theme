@@ -27,7 +27,7 @@ class PreprocessParagraph {
 
     $variables['attributes']['id'] = Html::getClass('paragraph-' . $paragraph_bundle . '-' . $paragraph->id());
 
-    $paragraph_bundle_method = 'preprocess' . convertToPascalCase($paragraph_bundle);
+    $paragraph_bundle_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($paragraph_bundle);
     if (method_exists($this, $paragraph_bundle_method)) {
       $this->$paragraph_bundle_method($variables);
     }

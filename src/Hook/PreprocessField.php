@@ -24,12 +24,12 @@ class PreprocessField {
     // The type of field.
     $field_type = $variables['field_type'];
 
-    $field_name_method = 'preprocess' . convertToPascalCase($field_name);
+    $field_name_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($field_name);
     if (method_exists($this, $field_name_method)) {
       $this->$field_name_method($variables);
     }
 
-    $field_type_method = 'preprocess' . convertToPascalCase($field_type);
+    $field_type_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($field_type);
     if (method_exists($this, $field_type_method)) {
       $this->$field_type_method($variables);
     }

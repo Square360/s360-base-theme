@@ -24,7 +24,7 @@ class PreprocessMenu {
 
     $variables['menu_name'] = Html::getClass($menu_name);
 
-    $menu_name_method = 'preprocess' . convertToPascalCase($menu_name) . 'Menu';
+    $menu_name_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($menu_name) . 'Menu';
     if (method_exists($this, $menu_name_method)) {
       $this->$menu_name_method($variables);
     }
