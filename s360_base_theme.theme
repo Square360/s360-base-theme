@@ -16,20 +16,6 @@ use Drupal\node\Entity\Node;
 
 define("S360_BASE_THEME", \Drupal::service('extension.list.theme')->getPath('s360_base_theme'));
 
-require_once S360_BASE_THEME . '/theme-hooks/preprocess.php';
-require_once S360_BASE_THEME . '/theme-hooks/preprocess-block.php';
-require_once S360_BASE_THEME . '/theme-hooks/preprocess-field.php';
-require_once S360_BASE_THEME . '/theme-hooks/preprocess-form.php';
-require_once S360_BASE_THEME . '/theme-hooks/preprocess-media.php';
-require_once S360_BASE_THEME . '/theme-hooks/preprocess-menu.php';
-require_once S360_BASE_THEME . '/theme-hooks/preprocess-node.php';
-require_once S360_BASE_THEME . '/theme-hooks/preprocess-paragraph.php';
-require_once S360_BASE_THEME . '/theme-hooks/preprocess-taxonomy.php';
-require_once S360_BASE_THEME . '/theme-hooks/preprocess-views.php';
-
-require_once S360_BASE_THEME . '/theme-hooks/page-attachments.php';
-require_once S360_BASE_THEME . '/theme-hooks/theme-suggestions.php';
-
 /**
  * Get file information about the media.
  *
@@ -437,4 +423,21 @@ function _s360_base_theme_file_mime_type_conversion(string $file_mime_type) {
     'icon' => $icon,
     'file_type' => $file_type,
   ];
+}
+
+
+function convertToPascalCase($string) {
+  // Replace hyphens and underscores with spaces
+  $string = str_replace(['-', '_'], ' ', $string);
+
+  // Convert the entire string to lowercase first
+  $string = strtolower($string);
+
+  // Capitalize the first letter of each word
+  $string = ucwords($string);
+
+  // Remove all spaces
+  $pascalCaseString = str_replace(' ', '', $string);
+
+  return $pascalCaseString;
 }
