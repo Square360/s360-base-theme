@@ -16,11 +16,11 @@
   margin-bottom: var(--heading--margin-bottom);
 }
 
-%heading-margin-top {
+%heading-style-margin-top {
   --heading--margin-top: 1.625em;
 }
 
-%heading-margin-bottom {
+%heading-style-margin-bottom {
   --heading--margin-bottom: #{ site-config.$heading-margin-bottom };
 }
 
