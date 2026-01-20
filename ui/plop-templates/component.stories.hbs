@@ -11,8 +11,7 @@ export default {
 
 export const {{ storybookFunctionName }} = (args) => {
   // Create deep copy of data and merge args.
-  let data = JSON.parse(JSON.stringify({{ storybookComponentName }}Data ?? {}));
-  data = Object.assign(data, args);
+  let data = Object.assign(structuredClone({{ storybookComponentName }}Data ?? {}), args);
 
   return {{ storybookComponentName }}Twig({
     ...data,
