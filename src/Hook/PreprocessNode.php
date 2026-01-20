@@ -20,12 +20,9 @@ class PreprocessNode {
    */
   #[Hook('preprocess_node')]
   public function preprocessNode(&$variables): void {
-    $elements = $variables['elements'];
-
     /** @var \Drupal\node\Entity\Node $node */
     $node = $variables['node'];
     $node_bundle = $node->bundle();
-    $node_view_mode = $elements['#view_mode'];
 
     $node_url = s360_base_theme_get_node_url($node);
 

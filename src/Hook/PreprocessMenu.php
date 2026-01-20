@@ -24,6 +24,11 @@ class PreprocessMenu {
 
     $variables['menu_name'] = Html::getClass($menu_name);
 
+    if (!in_array($menu_name, ['admin', 'devel'])) {
+      // Clear any Drupal classes.
+      $variables['attributes']['class'] = [];
+    }
+
     $menu_name_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($menu_name) . 'Menu';
     if (method_exists($this, $menu_name_method)) {
       $this->$menu_name_method($variables);

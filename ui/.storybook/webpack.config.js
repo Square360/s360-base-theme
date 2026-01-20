@@ -7,6 +7,7 @@ module.exports = async ({ config }) => {
   config.resolve.alias['@ui-base'] = path.resolve(path.join('src', 'base'));
   config.resolve.alias['@ui-layouts'] = path.resolve(path.join('src', 'layouts'));
   config.resolve.alias['SRC_IMAGES'] = path.resolve(path.join('src', 'images'));
+  config.resolve.alias['utils'] = path.resolve('utils');
 
   config.resolve.alias['@ui-component'] = path.resolve(path.join('src', 'component'));
   config.resolve.alias['@ui-block'] = path.resolve(path.join('src', 'templates', 'block'));

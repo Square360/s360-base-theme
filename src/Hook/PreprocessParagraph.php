@@ -224,18 +224,7 @@ class PreprocessParagraph {
     /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
     $paragraph = $variables['paragraph'];
 
-    if (!$paragraph?->field_caption?->count()) {
-      return;
-    }
-
-    $field_image_caption = $paragraph?->field_caption->view(['label' => 'hidden']);
-    $field_erm_image = $paragraph?->field_erm_image?->referencedEntities();
-
-    if ($field_image_caption && $field_erm_image) {
-      /** @var \Drupal\media\Entity\Media $media */
-      $media = reset($field_erm_image);
-      $media->caption = $field_image_caption;
-    }
+    s360_base_theme_process_image_caption($paragraph);
   }
 
 }

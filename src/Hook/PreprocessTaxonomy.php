@@ -21,13 +21,13 @@ class PreprocessTaxonomy {
   #[Hook('preprocess_taxonomy_term')]
   public function preprocessTaxonomyTerm(array &$variables): void {
     /** @var \Drupal\taxonomy\Entity\Term $term */
-    $term = $variables['taxonomy_term'];
-    // $media_bundle = $term->bundle();
+    $term = $variables['term'];
+    $term_bundle = $term->bundle();
 
-    // $media_bundle_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($media_bundle);
-    // if (method_exists($this, $media_bundle_method)) {
-    //   $this->$media_bundle_method($variables);
-    // }
+    $term_bundle_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($term_bundle);
+    if (method_exists($this, $term_bundle_method)) {
+      $this->$term_bundle_method($variables);
+    }
   }
 
 }

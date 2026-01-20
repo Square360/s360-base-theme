@@ -11,8 +11,8 @@ import '../src/base/base.js';
 import '../src/templates/site-layout/component/site-layout.js';
 import '../src/templates/field/ckeditor/component/ckeditor.js';
 
-// COLOR THEMES
-// import color theme js files here.
+// COLOR SCHEMES
+// import color scheme js files here.
 
 setupTwig(Twig);
 
