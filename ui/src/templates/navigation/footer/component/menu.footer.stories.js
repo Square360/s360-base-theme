@@ -10,7 +10,7 @@ import drupalAttribute from 'drupal-attribute';
 /**
  * Storybook Definition.
  */
-export default { title: 'Navigation/Menus/Footer' };
+export default { title: 'Menus/Footer' };
 
 footerData.items.forEach(item => {
   setMenuItemAttribues(item);
