@@ -77,6 +77,7 @@ const WEBPACK_CONFIG = {
     alias: {
       SRC_IMAGES$: path.resolve('src/images'),
       vendors: path.resolve('vendors'),
+      utils: path.resolve('utils'),
     }
   },
 
