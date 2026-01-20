@@ -25,16 +25,17 @@ const ONE_COLUMN_WIDTH_OPTIONS = {
 };
 
 export const oneColumn = (args) => {
+  let data = Object.assign({}, args);
   let { color_scheme, column_width } = args;
-
   let paragraphAttributes = Object.assign({});
+
+  paragraphAttributes['class'] = [];
 
   if (color_scheme) {
     paragraphAttributes['data-color-scheme'] = color_scheme;
   }
 
   if (column_width) {
-    paragraphAttributes['class'] = [];
     paragraphAttributes['class'].push(column_width);
   }
 
