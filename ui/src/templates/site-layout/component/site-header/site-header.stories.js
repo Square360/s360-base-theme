@@ -16,7 +16,8 @@ import { brandingBlock } from '@ui-block/branding-block/component/block.branding
 export default { title: 'Site Layout/Site Header' };
 
 export const siteHeader = (args) => {
-  let data = Object.assign(siteHeaderData, args);
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone(siteHeaderData ?? {}), args);
 
   return siteHeaderTwig({
     ...data,

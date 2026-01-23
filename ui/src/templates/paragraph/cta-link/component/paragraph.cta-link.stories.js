@@ -16,7 +16,8 @@ export default {
 };
 
 export const ctaLink = (args) => {
-  let data = Object.assign(ctaLinkData, args);
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone(ctaLinkData ?? {}), args);
   data.paragraph = setPublishedStatus(data.paragraph_is_published);
 
   return ctaLinkTwig({

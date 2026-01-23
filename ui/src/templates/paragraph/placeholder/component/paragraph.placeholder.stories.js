@@ -15,7 +15,8 @@ export default {
 };
 
 export const placeholder = (args) => {
-  let data = Object.assign(placeholderData, args);
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone(placeholderData ?? {}), args);
   data.paragraph = setPublishedStatus(data.paragraph_is_published);
 
   return placeholderTwig({
