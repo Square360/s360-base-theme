@@ -25,9 +25,13 @@ export const parameters = {
       method: "alphabetical",
       order: [
         "Foundation",
-        "Content Types",
-        "Taxonomy",
+        "Layouts",
         "Components",
+        "Content Types",
+        "Layout Components",
+        "Media",
+        "Menus",
+        "Taxonomy",
         "Site Layout"
       ]
     }

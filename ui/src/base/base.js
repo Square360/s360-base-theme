@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
    * Finds the target element and opens its parent details element if present.
    */
   const openDetailsFromHash = () => {
-    const hash = window.location.hash.slice(1); // remove #
+    // Remove # from url.
+    const hash = window.location.hash.slice(1);
     if (!hash) return;
 
     // Or, if the hash points to something inside a details

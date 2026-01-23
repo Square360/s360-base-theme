@@ -18,5 +18,3 @@ node.page.full:
   css:
     component:
       ui/dist/node/page/full/node.page.full.css: {}
-  dependencies:
-    - s360_base_theme/node.full
