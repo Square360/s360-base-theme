@@ -8,46 +8,46 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Markup;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\s360_base_theme\ThemeUtils;
 
 /**
- * Paragraph preprocesses for s360_base_theme theme.
+ * Hook implementations for paragraphs.
+ *
+ * Each bundle should have it's own protected method.
+ * `protected function preprocess[BundleName](&$variables, $paragraph)`.
  */
-class PreprocessParagraph {
-
-  public function __construct() {}
+class ParagraphHooks {
 
   /**
    * Implements hook_preprocess_paragraph().
    */
   #[Hook('preprocess_paragraph')]
   public function preprocessParagraph(array &$variables): void {
-    /** @var \Drupal\paragraph\Entity\Paragraph $paragraph */
+    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
     $paragraph = $variables['paragraph'];
     $paragraph_bundle = $paragraph->bundle();
 
     $variables['attributes']['id'] = Html::getClass('paragraph-' . $paragraph_bundle . '-' . $paragraph->id());
 
-    $paragraph_bundle_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($paragraph_bundle);
+    $paragraph_bundle_method = 'preprocess' . ThemeUtils::toPascalCase($paragraph_bundle);
     if (method_exists($this, $paragraph_bundle_method)) {
-      $this->$paragraph_bundle_method($variables);
+      $this->$paragraph_bundle_method($variables, $paragraph);
     }
   }
 
   /**
    * Implements hook_preprocess_paragraph() for document_list.
    */
-  public function preprocessDocumentList(&$variables): void {
+  protected function preprocessDocumentList(&$variables, Paragraph $paragraph): void {
     $variables['documents'] = '';
   }
 
   /**
    * Implements hook_preprocess_paragraph() for curated_content.
    */
-  public function preprocessCuratedContent(&$variables): void {
+  protected function preprocessCuratedContent(&$variables, Paragraph $paragraph): void {
     $entity_type_manager = \Drupal::entityTypeManager();
-
-    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-    $paragraph = $variables['paragraph'];
 
     $content_view_mode = $paragraph?->field_content_view_mode?->getString();
 
@@ -111,10 +111,7 @@ class PreprocessParagraph {
   /**
    * Implements hook_preprocess_paragraph() for embed_code.
    */
-  public function preprocessEmbedCode(&$variables): void {
-    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-    $paragraph = $variables['paragraph'];
-
+  protected function preprocessEmbedCode(&$variables, Paragraph $paragraph): void {
     $field_embedded_media = $paragraph->field_embedded_media?->first()?->getValue();
 
     if ($field_embedded_media) {
@@ -126,10 +123,7 @@ class PreprocessParagraph {
   /**
    * Implements hook_preprocess_paragraph() for in_this_section.
    */
-  public function preprocessInThisSection(&$variables): void {
-    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-    $paragraph = $variables['paragraph'];
-
+  protected function preprocessInThisSection(&$variables, Paragraph $paragraph): void {
     // If no target menu is set, default to "main".
     $field_target_menu = $paragraph?->get('field_target_menu')->getString() ?: 'main';
 
@@ -212,7 +206,7 @@ class PreprocessParagraph {
   /**
    * Implements hook_preprocess_paragraph() for views_reference.
    */
-  public function preprocessViewsReference($variables): void {
+  protected function preprocessViewsReference($variables, Paragraph $paragraph): void {
     // Add the url (complete) as a cache context to field_views_reference.
     $variables["content"]["field_views_reference"]["#cache"]["contexts"][] = 'url';
   }
@@ -220,10 +214,7 @@ class PreprocessParagraph {
   /**
    * Implements hook_preprocess_paragraph() for image.
    */
-  public function preprocessImage(&$variables): void {
-    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-    $paragraph = $variables['paragraph'];
-
+  protected function preprocessImage(&$variables, Paragraph $paragraph): void {
     s360_base_theme_process_image_caption($paragraph);
   }
 

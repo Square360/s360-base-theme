@@ -6,13 +6,15 @@ namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\s360_base_theme\ThemeUtils;
 
 /**
- * Block preprocesses for s360_base_theme theme.
+ * Hook implementations for blocks.
+ *
+ * Each plugin_id should have it's own protected method.
+ * `protected function preprocess[PluginId](&$variables)`.
  */
-class PreprocessBlock {
-
-  public function __construct() {}
+class BlockHooks {
 
   /**
    * Implements hook_preprocess_block().
@@ -21,8 +23,7 @@ class PreprocessBlock {
   public function preprocessBlock(array &$variables): void {
     $base_plugin_id = $variables['base_plugin_id'];
 
-    $block_plugin_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($base_plugin_id);
-
+    $block_plugin_method = 'preprocess' . ThemeUtils::toPascalCase($base_plugin_id);
     if (method_exists($this, $block_plugin_method)) {
       $this->$block_plugin_method($variables);
     }
@@ -31,7 +32,7 @@ class PreprocessBlock {
   /**
    * Preprocess for system menu block ID.
    */
-  public function preprocessSystemMenuBlock(&$variables): void {
+  protected function preprocessSystemMenuBlock(&$variables): void {
     $elements = $variables['elements'];
 
     $block_name = $elements['#id'];

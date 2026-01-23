@@ -10,9 +10,9 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 
 /**
- * Form preprocesses for s360_base_theme theme.
+ * Hook implementations for forms.
  */
-class PreprocessForm {
+class FormHooks {
 
   public function __construct() {}
 

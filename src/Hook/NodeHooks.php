@@ -7,24 +7,24 @@ namespace Drupal\s360_base_theme\Hook;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Markup;
+use Drupal\s360_base_theme\ThemeUtils;
+use Drupal\s360_base_theme\NodeUtils;
 
 /**
- * Node preprocesses for s360_base_theme theme.
+ * Hook implementations for nodes.
  */
-class PreprocessNode {
-
-  public function __construct() {}
+class NodeHooks {
 
   /**
    * Implements hook_preprocess_node().
    */
-  #[Hook('preprocess_node')]
-  public function preprocessNode(&$variables): void {
+  #[Hook('prepocess_node')]
+  public function preprocessNode(&$vrariables): void {
     /** @var \Drupal\node\Entity\Node $node */
     $node = $variables['node'];
     $node_bundle = $node->bundle();
 
-    $node_url = s360_base_theme_get_node_url($node);
+    $node_url = NodeUtils::getNodeUrl($node);
 
     $variables['cta_url'] = $node_url;
     $variables['label_as_link'] = [
@@ -39,7 +39,7 @@ class PreprocessNode {
     unset($variables['attributes']['role']);
     unset($variables['attributes']['about']);
 
-    $node_bundle_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($node_bundle);
+    $node_bundle_method = 'preprocess' . ThemeUtils::toPascalCase($node_bundle);
     if (method_exists($this, $node_bundle_method)) {
       $this->$node_bundle_method($variables);
     }

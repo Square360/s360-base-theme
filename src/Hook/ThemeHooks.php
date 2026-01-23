@@ -1,0 +1,173 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Drupal\s360_base_theme\Hook;
+
+use Drupal\Component\Serialization\Exception\InvalidDataTypeException;
+use Drupal\Component\Serialization\Yaml;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Asset\Exception\InvalidLibraryFileException;
+use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\Render\Markup;
+
+/**
+ * Hook implementations for theme.
+ */
+class ThemeHooks {
+
+  protected static string $themePath;
+
+  public function __construct() {
+    self::$themePath = \Drupal::service('extension.list.theme')->getPath('s360_base_theme');
+  }
+
+  /**
+   * Implements hook_preprocess().
+   */
+  #[Hook('preprocess')]
+  public function preprocess(array &$variables): void {
+    // Get currently active user and roles.
+    $account = \Drupal::currentUser();
+
+    $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+    $variables['user_roles'] = implode(', ', $account->getRoles());
+  }
+
+  /**
+   * Implements hook_preprocess_html().
+   */
+  #[Hook('preprocess_html')]
+  public function preprocessHtml(array &$variables): void {
+    // Add the new class names to the array of classes.
+    $variables['attributes']['class'][] = 'site-page';
+    $variables['attributes']['data-roles'] = $variables['user_roles'];
+
+    /** @var Symfony\Component\Routing\Route $route */
+    $route = \Drupal::routeMatch()->getRouteObject();
+    $path = $route->getPath();
+
+    if (str_starts_with($path, '/node')) {
+      /** @var \Drupal\node\Entity\Node $node */
+      $node = \Drupal::routeMatch()->getParameter('node');
+
+      if (isset($variables['node_type'])) {
+        $variables['attributes']['class'][] = Html::getClass('site-page--node-' . $variables['node_type']);
+      }
+    }
+
+    if (isset($variables['is_front']) && $variables['is_front'] === TRUE) {
+      $variables['attributes']['class'][] = 'site-page--is-front';
+    }
+  }
+
+  /**
+   * Implements hook_preprocess_region().
+   */
+  #[Hook('preprocess_region')]
+  public function preprocessRegion(array &$variables): void {
+    $elements = $variables['elements'];
+
+    if (isset($elements['#region'])) {
+      $region = $elements['#region'];
+
+      // Clear any Drupal classes.
+      $variables['attributes']['class'] = [];
+      $variables['attributes']['class'] = Html::getClass("region-$region");
+    }
+  }
+
+  /**
+   * Implements hook_preprocess_container().
+   */
+  #[Hook('preprocess_container')]
+  public function preprocessContainer(array &$variables): void {
+    $element = $variables['element'];
+
+    if (isset($element['#type'])) {
+      if (in_array($element['#type'], ['actions', 'webform_actions'])) {
+        // Clear any Drupal classes.
+        $variables['attributes']['class'] = [];
+        $variables['attributes']['class'][] = 'form__element';
+        $variables['attributes']['class'][] = 'form__element--actions';
+      }
+    }
+  }
+
+  /**
+   * Implements hook_page_attachments_alter().
+   */
+  #[Hook('page_attachments_alter')]
+  public function pageAttachmentsAlter(array &$page): void {
+    $theme_path = \Drupal::service('extension.list.theme')->getPath('s360_base_theme');
+
+    $critical_css_files = [
+      'base/base.css',
+      'block/branding-block/block.branding-block.css',
+      'site-layout/site-header/site-header.css',
+      'site-layout/site-main/site-main.css',
+      'site-layout/menu-block/menu-block.css',
+      'site-layout/menu-toggle/menu-toggle.css',
+    ];
+
+    if (!empty($critical_css_files)) {
+      return;
+    }
+
+    foreach ($critical_css_files as $css_file) {
+      $css = file_get_contents("$theme_path/ui/dist/$css_file");
+
+      $page['#attached']['html_head'][] = [
+        [
+          '#tag' => 'style',
+          '#value' => Markup::create($css),
+        ],
+        "s360_base_theme.{$css_file}",
+      ];
+    }
+  }
+
+  /**
+   * Implements hook_library_info_alter().
+   */
+  #[Hook('library_info_alter')]
+  public function libraryInfoAlter(&$libraries, $extension) {
+    // Alter only the library definitions of the current theme.
+    if ($extension == 's360_base_theme') {
+      $directory_iterator = new RecursiveDirectoryIterator(self::$themePath . '/libraries/');
+
+      // Iterate over all the files found.
+      foreach (new RecursiveIteratorIterator($directory_iterator) as $file) {
+        // Filter out all the files that don't contain "libraries.yml".
+        if (str_contains($file->getFilename(), 'libraries.yml')) {
+          try {
+            // Decode the libraries.yml.
+            $new_libraries = Yaml::decode(file_get_contents($file->getRealPath()));
+
+            // Each libraries.yml could have multiple library-definitions.
+            foreach ($new_libraries as $key => $new_library) {
+              if (isset($libraries[$key])) {
+                // If the library is defined somewhere else already, throw a
+                // warning that we have multiple definitions of the same library
+                // within the same theme.
+                \Drupal::messenger()
+                  ->addWarning($this->t('The library @key from the theme @themename has multiple definitions.', [
+                    '@key' => $key,
+                    '@themename' => self::$themePath,
+                  ]));
+              }
+              else {
+                $libraries[$key] = $new_library;
+              }
+            }
+          }
+          catch (InvalidDataTypeException $e) {
+            // Throw a helpful exception to provide context.
+            throw new InvalidLibraryFileException(sprintf('Invalid library definition in %s: %s', $file->getRealPath(), $e->getMessage()), 0, $e);
+          }
+        }
+      }
+    }
+  }
+
+}

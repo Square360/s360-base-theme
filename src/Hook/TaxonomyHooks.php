@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\s360_base_theme\ThemeUtils;
 
 /**
- * Taxonomy preprocesses for s360_base_theme theme.
+ * Hook implementations for taxonomies.
  *
- * Each bundle should provide it's own hook function.
+ * Each bundle should have it's own protected method.
+ * `protected function preprocess[BundleName](&$variables, $paragraph)`.
  */
-class PreprocessTaxonomy {
-
-  public function __construct() {}
+class TaxonomyHooks {
 
   /**
    * Implements hook_preprocess_taxonomy_term().
@@ -24,7 +24,7 @@ class PreprocessTaxonomy {
     $term = $variables['term'];
     $term_bundle = $term->bundle();
 
-    $term_bundle_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($term_bundle);
+    $term_bundle_method = 'preprocess' . ThemeUtils::toPascalCase($term_bundle);
     if (method_exists($this, $term_bundle_method)) {
       $this->$term_bundle_method($variables);
     }

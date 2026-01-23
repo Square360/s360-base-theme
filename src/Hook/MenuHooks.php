@@ -7,13 +7,15 @@ namespace Drupal\s360_base_theme\Hook;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Markup;
+use Drupal\s360_base_theme\ThemeUtils;
 
 /**
- * Menu preprocesses for s360_base_theme theme.
+ * Hook implementations for menus.
+ *
+ * Each menu should have it's own protected method.
+ * `protected function preprocess[BundleName](&$variables, $paragraph)Menu`.
  */
-class PreprocessMenu {
-
-  public function __construct() {}
+class MenuHooks {
 
   /**
    * Implements hook_preprocess_menu().
@@ -29,16 +31,18 @@ class PreprocessMenu {
       $variables['attributes']['class'] = [];
     }
 
-    $menu_name_method = 'preprocess' . s360_base_theme_convert_to_pascal_case($menu_name) . 'Menu';
+    $menu_name_method = 'preprocess' . ThemeUtils::toPascalCase($menu_name) . 'Menu';
     if (method_exists($this, $menu_name_method)) {
       $this->$menu_name_method($variables);
     }
   }
 
   /**
-   * Preprocess for social menu.
+   * Undocumented function
+   *
+   * @param array $variables
    */
-  public function preprocessSocialMenu(&$variables): void {
+  protected function preprocessSocialMenu(array &$variables): void {
     $site_name = \Drupal::config('system.site')->get('name');
 
     foreach ($variables['items'] as &$item) {

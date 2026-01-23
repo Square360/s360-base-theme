@@ -8,9 +8,9 @@ use Drupal\Core\Hook\Attribute\Hook;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Theme suggestions for s360_base_theme theme.
+ * Hook implementations for theme suggestions.
  */
-class ThemeSuggestions {
+class ThemeSuggestionHooks {
 
   public function __construct(
     protected readonly RequestStack $request_stack
@@ -21,7 +21,7 @@ class ThemeSuggestions {
    */
   #[Hook('theme_suggestions_page_alter')]
   public function themeSuggestionsPageAlter(array &$suggestions, array $variables) {
-    $exception = Drupal::requestStack()->getCurrentRequest()->attributes->get('exception');
+    $exception = $this->request_stack->getCurrentRequest()->attributes->get('exception');
 
     if (!is_null($exception)) {
       $suggestions[] = 'page__' . (string) $exception->getStatusCode();

@@ -7,11 +7,9 @@ namespace Drupal\s360_base_theme\Hook;
 use Drupal\Core\Hook\Attribute\Hook;
 
 /**
- * Views preprocess for s360_base_theme theme.
+ * Hook implementations for views.
  */
-class PreprocessViews {
-
-  public function __construct() {}
+class ViewsHooks {
 
   /**
    * Implements hook_preprocess_views_view().
@@ -25,9 +23,9 @@ class PreprocessViews {
     $view_id = $view->id();
     $view_current_display = $view->current_display;
 
-    // Key is view machine name.
-    // Value is array of displays in that view.
     /*
+     * Key is view machine name.
+     * Value is array of displays in that view.
      * Example:
      *  'view_machine_name' => [
      *    'display_id',
