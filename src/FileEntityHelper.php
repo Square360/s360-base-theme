@@ -3,8 +3,12 @@
 namespace Drupal\s360_base_theme;
 
 use Drupal\Core\Url;
+use Drupal\s360_base_theme\ThemeHelper;
 
-class FileUtils {
+/**
+ * Helper class for file entity operations.
+ */
+class FileEntityHelper {
 
   /**
    * Get file information.
@@ -12,10 +16,10 @@ class FileUtils {
    * @param int $fid
    *   The ID of the file entity.
    *
-   * @return null|array
+   * @return array|null
    *   An array of information for the file.
    */
-  public static function getFileInfo(int $fid): null|array {
+  public static function getFileInfo(int $fid): ?array {
     $entity_type_manager = \Drupal::entityTypeManager();
 
     /** @var Drupal\file\Entity\File $file */
@@ -23,7 +27,7 @@ class FileUtils {
 
     // No media found!
     if (!$file) {
-      \Drupal::logger('s360_base_theme.theme')->error('Error loading file (fid: @fid)', ['@fid' => $fid]);
+      ThemeHelper::logger()->error('Error loading file (fid: @fid)', ['@fid' => $fid]);
 
       return NULL;
     }
@@ -34,33 +38,33 @@ class FileUtils {
     $file_url = $file->createFileUrl();
     $file_uri = $file->getFileUri();
 
-    $mime_type = self::getMimeType((string) $file_mime_type);
+    $file_type_info = self::getFileTypeInfo((string) $file_mime_type);
 
     return [
       'file' => [
         'entity' => $file,
-        'size' => self::getNormalizedFileSize((int) $file_size),
+        'size' => self::formatFileSize((int) $file_size),
         'filename' => $file_filename,
         'mime_type' => $file_mime_type,
         'relative_url' => $file_url,
         'uri' => $file_uri,
         'url' => Url::fromUri(\Drupal::service('file_url_generator')->generateAbsoluteString($file_uri)),
-        'type' => $mime_type['file_type'],
+        'type' => $file_type_info['file_type'],
       ],
-      'icon' => $mime_type['icon'],
+      'icon' => $file_type_info['icon'],
     ];
   }
 
   /**
-   * Converts a file size into a human readable format.
+   * Formats the file size from bytes into human-readable units.
    *
    * @param string|int $file_size
    *   The original file size.
    *
-   * @return null|string
-   *   The converted file size with unit.
+   * @return string|null
+   *   The converted file size with unit or NULL.
    */
-  private static function getNormalizedFileSize($file_size): null|string {
+  private static function formatFileSize($file_size): ?string {
     if ($file_size === 0) {
       return NULL;
     }
@@ -88,15 +92,17 @@ class FileUtils {
   }
 
   /**
-   * Converts a mime type into an icon and file type.
+   * Maps a MIME type to its display icon and file type label.
    *
    * @param string $file_mime_type
-   *   The type of mime.
+   *   The MIME type to map.
    *
    * @return array
-   *   An array containing icon and file type.
+   *   An array containing:
+   *   - icon: FontAwesome icon class
+   *   - file_type: Human-readable file type label
    */
-  protected static function getMimeType(string $file_mime_type) {
+  private static function getFileTypeInfo(string $file_mime_type): array {
     switch ($file_mime_type) {
       case 'image/jpeg':
         $icon = 'fa-file-image';
