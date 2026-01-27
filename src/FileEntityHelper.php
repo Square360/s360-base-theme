@@ -3,7 +3,6 @@
 namespace Drupal\s360_base_theme;
 
 use Drupal\Core\Url;
-use Drupal\s360_base_theme\ThemeHelper;
 
 /**
  * Helper class for file entity operations.
@@ -22,10 +21,10 @@ class FileEntityHelper {
   public static function getFileInfo(int $fid): ?array {
     $entity_type_manager = \Drupal::entityTypeManager();
 
-    /** @var Drupal\file\Entity\File $file */
+    /** @var \Drupal\file\Entity\File $file */
     $file = $entity_type_manager->getStorage('file')->load($fid);
 
-    // No media found!
+    // No file found!
     if (!$file) {
       ThemeHelper::logger()->error('Error loading file (fid: @fid)', ['@fid' => $fid]);
 

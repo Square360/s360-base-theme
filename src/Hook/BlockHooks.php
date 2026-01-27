@@ -6,13 +6,15 @@ namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
-use Drupal\s360_base_theme\ThemeUtils;
+use Drupal\s360_base_theme\ThemeHelper;
 
 /**
- * Hook implementations for blocks.
+ * Hook implementations for block preprocessing.
  *
- * Each plugin_id should have it's own protected method.
- * `protected function preprocess[PluginId](&$variables)`.
+ * This class provides centralized block preprocessing functionality. Each block
+ * plugin type should have its own protected preprocessing method following the
+ * naming convention:
+ *  `protected function preprocess[PluginId](&$variables)`.
  */
 class BlockHooks {
 
@@ -23,16 +25,19 @@ class BlockHooks {
   public function preprocessBlock(array &$variables): void {
     $base_plugin_id = $variables['base_plugin_id'];
 
-    $block_plugin_method = 'preprocess' . ThemeUtils::toPascalCase($base_plugin_id);
+    $block_plugin_method = 'preprocess' . ThemeHelper::toPascalCase($base_plugin_id);
     if (method_exists($this, $block_plugin_method)) {
       $this->$block_plugin_method($variables);
     }
   }
 
   /**
-   * Preprocess for system menu block ID.
+   * Process the system menu block.
+   *
+   * @param array $variables
+   *   An associative array containing info about the menu.
    */
-  protected function preprocessSystemMenuBlock(&$variables): void {
+  protected function preprocessSystemMenuBlock(array &$variables): void {
     $elements = $variables['elements'];
 
     $block_name = $elements['#id'];

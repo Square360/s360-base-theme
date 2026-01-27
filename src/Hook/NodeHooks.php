@@ -12,14 +12,17 @@ use Drupal\s360_base_theme\NodeUtils;
 
 /**
  * Hook implementations for nodes.
+ *
+ * Each bundle should have it's own protected method.
+ * `protected function preprocess[BundleName](&$variables, $node)`.
  */
 class NodeHooks {
 
   /**
    * Implements hook_preprocess_node().
    */
-  #[Hook('prepocess_node')]
-  public function preprocessNode(&$vrariables): void {
+  #[Hook('preprocess_node')]
+  public function preprocessNode(&$variables): void {
     /** @var \Drupal\node\Entity\Node $node */
     $node = $variables['node'];
     $node_bundle = $node->bundle();
@@ -41,8 +44,20 @@ class NodeHooks {
 
     $node_bundle_method = 'preprocess' . ThemeUtils::toPascalCase($node_bundle);
     if (method_exists($this, $node_bundle_method)) {
-      $this->$node_bundle_method($variables);
+      $this->$node_bundle_method($variables, $node);
     }
   }
+
+  /**
+   * Undocumented function
+   *
+   * @param array $variable
+   * @return void
+   */
+  protected function preprocessPage(array &$variable, Node $node): void {
+
+  }
+
+
 
 }

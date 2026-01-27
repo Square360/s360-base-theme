@@ -134,10 +134,10 @@ class ThemeHooks {
   public function libraryInfoAlter(&$libraries, $extension) {
     // Alter only the library definitions of the current theme.
     if ($extension == 's360_base_theme') {
-      $directory_iterator = new RecursiveDirectoryIterator(self::$themePath . '/libraries/');
+      $directory_iterator = new \RecursiveDirectoryIterator(self::$themePath . '/libraries/');
 
       // Iterate over all the files found.
-      foreach (new RecursiveIteratorIterator($directory_iterator) as $file) {
+      foreach (new \RecursiveIteratorIterator($directory_iterator) as $file) {
         // Filter out all the files that don't contain "libraries.yml".
         if (str_contains($file->getFilename(), 'libraries.yml')) {
           try {

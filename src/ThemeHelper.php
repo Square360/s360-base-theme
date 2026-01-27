@@ -5,7 +5,7 @@ namespace Drupal\s360_base_theme;
 use Psr\Log\LoggerInterface;
 
 /**
- * Provides helper functions for s360_base_theme.
+ * Provides helper functions for S360 Base Theme.
  */
 class ThemeHelper {
 
@@ -17,9 +17,9 @@ class ThemeHelper {
   private static ?LoggerInterface $logger = NULL;
 
   /**
-   * Gets the logger instance for the theme.
+   * Gets the logger instance for the s360_base_theme theme.
    *
-   * Lazy-loads and returns a logger instance for the s360_base_theme channel.
+   * Lazy-loads and returns a logger instance for this themes channel.
    * Uses a static property to ensure only one logger instance is created.
    */
   public static function logger(): LoggerInterface {
@@ -31,7 +31,7 @@ class ThemeHelper {
   }
 
   /**
-   * Takes any string and convert it PascalCase (UpperCamelCase) format.
+   * Takes any string and convert it to PascalCase (UpperCamelCase) format.
    *
    * Removes all hyphens, underscores, or spaces and formats it by capitalizing
    * the first letter of each word and removing all separators.
@@ -42,7 +42,7 @@ class ThemeHelper {
    * @return string
    *   The converted string in PascalCase format.
    */
-  public static function toPascalCase($string): string {
+  public static function toPascalCase(string $string): string {
     // Replace hyphens and underscores with spaces.
     $string = str_replace(['-', '_'], ' ', $string);
 
@@ -53,9 +53,9 @@ class ThemeHelper {
     $string = ucwords($string);
 
     // Remove all spaces.
-    $pascalCaseString = str_replace(' ', '', $string);
+    $string = str_replace(' ', '', $string);
 
-    return $pascalCaseString;
+    return $string;
   }
 
   /**

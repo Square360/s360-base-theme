@@ -6,17 +6,17 @@ namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\media\Entity\Media;
-use Drupal\s360_base_theme\ThemeUtils;
+use Drupal\s360_base_theme\ThemeHelper;
 
 /**
- * Hook implementations for media.
+ * Hook implementations for media preprocessing.
  *
- * Each bundle should have it's own protected method.
- * `protected function preprocess[BundleName](&$variables, $media)`.
+ * This class provides centralized media preprocessing functionality. Each media
+ * bundle type should have its own protected preprocessing method following the
+ * naming convention:
+ *  `protected function preprocess[BundleName](&$variables, Media $media)`.
  */
 class MediaHooks {
-
-  public function __construct() {}
 
   /**
    * Implements hook_preprocess_media().
@@ -31,42 +31,45 @@ class MediaHooks {
       $variables['caption'] = $variables['media']->caption;
     }
 
-    $media_bundle_method = 'preprocess' . ThemeUtils::toPascalCase($media_bundle);
+    $media_bundle_method = 'preprocess' . ThemeHelper::toPascalCase($media_bundle);
     if (method_exists($this, $media_bundle_method)) {
       $this->$media_bundle_method($variables, $media);
     }
   }
 
   /**
-   * Undocumented function
+   * Preprocesses Image media bundle variables.
    *
-   * @param [type] $variables
-   * @param Media $media
-   * @return void
+   * @param array $variables
+   *   The media variables array being preprocessed.
+   * @param \Drupal\media\Entity\Media $media
+   *   The Image media entity.
    */
-  protected function preprocessImage(array &$variables, Media $media) {
+  protected function preprocessImage(array &$variables, Media $media): void {
 
   }
 
   /**
-   * Undocumented function
+   * Preprocesses Document media bundle variables.
    *
    * @param array $variables
-   * @param Media $media
-   * @return void
+   *   The media variables array being preprocessed.
+   * @param \Drupal\media\Entity\Media $media
+   *   The Document media entity.
    */
-  protected function proprocessDocument(array &$variables, Media $media) {
+  protected function preprocessDocument(array &$variables, Media $media): void {
 
   }
 
   /**
-   * Undocumented function
+   * Preprocesses Remote Video media bundle variables.
    *
    * @param array $variables
-   * @param Media $media
-   * @return void
+   *   The media variables array being preprocessed.
+   * @param \Drupal\media\Entity\Media $media
+   *   The Remote Video media entity.
    */
-  protected function proprocessRemoteVideo(array &$variables, Media $media) {
+  protected function preprocessRemoteVideo(array &$variables, Media $media): void {
 
   }
 
