@@ -7,16 +7,43 @@ namespace Drupal\s360_base_theme\Hook;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Markup;
-use Drupal\s360_base_theme\ThemeUtils;
-use Drupal\s360_base_theme\NodeUtils;
+use Drupal\node\NodeInterface;
+use Drupal\s360_base_theme\NodeEntityHelper;
+use Drupal\s360_base_theme\ThemeHelper;
 
 /**
- * Hook implementations for nodes.
+ * Hook implementations for node preprocessing.
  *
- * Each bundle should have it's own protected method.
- * `protected function preprocess[BundleName](&$variables, $node)`.
+ * This class provides centralized node preprocessing functionality. Each menu
+ * should have its own private preprocessing method.
+ *
+ * Node-specific methods:
+ *  `private function preprocess[BundleName](&$variables, $node)`.
  */
-class NodeHooks {
+final class NodeHooks {
+
+  /**
+   * The node entity helper service.
+   *
+   * @var \Drupal\s360_base_theme\NodeEntityHelper|null
+   */
+  private ?NodeEntityHelper $nodeHelper = NULL;
+
+  /**
+   * Gets the node entity helper instance.
+   *
+   * Lazy-loads the NodeEntityHelper to avoid unnecessary instantiation.
+   *
+   * @return \Drupal\s360_base_theme\NodeEntityHelper
+   *   The node entity helper service.
+   */
+  private function nodeHelper(): NodeEntityHelper {
+    if ($this->nodeHelper === NULL) {
+      $this->nodeHelper = new NodeEntityHelper();
+    }
+
+    return $this->nodeHelper;
+  }
 
   /**
    * Implements hook_preprocess_node().
@@ -27,7 +54,7 @@ class NodeHooks {
     $node = $variables['node'];
     $node_bundle = $node->bundle();
 
-    $node_url = NodeUtils::getNodeUrl($node);
+    $node_url = $this->nodeHelper()->getNodeUrl($node);
 
     $variables['cta_url'] = $node_url;
     $variables['label_as_link'] = [
@@ -42,22 +69,22 @@ class NodeHooks {
     unset($variables['attributes']['role']);
     unset($variables['attributes']['about']);
 
-    $node_bundle_method = 'preprocess' . ThemeUtils::toPascalCase($node_bundle);
+    $node_bundle_method = 'preprocess' . ThemeHelper::toPascalCase($node_bundle);
     if (method_exists($this, $node_bundle_method)) {
       $this->$node_bundle_method($variables, $node);
     }
   }
 
   /**
-   * Undocumented function
+   * Preprocesses page content type variables.
    *
-   * @param array $variable
-   * @return void
+   * @param array $variables
+   *   The node variables array being preprocessed.
+   * @param \Drupal\node\NodeInterface $node
+   *   The Page node entity.
    */
-  protected function preprocessPage(array &$variable, Node $node): void {
+  private function preprocessPage(array &$variables, NodeInterface $node): void {
 
   }
-
-
 
 }

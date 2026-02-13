@@ -6,52 +6,90 @@ namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Render\Markup;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
-use Drupal\paragraphs\Entity\Paragraph;
-use Drupal\s360_base_theme\ThemeUtils;
+use Drupal\paragraphs\ParagraphInterface;
+use Drupal\s360_base_theme\ParagraphsEntityHelper;
+use Drupal\s360_base_theme\ThemeHelper;
 
 /**
- * Hook implementations for paragraphs.
+ * Hook implementations for paragraphs preprocessing.
  *
- * Each bundle should have it's own protected method.
- * `protected function preprocess[BundleName](&$variables, $paragraph)`.
+ * This class provides centralized paragraphs preprocessing functionality. Each
+ * menu should have its own private preprocessing method.
+ *
+ * Paragraphs-specific methods:
+ *  `private function preprocess[BundleName](&$variables, $paragraph)`.
  */
-class ParagraphHooks {
+final class ParagraphHooks {
+
+  /**
+   * The paragraphs entity helper service.
+   *
+   * @var \Drupal\s360_base_theme\ParagraphsEntityHelper|null
+   */
+  private ?ParagraphsEntityHelper $paragraphsHelper = NULL;
+
+  /**
+   * Gets the paragraphs entity helper instance.
+   *
+   * Lazy-loads the ParagraphsEntityHelper to avoid unnecessary instantiation.
+   *
+   * @return \Drupal\s360_base_theme\ParagraphsEntityHelper
+   *   The paragraphs entity helper service.
+   */
+  private function paragraphsHelper(): ParagraphsEntityHelper {
+    if ($this->paragraphsHelper === NULL) {
+      $this->paragraphsHelper = new ParagraphsEntityHelper();
+    }
+
+    return $this->paragraphsHelper;
+  }
 
   /**
    * Implements hook_preprocess_paragraph().
    */
   #[Hook('preprocess_paragraph')]
   public function preprocessParagraph(array &$variables): void {
-    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+    /** @var \Drupal\paragraphs\Entity\ParagraphInterface $paragraph */
     $paragraph = $variables['paragraph'];
     $paragraph_bundle = $paragraph->bundle();
 
     $variables['attributes']['id'] = Html::getClass('paragraph-' . $paragraph_bundle . '-' . $paragraph->id());
 
-    $paragraph_bundle_method = 'preprocess' . ThemeUtils::toPascalCase($paragraph_bundle);
+    $paragraph_bundle_method = 'preprocess' . ThemeHelper::toPascalCase($paragraph_bundle);
     if (method_exists($this, $paragraph_bundle_method)) {
       $this->$paragraph_bundle_method($variables, $paragraph);
     }
   }
 
   /**
-   * Implements hook_preprocess_paragraph() for document_list.
+   * Preprocesses document_list paragraph variables.
+   *
+   * @param array $variables
+   *   The paragraph variables array being preprocessed.
+   * @param \Drupal\paragraphs\ParagraphInterface $paragraph
+   *   The Views Reference paragraph entity.
    */
-  protected function preprocessDocumentList(&$variables, Paragraph $paragraph): void {
+  private function preprocessDocumentList(&$variables, ParagraphInterface $paragraph): void {
     $variables['documents'] = '';
   }
 
   /**
-   * Implements hook_preprocess_paragraph() for curated_content.
+   * Preprocesses curated_content paragraph variables.
+   *
+   * @param array $variables
+   *   The paragraph variables array being preprocessed.
+   * @param \Drupal\paragraphs\ParagraphInterface $paragraph
+   *   The Views Reference paragraph entity.
    */
-  protected function preprocessCuratedContent(&$variables, Paragraph $paragraph): void {
+  private function preprocessCuratedContent(&$variables, ParagraphInterface $paragraph): void {
     $entity_type_manager = \Drupal::entityTypeManager();
 
     $content_view_mode = $paragraph?->field_content_view_mode?->getString();
 
-    /** @var \Drupal\node\Entity\Node $node */
+    /** @var \Drupal\node\NodeInterface $node */
     $node = $paragraph?->field_ern_content?->entity;
 
     // Missing node: hide for anonymous.
@@ -109,9 +147,14 @@ class ParagraphHooks {
   }
 
   /**
-   * Implements hook_preprocess_paragraph() for embed_code.
+   * Preprocesses embed_code paragraph variables.
+   *
+   * @param array $variables
+   *   The paragraph variables array being preprocessed.
+   * @param \Drupal\paragraphs\ParagraphInterface $paragraph
+   *   The Views Reference paragraph entity.
    */
-  protected function preprocessEmbedCode(&$variables, Paragraph $paragraph): void {
+  private function preprocessEmbedCode(array &$variables, ParagraphInterface $paragraph): void {
     $field_embedded_media = $paragraph->field_embedded_media?->first()?->getValue();
 
     if ($field_embedded_media) {
@@ -121,9 +164,14 @@ class ParagraphHooks {
   }
 
   /**
-   * Implements hook_preprocess_paragraph() for in_this_section.
+   * Preprocesses in_this_section paragraph variables.
+   *
+   * @param array $variables
+   *   The paragraph variables array being preprocessed.
+   * @param \Drupal\paragraphs\ParagraphInterface $paragraph
+   *   The Views Reference paragraph entity.
    */
-  protected function preprocessInThisSection(&$variables, Paragraph $paragraph): void {
+  private function preprocessInThisSection(array &$variables, ParagraphInterface $paragraph): void {
     // If no target menu is set, default to "main".
     $field_target_menu = $paragraph?->get('field_target_menu')->getString() ?: 'main';
 
@@ -158,7 +206,7 @@ class ParagraphHooks {
     $parameters->setMaxDepth(1);
     $parameters->setRoot($menu_for_current_node['id']);
 
-    $menu_link_tree = Drupal::service('menu.link_tree');
+    $menu_link_tree = \Drupal::service('menu.link_tree');
     $menu_links = $menu_link_tree->load($menu_for_current_node['menu_name'], $parameters);
 
     $parent_menu_title = $menu_for_current_node['title'];
@@ -204,18 +252,28 @@ class ParagraphHooks {
   }
 
   /**
-   * Implements hook_preprocess_paragraph() for views_reference.
+   * Preprocesses views_reference paragraph variables.
+   *
+   * @param array $variables
+   *   The paragraph variables array being preprocessed.
+   * @param \Drupal\paragraphs\ParagraphInterface $paragraph
+   *   The Views Reference paragraph entity.
    */
-  protected function preprocessViewsReference($variables, Paragraph $paragraph): void {
+  private function preprocessViewsReference(array &$variables, ParagraphInterface $paragraph): void {
     // Add the url (complete) as a cache context to field_views_reference.
     $variables["content"]["field_views_reference"]["#cache"]["contexts"][] = 'url';
   }
 
   /**
-   * Implements hook_preprocess_paragraph() for image.
+   * Preprocesses image paragraph variables.
+   *
+   * @param array $variables
+   *   The paragraph variables array being preprocessed.
+   * @param \Drupal\paragraphs\ParagraphInterface $paragraph
+   *   The Views Reference paragraph entity.
    */
-  protected function preprocessImage(&$variables, Paragraph $paragraph): void {
-    s360_base_theme_process_image_caption($paragraph);
+  private function preprocessImage(array &$variables, ParagraphInterface $paragraph): void {
+    $this->paragraphsHelper()->processImageCaption($paragraph);
   }
 
 }

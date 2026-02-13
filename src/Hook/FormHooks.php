@@ -10,11 +10,11 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 
 /**
- * Hook implementations for field preprocessing.
+ * Hook implementations for form preprocessing.
  *
  * This class provides centralized form preprocessing functionality.
  */
-class FormHooks {
+final class FormHooks {
 
   /**
    * Implements hook_preprocess_form().

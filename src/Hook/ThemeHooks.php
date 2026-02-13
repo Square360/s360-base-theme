@@ -14,9 +14,14 @@ use Drupal\Core\Render\Markup;
 /**
  * Hook implementations for theme.
  */
-class ThemeHooks {
+final class ThemeHooks {
 
-  protected static string $themePath;
+  /**
+   * The theme path.
+   *
+   * @var string
+   */
+  private static string $themePath;
 
   public function __construct() {
     self::$themePath = \Drupal::service('extension.list.theme')->getPath('s360_base_theme');
@@ -110,7 +115,8 @@ class ThemeHooks {
       'site-layout/menu-toggle/menu-toggle.css',
     ];
 
-    if (!empty($critical_css_files)) {
+    // Early return if no critical CSS files to process.
+    if (empty($critical_css_files)) {
       return;
     }
 
@@ -144,6 +150,11 @@ class ThemeHooks {
             // Decode the libraries.yml.
             $new_libraries = Yaml::decode(file_get_contents($file->getRealPath()));
 
+            // Skip if the doesn't contain valid library definitions.
+            if (!is_array($new_libraries)) {
+              continue;
+            }
+
             // Each libraries.yml could have multiple library-definitions.
             foreach ($new_libraries as $key => $new_library) {
               if (isset($libraries[$key])) {
@@ -151,7 +162,7 @@ class ThemeHooks {
                 // warning that we have multiple definitions of the same library
                 // within the same theme.
                 \Drupal::messenger()
-                  ->addWarning($this->t('The library @key from the theme @themename has multiple definitions.', [
+                  ->addWarning(\Drupal::translation()->translate('The library @key from the theme @themename has multiple definitions.', [
                     '@key' => $key,
                     '@themename' => self::$themePath,
                   ]));

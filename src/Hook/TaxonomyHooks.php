@@ -5,28 +5,32 @@ declare(strict_types=1);
 namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Core\Hook\Attribute\Hook;
-use Drupal\s360_base_theme\ThemeUtils;
+use Drupal\taxonomy\TermInterface;
+use Drupal\s360_base_theme\ThemeHelper;
 
 /**
- * Hook implementations for taxonomies.
+ * Hook implementations for taxonomy preprocessing.
  *
- * Each bundle should have it's own protected method.
- * `protected function preprocess[BundleName](&$variables, $paragraph)`.
+ * This class provides centralized node preprocessing functionality. Each menu
+ * should have its own private preprocessing method.
+ *
+ * TaxonomyTerm-specific methods:
+ *  `private function preprocess[BundleName](&$variables, $term)`.
  */
-class TaxonomyHooks {
+final class TaxonomyHooks {
 
   /**
    * Implements hook_preprocess_taxonomy_term().
    */
   #[Hook('preprocess_taxonomy_term')]
   public function preprocessTaxonomyTerm(array &$variables): void {
-    /** @var \Drupal\taxonomy\Entity\Term $term */
+    /** @var \Drupal\taxonomy\TermInterface $term */
     $term = $variables['term'];
     $term_bundle = $term->bundle();
 
-    $term_bundle_method = 'preprocess' . ThemeUtils::toPascalCase($term_bundle);
+    $term_bundle_method = 'preprocess' . ThemeHelper::toPascalCase($term_bundle);
     if (method_exists($this, $term_bundle_method)) {
-      $this->$term_bundle_method($variables);
+      $this->$term_bundle_method($variables, $term);
     }
   }
 

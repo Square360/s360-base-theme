@@ -9,7 +9,7 @@ use Drupal\Core\Hook\Attribute\Hook;
 /**
  * Hook implementations for views.
  */
-class ViewsHooks {
+final class ViewsHooks {
 
   /**
    * Implements hook_preprocess_views_view().

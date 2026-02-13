@@ -5,25 +5,26 @@ declare(strict_types=1);
 namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Core\Hook\Attribute\Hook;
-use Drupal\media\Entity\Media;
+use Drupal\media\MediaInterface;
 use Drupal\s360_base_theme\ThemeHelper;
 
 /**
  * Hook implementations for media preprocessing.
  *
  * This class provides centralized media preprocessing functionality. Each media
- * bundle type should have its own protected preprocessing method following the
- * naming convention:
- *  `protected function preprocess[BundleName](&$variables, Media $media)`.
+ * bundle type should have its own private preprocessing method.
+ *
+ * Media-specific methods:
+ *  `private function preprocess[BundleName](&$variables, Media $media)`
  */
-class MediaHooks {
+final class MediaHooks {
 
   /**
    * Implements hook_preprocess_media().
    */
   #[Hook('preprocess_media')]
   public function preprocessMedia(&$variables): void {
-    /** @var \Drupal\media\Entity\Media $media */
+    /** @var \Drupal\media\MediaInterface $media */
     $media = $variables['media'];
     $media_bundle = $media->bundle();
 
@@ -42,10 +43,10 @@ class MediaHooks {
    *
    * @param array $variables
    *   The media variables array being preprocessed.
-   * @param \Drupal\media\Entity\Media $media
+   * @param \Drupal\media\MediaInterface $media
    *   The Image media entity.
    */
-  protected function preprocessImage(array &$variables, Media $media): void {
+  private function preprocessImage(array &$variables, MediaInterface $media): void {
 
   }
 
@@ -54,10 +55,10 @@ class MediaHooks {
    *
    * @param array $variables
    *   The media variables array being preprocessed.
-   * @param \Drupal\media\Entity\Media $media
+   * @param \Drupal\media\MediaInterface $media
    *   The Document media entity.
    */
-  protected function preprocessDocument(array &$variables, Media $media): void {
+  private function preprocessDocument(array &$variables, MediaInterface $media): void {
 
   }
 
@@ -66,10 +67,10 @@ class MediaHooks {
    *
    * @param array $variables
    *   The media variables array being preprocessed.
-   * @param \Drupal\media\Entity\Media $media
+   * @param \Drupal\media\MediaInterface $media
    *   The Remote Video media entity.
    */
-  protected function preprocessRemoteVideo(array &$variables, Media $media): void {
+  private function preprocessRemoteVideo(array &$variables, MediaInterface $media): void {
 
   }
 

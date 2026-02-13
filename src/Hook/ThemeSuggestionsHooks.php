@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\RequestStack;
 /**
  * Hook implementations for theme suggestions.
  */
-class ThemeSuggestionHooks {
+final class ThemeSuggestionsHooks {
 
   public function __construct(
-    protected readonly RequestStack $request_stack
+    private readonly RequestStack $request_stack
   ) {}
 
   /**

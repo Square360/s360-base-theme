@@ -14,17 +14,17 @@ use Drupal\s360_base_theme\ThemeHelper;
  * be preprocessed by either their machine name or field type, allowing for
  * flexible theming:
  *
- * Field-specific preprocessing:
- *  `protected function preprocessField[FieldName](&$variables)`
+ * Field-specific methods:
  *   Some fields like "title" don't start with "field_", but the method to
  *   process them will.
+ *  `private function preprocessField[FieldName](&$variables)`
  *   Example: `preprocessFieldTitle()`, `preprocessFieldBody()`
  *
- * Field type preprocessing:
- *  `protected function preprocessType[FieldType](&$variables)`
+ * Field type methods:
+ *  `private function preprocessType[FieldType](&$variables)`
  *   Example: `preprocessTypeEntityReference()`, `preprocessTypeImage()`
  */
-class FieldHooks {
+final class FieldHooks {
 
   /**
    * Implements hook_preprocess_field().
