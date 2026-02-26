@@ -190,7 +190,7 @@ WEBPACK_CONFIG.module.rules.push({
         implementation: require('sass'),
         sassOptions: {
           // Silence deprecation warnings.
-          // quietDeps: true
+          quietDeps: true
         }
       }
     }
