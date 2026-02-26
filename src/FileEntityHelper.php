@@ -7,7 +7,7 @@ use Drupal\Core\Url;
 /**
  * Helper class for file entity operations.
  */
-class FileEntityHelper {
+final class FileEntityHelper {
 
   /**
    * Get file information.
@@ -26,7 +26,7 @@ class FileEntityHelper {
 
     // No file found!
     if (!$file) {
-      ThemeHelper::logger()->error('Error loading file (fid: @fid)', ['@fid' => $fid]);
+      ThemeHelper::getLogger()->error('Error loading file (fid: @fid)', ['@fid' => $fid]);
 
       return NULL;
     }

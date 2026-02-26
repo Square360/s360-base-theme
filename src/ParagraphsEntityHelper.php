@@ -2,7 +2,7 @@
 
 namespace Drupal\s360_base_theme;
 
-use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\paragraphs\ParagraphInterface;
 
 /**
  * Helper class for paragraphs entity operations.
@@ -15,10 +15,10 @@ class ParagraphsEntityHelper {
    * Retrieves the caption from field_caption and adds it to the first
    * referenced media entity in field_erm_image.
    *
-   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+   * @param \Drupal\paragraphs\ParagraphInterface $paragraph
    *   The paragraph entity to process.
    */
-  public static function processImageCaption(Paragraph $paragraph): void {
+  public static function processImageCaption(ParagraphInterface $paragraph): void {
     if (!$paragraph->hasField('field_caption') || !$paragraph->hasField('field_erm_image')) {
       return;
     }

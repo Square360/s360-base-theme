@@ -24,6 +24,15 @@ use Drupal\s360_base_theme\ThemeHelper;
  */
 final class ParagraphHooks {
 
+
+  private function __construct(
+    private readonly EntityTypeManagerInterface $entityTypeManager,
+    private readonly MenuLinkTreeInterface $menuLinkTree,
+    private readonly ParagraphsEntityHelper $paragraphsHelper,
+    private readonly AccountProxyInterface $currentUser,
+  ) {}
+
+
   /**
    * The paragraphs entity helper service.
    *
@@ -85,8 +94,6 @@ final class ParagraphHooks {
    *   The Views Reference paragraph entity.
    */
   private function preprocessCuratedContent(&$variables, ParagraphInterface $paragraph): void {
-    $entity_type_manager = \Drupal::entityTypeManager();
-
     $content_view_mode = $paragraph?->field_content_view_mode?->getString();
 
     /** @var \Drupal\node\NodeInterface $node */
@@ -94,7 +101,7 @@ final class ParagraphHooks {
 
     // Missing node: hide for anonymous.
     if (!$node) {
-      if (\Drupal::currentUser()->isAnonymous()) {
+      if ($this->currentUser->isAnonymous()) {
         return;
       }
 
@@ -120,7 +127,7 @@ final class ParagraphHooks {
 
     // Invalid view mode for node bundle.
     if (!in_array($content_view_mode, $all_view_modes)) {
-      if (\Drupal::currentUser()->isAnonymous()) {
+      if ($this->currentUser->isAnonymous()) {
         return;
       }
 
@@ -138,7 +145,7 @@ final class ParagraphHooks {
       return;
     }
 
-    $view_builder = $entity_type_manager->getViewBuilder('node');
+    $view_builder = $this->entityTypeManager->getViewBuilder('node');
     $variables['curated_node'] = $view_builder->view($node, $content_view_mode);
 
     $variables['#cache']['tags'] = $node->getCacheTags();

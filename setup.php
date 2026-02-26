@@ -100,6 +100,7 @@ function get_files_to_copy($skip_sb = FALSE) {
   $files = [
     'config',
     'libraries',
+    'src',
     'src/Hook',
     'ui/.storybook',
     'ui/dist',
@@ -208,6 +209,7 @@ function get_files_to_alter($skip_sb = FALSE) {
   $files = [
     'config',
     'libraries',
+    'src',
     'src/Hook',
     'ui/.storybook',
     'ui/package.json',

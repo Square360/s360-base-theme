@@ -22,7 +22,7 @@ class ThemeHelper {
    * Lazy-loads and returns a logger instance for this themes channel.
    * Uses a static property to ensure only one logger instance is created.
    */
-  public static function logger(): LoggerInterface {
+  public static function getLogger(): LoggerInterface {
     if (self::$logger === NULL) {
       self::$logger = \Drupal::logger('s360_base_theme');
     }
