@@ -8,23 +8,51 @@ use Drupal\Component\Serialization\Exception\InvalidDataTypeException;
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Asset\Exception\InvalidLibraryFileException;
+use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Hook implementations for theme.
  */
 final class ThemeHooks {
 
+  use StringTranslationTrait;
+
   /**
    * The theme path.
    *
    * @var string
    */
-  private static string $themePath;
+  private string $themePath;
 
-  public function __construct() {
-    self::$themePath = \Drupal::service('extension.list.theme')->getPath('s360_base_theme');
+  /**
+   * Constructs a new ThemeHooks instance.
+   *
+   * @param \Drupal\Core\Session\AccountProxyInterface $currentUser
+   *   The current user service.
+   * @param \Drupal\Core\Path\PathMatcherInterface $pathMatcher
+   *   The path matcher service.
+   * @param \Drupal\Core\Routing\RouteMatchInterface $routeMatch
+   *   The route match service.
+   * @param \Drupal\Core\Extension\ThemeExtensionList $themeExtensionList
+   *   The theme extension list service.
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger service.
+   */
+  public function __construct(
+    private readonly AccountProxyInterface $currentUser,
+    private readonly PathMatcherInterface $pathMatcher,
+    private readonly RouteMatchInterface $routeMatch,
+    private readonly ThemeExtensionList $themeExtensionList,
+    private readonly MessengerInterface $messenger,
+  ) {
+    $this->themePath = $this->themeExtensionList->getPath('s360_base_theme');
   }
 
   /**
@@ -33,9 +61,9 @@ final class ThemeHooks {
   #[Hook('preprocess')]
   public function preprocess(array &$variables): void {
     // Get currently active user and roles.
-    $account = \Drupal::currentUser();
+    $account = $this->currentUser;
 
-    $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+    $variables['is_front'] = $this->pathMatcher->isFrontPage();
     $variables['user_roles'] = implode(', ', $account->getRoles());
   }
 
@@ -49,12 +77,12 @@ final class ThemeHooks {
     $variables['attributes']['data-roles'] = $variables['user_roles'];
 
     /** @var Symfony\Component\Routing\Route $route */
-    $route = \Drupal::routeMatch()->getRouteObject();
+    $route = $this->routeMatch->getRouteObject();
     $path = $route->getPath();
 
     if (str_starts_with($path, '/node')) {
       /** @var \Drupal\node\Entity\Node $node */
-      $node = \Drupal::routeMatch()->getParameter('node');
+      $node = $this->routeMatch->getParameter('node');
 
       if (isset($variables['node_type'])) {
         $variables['attributes']['class'][] = Html::getClass('site-page--node-' . $variables['node_type']);
@@ -104,8 +132,6 @@ final class ThemeHooks {
    */
   #[Hook('page_attachments_alter')]
   public function pageAttachmentsAlter(array &$page): void {
-    $theme_path = \Drupal::service('extension.list.theme')->getPath('s360_base_theme');
-
     $critical_css_files = [
       'base/base.css',
       'block/branding-block/block.branding-block.css',
@@ -121,7 +147,7 @@ final class ThemeHooks {
     }
 
     foreach ($critical_css_files as $css_file) {
-      $css = file_get_contents("$theme_path/ui/dist/$css_file");
+      $css = file_get_contents("$this->themePath::/ui/dist/$css_file");
 
       $page['#attached']['html_head'][] = [
         [
@@ -140,7 +166,7 @@ final class ThemeHooks {
   public function libraryInfoAlter(&$libraries, $extension) {
     // Alter only the library definitions of the current theme.
     if ($extension == 's360_base_theme') {
-      $directory_iterator = new \RecursiveDirectoryIterator(self::$themePath . '/libraries/');
+      $directory_iterator = new \RecursiveDirectoryIterator($this->themePath . '/libraries/');
 
       // Iterate over all the files found.
       foreach (new \RecursiveIteratorIterator($directory_iterator) as $file) {
@@ -161,8 +187,8 @@ final class ThemeHooks {
                 // If the library is defined somewhere else already, throw a
                 // warning that we have multiple definitions of the same library
                 // within the same theme.
-                \Drupal::messenger()
-                  ->addWarning(\Drupal::translation()->translate('The library @key from the theme @themename has multiple definitions.', [
+                $this->messenger
+                  ->addWarning($this->t('The library @key from the theme @themename has multiple definitions.', [
                     '@key' => $key,
                     '@themename' => self::$themePath,
                   ]));

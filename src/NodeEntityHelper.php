@@ -23,7 +23,7 @@ class NodeEntityHelper {
    *   The URL object - either the source link or canonical node URL.
    */
   public static function getNodeUrl(NodeInterface $node): Url {
-    if (self::isPassthroughEnabled($node) && $node->hasField('field_source_link')) {
+    if (static::isPassthroughEnabled($node) && $node->hasField('field_source_link')) {
       $source_link = $node->get('field_source_link')->getString();
 
       if ($source_link) {

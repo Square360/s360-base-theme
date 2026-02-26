@@ -2,27 +2,43 @@
 
 namespace Drupal\s360_base_theme;
 
+use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Url;
 
 /**
  * Helper class for file entity operations.
+ *
+ * Provides methods to retrieve and format file entity information including
+ * file metadata, URLs, and visual representation.
  */
 final class FileEntityHelper {
 
   /**
+   * Gets the file URL generator service.
+   */
+  public static function fileUrlGenerator(): FileUrlGeneratorInterface {
+    return \Drupal::service('file_url_generator');
+  }
+
+  /**
    * Get file information.
+   *
+   * Retrieves comprehensive information about a file entity including its
+   * metadata, URLs, formatted size, and appropriate icon representation.
    *
    * @param int $fid
    *   The ID of the file entity.
    *
    * @return array|null
-   *   An array of information for the file.
+   *   An array of information for the file containing:
+   *   - file: Array with entity, size, filename, mime_type, relative_url, uri,
+   *     url, and type.
+   *   - icon: FontAwesome icon class for the file type.
+   *   Returns NULL if the file cannot be loaded.
    */
   public static function getFileInfo(int $fid): ?array {
-    $entity_type_manager = \Drupal::entityTypeManager();
-
     /** @var \Drupal\file\Entity\File $file */
-    $file = $entity_type_manager->getStorage('file')->load($fid);
+    $file = ThemeHelper::entityTypeManager()->getStorage('file')->load($fid);
 
     // No file found!
     if (!$file) {
@@ -37,17 +53,17 @@ final class FileEntityHelper {
     $file_url = $file->createFileUrl();
     $file_uri = $file->getFileUri();
 
-    $file_type_info = self::getFileTypeInfo((string) $file_mime_type);
+    $file_type_info = static::getFileTypeInfo((string) $file_mime_type);
 
     return [
       'file' => [
         'entity' => $file,
-        'size' => self::formatFileSize((int) $file_size),
+        'size' => static::formatFileSize((int) $file_size),
         'filename' => $file_filename,
         'mime_type' => $file_mime_type,
         'relative_url' => $file_url,
         'uri' => $file_uri,
-        'url' => Url::fromUri(\Drupal::service('file_url_generator')->generateAbsoluteString($file_uri)),
+        'url' => Url::fromUri(static::fileUrlGenerator()->generateAbsoluteString($file_uri)),
         'type' => $file_type_info['file_type'],
       ],
       'icon' => $file_type_info['icon'],
@@ -57,13 +73,17 @@ final class FileEntityHelper {
   /**
    * Formats the file size from bytes into human-readable units.
    *
+   * Converts a file size in bytes to a human-readable format using appropriate
+   * units (B, KB, MB, GB, etc.). Returns NULL if the file size is zero.
+   *
    * @param string|int $file_size
-   *   The original file size.
+   *   The original file size in bytes.
    *
    * @return string|null
-   *   The converted file size with unit or NULL.
+   *   The converted file size with unit (e.g., "1.5 MB") or NULL if size is
+   *   zero.
    */
-  private static function formatFileSize($file_size): ?string {
+  private function formatFileSize($file_size): ?string {
     if ($file_size === 0) {
       return NULL;
     }
@@ -93,15 +113,19 @@ final class FileEntityHelper {
   /**
    * Maps a MIME type to its display icon and file type label.
    *
+   * Determines the appropriate FontAwesome icon class and human-readable label
+   * based on the file's MIME type. Supports common image, document, and
+   * presentation formats.
+   *
    * @param string $file_mime_type
-   *   The MIME type to map.
+   *   The MIME type to map (e.g., 'application/pdf', 'image/jpeg').
    *
    * @return array
    *   An array containing:
-   *   - icon: FontAwesome icon class
-   *   - file_type: Human-readable file type label
+   *   - icon: FontAwesome icon class (e.g., 'fa-file-pdf').
+   *   - file_type: Human-readable file type label (e.g., 'PDF', 'Excel').
    */
-  private static function getFileTypeInfo(string $file_mime_type): array {
+  private function getFileTypeInfo(string $file_mime_type): array {
     switch ($file_mime_type) {
       case 'image/jpeg':
         $icon = 'fa-file-image';

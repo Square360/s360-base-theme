@@ -7,7 +7,7 @@ use Drupal\paragraphs\ParagraphInterface;
 /**
  * Helper class for paragraphs entity operations.
  */
-class ParagraphsEntityHelper {
+final class ParagraphsEntityHelper {
 
   /**
    * Process image caption for a paragraph entity.
@@ -30,7 +30,7 @@ class ParagraphsEntityHelper {
       return;
     }
 
-    /** @var \Drupal\media\Entity\Media[] $media_entities */
+    /** @var \Drupal\media\MediaInterface[] $media_entities */
     $media_entities = $field_erm_image->referencedEntities();
 
     if (!empty($media_entities)) {

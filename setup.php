@@ -101,11 +101,11 @@ function get_files_to_copy($skip_sb = FALSE) {
     'config',
     'libraries',
     'src',
-    'src/Hook',
     'ui/.storybook',
     'ui/dist',
     'ui/plop-templates',
     'ui/src',
+    'ui/utils',
     'ui/.babelrc',
     'ui/.nvmrc',
     'ui/.yarnrc.yml',
@@ -120,7 +120,6 @@ function get_files_to_copy($skip_sb = FALSE) {
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
     's360_base_theme.style_options.yml',
-    's360_base_theme.theme',
   ];
 
   if ($skip_sb) {
@@ -210,7 +209,6 @@ function get_files_to_alter($skip_sb = FALSE) {
     'config',
     'libraries',
     'src',
-    'src/Hook',
     'ui/.storybook',
     'ui/package.json',
     'ui/plop-templates',
@@ -219,7 +217,6 @@ function get_files_to_alter($skip_sb = FALSE) {
     's360_base_theme.breakpoints.yml',
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
-    's360_base_theme.theme',
   ];
 
   if ($skip_sb) {
@@ -359,7 +356,6 @@ function get_files_to_rename() {
     's360_base_theme.info.yml',
     's360_base_theme.libraries.yml',
     's360_base_theme.style_options.yml',
-    's360_base_theme.theme',
   ];
 }
 

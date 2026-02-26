@@ -48,7 +48,7 @@ final class MenuHooks {
    *   - items: Array of menu link items to be enhanced.
    */
   private function preprocessSocialMenu(array &$variables): void {
-    $site_name = \Drupal::config('system.site')->get('name');
+    $site_name = ThemeHelper::config('system.site')->get('name');
 
     foreach ($variables['items'] as &$item) {
       $item_title = &$item['title'];

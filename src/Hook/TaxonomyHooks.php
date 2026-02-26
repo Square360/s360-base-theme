@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Core\Hook\Attribute\Hook;
-use Drupal\taxonomy\TermInterface;
 use Drupal\s360_base_theme\ThemeHelper;
 
 /**

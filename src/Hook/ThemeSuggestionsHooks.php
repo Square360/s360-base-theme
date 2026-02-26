@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 final class ThemeSuggestionsHooks {
 
   public function __construct(
-    private readonly RequestStack $request_stack
+    private readonly RequestStack $requestStack
   ) {}
 
   /**
@@ -21,14 +21,14 @@ final class ThemeSuggestionsHooks {
    */
   #[Hook('theme_suggestions_page_alter')]
   public function themeSuggestionsPageAlter(array &$suggestions, array $variables) {
-    $exception = $this->request_stack->getCurrentRequest()->attributes->get('exception');
+    $exception = $this->requestStack->getCurrentRequest()->attributes->get('exception');
 
     if (!is_null($exception)) {
       $suggestions[] = 'page__' . (string) $exception->getStatusCode();
     }
 
     // Add content type suggestions.
-    if ($node = \Drupal::request()->attributes->get('node')) {
+    if ($node = $this->requestStack->getCurrentRequest()->attributes->get('node')) {
       array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
     }
   }

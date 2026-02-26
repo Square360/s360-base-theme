@@ -23,38 +23,15 @@ use Drupal\s360_base_theme\ThemeHelper;
 final class NodeHooks {
 
   /**
-   * The node entity helper service.
-   *
-   * @var \Drupal\s360_base_theme\NodeEntityHelper|null
-   */
-  private ?NodeEntityHelper $nodeHelper = NULL;
-
-  /**
-   * Gets the node entity helper instance.
-   *
-   * Lazy-loads the NodeEntityHelper to avoid unnecessary instantiation.
-   *
-   * @return \Drupal\s360_base_theme\NodeEntityHelper
-   *   The node entity helper service.
-   */
-  private function nodeHelper(): NodeEntityHelper {
-    if ($this->nodeHelper === NULL) {
-      $this->nodeHelper = new NodeEntityHelper();
-    }
-
-    return $this->nodeHelper;
-  }
-
-  /**
    * Implements hook_preprocess_node().
    */
   #[Hook('preprocess_node')]
   public function preprocessNode(&$variables): void {
-    /** @var \Drupal\node\Entity\Node $node */
+    /** @var \Drupal\node\NodeInterface $node */
     $node = $variables['node'];
     $node_bundle = $node->bundle();
 
-    $node_url = $this->nodeHelper()->getNodeUrl($node);
+    $node_url = NodeEntityHelper::getNodeUrl($node);
 
     $variables['cta_url'] = $node_url;
     $variables['label_as_link'] = [
