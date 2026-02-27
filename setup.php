@@ -348,6 +348,7 @@ function get_files_to_rename() {
     'libraries/s360_base_theme.navigation.libraries.yml',
     'libraries/s360_base_theme.node.libraries.yml',
     'libraries/s360_base_theme.paragraph.libraries.yml',
+    'libraries/s360_base_theme.taxonomy.libraries.yml',
     'libraries/s360_base_theme.views.libraries.yml',
     'config/install/block.block.s360_base_theme_content.yml',
     'config/install/block.block.s360_base_theme_messages.yml',

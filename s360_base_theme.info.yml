@@ -2,7 +2,7 @@ name: S360 Base Theme
 description: ''
 type: theme
 base theme: drupal_base_theme
-core_version_requirement: ^10 || ^11
+core_version_requirement: ^11 || ^12
 dependencies:
   - components:components
   - style_options:style_options
