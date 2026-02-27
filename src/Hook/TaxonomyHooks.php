@@ -11,10 +11,10 @@ use Drupal\s360_base_theme\ThemeHelper;
  * Hook implementations for taxonomy preprocessing.
  *
  * This class provides centralized node preprocessing functionality. Each menu
- * should have its own private preprocessing method.
+ * should have its own protected preprocessing method.
  *
  * TaxonomyTerm-specific methods:
- *  `private function preprocess[BundleName](&$variables, $term)`.
+ *  `protected function preprocess[BundleName](&$variables, $term)`.
  */
 final class TaxonomyHooks {
 

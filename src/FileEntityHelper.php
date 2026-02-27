@@ -83,7 +83,7 @@ final class FileEntityHelper {
    *   The converted file size with unit (e.g., "1.5 MB") or NULL if size is
    *   zero.
    */
-  private function formatFileSize($file_size): ?string {
+  protected function formatFileSize($file_size): ?string {
     if ($file_size === 0) {
       return NULL;
     }
@@ -125,7 +125,7 @@ final class FileEntityHelper {
    *   - icon: FontAwesome icon class (e.g., 'fa-file-pdf').
    *   - file_type: Human-readable file type label (e.g., 'PDF', 'Excel').
    */
-  private function getFileTypeInfo(string $file_mime_type): array {
+  protected function getFileTypeInfo(string $file_mime_type): array {
     switch ($file_mime_type) {
       case 'image/jpeg':
         $icon = 'fa-file-image';

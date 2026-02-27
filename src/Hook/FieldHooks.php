@@ -17,11 +17,11 @@ use Drupal\s360_base_theme\ThemeHelper;
  * Field-specific methods:
  *   Some fields like "title" don't start with "field_", but the method to
  *   process them will.
- *  `private function preprocessField[FieldName](&$variables)`
+ *  `protected function preprocessField[FieldName](&$variables)`
  *   Example: `preprocessFieldTitle()`, `preprocessFieldBody()`
  *
  * Field type methods:
- *  `private function preprocessType[FieldType](&$variables)`
+ *  `protected function preprocessType[FieldType](&$variables)`
  *   Example: `preprocessTypeEntityReference()`, `preprocessTypeImage()`
  */
 final class FieldHooks {

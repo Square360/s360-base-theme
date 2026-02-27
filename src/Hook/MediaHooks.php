@@ -12,10 +12,10 @@ use Drupal\s360_base_theme\ThemeHelper;
  * Hook implementations for media preprocessing.
  *
  * This class provides centralized media preprocessing functionality. Each media
- * bundle type should have its own private preprocessing method.
+ * bundle type should have its own protected preprocessing method.
  *
  * Media-specific methods:
- *  `private function preprocess[BundleName](&$variables, Media $media)`
+ *  `protected function preprocess[BundleName](&$variables, Media $media)`
  */
 final class MediaHooks {
 
@@ -46,7 +46,7 @@ final class MediaHooks {
    * @param \Drupal\media\MediaInterface $media
    *   The Image media entity.
    */
-  private function preprocessImage(array &$variables, MediaInterface $media): void {
+  protected function preprocessImage(array &$variables, MediaInterface $media): void {
 
   }
 
@@ -58,7 +58,7 @@ final class MediaHooks {
    * @param \Drupal\media\MediaInterface $media
    *   The Document media entity.
    */
-  private function preprocessDocument(array &$variables, MediaInterface $media): void {
+  protected function preprocessDocument(array &$variables, MediaInterface $media): void {
 
   }
 
@@ -70,7 +70,7 @@ final class MediaHooks {
    * @param \Drupal\media\MediaInterface $media
    *   The Remote Video media entity.
    */
-  private function preprocessRemoteVideo(array &$variables, MediaInterface $media): void {
+  protected function preprocessRemoteVideo(array &$variables, MediaInterface $media): void {
 
   }
 

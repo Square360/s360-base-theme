@@ -15,10 +15,10 @@ use Drupal\s360_base_theme\ThemeHelper;
  * Hook implementations for node preprocessing.
  *
  * This class provides centralized node preprocessing functionality. Each menu
- * should have its own private preprocessing method.
+ * should have its own protected preprocessing method.
  *
  * Node-specific methods:
- *  `private function preprocess[BundleName](&$variables, $node)`.
+ *  `protected function preprocess[BundleName](&$variables, $node)`.
  */
 final class NodeHooks {
 
@@ -60,7 +60,7 @@ final class NodeHooks {
    * @param \Drupal\node\NodeInterface $node
    *   The Page node entity.
    */
-  private function preprocessPage(array &$variables, NodeInterface $node): void {
+  protected function preprocessPage(array &$variables, NodeInterface $node): void {
 
   }
 

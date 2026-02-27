@@ -12,10 +12,10 @@ use Drupal\s360_base_theme\ThemeHelper;
  * Hook implementations for block preprocessing.
  *
  * This class provides centralized block preprocessing functionality. Each block
- * plugin type should have its own private preprocessing method.
+ * plugin type should have its own protected preprocessing method.
  *
  * Block-specific methods:
- *  `private function preprocess[PluginId](&$variables)`
+ *  `protected function preprocess[PluginId](&$variables)`
  */
 final class BlockHooks {
 
@@ -38,7 +38,7 @@ final class BlockHooks {
    * @param array $variables
    *   An associative array containing info about the menu.
    */
-  private function preprocessSystemMenuBlock(array &$variables): void {
+  protected function preprocessSystemMenuBlock(array &$variables): void {
     $elements = $variables['elements'];
 
     $block_name = $elements['#id'];

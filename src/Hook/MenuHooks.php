@@ -13,10 +13,10 @@ use Drupal\s360_base_theme\ThemeHelper;
  * Hook implementations for menu preprocessing.
  *
  * This class provides centralized menu preprocessing functionality. Each menu
- * should have its own private preprocessing method.
+ * should have its own protected preprocessing method.
  *
  * Menu-specific methods:
- *  `private function preprocess[MenuName]Menu(&$variables)`
+ *  `protected function preprocess[MenuName]Menu(&$variables)`
  */
 final class MenuHooks {
 
@@ -47,7 +47,7 @@ final class MenuHooks {
    *   An associative array containing:
    *   - items: Array of menu link items to be enhanced.
    */
-  private function preprocessSocialMenu(array &$variables): void {
+  protected function preprocessSocialMenu(array &$variables): void {
     $site_name = ThemeHelper::config('system.site')->get('name');
 
     foreach ($variables['items'] as &$item) {
