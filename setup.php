@@ -268,7 +268,7 @@ function alter_files(string $theme_path, array $files, array $alterations, bool 
     elseif ($file_type === 'file') {
       if (alter_file_str_replace($file_path, array_keys($alterations), $alterations) !== TRUE) {
         return FALSE;
-      };
+      }
     }
   }
 

@@ -12,9 +12,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 final class ThemeSuggestionsHooks {
 
-  public function __construct(
-    private readonly RequestStack $requestStack
-  ) {}
+  public function __construct(private readonly RequestStack $requestStack) {}
 
   /**
    * Implements hook_theme_suggestions_page_alter().

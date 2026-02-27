@@ -3,7 +3,6 @@
 namespace Drupal\s360_base_theme;
 
 use Drupal\Core\Config\ImmutableConfig;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -30,13 +29,6 @@ final class ThemeHelper {
     }
 
     return static::$logger;
-  }
-
-  /**
-   * Gets the entity type manager service.
-   */
-  public static function entityTypeManager(): EntityTypeManagerInterface {
-    return \Drupal::service('entity_type.manager');
   }
 
   /**

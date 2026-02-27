@@ -147,7 +147,7 @@ final class ThemeHooks {
     }
 
     foreach ($critical_css_files as $css_file) {
-      $css = file_get_contents("$this->themePath::/ui/dist/$css_file");
+      $css = file_get_contents("$this->themePath/ui/dist/$css_file");
 
       $page['#attached']['html_head'][] = [
         [
