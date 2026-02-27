@@ -1,4 +1,5 @@
 @use "./colors";
+@use "./focus-visible";
 
 %a {
   color: var(--a--color);
@@ -11,11 +12,6 @@
   letter-spacing: var(--a--letter-spacing);
   line-height: var(--a--line-height);
   margin: var(--a--margin, 0);
-  outline:
-    var(--a--outline--width, 0)
-    dashed
-    var(--a--outline--color, currentColor);
-  outline-offset: 4px;
   padding: var(--a--padding, 0);
   pointer-events: var(--a--pointer-events, all);
   position: var(--a--position, relative);
@@ -27,7 +23,7 @@
   width: var(--a--width);
 
   &:focus-visible {
-    --a--outline--width: 4px;
+    @extend %focus-visible;
   }
 
   &:hover,

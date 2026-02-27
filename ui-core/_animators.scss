@@ -1,0 +1,39 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:string";
+
+@mixin _base-animator {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+  }
+}
+
+%fadein-slideup-animator {
+  @include _base-animator {
+    opacity: 0;
+    translate: 0px 20px;
+  };
+}
+
+%fadein-slidedown-animator {
+  @include _base-animator {
+    opacity: 0;
+    translate: 0px -20px;
+  }
+}
+
+%fadein-slideleft-animator {
+  @include _base-animator {
+    opacity: 0;
+    translate: 40px 0px;
+  }
+}
+
+%fadein-slideright-animator {
+  @include _base-animator {
+    opacity: 0;
+    translate: -40px 0px;
+  }
+}

@@ -4,28 +4,34 @@ import { setupTwig } from './setupTwig';
 
 // DRUPAL JS
 import './drupal.js';
+import './once.global.js';
 
 // GLOBAL CSS
 import '../src/base/base.js';
 import '../src/templates/site-layout/component/site-layout.js';
 import '../src/templates/field/ckeditor/component/ckeditor.js';
 
-// COLOR THEMES
-// import color theme js files here.
+// COLOR SCHEMES
+// import color scheme js files here.
 
 setupTwig(Twig);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   backgrounds: { disable: true },
+  layout: 'none',
   options: {
     storySort: {
       method: "alphabetical",
       order: [
         "Foundation",
-        "Content Types",
-        "Taxonomy",
+        "Layouts",
         "Components",
+        "Content Types",
+        "Layout Components",
+        "Media",
+        "Menus",
+        "Taxonomy",
         "Site Layout"
       ]
     }

@@ -6,7 +6,8 @@ svg {
   width: var(--svg--width);
 
   path {
-    fill: var(--svg--path--fill, currentColor);
+    fill: var(--svg--path--fill);
     transition: var(--svg--path--transition, all 200ms ease-in-out);
+    transition-delay: var(--svg--path--transition-delay, 0ms);
   }
 }

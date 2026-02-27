@@ -1,3 +1,5 @@
+@use "@s360-base-theme/ui-core/focus-visible";
+
 button,
 [role="button"],
 input[type="submit"] {
@@ -20,14 +22,9 @@ input[type="submit"] {
   text-transform: var(--button--text-transform);
   transition: var(--button--transition, all 200ms ease-in-out);
   width: var(--button--width);
-  outline:
-    var(--button--outline--width, 0)
-    var(--button--outline--style, dashed)
-    var(--button--outline--color, currentColor);
-  outline-offset: 4px;
 
   &:focus-visible {
-    --button--outline-width: 4px;
+    @extend %focus-visible;
   }
 
   &:hover,

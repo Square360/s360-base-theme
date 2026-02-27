@@ -7,8 +7,11 @@ import buttonData from './button.yml';
 export default { title: 'Foundation/Button' };
 
 export const button = (args) => {
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone(buttonData ?? {}), args);
+
   return buttonTwig({
-    ...args,
+    ...data,
   });
 };
 button.args = buttonData;

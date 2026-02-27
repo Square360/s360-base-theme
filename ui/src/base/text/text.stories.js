@@ -16,6 +16,9 @@ export const headings = () => {
 };
 
 export const paragraph = (args) => {
-  return formatParagraphText(args.paragraph_text);
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone(paragraphData ?? {}), args);
+
+  return formatParagraphText(data.paragraph_text);
 }
 paragraph.args = paragraphData;

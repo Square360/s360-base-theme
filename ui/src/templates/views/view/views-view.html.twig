@@ -11,6 +11,7 @@
 
 {{ attach_library('s360_base_theme/views.view') }}
 {{ attach_library('s360_base_theme/views.' ~ css_name) }}
+{{ attach_library('s360_base_theme/views.' ~ css_name ~ '.' ~ display_id|clean_class) }}
 
 {% include "@ui-views/view/component/view.twig" with {
   view_id: id|clean_class,

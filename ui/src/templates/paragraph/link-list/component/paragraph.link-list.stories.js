@@ -16,7 +16,8 @@ export default {
 };
 
 export const linkList = (args) => {
-  let data = Object.assign(linkListData, args);
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone(linkListData ?? {}), args);
   data.paragraph = setPublishedStatus(data.paragraph_is_published);
 
   let links = [];

@@ -1,17 +1,17 @@
 @use "s360-scss-toolkit";
 
 @function h1-font-size() {
-  @return s360-scss-toolkit.linear-scale(s360-scss-toolkit.modular-scale(4), s360-scss-toolkit.modular-scale(4));
+  @return s360-scss-toolkit.linear-scale(s360-scss-toolkit.modular-scale(3), s360-scss-toolkit.modular-scale(4));
 }
 
 @function h2-font-size() {
-  @return s360-scss-toolkit.linear-scale(s360-scss-toolkit.modular-scale(3), s360-scss-toolkit.modular-scale(3));
+  @return s360-scss-toolkit.linear-scale(s360-scss-toolkit.modular-scale(2), s360-scss-toolkit.modular-scale(3));
 }
 
 @function h3-font-size() {
-  @return s360-scss-toolkit.linear-scale(s360-scss-toolkit.modular-scale(2), s360-scss-toolkit.modular-scale(2));
+  @return s360-scss-toolkit.linear-scale(s360-scss-toolkit.modular-scale(1), s360-scss-toolkit.modular-scale(2));
 }
 
 @function h4-font-size() {
-  @return s360-scss-toolkit.linear-scale(s360-scss-toolkit.modular-scale(1), s360-scss-toolkit.modular-scale(1));
+  @return s360-scss-toolkit.linear-scale(s360-scss-toolkit.modular-scale(0), s360-scss-toolkit.modular-scale(1));
 }

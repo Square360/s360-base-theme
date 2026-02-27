@@ -10,7 +10,8 @@ export default {
 };
 
 export const {{ storybookFunctionName }} = (args) => {
-  let data = Object.assign({{ storybookComponentName }}Data ?? {}, args);
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone({{ storybookComponentName }}Data ?? {}), args);
 
   return {{ storybookComponentName }}Twig({
     ...data,

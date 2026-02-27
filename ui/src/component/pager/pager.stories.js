@@ -8,13 +8,19 @@ import './pager.js';
 export default { title: 'Components/Pager' };
 
 export const miniPager = (args) => {
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone(pagerData ?? {}), args);
+
   return pagerTwig({
-    ...pagerData.mini_pager
+    ...data.mini_pager
   });
 }
 
 export const pager = (args) => {
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone(pagerData ?? {}), args);
+
   return pagerTwig({
-    ...pagerData.pager,
+    ...data.pager,
   });
 }
