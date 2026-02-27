@@ -230,7 +230,7 @@ final class ParagraphHooks {
       $parameters->excludeRoot();
       $parameters->setRoot($menu_for_current_node['parent']);
 
-      $menu_links = $menu_link_tree->load($menu_for_current_node['menu_name'], $parameters);
+      $menu_links = $this->menuLinkTree->load($menu_for_current_node['menu_name'], $parameters);
     }
 
     $manipulators = [
@@ -238,8 +238,8 @@ final class ParagraphHooks {
       ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
     ];
 
-    $menu_links = $menu_link_tree->transform($menu_links, $manipulators);
-    $build = $menu_link_tree->build($menu_links);
+    $menu_links = $this->menuLinkTree->transform($menu_links, $manipulators);
+    $build = $this->menuLinkTree->build($menu_links);
 
     $build['#cache']['contexts'][] = 'url.path';
     $build['#menu_name'] = 'in-this-section-menu';
