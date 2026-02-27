@@ -1,14 +1,24 @@
 @use "@s360-base-theme/ui-core/site-config";
-@use "@s360-base-theme/ui-core/content-containers";
+@use "@s360-base-theme/ui-core/animators";
+@use "s360-scss-toolkit";
 
 .layout {
   container-name: layout;
   container-type: inline-size;
 
-  > .layout__content > .layout__regions {
-    display: grid;
-    row-gap: site-config.spacer(0);
-    column-gap: site-config.$column-gap;
+  &:not(.layout--one-column) {
+    > .layout__content > .layout__regions {
+      display: grid;
+      row-gap: site-config.spacer(0);
+      column-gap: site-config.$column-gap;
+    }
+  }
+
+  // Apply slideup animator to all region items except inside two-column.
+  &:not(.layout--two-column) {
+    .layout__region-item {
+      @extend %fadein-slideup-animator;
+    }
   }
 
   .layout__region {
@@ -16,20 +26,17 @@
     container-type: inline-size;
     display: flex;
     flex-direction: column;
-    opacity: var(--layout-region--opacity);
-    transition: all 500ms ease-in-out var(--layout-region--transition-delay, 0ms);
-    translate: var(--layout-region--translate);
 
     &--gap-sm {
-      row-gap: site-config.spacer(0);
+      row-gap: site-config.spacer(2);
     }
 
     &--gap-md {
-      row-gap: site-config.spacer(0);
+      row-gap: site-config.spacer(4);
     }
 
     &--gap-lg {
-      row-gap: site-config.spacer(0);
+      row-gap: site-config.spacer(6);
     }
   }
 
@@ -37,15 +44,15 @@
   // BOTTOM MARGINS
 
   &.layout--margin-bottom-sm {
-    margin-bottom: site-config.spacer(0);
+    margin-bottom: site-config.spacer(2);
   }
 
   &.layout--margin-bottom-md {
-    margin-bottom: site-config.spacer(0);
+    margin-bottom: site-config.spacer(4);
   }
 
   &.layout--margin-bottom-lg {
-    margin-bottom: site-config.spacer(0);
+    margin-bottom: site-config.spacer(6);
   }
 
   &:last-child {

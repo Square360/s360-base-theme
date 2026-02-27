@@ -5,6 +5,10 @@
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.setAttribute('data-js', 'media-image') %}
 
+{% if not media_field_caption %}
+  {% set media_tag = 'div' %}
+{% endif %}
+
 {% if not attributes.class %}
   {% set attributes = attributes.setAttribute('class', classes) %}
 {% endif %}
@@ -18,4 +22,10 @@
 
 {% block media_content %}
   {{ media_field_media_image }}
+
+  {% if media_caption %}
+    <figcaption class="media__figcaption">
+      {{ media_caption }}
+    </figcaption>
+  {% endif %}
 {% endblock %}

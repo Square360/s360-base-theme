@@ -1,4 +1,4 @@
-$_default-thickness: 2px;
+$_default-thickness: 1px;
 
 %_animate-underline {
   display: inline;
@@ -11,7 +11,7 @@ $_default-thickness: 2px;
     var(--animate-underline--bg-size--width, 0%)
     var(--animate-underline--bg-size--thickness, #{ $_default-thickness });
   background-repeat: no-repeat;
-  background-position-y: bottom;
+  background-position-y: var(--animate-underline--bg-position-y, bottom);
   background-position-x: var(--animate-underline--bg-position-x, right);
   transition: all 200ms ease-in-out;
 

@@ -1,0 +1,21 @@
+%custom-scrollbar {
+  scrollbar-color: var(--custom-scrollbar--scrollbar-color) transparent;
+  scrollbar-width: 0.5rem;
+
+  &::-webkit-scrollbar {
+    background: transparent;
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: none;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background-color: var(--custom-scrollbar--track--bg-color);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--custom-scrollbar--scrollbar-color);
+  }
+}

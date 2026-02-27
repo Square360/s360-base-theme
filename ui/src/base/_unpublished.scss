@@ -2,15 +2,17 @@
 @use "@s360-base-theme/ui-core/colors";
 @use "@s360-base-theme/ui-core/typography";
 
+$_unpublished: #FFC0CB;
+
 [data-unpublished="node"] {
-  background-color: colors.$unpublished;
+  background-color: $_unpublished;
 }
 
 [data-unpublished="paragraph"] {
   position: relative;
 
   &::after {
-    $_background-pattern-color: rgba(colors.$unpublished, 0.125);
+    $_background-pattern-color: rgba($_unpublished, 0.125);
 
     background-image:
       repeating-linear-gradient(
@@ -40,7 +42,7 @@
   }
 
   &::before {
-    background-color: #FFC0CB;
+    background-color: $_unpublished;
     color: colors.$black;
     content: 'Unpublished';
     display: block;

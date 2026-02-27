@@ -47,7 +47,9 @@ const WEBPACK_CONFIG = {
    */
   output: {
     path: path.resolve(`${ __dirname }/dist`),
-    clean: true,
+    clean: {
+      keep: /\.gitkeep/
+    },
     pathinfo: false,
   },
 
@@ -77,6 +79,7 @@ const WEBPACK_CONFIG = {
     alias: {
       SRC_IMAGES$: path.resolve('src/images'),
       vendors: path.resolve('vendors'),
+      utils: path.resolve('utils'),
     }
   },
 
@@ -187,7 +190,7 @@ WEBPACK_CONFIG.module.rules.push({
         implementation: require('sass'),
         sassOptions: {
           // Silence deprecation warnings.
-          // quietDeps: true
+          quietDeps: true
         }
       }
     }
@@ -295,9 +298,9 @@ module.exports = [
 // [THEME_NAME] with the name of the theme.
 // Object.assign({}, WEBPACK_CONFIG, {
 //   name: '[THEME_NAME]',
-//   entry: getEntries(path.resolve("../themes/[THEME_NAME]/ui/src/**/!(_*|*.stories|*.component|*.min|*.test).js")),
+//   entry: getEntries(path.resolve("../../[THEME_NAME]/ui/src/**/!(_*|*.stories|*.component|*.min|*.test).js")),
 //   output: {
-//     path: path.resolve('../themes/[THEME_NAME]/ui/dist'),
+//     path: path.resolve('../../[THEME_NAME]/ui/dist'),
 //     clean: true,
 //   },
 // }),

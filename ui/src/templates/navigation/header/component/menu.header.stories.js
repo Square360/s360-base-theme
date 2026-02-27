@@ -10,7 +10,7 @@ import drupalAttribute from 'drupal-attribute';
 /**
  * Storybook Definition.
  */
-export default { title: 'Navigation/Menus/Header' };
+export default { title: 'Menus/Header' };
 
 headerData.items.forEach(item => {
   setMenuItemAttribues(item);

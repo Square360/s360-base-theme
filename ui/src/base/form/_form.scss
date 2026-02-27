@@ -1,6 +1,7 @@
 @use "@s360-base-theme/ui-core/site-config";
 @use "@s360-base-theme/ui-core/colors";
 @use "@s360-base-theme/ui-core/cta-primary";
+@use "@s360-base-theme/ui-core/focus-visible";
 @use "s360-scss-toolkit";
 
 form {
@@ -23,14 +24,14 @@ form {
     display: var(--form-input--display, block);
     padding: var(--form-input--padding);
     width: var(--form-input--width, 100%);
-    outline: 0;
+    outline: none;
 
     &:invalid {
       box-shadow: none;
     }
 
     &:focus-visible {
-      --form-input--outline--width: 5px;
+      @extend %focus-visible;
     }
 
     &::placeholder {
@@ -60,7 +61,7 @@ form {
     font-family: var(--form-label-font-family);
     font-size: var(--form-label-font-size);
 
-    &:has(+ *[required]) {
+    &[class*="required"] {
       &::after {
         content: "\002A";
         color: currentColor;

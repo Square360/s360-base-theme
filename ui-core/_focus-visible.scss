@@ -1,0 +1,12 @@
+@mixin focus-visible {
+  outline:
+    var(--focus-visible--outline-width, 4px)
+    var(--focus-visible--outline-style, dashed)
+    var(--focus-visible--outline-color, currentColor);
+  outline-offset: var(--focus-visible--outline-offset, 4px);
+  transition: all 200ms ease-in-out;
+}
+
+%focus-visible {
+  @include focus-visible;
+}

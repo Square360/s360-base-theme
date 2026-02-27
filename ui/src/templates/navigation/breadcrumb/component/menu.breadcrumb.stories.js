@@ -5,7 +5,7 @@ import './menu.breadcrumb.js';
 /**
  * Storybook Definition.
  */
-export default { title: 'Navigation/Menus/Breadcrumb' };
+export default { title: 'Menus/Breadcrumb' };
 
 export const breadcrumb = () => {
   return breadcrumbTwig({

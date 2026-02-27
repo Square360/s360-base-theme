@@ -8,7 +8,8 @@ import './block.branding-block.js';
 export default { title: 'Site Layout/Branding Block' };
 
 export const brandingBlock = (args) => {
-  let data = Object.assign(brandingBlockData, args);
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone(brandingBlockData ?? {}), args);
 
   return brandingBlockTwig({
     ...data,

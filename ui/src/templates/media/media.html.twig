@@ -1,5 +1,9 @@
 {% set media_tag = media_tag|default('figure') %}
 
+{% if not media.isPublished() %}
+  {% set attributes = attributes.setAttribute('data-unpublished', 'media') %}
+{% endif %}
+
 <{{ media_tag }}{{ attributes }}>
   {% block media_content %}
     {{ content }}

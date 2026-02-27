@@ -1,13 +1,12 @@
 name: S360 Base Theme
 description: ''
 type: theme
-base theme: false
-core_version_requirement: ^9 || ^10 || ^11
+base theme: drupal_base_theme
+core_version_requirement: ^10 || ^11
 dependencies:
   - components:components
   - style_options:style_options
   - twig_tweak:twig_tweak
-  - menus_attribute:menus_attribute
   - twig_field_value:twig_field_value
   - s360_base_paragraphs:s360_base_paragraphs
   - s360_layout_builder:s360_layout_builder

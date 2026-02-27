@@ -15,7 +15,8 @@ export default {
 };
 
 export const htmlContent = (args) => {
-  let data = Object.assign(htmlContentData, args);
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone(htmlContentData ?? {}), args);
   data.paragraph = setPublishedStatus(data.paragraph_is_published);
 
   return htmlContentTwig({

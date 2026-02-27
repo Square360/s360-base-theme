@@ -10,7 +10,7 @@ import drupalAttribute from 'drupal-attribute';
 /**
  * Storybook Definition.
  */
-export default { title: 'Navigation/Menus/Social' };
+export default { title: 'Menus/Social' };
 
 socialData.items.forEach(item => {
   setMenuItemAttribues(item);

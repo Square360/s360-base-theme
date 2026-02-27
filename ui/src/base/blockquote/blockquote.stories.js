@@ -9,10 +9,11 @@ import { formatParagraphText } from '.storybook/utils';
 export default { title: 'Foundation/Blockquote' };
 
 export const blockquote = (args) => {
-  let { blockquote_content } = args;
+  // Create deep copy of data and merge args.
+  let data = Object.assign(structuredClone(blockquoteData ?? {}), args);
 
   return blockquoteTwig({
-    ...args,
+    ...data,
     blockquote_content: formatParagraphText(args.blockquote_content),
   });
 };
