@@ -6,10 +6,10 @@
     var(--animate-background--gradient-color) 100%
   );
   background-size:
-    var(--animate-background--background-size--width, 0%)
-    var(--animate-background--background-size--height, 0%);
+    var(--animate-background--bg-size--width, 0%)
+    var(--animate-background--bg-size--height, 0%);
   background-repeat: no-repeat;
-  background-position: var(--animate-background--background-position);
+  background-position: var(--animate-background--bg-position);
   color: var(--animate-background--color);
   transition: all 200ms ease-in-out;
 
@@ -20,45 +20,45 @@
 }
 
 %animate-background-to-top {
-  --animate-background--background-size--width: 100%;
-  --animate-background--background-position: bottom;
+  --animate-background--bg-size--width: 100%;
+  --animate-background--bg-position: bottom;
   @extend %_animate-background;
 
   &:hover,
   &:focus-visible {
-    --animate-background--background-size--height: 100%;
+    --animate-background--bg-size--height: 100%;
   }
 }
 
 %animate-background-to-bottom {
-  --animate-background--background-size--width: 100%;
-  --animate-background--background-position: top;
+  --animate-background--bg-size--width: 100%;
+  --animate-background--bg-position: top;
   @extend %_animate-background;
 
   &:hover,
   &:focus-visible {
-    --animate-background--background-size--height: 100%;
+    --animate-background--bg-size--height: 100%;
   }
 }
 
 %animate-background-to-left {
-  --animate-background--background-size--height: 100%;
-  --animate-background--background-position: left;
+  --animate-background--bg-size--height: 100%;
+  --animate-background--bg-position: left;
   @extend %_animate-background;
 
   &:hover,
   &:focus-visible {
-    --animate-background--background-size--width: 100%;
+    --animate-background--bg-size--width: 100%;
   }
 }
 
 %animate-background-to-right {
-  --animate-background--background-size--height: 100%;
-  --animate-background--background-position: right;
+  --animate-background--bg-size--height: 100%;
+  --animate-background--bg-position: right;
   @extend %_animate-background;
 
   &:hover,
   &:focus-visible {
-    --animate-background--background-size--width: 100%;
+    --animate-background--bg-size--width: 100%;
   }
 }
