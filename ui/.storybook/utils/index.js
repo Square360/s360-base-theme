@@ -1,14 +1,26 @@
+/**
+ * @file
+ * Utility functions and controls for Storybook stories.
+ * Provides formatting helpers, theme controls, and Drupal-specific utilities.
+ */
+
 import pTwig from '@ui-base/text/p/_p.twig';
 import ckEditorTwig from '@ui-field/ckeditor/component/ckeditor.twig';
 import drupalAttribute from 'drupal-attribute';
 
-// CTA Link Styles
-
+/**
+ * Available CTA link style options.
+ * @type {Object.<string, string>}
+ */
 export const CTA_LINK_STYLE_OPTIONS = {
   'primary': 'Primary',
   'secondary': 'Secondary',
 };
 
+/**
+ * Storybook control configuration for CTA link styles.
+ * @type {Object}
+ */
 export const ctaLinkStyleControl = {
   options: Object.keys(CTA_LINK_STYLE_OPTIONS),
   control: {
@@ -17,10 +29,18 @@ export const ctaLinkStyleControl = {
   },
 }
 
+/**
+ * Available color scheme options.
+ * @type {Object.<string, string>}
+ */
 export const COLOR_SCHEME_OPTIONS = {
   '': '- None -',
 };
 
+/**
+ * Storybook control configuration for color schemes.
+ * @type {Object}
+ */
 export const colorSchemeControl = {
   options: Object.keys(COLOR_SCHEME_OPTIONS),
   control: {
@@ -29,13 +49,19 @@ export const colorSchemeControl = {
   },
 }
 
-// Image Position
-
+/**
+ * Available image position options.
+ * @type {Object.<string, string>}
+ */
 const IMAGE_POSITION_OPTIONS = {
   'left': 'Left',
   'right': 'Right',
 }
 
+/**
+ * Storybook control configuration for image positioning.
+ * @type {Object}
+ */
 export const imagePositionControl = {
   options: Object.keys(IMAGE_POSITION_OPTIONS),
   control: {
@@ -45,9 +71,11 @@ export const imagePositionControl = {
 }
 
 /**
+ * Formats paragraph text by splitting on line breaks and wrapping each
+ * paragraph in a paragraph template.
  *
- * @param {string} paragraphText
- * @returns
+ * @param {string} paragraphText - The text to format into paragraphs.
+ * @returns {string} The formatted HTML string with each paragraph wrapped.
  */
 export function formatParagraphText(paragraphText) {
   if (!paragraphText) return '';
@@ -63,12 +91,28 @@ export function formatParagraphText(paragraphText) {
   }).join('');
 }
 
+/**
+ * Formats paragraph text and wraps it in a CKEditor container.
+ *
+ * @param {string} paragraphText - The text to format into paragraphs.
+ * @returns {string} The formatted HTML string wrapped in CKEditor markup.
+ */
 export function formatParagraphCKEditor(paragraphText) {
   if (!paragraphText) return '';
 
+  return wrapWithCkEdtior(formatParagraphText(paragraphText));
+}
+
+/**
+ * Wraps any content in a CKEditor-classed div container.
+ *
+ * @param {string} content - The HTML content to wrap.
+ * @returns {string} The content wrapped in CKEditor markup.
+ */
+export function wrapWithCkEdtior(content) {
   return ckEditorTwig({
     field_items: [{
-      content: formatParagraphText(paragraphText)
+      content: content
     }]
   });
 }
@@ -80,7 +124,7 @@ export function formatParagraphCKEditor(paragraphText) {
  * @param {string} storyTheme - The theme the story needs to render correctly.
  * @param {string} activeTheme - The current theme that is selected.
  * @param {string} story - The story to render.
- * @returns
+ * @returns {string}
  */
 export function renderStoryWithTheme(storyTheme, activeTheme, story) {
   if (activeTheme !== storyTheme) {
@@ -91,9 +135,12 @@ export function renderStoryWithTheme(storyTheme, activeTheme, story) {
 }
 
 /**
- * Sets the Drupal attributes on the menu item.
+ * Sets the Drupal attributes on a menu item and recursively on its children.
+ * Initializes a new drupalAttribute instance for each menu item.
  *
- * @param {object} item The menu item.
+ * @param {Object} item - The menu item object.
+ * @param {Object} [item.below] - Optional array of child menu items.
+ * @returns {void}
  */
 export function setMenuItemAttribues(item) {
   item.attributes = new drupalAttribute();
@@ -106,14 +153,14 @@ export function setMenuItemAttribues(item) {
 }
 
 /**
- * Create a fake `<nav>` tag to wrap the menu, similar to Drupal.
+ * Creates a fake `<nav>` tag to wrap the menu, similar to Drupal's
+ * system menu block structure.
  *
- * @param {string} id The name of the menu.
- * @param {string} menu The menu rendered as a string.
- * @param {string} label
- * @returns {string}
+ * @param {string} id - The machine name/ID of the menu.
+ * @param {string} menu - The menu HTML rendered as a string.
+ * @returns {string} The menu wrapped in a nav element with Drupal-like attributes.
  */
-export function fakeDrupalSystemMenuBlock(id, menu, label) {
+export function fakeDrupalSystemMenuBlock(id, menu) {
   return `
     <nav
       id="block-${id}"
@@ -121,11 +168,18 @@ export function fakeDrupalSystemMenuBlock(id, menu, label) {
       role="navigation"
       aria-labelledby="block-${id}-menu"
       data-js="block-${id}-menu">
-      ${(label) ? `<h2 id="block-${id}-menu">${label}</h2>` : ''}
+      <h2 id="block-${id}-menu" class="visually-hidden">Menu</h2>
       ${ menu }
     </nav>`;
 }
 
+/**
+ * Creates a mock object with an isPublished method for testing purposes.
+ *
+ * @param {boolean} status - The published status to return.
+ * @returns {Object} An object with an isPublished() method.
+ * @returns {Function} returns.isPublished - Function that returns the provided status.
+ */
 export function setPublishedStatus(status) {
   return {
     isPublished() {
