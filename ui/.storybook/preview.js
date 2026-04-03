@@ -25,14 +25,14 @@ export const parameters = {
       method: "alphabetical",
       order: [
         "Foundation",
-        "Layouts",
-        "Components",
         "Content Types",
+        "Site Layout",
+        "Layouts",
         "Layout Components",
-        "Media",
         "Menus",
+        "Media",
         "Taxonomy",
-        "Site Layout"
+        "Components",
       ]
     }
   }
@@ -40,8 +40,13 @@ export const parameters = {
 
 export const decorators = [
   (storyFn) => {
-    useEffect(() => Drupal.attachBehaviors(), []);
-    return storyFn();
+    const story = storyFn();
+
+    useEffect(() => {
+      Drupal.attachBehaviors();
+    });
+
+    return story;
   }
 ];
 
