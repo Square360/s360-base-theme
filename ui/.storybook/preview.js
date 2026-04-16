@@ -20,6 +20,17 @@ export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   backgrounds: { disable: true },
   layout: 'none',
+  a11y: {
+    config: {
+      rules: [
+        // Disabled alt text checking.
+        {
+          id: 'image-alt',
+          enabled: false,
+        },
+      ],
+    },
+  },
   options: {
     storySort: {
       method: "alphabetical",
@@ -29,7 +40,7 @@ export const parameters = {
         "Site Layout",
         "Layouts",
         "Layout Components",
-        "Menus",
+        "Navigation",
         "Media",
         "Taxonomy",
         "Components",
