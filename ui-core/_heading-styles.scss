@@ -14,6 +14,7 @@
   transition: var(--heading--transition, all 200ms ease-in-out);
   margin-top: var(--heading--margin-top);
   margin-bottom: var(--heading--margin-bottom);
+  text-wrap: balance;
 }
 
 %heading-style-margin-top {
