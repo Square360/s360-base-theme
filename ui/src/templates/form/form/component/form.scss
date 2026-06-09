@@ -1,6 +1,6 @@
 @use "@s360-base-theme/ui-core/site-config";
 @use "@s360-base-theme/ui-core/colors";
-@use "@s360-base-theme/ui-core/icon-embed";
+@use "@s360-base-theme/ui-core/mask-embed";
 @use "s360-scss-toolkit" as s360;
 
 .form {
@@ -18,14 +18,14 @@
     position: relative;
 
     select {
-      padding-right: calc(#{ (s360-scss-toolkit.modular-scale(1) * 3) + px });
+      padding-right: calc(#{(s360.modular-scale(1) * 3) + px });
     }
 
     &::after {
-      --icon-embed--bg-color: var(--text--color);
-      --icon-embed--translate: 0 -50%;
-      --icon-embed--mask-image: '';
-      @extend %icon-embed;
+      --mask-embed--bg-color: var(--text--color);
+      --mask-embed--translate: 0 -50%;
+      --mask-embed--mask-image: '';
+      @extend %mask-embed;
 
       top: 50%;
       right: 0;
