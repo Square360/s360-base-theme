@@ -5,4 +5,5 @@ img {
   width: var(--img--width, auto);
   object-fit: var(--img--object-fit, initial);
   position: var(--img--position);
+  object-position: var(--img--object-position);
 }

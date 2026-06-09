@@ -18,5 +18,6 @@ figure {
     display: var(--figcaption--display, table-caption);
     caption-side: var(--figcaption--caption-side, bottom);
     line-height: var(--figcaption--line-height);
+    width: var(--figcaption--width);
   }
 }
