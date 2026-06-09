@@ -1,7 +1,7 @@
 @use "@s360-base-theme/ui-core/site-config";
 @use "@s360-base-theme/ui-core/heading-styles";
 @use "@s360-base-theme/ui-core/heading-font-sizes";
-@use "s360-scss-toolkit";
+@use "s360-scss-toolkit" as s360;
 
 .advanced-header-field {
   scroll-margin-top: var(--site-header-height);
@@ -37,7 +37,7 @@
 
   .advanced-header-field__subtitle {
     margin-top: 0.25em;
-    font-size: s360-scss-toolkit.font-size-ms(0);
+    font-size: s360.font-size-ms(0);
   }
 
   // **************************************************

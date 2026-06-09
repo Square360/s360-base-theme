@@ -1,0 +1,17 @@
+@mixin mask-embed {
+  aspect-ratio: var(--mask-embed--aspect-ratio, 1 / 1);
+  background-color: var(--mask-embed--bg-color, currentColor);
+  content: "";
+  display: var(--mask-embed--display, inline-block);
+  mask-image: var(--mask-embed--mask-image);
+  margin-inline: var(--mask-embed--margin-inline);
+  mask-repeat: no-repeat;
+  transition: all 200ms ease-in-out var(--mask-embed--transition-delay, 0ms);
+  translate: var(--mask-embed--translate, 0 0);
+  width: var(--mask-embed--width, 1em);
+  height: var(--mask-embed--height, 1em);
+}
+
+%mask-embed {
+  @include mask-embed();
+}

@@ -1,5 +1,5 @@
 @use "@s360-base-theme/ui-core/text-styles";
-@use "s360-scss-toolkit";
+@use "s360-scss-toolkit" as s360;
 
 figure {
   display: var(--figure--display, block);
@@ -18,5 +18,6 @@ figure {
     display: var(--figcaption--display, table-caption);
     caption-side: var(--figcaption--caption-side, bottom);
     line-height: var(--figcaption--line-height);
+    width: var(--figcaption--width);
   }
 }

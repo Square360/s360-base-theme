@@ -4,14 +4,14 @@ $SITE_CONFIG: (
 );
 
 @use "sass:math";
-@use "s360-scss-toolkit" with ($config: $SITE_CONFIG);
+@use "s360-scss-toolkit" as s360 with ($config: $SITE_CONFIG);
 @use "./mq";
 
 // **************************************************
 // SPACING
 
 @function spacer($amount: 0) {
-  @return s360-scss-toolkit.to-unit(s360-scss-toolkit.modular-scale($amount), 'px');
+  @return s360.to-unit(s360.modular-scale($amount), 'px');
 }
 
 // **************************************************
@@ -51,7 +51,7 @@ $column-gap: spacer(0);
 // TEXT AND LAYOUT
 
 $site-max-width: 1440px;
-$site-side-margin: s360-scss-toolkit.linear-scale(spacer(0), spacer(0));
+$site-side-margin: s360.linear-scale(spacer(0), spacer(0));
 $site-content-area: calc(#{ $site-max-width } - calc(#{ $site-side-margin } * 2));
 $main-menu-mq: 'min-width: #{ mq.$mq-1024 }';
 $max-line-length: 80ch;

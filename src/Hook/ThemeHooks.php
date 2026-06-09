@@ -137,7 +137,7 @@ final class ThemeHooks {
       'block/branding-block/block.branding-block.css',
       'site-layout/site-header/site-header.css',
       'site-layout/site-main/site-main.css',
-      'site-layout/menu-block/menu-block.css',
+      'site-layout/block-menu/block-menu.css',
       'site-layout/menu-toggle/menu-toggle.css',
     ];
 

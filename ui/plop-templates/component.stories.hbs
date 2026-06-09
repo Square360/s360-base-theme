@@ -2,6 +2,8 @@ import {{ storybookComponentName }}Twig from './{{ componentFilename }}.twig';
 import {{ storybookComponentName }}Data from './{{ componentFilename }}.yml';
 import './{{ componentFilename }}.js';
 
+import { setPublishedStatus } from '.storybook/utils';
+
 /**
  * Storybook Definition.
  */
@@ -12,6 +14,7 @@ export default {
 export const {{ storybookFunctionName }} = (args) => {
   // Create deep copy of data and merge args.
   let data = Object.assign(structuredClone({{ storybookComponentName }}Data ?? {}), args);
+  data.{{ entityType }} = setPublishedStatus(data.{{ entityType }}_is_published ?? true);
 
   return {{ storybookComponentName }}Twig({
     ...data,

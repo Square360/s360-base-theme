@@ -18,7 +18,9 @@ module.exports = {
     // 'storybook-addon-data-theme-switcher'
   ],
   staticDirs: [
+    '../../',
     '../dist/',
     './fontawesome',
+    './images',
   ],
 };

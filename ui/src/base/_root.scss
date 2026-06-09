@@ -3,4 +3,5 @@
 :root {
   --safe-area-inline: #{ site-config.$site-side-margin };
   --main-menu-mq: #{ site-config.$main-menu-mq };
+  --site-max-width: #{site-config.$site-max-width};
 }

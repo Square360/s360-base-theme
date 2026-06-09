@@ -1,5 +1,6 @@
 @use "@s360-base-theme/ui-core/content-containers";
 @use "@s360-base-theme/ui-core/typography";
+@use "s360-scss-toolkit" as s360;
 
 body {
   @extend %content-container-live;
@@ -8,4 +9,7 @@ body {
   font-family: '';
   line-height: 1.2;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
 }

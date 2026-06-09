@@ -1,0 +1,55 @@
+@use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/colors";
+@use "s360-scss-toolkit" as s360;
+
+.status-message {
+  border: 4px solid var(--status-message--border-color, currentColor);
+  padding: site-config.spacer(0);
+
+  &[aria-label="status"] {
+    --status-message--border-color: var(
+      --status-message--color--success,
+      #{colors.$status-message}
+    );
+  }
+
+  &[aria-label="warning"] {
+    --status-message--border-color: var(
+      --status-message--color--warning,
+      #{colors.$warning-message}
+    );
+  }
+
+  &[aria-label="error"] {
+    --status-message--border-color: var(
+      --status-message--color--error,
+      #{colors.$error-message}
+    );
+    background-color: var(--status-message--border-color);
+    border: none;
+    color: colors.$black;
+  }
+
+  &[aria-label="info"] {
+    --status-message--border-color: var(
+      --status-message--color--info,
+      #{colors.$info-message}
+    );
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__list-item {
+    & + & {
+      margin-top: site-config.spacer(1);
+    }
+  }
+
+  + .status-message {
+    margin-top: site-config.spacer(2);
+  }
+}

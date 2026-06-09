@@ -1,0 +1,9 @@
+status_messages_message_list:
+  status:
+    - 'Your changes have been saved.'
+  warning:
+    - 'This action cannot be undone.'
+  error:
+    - 'An error occurred. Please try again.'
+  info:
+    - 'New content is available.'
