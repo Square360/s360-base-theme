@@ -16,7 +16,15 @@ import drupalAttribute from 'drupal-attribute';
 /**
  * Storybook Definition.
  */
-export default { title: 'Layouts/Layouts' };
+export default {
+  title: 'Layouts/Layouts',
+  args: {
+    debug: false,
+  },
+  argTypes: {
+    debug: { name: "Debug mode" },
+  },
+};
 
 // **************************************************
 // ONE COLUMN LAYOUT
@@ -25,11 +33,14 @@ const ONE_COLUMN_WIDTH_OPTIONS = {
 };
 
 export const oneColumn = (args) => {
-  let data = Object.assign({}, args);
-  let { color_scheme, column_width } = args;
+  let { color_scheme, column_width, debug } = args;
   let paragraphAttributes = Object.assign({});
 
   paragraphAttributes['class'] = [];
+
+  if (debug) {
+    paragraphAttributes["class"].push("layout--debug");
+  }
 
   if (color_scheme) {
     paragraphAttributes['data-color-scheme'] = color_scheme;
@@ -83,10 +94,15 @@ const LAYOUT_TWO_COLUMN_RATIO_OPTIONS = {
 
 export const twoColumn = (args) => {
   let column_ratio = args.column_ratio ?? 'layout--50-50';
-  let paragraphClasses = [column_ratio];
+  let debug = args.debug ?? false;
   let paragraphAttributes = Object.assign({});
 
-  paragraphAttributes.class = paragraphClasses;
+  paragraphAttributes["class"] = [];
+  paragraphAttributes["class"].push(column_ratio);
+
+  if (debug) {
+    paragraphAttributes["class"].push("layout--debug");
+  }
 
   return twoColumTwig({
     paragraph_layout_region_first: placeholder(),
@@ -120,10 +136,15 @@ const LAYOUT_THREE_COLUMN_RATIO_OPTIONS = {
 
 export const threeColumn = (args) => {
   let column_ratio = args.column_ratio ?? 'layout--33-33-33';
-  let paragraphClasses = [column_ratio];
+  let debug = args.debug ?? false;
   let paragraphAttributes = Object.assign({});
 
-  paragraphAttributes.class = paragraphClasses;
+  paragraphAttributes["class"] = [];
+  paragraphAttributes["class"].push(column_ratio);
+
+  if (debug) {
+    paragraphAttributes["class"].push("layout--debug");
+  }
 
   return threeColumTwig({
     paragraph_layout_region_first: placeholder(),
@@ -150,7 +171,14 @@ threeColumn.args = {
 // FOUR COLUMN LAYOUT
 
 export const fourColumn = () => {
+  let debug = args.debug ?? false;
   let paragraphAttributes = Object.assign({});
+
+  paragraphAttributes["class"] = [];
+
+  if (debug) {
+    paragraphAttributes["class"].push("layout--debug");
+  }
 
   return fourColumTwig({
     paragraph_layout_region_first: placeholder(),
@@ -160,16 +188,21 @@ export const fourColumn = () => {
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
-fourColumn.argTypes = {
-};
-fourColumn.args = {
-};
+fourColumn.argTypes = {};
+fourColumn.args = {};
 
 // **************************************************
 // ACCORDION LAYOUT
 
 export const accordionColumn = () => {
+  let debug = args.debug ?? false;
   let paragraphAttributes = Object.assign({});
+
+  paragraphAttributes["class"] = [];
+
+  if (debug) {
+    paragraphAttributes["class"].push("layout--debug");
+  }
 
   return accordionTwig({
     paragraph_layout_header: 'Accordion',
@@ -177,7 +210,5 @@ export const accordionColumn = () => {
     attributes: new drupalAttribute(Object.entries(paragraphAttributes)),
   });
 };
-accordionColumn.argTypes = {
-};
-accordionColumn.args = {
-};
+accordionColumn.argTypes = {};
+accordionColumn.args = {};
