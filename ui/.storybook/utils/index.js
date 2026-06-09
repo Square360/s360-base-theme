@@ -1,10 +1,5 @@
-/**
- * @file
- * Utility functions and controls for Storybook stories.
- * Provides formatting helpers, theme controls, and Drupal-specific utilities.
- */
-
 import pTwig from '@ui-base/text/p/_p.twig';
+import linkTwig from '@ui-base/link/_link.twig';
 import ckEditorTwig from '@ui-field/ckeditor/component/ckeditor.twig';
 import drupalAttribute from 'drupal-attribute';
 
@@ -186,4 +181,14 @@ export function setPublishedStatus(status) {
       return status;
     }
   }
+}
+
+export function formatLinksArray(sourceLinks) {
+  let links = [];
+
+  sourceLinks.forEach(link => {
+    links.push(linkTwig({ link_text: link }))
+  });
+
+  return links;
 }
