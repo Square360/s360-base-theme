@@ -4,13 +4,13 @@
   <ol id="menu-breadcrumb" class="menu menu--breadcrumb" data-js="breadcrumb">
     {% for item in breadcrumb %}
       <li class="menu__item">
-        {% spaceless %}
+        {% apply spaceless %}
           {% if item.url %}
             <a href="{{ item.url }}"><span>{{ item.text }}</span></a>
           {% else %}
             {{ item.text }}
           {% endif %}
-        {% endspaceless %}
+        {% endapply %}
 
         {% if not loop.last %}
           <div class="menu__item-seperator">
