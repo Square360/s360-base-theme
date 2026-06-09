@@ -31,6 +31,8 @@ final class TaxonomyHooks {
     if (method_exists($this, $term_bundle_method)) {
       $this->$term_bundle_method($variables, $term);
     }
+
+    unset($variables['attributes']['about']);
   }
 
 }
