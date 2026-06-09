@@ -1,8 +1,8 @@
 @use "./site-config";
 @use "./colors";
 @use "./typography";
-@use "./icon-embed";
-@use "s360-scss-toolkit";
+@use "./mask-embed";
+@use "s360-scss-toolkit" as s360;
 
 %accordion {
   summary {
@@ -13,10 +13,10 @@
     --summary--display: var(--accordion--summary--display);
 
     &::before {
-      --icon-embed--margin-inline: 0 0.5em;
-      --icon-embed--bg-color: '';
-      --icon-embed--mask-image: '';
-      @extend %icon-embed;
+      --mask-embed--margin-inline: 0 0.5em;
+      --mask-embed--bg-color: '';
+      --mask-embed--mask-image: '';
+      @extend %mask-embed;
 
       transition: rotate 200ms ease-in-out;
       rotate: var(--accordion--summary--rotate, 0);
