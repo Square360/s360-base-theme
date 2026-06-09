@@ -1,1 +1,1 @@
-import './media.document.scss';
+import './media.document.default.scss';
