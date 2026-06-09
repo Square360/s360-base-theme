@@ -2,7 +2,7 @@
 @use "./colors";
 @use "./typography";
 @use "./heading-font-sizes";
-@use "s360-scss-toolkit";
+@use "s360-scss-toolkit" as s360;
 
 %heading-style-base {
   font-size: var(--heading--font-size);
@@ -14,6 +14,7 @@
   transition: var(--heading--transition, all 200ms ease-in-out);
   margin-top: var(--heading--margin-top);
   margin-bottom: var(--heading--margin-bottom);
+  text-wrap: balance;
 }
 
 %heading-style-margin-top {

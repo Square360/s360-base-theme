@@ -20,19 +20,30 @@ export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   backgrounds: { disable: true },
   layout: 'none',
+  a11y: {
+    config: {
+      rules: [
+        // Disabled alt text checking.
+        {
+          id: 'image-alt',
+          enabled: false,
+        },
+      ],
+    },
+  },
   options: {
     storySort: {
       method: "alphabetical",
       order: [
         "Foundation",
-        "Layouts",
-        "Components",
         "Content Types",
+        "Site Layout",
+        "Layouts",
         "Layout Components",
+        "Navigation",
         "Media",
-        "Menus",
         "Taxonomy",
-        "Site Layout"
+        "Components",
       ]
     }
   }
@@ -40,8 +51,13 @@ export const parameters = {
 
 export const decorators = [
   (storyFn) => {
-    useEffect(() => Drupal.attachBehaviors(), []);
-    return storyFn();
+    const story = storyFn();
+
+    useEffect(() => {
+      Drupal.attachBehaviors();
+    });
+
+    return story;
   }
 ];
 

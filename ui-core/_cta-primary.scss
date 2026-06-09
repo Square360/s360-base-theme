@@ -1,7 +1,7 @@
 @use "./site-config";
 @use "./colors";
 @use "./typography";
-@use "s360-scss-toolkit";
+@use "s360-scss-toolkit" as s360;
 
 /// Defines the styles for the primary CTA.
 ///

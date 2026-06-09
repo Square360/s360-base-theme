@@ -1,0 +1,26 @@
+@use './site-config';
+
+%grid-auto-fit-max-cols {
+  --_column-count: var(--auto-fit-max-cols--column-count, 3);
+  --_column-gap: var(--auto-fit-max-cols--column-gap, #{ site-config.$column-gap });
+
+  /* calculations, do not touch */
+  --grid-col-size-calc: calc(
+    (100% - var(--_column-gap) * var(--_column-count)) / var(--_column-count)
+  );
+  --grid-col-min-size-calc: min(
+    100%,
+    max(
+      var(--auto-fit-max-cols--column-size, 225px),
+      var(--grid-col-size-calc)
+    )
+  );
+
+  display: grid;
+  column-gap: var(--_column-gap);
+  row-gap: var(--auto-fit-max-cols--row-gap, #{ site-config.spacer(3) });
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--grid-col-min-size-calc), 1fr)
+  );
+}
