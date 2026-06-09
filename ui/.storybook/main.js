@@ -21,5 +21,6 @@ module.exports = {
     '../../',
     '../dist/',
     './fontawesome',
+    './images',
   ],
 };

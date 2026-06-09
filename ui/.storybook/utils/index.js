@@ -183,6 +183,12 @@ export function setPublishedStatus(status) {
   }
 }
 
+/**
+ * Creates an array of formatted links based on sourceLinks.
+ *
+ * @param {array} sourceLinks - Source links is a plain text array of link text.
+ * @returns {array} A formatted array of real links where link text is used.
+ */
 export function formatLinksArray(sourceLinks) {
   let links = [];
 
