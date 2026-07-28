@@ -26,7 +26,7 @@ final class BlockHooks {
   public function preprocessBlock(array &$variables): void {
     $base_plugin_id = $variables['base_plugin_id'];
 
-    $block_plugin_method = 'preprocess' . ThemeHelper::toPascalCase($base_plugin_id);
+    $block_plugin_method = ThemeHelper::toPascalCase("preprocess{$base_plugin_id}");
     if (method_exists($this, $block_plugin_method)) {
       $this->$block_plugin_method($variables);
     }

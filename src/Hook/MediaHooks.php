@@ -23,7 +23,7 @@ final class MediaHooks {
    * Implements hook_preprocess_media().
    */
   #[Hook('preprocess_media')]
-  public function preprocessMedia(&$variables): void {
+  public function preprocessMedia(array &$variables): void {
     /** @var \Drupal\media\MediaInterface $media */
     $media = $variables['media'];
     $media_bundle = $media->bundle();

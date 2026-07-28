@@ -24,7 +24,7 @@ final class MenuHooks {
    * Implements hook_preprocess_menu().
    */
   #[Hook('preprocess_menu')]
-  public function preprocessMenu(&$variables): void {
+  public function preprocessMenu(array &$variables): void {
     $menu_name = $variables['menu_name'];
 
     $variables['menu_name'] = Html::getClass($menu_name);

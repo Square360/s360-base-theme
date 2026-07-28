@@ -26,7 +26,7 @@ final class NodeHooks {
    * Implements hook_preprocess_node().
    */
   #[Hook('preprocess_node')]
-  public function preprocessNode(&$variables): void {
+  public function preprocessNode(array &$variables): void {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $variables['node'];
     $node_bundle = $node->bundle();

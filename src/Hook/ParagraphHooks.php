@@ -52,7 +52,7 @@ final class ParagraphHooks {
    */
   #[Hook('preprocess_paragraph')]
   public function preprocessParagraph(array &$variables): void {
-    /** @var \Drupal\paragraphs\Entity\ParagraphInterface $paragraph */
+    /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
     $paragraph = $variables['paragraph'];
     $paragraph_bundle = $paragraph->bundle();
 

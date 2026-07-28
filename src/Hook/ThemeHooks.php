@@ -76,7 +76,7 @@ final class ThemeHooks {
     $variables['attributes']['class'][] = 'site-page';
     $variables['attributes']['data-roles'] = $variables['user_roles'];
 
-    /** @var Symfony\Component\Routing\Route $route */
+    /** @var \Symfony\Component\Routing\Route $route */
     $route = $this->routeMatch->getRouteObject();
     $path = $route->getPath();
 
@@ -85,7 +85,7 @@ final class ThemeHooks {
       $node = $this->routeMatch->getParameter('node');
 
       if (isset($variables['node_type'])) {
-        $variables['attributes']['class'][] = Html::getClass('site-page--node-' . $variables['node_type']);
+        $variables['attributes']['class'][] = Html::getClass("site-page--node-{$variables['node_type']}");
       }
     }
 
@@ -154,7 +154,7 @@ final class ThemeHooks {
           '#tag' => 'style',
           '#value' => Markup::create($css),
         ],
-        "s360_base_theme.{$css_file}",
+        "s360_base_theme.$css_file",
       ];
     }
   }
@@ -163,7 +163,7 @@ final class ThemeHooks {
    * Implements hook_library_info_alter().
    */
   #[Hook('library_info_alter')]
-  public function libraryInfoAlter(&$libraries, $extension) {
+  public function libraryInfoAlter(array &$libraries, string $extension) {
     // Alter only the library definitions of the current theme.
     if ($extension == 's360_base_theme') {
       $directory_iterator = new \RecursiveDirectoryIterator($this->themePath . '/libraries/');
@@ -205,6 +205,21 @@ final class ThemeHooks {
         }
       }
     }
+  }
+
+  /**
+   * Implements hook_theme().
+   */
+  #[Hook('theme')]
+  function theme($existing, $type, $theme, $path) {
+    return [
+      'social_icon' => [
+        'variables' => [
+          'social_name' => NULL
+        ],
+        'path' => $this->themePath . '/ui/src/templates/misc'
+      ],
+    ];
   }
 
 }
