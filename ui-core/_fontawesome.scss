@@ -1,0 +1,68 @@
+@use "sass:map";
+@use "sass:string";
+
+@use "./map-collect" as *;
+
+$_fa-ff-r: "Font Awesome 7 Regular";
+$_fa-ff-b: "Font Awesome 7 Brands";
+
+$_regular-icons: (
+  "globe": (
+    "content": "\f0ac",
+    "font-family": $_fa-ff-r,
+  ),
+);
+
+$_brand-icons: (
+  "linkedin": (
+    "font-family": $_fa-ff-b,
+    "content": "\f0e1",
+  ),
+  "youtube": (
+    "font-family": $_fa-ff-b,
+    "content": "\f167",
+  ),
+  "facebook": (
+    "font-family": $_fa-ff-b,
+    "content": "\f09a"
+  ),
+  "x-twitter": (
+    "font-family": $_fa-ff-b,
+    "content": "\e61b"
+  ),
+  "threads": (
+    "font-family": $_fa-ff-b,
+    "content": "\e618"
+  ),
+  "instagram": (
+    "font-family": $_fa-ff-b,
+    "content": "\f16d"
+  ),
+);
+
+$icon-list: map-collect(
+  $_regular-icons,
+  $_brand-icons,
+);
+
+%_base {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-feature-settings: normal;
+  font-style: normal;
+  font-synthesis: none;
+  font-variant: normal;
+  line-height: 1;
+  text-align: center;
+  text-rendering: auto;
+}
+
+@mixin icon($icon-name) {
+  @extend %_base;
+
+  $icon-map: map.get($icon-list, $icon-name);
+
+  font-family: map.get($icon-map, "font-family");
+  content: map.get($icon-map, "content");
+}
