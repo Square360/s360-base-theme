@@ -42,5 +42,27 @@ module.exports.setupTwig = function setupTwig(twig) {
     return `<div>No Storybook mapping found for block ID "${ blockId }"</div>`;
   });
 
+  const includeMap = {};
+
+  twig.extendFunction('include', function(template) {
+    const story = includeMap[template];
+
+    if (story) {
+      return story;
+    }
+
+    return `<div>No Storybook mapping found for include name "${ template }"</div>`;
+  });
+
+  // Tries to mimic the Drupal link function which returns the link text wrapped
+  // in span. Used mostly for menus, will be applied everywhere link() is used.
+  twig.extendFunction('link', function(title, url) {
+    if (url.routeName === '<nolink>') {
+      return `<span>${title}</span>`;
+    }
+
+    return link({ link_text: title });
+  });
+
   return twig;
 };
