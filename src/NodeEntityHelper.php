@@ -24,10 +24,14 @@ class NodeEntityHelper {
    */
   public static function getNodeUrl(NodeInterface $node): Url {
     if (static::isPassthroughEnabled($node) && $node->hasField('field_source_link')) {
-      $source_link = $node->get('field_source_link')->getString();
+      $field_source_link = $node->get('field_source_link');
 
-      if ($source_link) {
-        return Url::fromUri($source_link);
+      if (!$field_source_link->isEmpty()) {
+        $source_link = $field_source_link->first()->uri;
+
+        if ($source_link) {
+          return Url::fromUri($source_link);
+        }
       }
     }
 

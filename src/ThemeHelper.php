@@ -3,6 +3,7 @@
 namespace Drupal\s360_base_theme;
 
 use Drupal\Core\Config\ImmutableConfig;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -18,6 +19,13 @@ final class ThemeHelper {
   private static ?LoggerInterface $logger = NULL;
 
   /**
+   * The entity type manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface|null
+   */
+  private static ?EntityTypeManagerInterface $entityTypeManager = NULL;
+
+  /**
    * Gets the logger instance for the s360_base_theme theme.
    *
    * Lazy-loads and returns a logger instance for this themes channel.
@@ -29,6 +37,19 @@ final class ThemeHelper {
     }
 
     return static::$logger;
+  }
+
+  /**
+   * Gets the entity type manager service.
+   *
+   * Lazy-loads and caches the entity type manager for efficient reuse.
+   */
+  public static function entityTypeManager(): EntityTypeManagerInterface {
+    if (static::$entityTypeManager === NULL) {
+      static::$entityTypeManager = \Drupal::entityTypeManager();
+    }
+
+    return static::$entityTypeManager;
   }
 
   /**
@@ -75,48 +96,71 @@ final class ThemeHelper {
    * @param string $social_name
    *   The name of a social network.
    *
-   * @return string
+   * @return array
    *   The FontAwesome icon classes for the specified social network.
    *   Returns 'fal fa-globe' if the social network is not recognized.
    */
-  public static function getSocialIcon(string $social_name): string {
-    switch ($social_name) {
-      case 'LinkedIn':
-        return 'fab fa-linkedin';
+  public static function getSocialInfo(string $social_name): array {
+    $normalized = strtolower(trim($social_name));
+    $normalized = str_replace(['-', '_'], ' ', $normalized);
+    $normalized = preg_replace('/\s+/', ' ', $normalized) ?? '';
 
-      case 'Twitter':
-        return 'fab fa-twitter';
+    $platforms = [
+      [
+        'match' => ['facebook.com', 'facebook'],
+        'name' => 'Facebook',
+        'icon' => 'facebook',
+        'family' => 'fab',
+      ],
+      [
+        'match' => ['instagram.com', 'instagram'],
+        'name' => 'Instagram',
+        'icon' => 'instagram',
+        'family' => 'fab',
+      ],
+      [
+        'match' => ['linkedin.com', 'linkedin'],
+        'name' => 'LinkedIn',
+        'icon' => 'linkedin',
+        'family' => 'fab',
+      ],
+      [
+        'match' => ['youtube.com', 'youtu.be', 'youtube'],
+        'name' => 'YouTube',
+        'icon' => 'youtube',
+        'family' => 'fab',
+      ],
+      [
+        'match' => ['threads.net', 'threads.com', 'threads'],
+        'name' => 'Threads',
+        'icon' => 'threads',
+        'family' => 'fab',
+      ],
+      [
+        'match' => ['x.com', 'twitter.com', 'twitter', 'x twitter', 'twitter x', ' x '],
+        'name' => 'X',
+        'icon' => 'x-twitter',
+        'family' => 'fab',
+      ],
+    ];
 
-      case 'X Twitter':
-      case 'Twitter X':
-      case 'X':
-        return 'fab fa-x-twitter';
-
-      case 'Facebook':
-        return 'fab fa-facebook';
-
-      case 'Instagram':
-        return 'fab fa-instagram';
-
-      case 'YouTube':
-        return 'fab fa-youtube';
-
-      case 'Apple':
-      case 'Apple Podcast':
-      case 'iTunes':
-        return 'fab fa-apple';
-
-      case 'Flickr':
-      case 'Flicker':
-        return 'fab fa-flickr';
-
-      case 'Threads':
-      case 'Thread':
-        return 'fab fa-threads';
-
-      default:
-        return 'fal fa-globe';
+    foreach ($platforms as $platform) {
+      foreach ($platform['match'] as $match) {
+        if (str_contains($normalized, $match)) {
+          return [
+            'name' => $platform['name'],
+            'icon' => $platform['icon'],
+            'family' => $platform['family'],
+          ];
+        }
+      }
     }
+
+    return [
+      'name' => 'Website',
+      'icon' => 'globe',
+      'family' => 'far'
+    ];
   }
 
 }

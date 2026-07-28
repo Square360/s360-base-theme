@@ -4,6 +4,8 @@ namespace Drupal\s360_base_theme;
 
 use Drupal\Core\Url;
 use Drupal\media\MediaInterface;
+use Drupal\s360_base_theme\FileEntityHelper;
+use Drupal\s360_base_theme\ThemeHelper;
 
 /**
  * Helper class for media entity operations.
@@ -25,14 +27,20 @@ final class MediaEntityHelper {
    */
   public static function getMediaInfo(int|MediaInterface $media): ?array {
     if (is_int($media)) {
+      $mid = $media;
+
       /** @var \Drupal\media\MediaInterface $media */
-      $media = ThemeHelper::entityTypeManager()->getStorage('media')->load($media);
+      $media = ThemeHelper::entityTypeManager()->getStorage('media')->load($mid);
 
       // No media found!
       if (!$media) {
-        ThemeHelper::getLogger()->error('Error loading media (mid: @mid)', ['@mid' => $media]);
+        ThemeHelper::getLogger()->error('Error loading media (mid: @mid)', ['@mid' => $mid]);
         return NULL;
       }
+    }
+
+    if (!$media instanceof MediaInterface) {
+      return NULL;
     }
 
     $media_bundle = $media->bundle();
@@ -49,16 +57,13 @@ final class MediaEntityHelper {
 
     switch ($media_bundle) {
       case 'document':
-        $media_info = array_merge($media_info, static::getDocumentInfo($media));
-        break;
+        return array_merge($media_info, static::getDocumentInfo($media));
 
       case 'image':
-        $media_info = array_merge($media_info, static::getImageInfo($media));
-        break;
+        return array_merge($media_info, static::getImageInfo($media));
 
       case 'remote_video':
-        $media_info = array_merge($media_info, static::getRemoteVideoInfo($media));
-        break;
+        return array_merge($media_info, static::getRemoteVideoInfo($media));
 
       default:
         break;

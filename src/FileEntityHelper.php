@@ -4,6 +4,7 @@ namespace Drupal\s360_base_theme;
 
 use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Url;
+use Drupal\file\FileInterface;
 
 /**
  * Helper class for file entity operations.
@@ -26,7 +27,7 @@ final class FileEntityHelper {
    * Retrieves comprehensive information about a file entity including its
    * metadata, URLs, formatted size, and appropriate icon representation.
    *
-   * @param int $fid
+   * @param int|\Drupal\file\FileInterface $file
    *   The ID of the file entity.
    *
    * @return array|null
@@ -36,14 +37,22 @@ final class FileEntityHelper {
    *   - icon: FontAwesome icon class for the file type.
    *   Returns NULL if the file cannot be loaded.
    */
-  public static function getFileInfo(int $fid): ?array {
-    /** @var \Drupal\file\Entity\File $file */
-    $file = ThemeHelper::entityTypeManager()->getStorage('file')->load($fid);
+  public static function getFileInfo(int|FileInterface $file): ?array {
+    if (is_int($file)) {
+      $fid = $file;
 
-    // No file found!
-    if (!$file) {
-      ThemeHelper::getLogger()->error('Error loading file (fid: @fid)', ['@fid' => $fid]);
+      /** @var \Drupal\file\Entity\File $file */
+      $file = ThemeHelper::entityTypeManager()->getStorage('file')->load($fid);
 
+      // No file found!
+      if (!$file) {
+        ThemeHelper::getLogger()->error('Error loading file (fid: @fid)', ['@fid' => $fid]);
+
+        return NULL;
+      }
+    }
+
+    if (!$file instanceof FileInterface) {
       return NULL;
     }
 
@@ -104,7 +113,7 @@ final class FileEntityHelper {
     ];
 
     // Figure out which unit to use.
-    $power = floor(log($file_size, $one_kb));
+    $power = (int) floor(log($file_size, $one_kb));
 
     // Format and return the converted filesize to human readable.
     return number_format($file_size / pow($one_kb, $power), 2, '.', ',') . $units[$power];
