@@ -5,6 +5,7 @@ import threeColumTwig from './three-column/_three-column.twig';
 import fourColumTwig from './four-column/_four-column.twig';
 
 import './layouts.js';
+import "./_layout-storybook-only.js";
 
 import { colorSchemeControl } from '.storybook/utils';
 
@@ -170,7 +171,7 @@ threeColumn.args = {
 // **************************************************
 // FOUR COLUMN LAYOUT
 
-export const fourColumn = () => {
+export const fourColumn = (args) => {
   let debug = args.debug ?? false;
   let paragraphAttributes = Object.assign({});
 
@@ -194,7 +195,7 @@ fourColumn.args = {};
 // **************************************************
 // ACCORDION LAYOUT
 
-export const accordionColumn = () => {
+export const accordionColumn = (args) => {
   let debug = args.debug ?? false;
   let paragraphAttributes = Object.assign({});
 
