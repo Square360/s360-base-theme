@@ -9,6 +9,7 @@
     ],
     "license": "GPL-2.0+",
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
         "code-sniff": [
             "./vendor/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,info --ignore=node_modules,bower_components,vendor,ui .",
@@ -22,9 +23,11 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
     },
     "config": {
+        "preferred-install": "dist",
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": false,
-            "drupal/core-composer-scaffold": false
+            "drupal/core-composer-scaffold": false,
+            "symfony/runtime": true
         }
     }
 }
