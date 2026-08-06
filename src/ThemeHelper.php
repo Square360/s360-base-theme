@@ -3,7 +3,9 @@
 namespace Drupal\s360_base_theme;
 
 use Drupal\Core\Config\ImmutableConfig;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Field\FieldItemList;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -137,7 +139,7 @@ final class ThemeHelper {
         'family' => 'fab',
       ],
       [
-        'match' => ['x.com', 'twitter.com', 'twitter', 'x twitter', 'twitter x', ' x '],
+        'match' => ['x.com', 'twitter.com', 'twitter', 'x twitter', 'twitter x'],
         'name' => 'X',
         'icon' => 'x-twitter',
         'family' => 'fab',
@@ -161,6 +163,33 @@ final class ThemeHelper {
       'icon' => 'globe',
       'family' => 'far'
     ];
+  }
+
+  /**
+   * Validates that a content entity field exists and has at least one value.
+   * Returns the field item list when the field is available and non-empty.
+   * Returns NULL when the field is missing or empty.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   The content entity that may contain the field.
+   * @param string $field_name
+   *   The machine name of the field to validate.
+   *
+   * @return \Drupal\Core\Field\FieldItemList|null
+   *   The field item list if valid, otherwise NULL.
+   */
+  public static function validateField(ContentEntityInterface $entity, string $field_name): ?FieldItemList {
+    if (!$entity->hasField($field_name)) {
+      return NULL;
+    }
+
+    $field_item = $entity->get($field_name);
+
+    if ($field_item->isEmpty()) {
+      return NULL;
+    }
+
+    return $field_item;
   }
 
 }

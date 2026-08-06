@@ -40,7 +40,7 @@ final class NodeHooks {
       '#url' => $node_url,
     ];
 
-    $variables['attributes']['id'] = Html::getClass('node-' . $node_bundle . '-' . $node->id());
+    $variables['attributes']['id'] = Html::getClass("node-{$node_bundle}-{$node->id()}");
 
     // Remove some attributes.
     unset($variables['attributes']['role']);

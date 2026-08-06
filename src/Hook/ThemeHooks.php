@@ -106,7 +106,7 @@ final class ThemeHooks {
 
       // Clear any Drupal classes.
       $variables['attributes']['class'] = [];
-      $variables['attributes']['class'] = Html::getClass("region-$region");
+      $variables['attributes']['class'] = Html::getClass("region-{$region}");
     }
   }
 
@@ -217,7 +217,7 @@ final class ThemeHooks {
         'variables' => [
           'social_name' => NULL
         ],
-        'path' => $this->themePath . '/ui/src/templates/misc'
+        'path' => "{$this->themePath}/ui/src/templates/misc",
       ],
     ];
   }

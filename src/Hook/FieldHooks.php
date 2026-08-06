@@ -59,4 +59,32 @@ final class FieldHooks {
     }
   }
 
+  /**
+   * Implements hook_preprocess_field() for field_social_links.
+   */
+  protected function preprocessFieldSocialLinks(array &$variables) {
+    $element = $variables['element'];
+
+    $object = $element['#object'];
+    $object_label = $object->label();
+
+    foreach ($variables['items'] as &$item) {
+      $url = $item['content']['#url'];
+      $item_content_title = &$item['content']['#title'];
+
+      $social_info = ThemeHelper::getSocialInfo($item_content_title);
+
+      $url->setOptions([
+        'attributes' => [
+          'aria-label' => "Go to {$object_label}'s {$social_info['name']} page",
+        ],
+      ]);
+
+      $item_content_title = [
+        '#theme' => 'social_icon',
+        '#social_name' => $social_info['icon'],
+      ];
+    }
+  }
+
 }

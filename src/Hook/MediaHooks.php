@@ -32,7 +32,7 @@ final class MediaHooks {
       $variables['caption'] = $variables['media']->caption;
     }
 
-    $media_bundle_method = 'preprocess' . ThemeHelper::toPascalCase($media_bundle);
+    $media_bundle_method = ThemeHelper::toPascalCase("preprocess{$media_bundle}");
     if (method_exists($this, $media_bundle_method)) {
       $this->$media_bundle_method($variables, $media);
     }

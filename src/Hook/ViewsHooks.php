@@ -25,6 +25,8 @@ final class ViewsHooks {
     $view_id = $view->id();
     $view_current_display = $view->current_display;
 
+    $variables['attributes']['style'] = "--_total-rows: {$view->total_rows}";
+
     // Wrap the view results within a class for better styling control.
     if (isset($variables['header']['result']['#markup'])) {
       $view_header_result = &$variables['header']['result'];

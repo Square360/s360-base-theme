@@ -174,6 +174,11 @@ final class FileEntityHelper {
         $file_type = 'PowerPoint';
         break;
 
+      case 'image/svg+xml':
+        $icon = 'fa-file-image';
+        $file_type = 'svg';
+        break;
+
       default:
         $icon = 'fa-file';
         $file_type = 'File';

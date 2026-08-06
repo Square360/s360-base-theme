@@ -8,6 +8,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
+use Drupal\s360_base_theme\ThemeHelper;
 
 /**
  * Hook implementations for form preprocessing.
@@ -35,12 +36,18 @@ final class FormHooks {
   #[Hook('preprocess_webform')]
   public function preprocessWebform(array &$variables): void {
     $element = $variables['element'];
+    $webform_id = $element['#webform_id'];
 
     $variables['form_name'] = Html::getClass($element['#webform_id']);
 
     $variables['attributes']['class'][] = 'form';
     $variables['attributes']['class'][] = 'form--webform';
     $variables['attributes']['class'][] = Html::getClass("form--{$element['#webform_id']}");
+
+    $webform_id_method = ThemeHelper::toPascalCase("preprocessWebform{$webform_id}");
+    if (method_exists($this, $webform_id_method)) {
+      $this->$webform_id_method($variables);
+    }
   }
 
   /**
@@ -152,7 +159,6 @@ final class FormHooks {
   public function preprocessInput(array &$variables): void {
     $element = $variables['element'];
     $id = $element['#id'];
-
     $type = $element['#type'];
 
     // Set the form input type "class" to reset.
@@ -162,6 +168,14 @@ final class FormHooks {
 
     $variables['attributes']['class'][] = 'form__input';
     $variables['attributes']['class'][] = Html::getClass("form__input--{$type}");
+  }
+
+  /**
+   * Implements hook_preprocess_textarea().
+   */
+  #[Hook('preprocess_textarea')]
+  public function preprocessTextarea(array &$variables): void {
+    self::preprocessInput($variables);
   }
 
 }
