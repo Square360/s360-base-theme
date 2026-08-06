@@ -3,4 +3,25 @@
 
 .view--table {
 
+  // **************************************************
+  // RESPONSIVE
+
+  @container (width < 600px) {
+    thead {
+      display: none;
+    }
+
+    td {
+      display: flex;
+      flex-direction: column;
+      padding-block: site-config.$scale--1;
+
+      &::before {
+        font-size: s360.font-size-ms(-1);
+        font-weight: typography.$font-weight-medium;
+        content: attr(data-cell);
+      }
+    }
+  }
+
 }

@@ -1,7 +1,13 @@
 {% set compare_view_title = view_title|striptags|trim %}
 {% set compare_view_caption = view_caption|first|striptags|trim %}
+{% set table_classes = [
+  'view__table',
+  'cols-' ~ view_header|length,
+  view_responsive ? 'responsive-enabled',
+  view_sticky ? 'sticky-header',
+] %}
 
-<table{{ attributes.addClass('view__table') }}>
+<table{{ attributes.addClass(table_classes) }}>
   {% if
     view_caption_needed and (
       (view_caption and (compare_view_caption != compare_view_title)) or
@@ -27,11 +33,29 @@
     <thead>
       <tr>
         {% for key, column in view_header %}
-          <th{{ column.attributes.setAttribute('scope', 'col') }}>
-            {%- if column.url -%}
-              <a href="{{ column.url }}" title="{{ column.title }}" rel="nofollow">{{ column.content }}{{ column.sort_indicator }}</a>
+          {% if column.default_classes %}
+            {% set field_identifier = fields[key]|default(key) %}
+            {% set column_classes = [
+              'views-field',
+              'views-field-' ~ field_identifier,
+            ] %}
+          {% endif %}
+
+          <th{{ column.attributes.addClass(column_classes|default([])).setAttribute('scope', 'col') }}>
+            {%- if column.wrapper_element -%}
+              <{{ column.wrapper_element }}>
+                {%- if column.url -%}
+                  <a href="{{ column.url }}" title="{{ column.title }}" rel="nofollow">{{ column.content }}{{ column.sort_indicator }}</a>
+                {%- else -%}
+                  {{ column.content }}{{ column.sort_indicator }}
+                {%- endif -%}
+              </{{ column.wrapper_element }}>
             {%- else -%}
-              {{- column.content }}
+              {%- if column.url -%}
+                <a href="{{ column.url }}" title="{{ column.title }}" rel="nofollow">{{ column.content }}{{ column.sort_indicator }}</a>
+              {%- else -%}
+                {{- column.content }}{{ column.sort_indicator }}
+              {%- endif -%}
             {%- endif -%}
           </th>
         {% endfor %}
@@ -43,10 +67,26 @@
     {% for row in view_rows %}
       <tr{{ row.attributes }}>
         {% for key, column in row.columns %}
-          <td{{ column.attributes.setAttribute('data-cell', view_header[key].content) }}>
-            {% for content in column.content %}
-              {{- content.separator }}{{ content.field_output -}}
+          {% if column.default_classes %}
+            {% set column_classes = ['views-field'] %}
+
+            {% for field in column.fields %}
+              {% set column_classes = column_classes|merge(['views-field-' ~ field]) %}
             {% endfor %}
+          {% endif %}
+
+          <td{{ column.attributes.addClass(column_classes|default([])).setAttribute('data-cell', view_header[key].content) }}>
+            {%- if column.wrapper_element -%}
+              <{{ column.wrapper_element }}>
+                {% for content in column.content %}
+                  {{ content.separator }}{{ content.field_output }}
+                {% endfor %}
+              </{{ column.wrapper_element }}>
+            {%- else -%}
+              {% for content in column.content %}
+                {{- content.separator }}{{ content.field_output -}}
+              {% endfor %}
+            {%- endif %}
           </td>
         {% endfor %}
       </tr>
