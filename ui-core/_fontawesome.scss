@@ -45,7 +45,7 @@ $icon-list: map-collect(
   $_brand-icons,
 );
 
-%_base {
+@mixin _base() {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
@@ -59,7 +59,7 @@ $icon-list: map-collect(
 }
 
 @mixin icon($icon-name) {
-  @extend %_base;
+  @include _base();
 
   $icon-map: map.get($icon-list, $icon-name);
 

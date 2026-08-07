@@ -1,4 +1,4 @@
-%_animate-background {
+@mixin _animate-background() {
   display: inline;
   line-height: 1;
   background-image: linear-gradient(0deg,
@@ -22,7 +22,7 @@
 %animate-background-to-top {
   --animate-background--bg-size--width: 100%;
   --animate-background--bg-position: bottom;
-  @extend %_animate-background;
+  @include _animate-background();
 
   &:hover,
   &:focus-visible {
@@ -33,7 +33,7 @@
 %animate-background-to-bottom {
   --animate-background--bg-size--width: 100%;
   --animate-background--bg-position: top;
-  @extend %_animate-background;
+  @include _animate-background();
 
   &:hover,
   &:focus-visible {
@@ -43,8 +43,8 @@
 
 %animate-background-to-left {
   --animate-background--bg-size--height: 100%;
-  --animate-background--bg-position: left;
-  @extend %_animate-background;
+  --animate-background--bg-position: right;
+  @include _animate-background();
 
   &:hover,
   &:focus-visible {
@@ -54,8 +54,8 @@
 
 %animate-background-to-right {
   --animate-background--bg-size--height: 100%;
-  --animate-background--bg-position: right;
-  @extend %_animate-background;
+  --animate-background--bg-position: left;
+  @include _animate-background();
 
   &:hover,
   &:focus-visible {

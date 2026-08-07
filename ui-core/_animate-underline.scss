@@ -1,6 +1,6 @@
 $_default-thickness: 1px;
 
-%_animate-underline {
+@mixin _animate-underline() {
   display: inline;
   line-height: 1;
   background-image: linear-gradient(0deg,
@@ -9,7 +9,7 @@ $_default-thickness: 1px;
   );
   background-size:
     var(--animate-underline--bg-size--width, 0%)
-    var(--animate-underline--bg-size--thickness, #{ $_default-thickness });
+    var(--animate-underline--bg-size--thickness, #{$_default-thickness});
   background-repeat: no-repeat;
   background-position-y: var(--animate-underline--bg-position-y, bottom);
   background-position-x: var(--animate-underline--bg-position-x, right);
@@ -24,26 +24,26 @@ $_default-thickness: 1px;
 %animate-underline-to-right {
   --animate-underline--bg-size--width: 100%;
   --animate-underline--bg-size--width--active: 0%;
-  @extend %_animate-underline;
+  @include _animate-underline();
 }
 
 %animate-underline-in-to-right {
   --animate-underline--bg-position-x: left;
   --animate-underline--bg-size--width: 0%;
   --animate-underline--bg-size--width--active: 100%;
-  @extend %_animate-underline;
+  @include _animate-underline();
 }
 
 %animate-underline-to-left {
   --animate-underline--bg-position-x: left;
   --animate-underline--bg-size--width: 100%;
   --animate-underline--bg-size--width--active: 0%;
-  @extend %_animate-underline;
+  @include _animate-underline();
 }
 
 %animate-underline-in-to-left {
   --animate-underline--bg-position-x: right;
   --animate-underline--bg-size--width--active: 100%;
   --animate-underline--bg-size--width: 0%;
-  @extend %_animate-underline;
+  @include _animate-underline();
 }
