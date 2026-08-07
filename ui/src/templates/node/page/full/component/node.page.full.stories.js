@@ -9,9 +9,9 @@ import { setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: 'Content Types/Page/Full',
-  argTypes: {
-    node: { control: false }
-  }
+  args: {
+    node_is_published: true,
+  },
 };
 
 export const full = (args) => {
@@ -24,3 +24,6 @@ export const full = (args) => {
   });
 };
 full.args = pageData;
+full.argTypes = {
+  node_is_published: { name: 'Published' },
+}
