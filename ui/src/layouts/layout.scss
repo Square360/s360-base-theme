@@ -9,7 +9,7 @@
   &:not(.layout--one-column) {
     > .layout__content > .layout__regions {
       display: grid;
-      row-gap: site-config.spacer(0);
+      row-gap: site-config.$scale-0;
       column-gap: site-config.$column-gap;
     }
   }
@@ -28,15 +28,15 @@
     flex-direction: column;
 
     &--gap-sm {
-      row-gap: site-config.spacer(2);
+      row-gap: site-config.$scale-2;
     }
 
     &--gap-md {
-      row-gap: site-config.spacer(4);
+      row-gap: site-config.$scale-4;
     }
 
     &--gap-lg {
-      row-gap: site-config.spacer(6);
+      row-gap: site-config.$scale-6;
     }
   }
 
@@ -44,15 +44,15 @@
   // BOTTOM MARGINS
 
   &.layout--margin-bottom-sm {
-    margin-bottom: site-config.spacer(2);
+    margin-bottom: site-config.$scale-2;
   }
 
   &.layout--margin-bottom-md {
-    margin-bottom: site-config.spacer(4);
+    margin-bottom: site-config.$scale-4;
   }
 
   &.layout--margin-bottom-lg {
-    margin-bottom: site-config.spacer(6);
+    margin-bottom: site-config.$scale-6;
   }
 
   &:last-child {

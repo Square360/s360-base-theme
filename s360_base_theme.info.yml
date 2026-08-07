@@ -17,7 +17,6 @@ ckeditor5-stylesheets:
 libraries:
   - s360_base_theme/global
   - s360_base_theme/base
-  - s360_base_theme/layouts
   - s360_base_theme/site-layout
 
 libraries-override:

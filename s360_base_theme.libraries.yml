@@ -13,6 +13,48 @@ layouts:
   js:
     ui/dist/layouts/layouts.js: { attributes: { defer: true } }
 
+layout.accordion:
+  css:
+    base:
+      ui/dist/layouts/accordion/accordion.css: {}
+  dependencies:
+    - s360_base_theme/layout
+
+layout.flex:
+  css:
+    base:
+      ui/dist/layouts/flex/flex.css: {}
+  dependencies:
+    - s360_base_theme/layout
+
+layout.one-column:
+  css:
+    base:
+      ui/dist/layouts/one-column/one-column.css: {}
+  dependencies:
+    - s360_base_theme/layout
+
+layout.two-column:
+  css:
+    base:
+      ui/dist/layouts/two-column/two-column.css: {}
+  dependencies:
+    - s360_base_theme/layout
+
+layout.three-column:
+  css:
+    base:
+      ui/dist/layouts/three-column/three-column.css: {}
+  dependencies:
+    - s360_base_theme/layout
+
+layout.four-column:
+  css:
+    base:
+      ui/dist/layouts/four-column/four-column.css: {}
+  dependencies:
+    - s360_base_theme/layout
+
 # ##################################################
 # Site Layout Library
 

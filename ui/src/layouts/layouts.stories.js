@@ -1,14 +1,23 @@
-import accordionTwig from './accordion/_accordion.twig';
-import oneColumTwig from './one-column/_one-column.twig';
-import twoColumTwig from './two-column/_two-column.twig';
-import threeColumTwig from './three-column/_three-column.twig';
-import fourColumTwig from './four-column/_four-column.twig';
-
 import './layouts.js';
+
+import accordionTwig from './accordion/_accordion.twig';
+import './layouts/accordion/accordion.js';
+
+import oneColumTwig from './one-column/_one-column.twig';
+import './layouts/one-column/one-column.js';
+
+import twoColumTwig from './two-column/_two-column.twig';
+import './layouts/two-column/two-column.js';
+
+import threeColumTwig from './three-column/_three-column.twig';
+import './layouts/three-column/three-column.js';
+
+import fourColumTwig from './four-column/_four-column.twig';
+import './layouts/four-column/four-column.js';
+
 import "./_layout-storybook-only.js";
 
 import { colorSchemeControl } from '.storybook/utils';
-
 import { placeholder } from '@ui-paragraph/placeholder/component/paragraph.placeholder.stories.js';
 import { htmlContent } from '@ui-paragraph/html-content/component/paragraph.html-content.stories.js';
 
