@@ -4,7 +4,7 @@
 
 .status-message {
   border: 4px solid var(--status-message--border-color, currentColor);
-  padding: site-config.spacer(0);
+  padding: site-config.$scale-0;
 
   &[aria-label="status"] {
     --status-message--border-color: var(
@@ -45,11 +45,11 @@
 
   &__list-item {
     & + & {
-      margin-top: site-config.spacer(1);
+      margin-top: site-config.$scale-1;
     }
   }
 
   + .status-message {
-    margin-top: site-config.spacer(2);
+    margin-top: site-config.$scale-2;
   }
 }

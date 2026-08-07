@@ -32,10 +32,10 @@
   font-size: var(--p--font-size);
   font-style: var(--p--font-style);
   font-weight: var(--p--font-weight);
-  line-height: var(--p--line-height, #{ site-config.$text-line-height });
+  line-height: var(--p--line-height, #{site-config.$line-height-normal});
   margin: var(--p--margin, 0 0 1em 0);
   padding: var(--p--padding, 0);
-  max-width: var(--p--max-width, #{ site-config.$max-line-length });
+  max-width: var(--p--max-width, #{site-config.$max-line-length});
 
   &:last-of-type {
     margin-bottom: 0;
@@ -60,7 +60,7 @@
 
 %text-style-caption {
   --p--font-family: var(--caption--font-family, inherit);
-  --p--font-size: var(--caption--font-size, #{ s360.font-size-ms(0) });
+  --p--font-size: var(--caption--font-size, #{s360.font-size-ms(0)});
   --p--margin: var(--caption--margin, 0.5em 0 0 0);
   --p--padding: var(--caption--padding);
 }

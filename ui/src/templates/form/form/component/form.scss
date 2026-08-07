@@ -18,7 +18,7 @@
     position: relative;
 
     select {
-      padding-right: calc(#{(s360.modular-scale(1) * 3) + px });
+      padding-right: calc(#{(s360.modular-scale(1) * 3) + px});
     }
 
     &::after {

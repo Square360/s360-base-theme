@@ -4,11 +4,11 @@
 
 .view {
   &__pager:has(ul) {
-    margin-top: site-config.spacer(0);
+    margin-top: site-config.$scale-0;
   }
 
   &__more-link {
-    margin-top: site-config.spacer(0);
+    margin-top: site-config.$scale-0;
   }
 
   &__content {
@@ -21,11 +21,11 @@
     container-type: inline-size;
 
     + #{&} {
-      margin-top: var(--view--row--margin-top, #{ site-config.spacer(0) });
+      margin-top: var(--view--row--margin-top, #{site-config.$scale-0});
     }
   }
 
   &__footer {
-    margin-top: site-config.spacer(0);
+    margin-top: site-config.$scale-0;
   }
 }

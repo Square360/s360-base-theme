@@ -33,7 +33,7 @@
     }
 
     + .pager__item {
-      margin-left: site-config.spacer(0);
+      margin-left: site-config.$scale-0;
     }
 
     // Drupal class.

@@ -22,21 +22,21 @@
 }
 
 %heading-style-margin-bottom {
-  --heading--margin-bottom: #{ site-config.$heading-margin-bottom };
+  --heading--margin-bottom: #{site-config.$heading-margin-bottom};
 }
 
 %heading-style-h1 {
-  --heading--font-size: var(--h1--font-size, #{ heading-font-sizes.h1-font-size() });
+  --heading--font-size: var(--h1--font-size, #{heading-font-sizes.h1-font-size()});
 }
 
 %heading-style-h2 {
-  --heading--font-size: var(--h2--font-size, #{ heading-font-sizes.h2-font-size() });
+  --heading--font-size: var(--h2--font-size, #{heading-font-sizes.h2-font-size()});
 }
 
 %heading-style-h3 {
-  --heading--font-size: var(--h3--font-size, #{ heading-font-sizes.h3-font-size() });
+  --heading--font-size: var(--h3--font-size, #{heading-font-sizes.h3-font-size()});
 }
 
 %heading-style-h4 {
-  --heading--font-size: var(--h4--font-size, #{ heading-font-sizes.h4-font-size() });
+  --heading--font-size: var(--h4--font-size, #{heading-font-sizes.h4-font-size()});
 }
