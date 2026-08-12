@@ -2,6 +2,7 @@ const twigDrupal = require('twig-drupal-filters');
 const twigAddAttributes = require('add-attributes-twig-extension');
 const { addDrupalExtensions } = require('drupal-twig-extensions/twig');
 
+const { link } = require('@ui-base/link/link.stories.js');
 const { breadcrumb } = require('@ui-navigation/breadcrumb/component/menu.breadcrumb.stories.js');
 
 /**
