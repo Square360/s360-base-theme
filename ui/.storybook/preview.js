@@ -69,7 +69,7 @@ export const globalTypes = {
       list: [
         { name: "Theme Name", dataTheme: "theme-name", color: "#ffffff" },
       ],
-      dataAttribute: "data-theme",
+      dataAttribute: "data-color-scheme",
     },
   },
 };
