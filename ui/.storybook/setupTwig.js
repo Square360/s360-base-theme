@@ -1,9 +1,9 @@
-const twigDrupal = require('twig-drupal-filters');
-const twigAddAttributes = require('add-attributes-twig-extension');
-const { addDrupalExtensions } = require('drupal-twig-extensions/twig');
+import twigDrupal from 'twig-drupal-filters';
+import twigAddAttributes from 'add-attributes-twig-extension';
+import { addDrupalExtensions } from 'drupal-twig-extensions/twig';
 
-const { link } = require('@ui-base/link/link.stories.js');
-const { breadcrumb } = require('@ui-navigation/breadcrumb/component/menu.breadcrumb.stories.js');
+import { link } from '@ui-base/link/link.stories.js';
+import { breadcrumb } from '@ui-navigation/breadcrumb/component/menu.breadcrumb.stories.js';
 
 /**
  * Configures and extends a standard twig object.
@@ -12,7 +12,7 @@ const { breadcrumb } = require('@ui-navigation/breadcrumb/component/menu.breadcr
  *
  * @returns {Twig} configured twig object.
  */
-module.exports.setupTwig = function setupTwig(twig) {
+export function setupTwig(twig) {
   twig.cache();
   twigDrupal(twig);
   twigAddAttributes(twig);

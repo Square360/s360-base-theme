@@ -1,4 +1,9 @@
-require.context('SRC_IMAGES', true, /\.(gif|png|jpe?g|svg)$/);
+import.meta.glob('../images/**/*.{gif,png,jpe?g,svg}', {
+  eager: true,
+  import: 'default',
+  query: '?url',
+});
+
 import './base.scss';
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,4 +1,4 @@
-import { useEffect } from '@storybook/preview-api';
+import { useEffect } from 'storybook/preview-api';
 import Twig from 'twig';
 import { setupTwig } from './setupTwig';
 
@@ -18,7 +18,7 @@ setupTwig(Twig);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
-  backgrounds: { disable: true },
+  backgrounds: { disabled: true },
   layout: 'none',
   a11y: {
     config: {
@@ -61,16 +61,14 @@ export const decorators = [
   }
 ];
 
-// Uncomment if you want to setup visual themes '[data-theme="theme name"]'.
-/*
-export const globalTypes = {
+export const initialGlobals = {
+  /*
+  Uncomment if you want to setup color-scheme '[data-color-scheme="theme name"]'.
   dataThemes: {
-    defaultValue: {
-      list: [
-        { name: "Theme Name", dataTheme: "theme-name", color: "#ffffff" },
-      ],
-      dataAttribute: "data-color-scheme",
-    },
+    list: [
+      { name: "Theme Name", dataTheme: "theme-name", color: "#ffffff" },
+    ],
+    dataAttribute: "data-color-scheme",
   },
+  */
 };
-*/

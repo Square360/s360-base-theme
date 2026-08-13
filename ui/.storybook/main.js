@@ -1,6 +1,8 @@
+const { dirname, join } = require("node:path");
+
 module.exports = {
   framework: {
-    name: '@storybook/html-webpack5',
+    name: "@storybook/html-vite",
     options: { fastRefresh: true },
   },
   stories: [
@@ -9,13 +11,10 @@ module.exports = {
     // '../../../[THEME_NAME]/src/**/*.stories.@(js|ts)'
   ],
   addons: [
-    '@storybook/addon-a11y',
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    'storybook-addon-render-modes',
+    "@storybook/addon-a11y",
 
     // Uncomment if you want to enable theme switching.
-    // 'storybook-addon-data-theme-switcher'
+    // "storybook-addon-data-theme-switcher",
   ],
   staticDirs: [
     '../../',
@@ -23,4 +22,12 @@ module.exports = {
     './fontawesome',
     './images',
   ],
+  viteFinal: async (config) => {
+    const [{ mergeConfig }, { createStorybookViteConfig }] = await Promise.all([
+      import('vite'),
+      import('./vite.config.mjs'),
+    ]);
+
+    return mergeConfig(config, createStorybookViteConfig());
+  },
 };
