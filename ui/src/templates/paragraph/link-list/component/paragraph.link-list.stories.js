@@ -10,9 +10,6 @@ import { setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: 'Layout Components/Link List',
-  argTypes: {
-    paragraph: { control: false }
-  }
 };
 
 export const linkList = (args) => {
