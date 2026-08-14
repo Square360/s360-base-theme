@@ -12,7 +12,7 @@ $_default-thickness: 1px;
     var(--animate-underline--bg-size--thickness, #{$_default-thickness});
   background-repeat: no-repeat;
   background-position-y: var(--animate-underline--bg-position-y, bottom);
-  background-position-x: var(--animate-underline--bg-position-x, right);
+  background-position-x: var(--animate-underline--bg-position-x);
   transition: all 200ms ease-in-out;
 
   &:hover,
@@ -22,6 +22,7 @@ $_default-thickness: 1px;
 }
 
 %animate-underline-to-right {
+  --animate-underline--bg-position-x: left;
   --animate-underline--bg-size--width: 100%;
   --animate-underline--bg-size--width--active: 0%;
   @include _animate-underline();
@@ -35,7 +36,7 @@ $_default-thickness: 1px;
 }
 
 %animate-underline-to-left {
-  --animate-underline--bg-position-x: left;
+  --animate-underline--bg-position-x: right;
   --animate-underline--bg-size--width: 100%;
   --animate-underline--bg-size--width--active: 0%;
   @include _animate-underline();
