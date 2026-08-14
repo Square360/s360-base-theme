@@ -1,9 +1,3 @@
-import.meta.glob('../images/**/*.{gif,png,jpe?g,svg}', {
-  eager: true,
-  import: 'default',
-  query: '?url',
-});
-
 import './base.scss';
 
 document.addEventListener('DOMContentLoaded', () => {

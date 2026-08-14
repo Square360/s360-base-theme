@@ -1,14 +1,20 @@
 import path from 'node:path';
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { globSync } from 'glob';
 import { defineConfig } from 'vite';
 import autoprefixer from 'autoprefixer';
 import postcssScss from 'postcss-scss';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const aliases = {
+  SRC_IMAGES: path.resolve(__dirname, 'src/images'),
+  vendors: path.resolve(__dirname, 'vendors'),
+  utils: path.resolve(__dirname, 'utils')
+}
 
 /**
  * Creates Vite entry names from matching JavaScript source files.
@@ -46,11 +52,11 @@ export function getThemeEntries() {
 /**
  * Prevents Vite from processing image URLs in stylesheet source files.
  *
- * @returns {import('vite').Plugin} Vite transform plugin.
+ * @returns {import('vite').Plugin} Vite plugin.
  */
 function cssUrlFilterPlugin() {
   return {
-    name: 's360-css-url-filter',
+    name: 'css-url-filter',
     enforce: 'pre',
     transform(code, id) {
       if (!id.match(/\.s?css$/)) return null;
@@ -66,11 +72,11 @@ function cssUrlFilterPlugin() {
 /**
  * Provides a Vite plugin hook for handling inline font output.
  *
- * @returns {import('vite').Plugin} Vite output plugin.
+ * @returns {import('vite').Plugin} Vite plugin.
  */
 function inlineFontsPlugin() {
   return {
-    name: 's360-inline-fonts',
+    name: 'inline-fonts',
     enforce: 'post',
     generateBundle(_, bundle) {
       for (const [name, asset] of Object.entries(bundle)) {
@@ -85,11 +91,11 @@ function inlineFontsPlugin() {
 /**
  * Renames emitted entry CSS assets to match their JavaScript entry name.
  *
- * @returns {import('vite').Plugin} Vite output plugin.
+ * @returns {import('vite').Plugin} Vite plugin.
  */
 function cssOutputPathPlugin() {
   return {
-    name: 's360-css-output-path',
+    name: 'css-output-path',
     enforce: 'post',
     generateBundle(_, bundle) {
       for (const chunk of Object.values(bundle)) {
@@ -118,6 +124,97 @@ function cssOutputPathPlugin() {
 }
 
 /**
+ * Includes all theme images in the Vite build.
+ *
+ * This replaces Webpack's require.context() behavior so that
+ * images which aren't explicitly imported by JavaScript/CSS are
+ * still emitted to dist/images.
+ *
+ * @returns {import('vite').Plugin} Vite plugin.
+ */
+function copyThemeImagesPlugin() {
+  return {
+    name: 'copy-theme-images',
+
+    generateBundle() {
+      const images = globSync(
+        path.resolve(__dirname, `${aliases['SRC_IMAGES']}/**/*.{gif,png,jpg,jpeg,svg}`),
+        {
+          ignore: [
+            path.resolve(__dirname, `${aliases['SRC_IMAGES']}/icons/**/*.svg`),
+          ],
+        }
+      );
+
+      for (const image of images) {
+        const relativePath = path.relative(
+          path.resolve(__dirname, `${aliases['SRC_IMAGES']}`),
+          image
+        );
+
+        this.emitFile({
+          type: 'asset',
+          fileName: `images/${relativePath}`,
+          source: readFileSync(image),
+        });
+      }
+    },
+  };
+}
+
+function svgSpritePlugin() {
+  const iconsDir = path.resolve(__dirname, 'src/images/icons');
+
+  return {
+    name: 'svg-sprite',
+    generateBundle() {
+      const icons = globSync(
+        path.join(iconsDir, '*.svg')
+      );
+
+      const symbols = icons.map((file) => {
+        const name = path.basename(file, '.svg');
+        let svg = readFileSync(file, 'utf8');
+
+        // Remove XML declaration.
+        svg = svg.replace(/<\?xml[^>]*\?>\s*/i, '');
+
+        // Extract the contents of the SVG element.
+        const match = svg.match(/<svg\b[^>]*>([\s\S]*?)<\/svg>/i);
+
+        if (!match) {
+          return '';
+        }
+
+        const contents = match[1];
+
+        // Preserve the viewBox if one exists.
+        const viewBox = svg.match(/\bviewBox=["']([^"']+)["']/i);
+        const viewBoxAttribute = viewBox
+          ? ` viewBox="${viewBox[1]}"`
+          : '';
+
+        return `<symbol id="icon-${name}"${viewBoxAttribute}>${contents}</symbol>`;
+      }).filter(Boolean);
+
+      const sprite = [
+        '<svg xmlns="http://www.w3.org/2000/svg">',
+        '<defs>',
+        symbols.join('\n'),
+        '</defs>',
+        '</svg>',
+      ].join('\n');
+
+      this.emitFile({
+        type: 'asset',
+        fileName: 'images/sprite.svg',
+        source: sprite,
+      });
+    },
+  };
+}
+
+/**
  * Creates the Vite configuration for one or more theme entry points.
  *
  * @param {object} options Build configuration overrides.
@@ -140,9 +237,7 @@ export function createViteConfig({
     root: __dirname,
     resolve: {
       alias: {
-        SRC_IMAGES: path.resolve(__dirname, 'src/images'),
-        vendors: path.resolve(__dirname, 'vendors'),
-        utils: path.resolve(__dirname, 'utils')
+        ...aliases,
       },
       extensions: ['.js', '.ts', '.css', '.scss']
     },
@@ -162,13 +257,10 @@ export function createViteConfig({
     plugins: [
       cssUrlFilterPlugin(),
       inlineFontsPlugin(),
-      createSvgIconsPlugin({
-        iconDirs: [path.resolve(__dirname, 'src/images/icons')],
-        symbolId: 'icon-[name]',
-        customDomId: 's360-icons',
-        inject: 'body-last'
-      }),
+      copyThemeImagesPlugin(),
+      svgSpritePlugin(),
       ViteImageOptimizer({
+        exclude: /sprite\.svg$/,
         mozjpeg: { quality: 75 },
         pngquant: { quality: [0.65, 0.9], speed: 4 },
         svgo: {
