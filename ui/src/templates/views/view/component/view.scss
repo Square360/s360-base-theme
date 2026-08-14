@@ -15,6 +15,23 @@
     container-type: inline-size;
   }
 
+  &__exposed-filters {
+    .view__filter-summary {
+    }
+
+    .view__filters {
+      margin-top: site-config.$scale-0;
+    }
+
+    @media (width >= mq.$mq-768) {
+      --summary--display: none;
+
+      .view__filters {
+        margin-top: 0;
+      }
+    }
+  }
+
   &__row {
     @extend %fadein-slideup-animator;
 
