@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Only update if the value has changed to avoid unnecessary DOM updates.
     if (lastScrollbarWidth !== scrollbarWidth) {
-      HTML.style.setProperty('--scrollbar-width', `${ scrollbarWidth }px`);
+      HTML.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
 
       lastScrollbarWidth = scrollbarWidth;
     }

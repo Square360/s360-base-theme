@@ -1,9 +1,20 @@
 @use "sass:map";
-@use "sass:string";
 
 @use "./map-collect" as *;
 
+// Classic Families
+$_fa-ff-s: "Font Awesome 7 Soild";
 $_fa-ff-r: "Font Awesome 7 Regular";
+$_fa-ff-l: "Font Awesome 7 Light";
+$_fa-ff-t: "Font Awesome 7 Thin";
+
+// Sharp Families
+$_fa-ff-ss: "Font Awesome 7 Sharp Solid";
+$_fa-ff-sr: "Font Awesome 7 Sharp Regular";
+$_fa-ff-sl: "Font Awesome 7 Sharp Light";
+$_fa-ff-st: "Font Awesome 7 Sharp Light";
+
+// Brand Family
 $_fa-ff-b: "Font Awesome 7 Brands";
 
 $_regular-icons: (

@@ -1,5 +1,5 @@
 $SITE_CONFIG: (
-  font-size-base: 16,
+  font-size-base: 18,
   modular-scale-ratio: 1,
 );
 
@@ -14,13 +14,13 @@ $SITE_CONFIG: (
   @return s360.to-unit(s360.modular-scale($amount), 'px');
 }
 
-$scale-6:  _scale(6);
-$scale-5:  _scale(5);
-$scale-4:  _scale(4);
-$scale-3:  _scale(3);
-$scale-2:  _scale(2);
-$scale-1:  _scale(1);
-$scale-0:  _scale(0);
+$scale-6: _scale(6);
+$scale-5: _scale(5);
+$scale-4: _scale(4);
+$scale-3: _scale(3);
+$scale-2: _scale(2);
+$scale-1: _scale(1);
+$scale-0: _scale(0);
 $scale--1: _scale(-1);
 $scale--2: _scale(-2);
 $scale--3: _scale(-3);
@@ -31,8 +31,8 @@ $scale--6: _scale(-6);
 // **************************************************
 // GAPS AND GRIDS
 
-$_grid-columns: 12;
 $column-gap: $scale-0;
+
 
 // **************************************************
 // LAYOUT
@@ -46,8 +46,8 @@ $site-content-area: calc(#{$site-max-width} - calc(#{$site-side-margin} * 2));
 
 $line-height-compact: 1.25; // 125%
 $line-height-normal: 1.333; // 133.3%
-$line-height-relaxed: 1.5;  // 150%
-$line-height-loose: 1.75;   // 175%
+$line-height-relaxed: 1.5; // 150%
+$line-height-loose: 1.75; // 175%
 
 $max-line-length: 80ch;
 $heading-margin-bottom: 0.625em;

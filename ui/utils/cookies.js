@@ -11,9 +11,9 @@ export const setCookie = (cookieName, cookieValue, expiryDays, cookiePath='/') =
 
   date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000));
 
-  let expires = `expires=${ date.toUTCString() }`;
+  let expires = `expires=${date.toUTCString()}`;
 
-  document.cookie = `${ cookieName }=${ cookieValue };${ expires };path=${ cookiePath };`;
+  document.cookie = `${cookieName}=${cookieValue};${expires};path=${cookiePath};`;
 }
 
 /**
@@ -23,7 +23,7 @@ export const setCookie = (cookieName, cookieValue, expiryDays, cookiePath='/') =
  * @returns {string} The cookie value if found, empty string if not found
  */
 export const getCookie = (name) => {
-  let cookieName = `${ name }=`;
+  let cookieName = `${name}=`;
   let cookies = document.cookie.split(';');
 
   for (let i = 0; i < cookies.length; i++) {
@@ -48,5 +48,5 @@ export const getCookie = (name) => {
  * @param {string} [cookiePath='/'] - The path where the cookie was set (defaults to '/')
  */
 export const deleteCookie = (cookieName, cookiePath = '/') => {
-  document.cookie = `${ cookieName }=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=${ cookiePath };`;
+  document.cookie = `${cookieName}=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=${cookiePath};`;
 }
