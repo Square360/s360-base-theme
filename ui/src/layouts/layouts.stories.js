@@ -1,19 +1,15 @@
+import accordionTwig from './accordion/component/_accordion.twig';
+import oneColumTwig from './one-column/component/_one-column.twig';
+import twoColumTwig from './two-column/component/_two-column.twig';
+import threeColumTwig from './three-column/component/_three-column.twig';
+import fourColumTwig from './four-column/component/_four-column.twig';
+
 import './layouts.js';
-
-import accordionTwig from './accordion/_accordion.twig';
-import './accordion/accordion.js';
-
-import oneColumTwig from './one-column/_one-column.twig';
-import './one-column/one-column.js';
-
-import twoColumTwig from './two-column/_two-column.twig';
-import './two-column/two-column.js';
-
-import threeColumTwig from './three-column/_three-column.twig';
-import './three-column/three-column.js';
-
-import fourColumTwig from './four-column/_four-column.twig';
-import './four-column/four-column.js';
+import './accordion/component/accordion.js';
+import './one-column/component/one-column.js';
+import './two-column/component/two-column.js';
+import './three-column/component/three-column.js';
+import './four-column/component/four-column.js';
 
 import "./_layout-storybook-only.js";
 
