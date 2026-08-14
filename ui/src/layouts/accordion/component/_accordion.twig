@@ -1,6 +1,6 @@
 {# NOTE: This file is for Storybook display purposes only. #}
 
-<div{{ attributes }}>
+<div{{ attributes.addClass(['layout', 'layout--accordion']) }}>
   <div class="layout__content">
     {% if paragraph_layout_header %}
       <details class="layout__details">
