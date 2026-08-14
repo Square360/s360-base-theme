@@ -7,6 +7,7 @@ namespace Drupal\s360_base_theme\Hook;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ThemeHandler;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
@@ -96,7 +97,7 @@ final class ParagraphHooks {
 
       $variables['curated_node'] = [
         '#type' => 'inline_template',
-        '#template' => "{% trans %} Node was deleted and cannot be displayed. {% endtrans %}",
+        '#template' => "{% trans %}Node was deleted and cannot be displayed. {% endtrans %}",
       ];
 
       return;
@@ -128,7 +129,7 @@ final class ParagraphHooks {
 
       $variables['curated_node'] = [
         '#type' => 'inline_template',
-        '#template' => "{% trans %} Node: <strong>'{{ node_title }}'</strong> cannot be display using view mode: <strong>{{ node_view_mode }}</strong>. {% endtrans %}",
+        '#template' => "{% trans %}Node: <strong>'{{ node_title }}'</strong> cannot be display using view mode: <strong>{{ node_view_mode }}</strong>.{% endtrans %}",
         '#context' => [
           'node_title' => $node_title,
           'node_view_mode' => $field_content_view_mode_string,
@@ -187,7 +188,8 @@ final class ParagraphHooks {
    */
   protected function preprocessInThisSection(array &$variables, ParagraphInterface $paragraph): void {
     // If no target menu is set, default to "main".
-    $field_target_menu = ThemeHelper::validateField($paragraph, 'field_target_menu') ?: 'main';
+    $field_target_menu = ThemeHelper::validateField($paragraph, 'field_target_menu');
+    $field_target_menu = $field_target_menu->getString() ?: 'main';
 
     $menu_for_current_node = [];
 
@@ -236,7 +238,7 @@ final class ParagraphHooks {
 
       $parent_menu_uuid = explode(':', $menu_for_current_node['parent'])[1];
 
-      /** @var Drupal\menu_link_content\Entity\MenuLinkContent $parent_menu_link_content */
+      /** @var \Drupal\menu_link_content\Entity\MenuLinkContent $parent_menu_link_content */
       $parent_menu_link_content = $this->entityTypeManager->getStorage('menu_link_content')->loadByProperties(['uuid' => $parent_menu_uuid]);
       $parent_menu_link_content = reset($parent_menu_link_content);
 
@@ -289,6 +291,37 @@ final class ParagraphHooks {
    */
   protected function preprocessImage(array &$variables, ParagraphInterface $paragraph): void {
     ParagraphsEntityHelper::processImageCaption($paragraph);
+
+    $field_aspect_ratio = ThemeHelper::validateField($paragraph, 'field_aspect_ratio');
+    $field_erm_image = ThemeHelper::validateField($paragraph, 'field_erm_image');
+
+    // Override field_media_image display with aspect ratio-specific responsive image style.
+    if ($field_aspect_ratio && $field_erm_image) {
+      $rendered_media = [];
+      foreach ($paragraph->get('field_erm_image')->referencedEntities() as $delta => $media) {
+        // Render the media entity normally with its default display.
+        $media_view_builder = ThemeHelper::entityTypeManager()->getViewBuilder('media');
+        $media_render = $media_view_builder->view($media, 'default');
+
+        // Replace the image field with aspect ratio-specific responsive image style.
+        if ($field_media_image = ThemeHelper::validateField($media, 'field_media_image')) {
+          $media_render['field_media_image'] = $field_media_image->view([
+            'type' => 'responsive_image',
+            'label' => 'hidden',
+            'settings' => [
+              'responsive_image_style' => 'aspect_ratio_' . $field_aspect_ratio->getString(),
+              'image_link' => '',
+            ],
+          ]);
+        }
+
+        $rendered_media[$delta] = $media_render;
+      }
+
+      if (!empty($rendered_media)) {
+        $variables['content']['field_erm_image'] = $rendered_media;
+      }
+    }
   }
 
 }

@@ -30,7 +30,7 @@ final class FieldHooks {
    * Implements hook_preprocess_field().
    */
   #[Hook('preprocess_field')]
-  public function proprocessField(&$variables): void {
+  public function proprocessField(array &$variables): void {
     /* **************************************************
      * Field machine name preprocessing
      */
@@ -65,6 +65,7 @@ final class FieldHooks {
   protected function preprocessFieldSocialLinks(array &$variables) {
     $element = $variables['element'];
 
+    /** @var \Drupal\Core\Entity\EntityInterface $object */
     $object = $element['#object'];
     $object_label = $object->label();
 

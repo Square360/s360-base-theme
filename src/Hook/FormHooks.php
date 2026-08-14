@@ -72,6 +72,11 @@ final class FormHooks {
 
         $variables['children'] = Markup::create('<div class="form__select-wrapper">' . $variables['children'] . '</div>');
       }
+
+      // Applies only type matches one of the following.
+      if (in_array($element['#type'], ['email', 'textarea', 'textfield', 'url', 'tel'])) {
+        $variables['attributes']['class'][] = 'form__element--floating-label';
+      }
     }
 
     if (isset($element['#name'])) {
@@ -104,7 +109,6 @@ final class FormHooks {
 
     // Clear any Drupal classes.
     $variables['attributes']['class'] = [];
-
     $variables['attributes']['class'][] = 'form__label';
     $variables['attributes']['class'][] = Html::getClass("form__label--{$element['#title']}");
 

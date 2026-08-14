@@ -25,7 +25,7 @@ final class ViewsHooks {
     $view_id = $view->id();
     $view_current_display = $view->current_display;
 
-    $variables['attributes']['style'] = "--_total-rows: {$view->total_rows}";
+    $variables['attributes']['style'] = "--view--total-rows: {$view->total_rows}";
 
     // Wrap the view results within a class for better styling control.
     if (isset($variables['header']['result']['#markup'])) {
@@ -55,7 +55,7 @@ final class ViewsHooks {
     }
 
     // Remove the pager if there are no items.
-    if (!$view?->pager?->total_items) {
+    if (!$view->pager?->total_items) {
       unset($variables['pager']);
     }
 
@@ -66,7 +66,7 @@ final class ViewsHooks {
       'default' => 'unformatted',
     ];
 
-    $variables['format'] = $view_formats[$view_plugin_id];
+    $variables['format'] = $view_formats[$view_plugin_id] ?? NULL;
 
     if ($view_plugin_id == 'grid') {
       if (isset($view_style_plugin->options['columns'])) {

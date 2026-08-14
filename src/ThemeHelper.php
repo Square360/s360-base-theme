@@ -100,7 +100,7 @@ final class ThemeHelper {
    *
    * @return array
    *   The FontAwesome icon classes for the specified social network.
-   *   Returns 'fal fa-globe' if the social network is not recognized.
+   *   Returns 'far fa-globe' if the social network is not recognized.
    */
   public static function getSocialInfo(string $social_name): array {
     $normalized = strtolower(trim($social_name));
@@ -142,6 +142,12 @@ final class ThemeHelper {
         'match' => ['x.com', 'twitter.com', 'twitter', 'x twitter', 'twitter x'],
         'name' => 'X',
         'icon' => 'x-twitter',
+        'family' => 'fab',
+      ],
+      [
+        'match' => ['bsky.social', 'bsky.app', 'bsky', 'bluesky'],
+        'name' => 'Bluesky',
+        'icon' => 'bluesky',
         'family' => 'fab',
       ],
     ];

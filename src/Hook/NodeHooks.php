@@ -33,7 +33,10 @@ final class NodeHooks {
 
     $node_url = NodeEntityHelper::getNodeUrl($node);
 
-    $variables['cta_url'] = $node_url;
+    $variables['node_url'] = $node_url;
+    $variables['node_absolute_url'] = $node_url->setAbsolute();
+
+    // Could be overridden in a bundle preprocess method.
     $variables['label_as_link'] = [
       '#type' => 'link',
       '#title' => Markup::create('<span>' . trim($node->label()) . '</span>'),
@@ -60,8 +63,6 @@ final class NodeHooks {
    * @param \Drupal\node\NodeInterface $node
    *   The Page node entity.
    */
-  protected function preprocessPage(array &$variables, NodeInterface $node): void {
-
-  }
+  protected function preprocessPage(array &$variables, NodeInterface $node): void {  }
 
 }

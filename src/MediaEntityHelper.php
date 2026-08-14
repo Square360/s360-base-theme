@@ -86,13 +86,13 @@ final class MediaEntityHelper {
    *   or NULL if the field is empty or unavailable.
    */
   private static function getDocumentInfo(MediaInterface $media): ?array {
-    $field_media_document = $media->field_media_document?->target_id;
+    $field_media_document = ThemeHelper::validateField($media, 'field_media_document');
 
     if (!$field_media_document) {
       return NULL;
     }
 
-    return FileEntityHelper::getFileInfo($field_media_document);
+    return FileEntityHelper::getFileInfo($field_media_document->target_id);
   }
 
   /**
@@ -109,17 +109,17 @@ final class MediaEntityHelper {
    *   Returns NULL if the field is empty or unavailable.
    */
   private static function getImageInfo(MediaInterface $media): ?array {
-    $field_media_image = $media->field_media_image;
+    $field_media_image = ThemeHelper::validateField($media, 'field_media_image');
 
     if (!$field_media_image) {
       return NULL;
     }
 
-    $file_info = FileEntityHelper::getFileInfo($field_media_image?->target_id);
+    $file_info = FileEntityHelper::getFileInfo($field_media_image->target_id);
 
-    $file_info['file']['width'] = $field_media_image?->width . 'px';
-    $file_info['file']['height'] = $field_media_image?->height . 'px';
-    $file_info['file']['alt'] = $field_media_image?->alt;
+    $file_info['file']['width'] = ($field_media_image->width ?? 0) . 'px';
+    $file_info['file']['height'] = ($field_media_image->height ?? 0) . 'px';
+    $file_info['file']['alt'] = $field_media_image->alt ?? '';
 
     return $file_info;
   }
@@ -140,14 +140,14 @@ final class MediaEntityHelper {
    *   Returns NULL if the field is empty or unavailable.
    */
   private static function getRemoteVideoInfo(MediaInterface $media): ?array {
-    $field_media_oembed_video = $media->field_media_oembed_video?->getString();
+    $field_media_oembed_video = ThemeHelper::validateField($media, 'field_media_oembed_video');
 
     if (!$field_media_oembed_video) {
       return NULL;
     }
 
     return [
-      'url' => Url::fromUri($field_media_oembed_video),
+      'url' => Url::fromUri($field_media_oembed_video->getString()),
       'icon' => 'fa-circle-play',
     ];
   }
@@ -164,13 +164,9 @@ final class MediaEntityHelper {
    *   The caption text, or NULL if the field is empty or unavailable.
    */
   private static function getMediaCaption(MediaInterface $media): ?string {
-    if (!$media->hasField('field_media_caption')) {
-      return NULL;
-    }
+    $field_media_caption = ThemeHelper::validateField($media, 'field_media_caption');
 
-    $field_media_caption = $media->get('field_media_caption');
-
-    if ($field_media_caption->isEmpty()) {
+    if (!$field_media_caption) {
       return NULL;
     }
 
@@ -191,17 +187,15 @@ final class MediaEntityHelper {
    *   or NULL if no thumbnail exists.
    */
   private static function getMediaThumbnail(MediaInterface $media): ?array {
-    if (!$media->hasField('thumbnail')) {
+    $thumbnail = ThemeHelper::validateField($media, 'thumbnail');
+
+    if (!$thumbnail) {
       return NULL;
     }
 
-    $thumbnail_field = $media->get('thumbnail');
-    if ($thumbnail_field->isEmpty()) {
-      return NULL;
-    }
+    $thumbnail_info = FileEntityHelper::getFileInfo($thumbnail->target_id);
 
-    $thumbnail = FileEntityHelper::getFileInfo($thumbnail_field->target_id);
-    return reset($thumbnail);
+    return reset($thumbnail_info);
   }
 
 }

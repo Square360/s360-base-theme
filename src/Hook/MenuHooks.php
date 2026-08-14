@@ -6,7 +6,6 @@ namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
-use Drupal\Core\Render\Markup;
 use Drupal\s360_base_theme\ThemeHelper;
 
 /**
