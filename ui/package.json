@@ -21,12 +21,10 @@
   ],
   "license": "ISC",
   "scripts": {
-    "build": "yarn vite:prod && \"yarn storybook-build\"",
-    "develop": "concurrently --raw \"yarn vite:dev\" \"yarn storybook\"",
-    "storybook": "storybook dev --ci -p 6006",
-    "storybook-build": "storybook build -o ../.storybook-out",
-    "webpack": "yarn vite:dev",
-    "vite": "yarn vite:dev",
+    "build": "yarn vite:prod && \"yarn storybook:build\"",
+    "develop": "concurrently --raw \"yarn vite:dev\" \"yarn storybook:dev\"",
+    "storybook:dev": "storybook dev --ci -p 6006",
+    "storybook:build": "storybook build -o ../.storybook-out",
     "vite:dev": "node ./scripts/vite-build.mjs --watch --mode development",
     "vite:prod": "node ./scripts/vite-build.mjs --mode production",
     "generate": "plop"
