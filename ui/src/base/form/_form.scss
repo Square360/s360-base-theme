@@ -5,10 +5,11 @@
 @use "s360-scss-toolkit" as s360;
 
 form {
-  margin: var(--form-margin, 0);
-  padding: var(--form-padding, 0);
-  display: var(--form-display, grid);
-  gap: var(--form-gap, #{site-config.$scale-0});
+  margin: var(--form--margin, 0);
+  padding: var(--form_-padding, 0);
+  display: var(--form--display, grid);
+  column-gap: var(--form--column-gap, #{site-config.$column-gap});
+  row-gap: var(--form--row-gap, #{site-config.$scale-0});
 
   input[type="email"],
   input[type="password"],
@@ -31,10 +32,6 @@ form {
       box-shadow: none;
     }
 
-    &:focus-visible {
-      @extend %focus-visible;
-    }
-
     &::placeholder {
       color: colors.$black;
     }
@@ -48,19 +45,15 @@ form {
     appearance: none;
   }
 
-  button[type="submit"]:first-child {
-    @extend %cta-primary;
-  }
-
   input[type="date"] {
     --form-input--width: auto;
   }
 
   label {
-    color: var(--form-label-color);
+    color: var(--form-label--color);
     cursor: pointer;
-    font-family: var(--form-label-font-family);
-    font-size: var(--form-label-font-size);
+    font-family: var(--form-label--font-family);
+    font-size: var(--form-label--font-size);
 
     &[class*="required"] {
       &::after {
