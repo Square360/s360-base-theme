@@ -2,13 +2,10 @@ import siteHeaderTwig from './site-header.twig';
 import siteHeaderData from './site-header.yml';
 import './site-header.js';
 
-import '@ui-site-layout/component/block-menu/block-menu.js';
-import '@ui-site-layout/component/menu-toggle/menu-toggle.js';
-
-import { fakeDrupalSystemMenuBlock } from '.storybook/utils';
-
 import { main } from '@ui-navigation/main/component/menu.main.stories';
 import { brandingBlock } from '@ui-block/branding-block/component/block.branding-block.stories';
+
+import { fakeDrupalSystemMenuBlock } from '.storybook/utils';
 
 /**
  * Storybook Definition.
