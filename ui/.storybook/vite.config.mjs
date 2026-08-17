@@ -96,7 +96,12 @@ function yamlPlugin() {
         return null;
       }
 
-      const yamlData = source.trim()
+      const hasYamlContent = source.split(/\r?\n/).some((line) => {
+        const trimmedLine = line.trim();
+
+        return trimmedLine !== '' && !trimmedLine.startsWith('#');
+      });
+      const yamlData = hasYamlContent
         ? `load(${ JSON.stringify(source) })`
         : '{}';
 
