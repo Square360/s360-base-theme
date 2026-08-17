@@ -2,5 +2,7 @@
 @use "s360-scss-toolkit" as s360;
 
 .menu--breadcrumb {
+  .menu__item:not(:last-child) {
 
+  }
 }
