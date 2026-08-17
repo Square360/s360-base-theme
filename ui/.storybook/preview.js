@@ -7,9 +7,8 @@ import './drupal.js';
 import './once.global.js';
 
 // GLOBAL CSS
-import '../src/base/base.js';
-import '../src/templates/site-layout/component/site-layout.js';
-import '../src/templates/field/ckeditor/component/ckeditor.js';
+import '@ui-base/base.js';
+import '@ui-field/ckeditor/component/ckeditor.js';
 
 // COLOR SCHEMES
 // import color scheme js files here.
@@ -62,13 +61,11 @@ export const decorators = [
 ];
 
 export const initialGlobals = {
-  /*
-  Uncomment if you want to setup color-scheme '[data-color-scheme="theme name"]'.
-  dataThemes: {
-    list: [
-      { name: "Theme Name", dataTheme: "theme-name", color: "#ffffff" },
-    ],
-    dataAttribute: "data-color-scheme",
-  },
-  */
+  // Uncomment if you want to setup color-scheme '[data-color-scheme="theme name"]'.
+  // dataThemes: {
+  //   list: [
+  //     { name: "Theme Name", dataTheme: "theme-name", color: "#ffffff" },
+  //   ],
+  //   dataAttribute: "data-color-scheme",
+  // },
 };

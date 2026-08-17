@@ -1,6 +1,4 @@
-const { dirname, join } = require("node:path");
-
-module.exports = {
+export default {
   framework: {
     name: "@storybook/html-vite",
     options: { fastRefresh: true },
