@@ -10,7 +10,7 @@ on:
 
 jobs:
   semantic_release:
-    uses: Square360/shared-workflows/.github/workflows/reusable-semantic-release.yml@5e76fb81fecfe11441fe2d75f24e486027c4d65d  # v3.3.0
+    uses: Square360/shared-workflows/.github/workflows/reusable-semantic-release.yml@latest  # v3.3.0
     with:
       release_branches: '["master"]'
     secrets:

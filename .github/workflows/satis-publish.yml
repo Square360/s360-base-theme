@@ -9,7 +9,7 @@ on:
 
 jobs:
   satis_publish:
-    uses: Square360/shared-workflows/.github/workflows/reusable-satis-publish.yml@5e76fb81fecfe11441fe2d75f24e486027c4d65d  # v3.3.0
+    uses: Square360/shared-workflows/.github/workflows/reusable-satis-publish.yml@latest  # v3.3.0
     with:
       # Satis indexes this module under the GitHub repo name (S360-Base-Theme),
       # which differs from composer.json's square360/s360_base_theme. Reconcile
