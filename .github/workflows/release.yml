@@ -10,8 +10,8 @@ on:
 
 jobs:
   semantic_release:
-    uses: Square360/shared-workflows/.github/workflows/reusable-semantic-release.yml@latest  # v3.3.0
+    uses: Square360/shared-workflows/.github/workflows/reusable-semantic-release.yml@v4.3.1
     with:
       release_branches: '["master"]'
     secrets:
-      CI_GH_TOKEN: ${{ secrets.CI_GH_TOKEN }}
+      OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
