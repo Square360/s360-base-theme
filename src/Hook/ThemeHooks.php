@@ -135,10 +135,9 @@ final class ThemeHooks {
     $critical_css_files = [
       'base/base.css',
       'block/branding-block/block.branding-block.css',
+      'block/menu-block/main/block.menu-block.main.css',
       'site-layout/site-header/site-header.css',
       'site-layout/site-main/site-main.css',
-      'site-layout/block-menu/block-menu.css',
-      'site-layout/menu-toggle/menu-toggle.css',
     ];
 
     // Early return if no critical CSS files to process.

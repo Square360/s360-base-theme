@@ -1,17 +1,61 @@
 @use "@s360-base-theme/ui-core/site-config";
 @use "@s360-base-theme/ui-core/colors";
 @use "@s360-base-theme/ui-core/mask-embed";
+@use "@s360-base-theme/ui-core/focus-visible";
 @use "s360-scss-toolkit" as s360;
 
 .form {
+  // @at-root {
+  //   // In order for floating labels inside inputs to work,
+  //   // there must be a placeholder attr on that <input />.
+
+  //   // This MUST be first selector in @at-root in order
+  //   // for "ignore next" to work.
+  //   /* autoprefixer: ignore next */
+  //   .form__element--floating-label {
+  //     &:has(:focus-visible),
+  //     &:has(textarea:not(:placeholder-shown)),
+  //     &:has(input:not(:placeholder-shown)) {
+  //       label {
+  //         --_form--floating-label--left--active: 0;
+
+  //         // Set the label back to look like a label once again.
+  //         --form--label--color: var(--form-text);
+  //         font-size: site-config.$form-label-font-size;
+
+  //         top: 0;
+  //       }
+  //     }
+
+  //     padding-top: site-config.$form-label-font-size;
+  //     position: relative;
+
+  //     label {
+  //       // By default set the label to look like the input.
+  //       --form--label--color: var(--form--input--color);
+  //       font-size: site-config.$form-input-font-size;
+
+  //       position: absolute;
+  //       top: calc(#{site-config.$form-input-block-padding} + #{site-config.$form-label-font-size});
+  //       transition: all 200ms ease-in-out;
+  //       left: var(--_form--floating-label--left--active, var(--_form--floating-label--left, 0));
+  //     }
+
+  //     textarea::placeholder,
+  //     input[type]::placeholder {
+  //       color: transparent;
+  //     }
+  //   }
+  // }
+
   .form__description {
     margin-top: 0.25em;
     color: inherit;
   }
 
   .form__element:has(:focus-visible):not(.form__element--actions) {
-    outline: 5px solid colors.$black;
-    outline-offset: 4px;
+    --focus-visible--outline-style: solid;
+    @extend %focus-visible;
   }
 
   .form__select-wrapper {
