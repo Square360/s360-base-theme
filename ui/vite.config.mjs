@@ -226,7 +226,6 @@ function svgSpritePlugin() {
  */
 export function createViteConfig({
   entries = getThemeEntries(),
-  emptyOutDir = true,
   mode = 'production',
   watch = false
 } = {}) {
@@ -277,7 +276,7 @@ export function createViteConfig({
 
     build: {
       outDir: path.resolve(__dirname, 'dist'),
-      emptyOutDir,
+      emptyOutDir: false,
       sourcemap: false,
       cssMinify: isProduction,
       minify: isProduction ? 'terser' : false,
@@ -291,7 +290,7 @@ export function createViteConfig({
         output: {
           entryFileNames: '[name].js',
           chunkFileNames: '[name].js',
-          codeSplitting: Object.keys(entries).length !== 1,
+          // codeSplitting: Object.keys(entries).length !== 1,
           assetFileNames: (assetInfo) => {
             const n = assetInfo.name || '';
             if (/\.(gif|png|jpe?g|svg)$/i.test(n)) return 'images/[name][extname]';

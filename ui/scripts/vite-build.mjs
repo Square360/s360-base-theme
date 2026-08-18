@@ -1,5 +1,14 @@
+import path from 'node:path';
 import { build } from 'vite';
 import { createViteConfig, getThemeEntries } from '../vite.config.mjs';
+import { rm } from 'node:fs/promises';
+
+const __dist = path.resolve(process.cwd(), 'dist');
+
+await rm(__dist, {
+  recursive: true,
+  force: true,
+});
 
 /**
  * Whether the build runner should rebuild entries when source files change.
@@ -48,7 +57,6 @@ const buildOptions = entryBuilds.map(([entryName, entryFile], index) => ({
   configFile: false,
   ...createViteConfig({
     entries: { [entryName]: entryFile },
-    emptyOutDir: index === 0,
     mode,
     watch,
   }),
