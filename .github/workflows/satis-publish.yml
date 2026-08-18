@@ -2,14 +2,15 @@ name: Publish to Satis
 
 # When a GitHub Release is published (by release.yml's semantic-release run, or by
 # hand), trigger a SatisBoss rebuild and wait until the new version is live on
-# packages.square360.com. The org-wide SATISBOSS_KEY secret authenticates the call.
+# packages.square360.com. The org-wide OP_SERVICE_ACCOUNT_TOKEN secret loads the
+# SatisBoss key from 1Password to authenticate the call.
 on:
   release:
     types: [published]
 
 jobs:
   satis_publish:
-    uses: Square360/shared-workflows/.github/workflows/reusable-satis-publish.yml@latest  # v3.3.0
+    uses: Square360/shared-workflows/.github/workflows/reusable-satis-publish.yml@v4.3.1
     with:
       # Satis indexes this module under the GitHub repo name (S360-Base-Theme),
       # which differs from composer.json's square360/s360_base_theme. Reconcile
@@ -17,4 +18,4 @@ jobs:
       verify_package: square360/s360_base_theme
       verify_version: ${{ github.event.release.tag_name }}
     secrets:
-      SATISBOSS_KEY: ${{ secrets.SATISBOSS_KEY }}
+      OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
