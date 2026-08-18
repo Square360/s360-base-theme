@@ -25,8 +25,8 @@
     "develop": "concurrently --raw \"yarn vite:dev\" \"yarn storybook:dev\"",
     "storybook:dev": "storybook dev --ci -p 6006",
     "storybook:build": "storybook build -o ../.storybook-out",
-    "vite:dev": "node ./scripts/vite-build.mjs --watch --mode development",
-    "vite:prod": "node ./scripts/vite-build.mjs --mode production",
+    "vite:dev": "node ./vite/vite-build.mjs --watch --mode development",
+    "vite:prod": "node ./vite/vite-build.mjs --mode production",
     "generate": "plop"
   },
   "dependencies": {
