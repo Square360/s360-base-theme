@@ -4,6 +4,7 @@ namespace Drupal\s360_base_theme;
 
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
+use Drupal\s360_base_theme\ThemeHelper;
 
 /**
  * Helper class for node entity operations.
@@ -23,8 +24,8 @@ class NodeEntityHelper {
    *   The URL object - either the source link or canonical node URL.
    */
   public static function getNodeUrl(NodeInterface $node): Url {
-    if (static::isPassthroughEnabled($node) && $node->hasField('field_source_link')) {
-      $source_link = $node->get('field_source_link')->getString();
+    if (static::isPassthroughEnabled($node) && $field_source_link = ThemeHelper::validateField($node, 'field_source_link')) {
+      $source_link = $field_source_link->first()->uri;
 
       if ($source_link) {
         return Url::fromUri($source_link);
@@ -48,8 +49,8 @@ class NodeEntityHelper {
    *   TRUE if the source link should be used, FALSE otherwise.
    */
   private static function isPassthroughEnabled(NodeInterface $node): bool {
-    if ($node->hasField('field_passthrough')) {
-      return (bool) $node->get('field_passthrough')->value;
+    if ($field_passthrough = ThemeHelper::validateField($node, 'field_passthrough')) {
+      return (bool) $field_passthrough->value;
     }
 
     return TRUE;

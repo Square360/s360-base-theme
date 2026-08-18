@@ -1,0 +1,14 @@
+{#
+/**
+ * Available Variables:
+ * - paragraph.caption: Override media caption from paragraph.
+
+ * @see src/ParagraphsEntityHelper.php::processImageCaption
+ */
+#}
+{{ attach_library('s360_base_theme/media.image.default') }}
+
+{% include "@ui-media/image/default/component/media.image.default.twig" with {
+  media_field_media_image: (content.field_media_image.0) ? content.field_media_image : '',
+  media_caption: paragraph.caption ?? (content.field_media_caption.0 ? content.field_media_caption : ''),
+} %}

@@ -8,7 +8,14 @@
         "Theme"
     ],
     "license": "GPL-2.0+",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
         "code-sniff": [
             "./vendor/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,info --ignore=node_modules,bower_components,vendor,ui .",
@@ -19,12 +26,15 @@
         "drupal/core": "^11",
         "drupal/coder": "^8.3",
         "squizlabs/php_codesniffer": "3.*",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+        "drupal/paragraphs": "^1.23"
     },
     "config": {
+        "preferred-install": "dist",
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": false,
-            "drupal/core-composer-scaffold": false
+            "drupal/core-composer-scaffold": false,
+            "symfony/runtime": true
         }
     }
 }

@@ -9,9 +9,6 @@ import { setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: 'Layout Components/Document List',
-  argTypes: {
-    paragraph: { control: false }
-  }
 };
 
 export const documentList = (args) => {

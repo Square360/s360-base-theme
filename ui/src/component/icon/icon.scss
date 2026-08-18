@@ -1,0 +1,13 @@
+@use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/fontawesome" as fa;
+@use "s360-scss-toolkit" as s360;
+
+.icon {
+  @each $key, $icon-map in fa.$icon-list {
+    &--#{$key} {
+      &::before {
+        @include fa.icon($key);
+      }
+    }
+  }
+}

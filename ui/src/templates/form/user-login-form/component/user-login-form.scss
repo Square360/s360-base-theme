@@ -1,6 +1,9 @@
 @use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/cta-primary";
 @use "s360-scss-toolkit" as s360;
 
 .form--user-login-form {
-
+  button[type="submit"] {
+    @extend %cta-primary;
+  }
 }

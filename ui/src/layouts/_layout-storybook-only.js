@@ -12,7 +12,7 @@ const REGION_WIDTH_LABEL_CLASS = 'layout__region-width';
  *   The formatted width string.
  */
 function formatRegionWidth(width) {
-  return `${ Math.round(width) }px`;
+  return `${Math.round(width)}px`;
 }
 
 /**
@@ -25,7 +25,7 @@ function formatRegionWidth(width) {
  *   The width badge element.
  */
 function getRegionWidthLabel(region) {
-  let label = region.querySelector(`.${ REGION_WIDTH_LABEL_CLASS }`);
+  let label = region.querySelector(`.${REGION_WIDTH_LABEL_CLASS}`);
 
   if (!label) {
     label = document.createElement('span');

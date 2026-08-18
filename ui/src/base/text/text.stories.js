@@ -20,5 +20,5 @@ export const paragraph = (args) => {
   let data = Object.assign(structuredClone(paragraphData ?? {}), args);
 
   return formatParagraphText(data.paragraph_text);
-}
+};
 paragraph.args = paragraphData;

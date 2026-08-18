@@ -26,21 +26,24 @@ final class NodeHooks {
    * Implements hook_preprocess_node().
    */
   #[Hook('preprocess_node')]
-  public function preprocessNode(&$variables): void {
+  public function preprocessNode(array &$variables): void {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $variables['node'];
     $node_bundle = $node->bundle();
 
     $node_url = NodeEntityHelper::getNodeUrl($node);
 
-    $variables['cta_url'] = $node_url;
+    $variables['node_url'] = $node_url;
+    $variables['node_absolute_url'] = $node_url->setAbsolute();
+
+    // Could be overridden in a bundle preprocess method.
     $variables['label_as_link'] = [
       '#type' => 'link',
       '#title' => Markup::create('<span>' . trim($node->label()) . '</span>'),
       '#url' => $node_url,
     ];
 
-    $variables['attributes']['id'] = Html::getClass('node-' . $node_bundle . '-' . $node->id());
+    $variables['attributes']['id'] = Html::getClass("node-{$node_bundle}-{$node->id()}");
 
     // Remove some attributes.
     unset($variables['attributes']['role']);
@@ -60,8 +63,6 @@ final class NodeHooks {
    * @param \Drupal\node\NodeInterface $node
    *   The Page node entity.
    */
-  protected function preprocessPage(array &$variables, NodeInterface $node): void {
-
-  }
+  protected function preprocessPage(array &$variables, NodeInterface $node): void {  }
 
 }

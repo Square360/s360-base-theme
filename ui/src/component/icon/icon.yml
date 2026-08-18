@@ -1,0 +1,15 @@
+# icon_groups:
+#   regular:
+#     label: 'Regular'
+#     icons:
+#       - globe
+
+#   brands:
+#     label: 'Brands'
+#     icons:
+#       - 'linkedin'
+#       - 'youtube'
+#       - 'facebook'
+#       - 'x-twitter'
+#       - 'threads'
+#       - 'instagram'

@@ -1,5 +1,5 @@
-{{ attach_library('s360_base_theme/media.document') }}
+{{ attach_library('s360_base_theme/media.document.default') }}
 
-{% include "@ui-media/document/component/media.document.twig" with {
+{% include "@ui-media/document/default/component/media.document.default.twig" with {
   media_field_media_document: (content.field_media_document.0) ? content.field_media_document : ''
 } %}

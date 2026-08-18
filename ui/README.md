@@ -17,23 +17,8 @@ Select which type of entity you want to create. When prompted for a name, you ca
 If a project requires multiple "themes" to be compiled, create a folder
 called "themes" outside the "ui" folder. Inside that folder, create a top-level folder for the theme and follow the same Drupal patterns like a regular theme and the folder structure from the `ui` folder. There is no need for the `.storybook` folder.
 
-### Webpack Config
+### Vite Builds
 
-Inside the `webpack.config.js` file at the bottom you will see
-```js
-module.exports = [
-  WEBPACK_CONFIG,
-  ...
-]
-```
-For each "theme", copy the following code and replace `{THEME_NAME}` with the theme's name.
-
-```js
-Object.assign({}, WEBPACK_CONFIG, {
-  name: '{THEME_NAME}',
-  entry: getEntries(path.resolve('../themes/{THEME_NAME}/ui/src/**/!(_*|*.stories|*.component|*.min|*.test).js')),
-  output: {
-    path: path.resolve('../themes/{THEME_NAME}/ui/dist'),
-  },
-}),
-```
+The Vite build runner discovers JavaScript entry files in this package's `src`
+directory. To compile another theme, add its entries to
+`scripts/vite-build.mjs` and provide that theme's desired `dist` output path.

@@ -6,8 +6,8 @@
   > .view__content > .view__grid {
     display: grid;
     grid-template-columns: repeat(var(--view-grid--gtc, 1), 1fr);
-    column-gap: site-config.$column-gap;
-    row-gap: var(--view-grid--row-gap, #{ site-config.spacer(0) });
+    column-gap: var(--view-grid--column-gap, #{site-config.$column-gap});
+    row-gap: var(--view-grid--row-gap, #{site-config.$scale-0});
   }
 
   // **************************************************

@@ -6,7 +6,6 @@ namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
-use Drupal\Core\Render\Markup;
 use Drupal\s360_base_theme\ThemeHelper;
 
 /**
@@ -24,7 +23,7 @@ final class MenuHooks {
    * Implements hook_preprocess_menu().
    */
   #[Hook('preprocess_menu')]
-  public function preprocessMenu(&$variables): void {
+  public function preprocessMenu(array &$variables): void {
     $menu_name = $variables['menu_name'];
 
     $variables['menu_name'] = Html::getClass($menu_name);
@@ -34,10 +33,18 @@ final class MenuHooks {
       $variables['attributes']['class'] = [];
     }
 
-    $menu_name_method = 'preprocess' . ThemeHelper::toPascalCase($menu_name) . 'Menu';
+    $menu_name_method = ThemeHelper::toPascalCase("preprocess{$menu_name}Menu");
     if (method_exists($this, $menu_name_method)) {
       $this->$menu_name_method($variables);
     }
+  }
+
+  /**
+   * Implements hook_preprocess_menu_local_task().
+   */
+  #[Hook('preprocess_menu_local_task')]
+  public function preprocessMenuLocalTask(array &$variables) {
+    $variables['attributes']['class'][] = 'menu__item';
   }
 
   /**
@@ -53,16 +60,19 @@ final class MenuHooks {
     foreach ($variables['items'] as &$item) {
       $item_title = &$item['title'];
 
+      $social_info = ThemeHelper::getSocialInfo($item_title);
+
       $item['url']->setOptions([
         'attributes' => [
-          'aria-label' => "Go to $site_name's $item_title page",
+          'aria-label' => "Go to $site_name's {$social_info['name']} page",
           'title' => $item_title,
         ],
       ]);
 
-      $fa_icon = ThemeHelper::getSocialIcon($item_title);
-
-      $item_title = Markup::create('<i class="' . $fa_icon . '"></i>');
+      $item_title = [
+        '#theme' => 'social_icon',
+        '#social_name' => $social_info['icon'],
+      ];
     }
   }
 

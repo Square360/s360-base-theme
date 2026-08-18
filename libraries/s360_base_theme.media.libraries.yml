@@ -1,14 +1,14 @@
-media.document:
+media.document.default:
   css:
     component:
-      ui/dist/media/document/media.document.css: {}
+      ui/dist/media/document/default/media.document.default.css: {}
 
-media.image:
+media.image.default:
   css:
     component:
-      ui/dist/media/image/media.image.css: {}
+      ui/dist/media/image/default/media.image.default.css: {}
 
-media.remote-video:
+media.remote-video.default:
   css:
     component:
-      ui/dist/media/remote-video/media.remote-video.css: {}
+      ui/dist/media/remote-video/default/media.remote-video.default.css: {}

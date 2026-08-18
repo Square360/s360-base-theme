@@ -1,10 +1,8 @@
-import menuTwig from '@ui-navigation/menu.html.twig';
-
 import footerData from './menu.footer.yml';
 import './menu.footer.js';
 
+import menuTwig from '@ui-navigation/menu.html.twig';
 import { setMenuItemAttribues } from '.storybook/utils';
-
 import drupalAttribute from 'drupal-attribute';
 
 /**

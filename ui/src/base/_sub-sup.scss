@@ -1,0 +1,14 @@
+sub,
+sup {
+  font-size: 60%;
+  line-height: 0;
+  position: relative;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}

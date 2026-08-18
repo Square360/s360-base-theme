@@ -10,9 +10,6 @@ import { setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: 'Components/In This Section',
-  argTypes: {
-    paragraph: { control: false }
-  }
 };
 
 export const inThisSection = (args) => {

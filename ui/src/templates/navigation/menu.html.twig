@@ -2,27 +2,21 @@
   {% import _self as menus %}
 
   {% if items %}
-    {% if menu_level == 0 %}
-      {%
-        set classes = [
-          'menu',
-          'menu--' ~ menu_name|clean_class,
-          'menu--level-' ~ menu_level
-        ]
-      %}
-      <ul{{ attributes.addClass(classes).setAttribute('data-js', menu_name ~ '-menu') }}>
-
-    {% else %}
-      {%
-        set classes = [
-          'menu',
-          'menu--' ~ menu_name|clean_class,
-          'menu--level-' ~ menu_level,
-          'menu--submenu'
-        ]
-      %}
-      <ul class="{{ classes|join(' ') }}">
-    {% endif %}
+    {%
+      set classes = [
+        'menu',
+        'menu--' ~ menu_name|clean_class,
+        'menu--level-' ~ menu_level,
+        menu_level > 0 ? 'menu--submenu' : ''
+      ]
+    %}
+    <ul
+      {% if menu_level == 0 %}
+        {{ attributes.addClass(classes).setAttribute('data-js', menu_name ~ '-menu') }}
+      {% else %}
+        class="{{ classes|join(' ') }}"
+      {% endif %}
+    >
 
     {% for item in items %}
       {% set menu_attributes = menus_attribute(items|keys[loop.index0]) %}

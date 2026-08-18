@@ -1,0 +1,15 @@
+@use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/link-styles";
+@use "s360-scss-toolkit" as s360;
+
+.menu--local-tasks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: site-config.$scale-0;
+
+  a {
+    // Drupal class.
+    &.is-active {
+    }
+  }
+}

@@ -9,9 +9,6 @@ import { formatParagraphText, setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: 'Layout Components/Placeholder',
-  argTypes: {
-    paragraph: { control: false }
-  }
 };
 
 export const placeholder = (args) => {
