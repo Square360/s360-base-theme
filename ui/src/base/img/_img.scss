@@ -1,9 +1,9 @@
 img {
   display: var(--img--display, block);
-  max-width: var(--img--max-width, 100%);
   height: var(--img--height, auto);
   width: var(--img--width, auto);
+  max-width: var(--img--max-width, 100%);
   object-fit: var(--img--object-fit, initial);
-  position: var(--img--position);
   object-position: var(--img--object-position);
+  position: var(--img--position);
 }

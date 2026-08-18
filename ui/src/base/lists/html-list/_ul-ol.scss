@@ -1,17 +1,16 @@
 @use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/list-reset";
 
 ul,
 ol {
   margin: var(--list--margin, 1em 0);
   padding: var(--list--padding, 0 0 0 2em);
   display: var(--list--display, block);
-  line-height: var(--list--line-height, #{ site-config.$text-line-height });
+  line-height: var(--list--line-height, #{site-config.$line-height-normal});
   max-width: var(--list--max-width);
 
   &[class] {
-    --list--margin: 0;
-    --list--padding: 0;
-    --li--style-type: none;
+    @extend %list-reset;
   }
 
   li {

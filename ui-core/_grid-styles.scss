@@ -2,7 +2,7 @@
 
 %grid-auto-fit-max-cols {
   --_column-count: var(--auto-fit-max-cols--column-count, 3);
-  --_column-gap: var(--auto-fit-max-cols--column-gap, #{ site-config.$column-gap });
+  --_column-gap: var(--auto-fit-max-cols--column-gap, #{site-config.$column-gap});
 
   /* calculations, do not touch */
   --grid-col-size-calc: calc(
@@ -18,7 +18,7 @@
 
   display: grid;
   column-gap: var(--_column-gap);
-  row-gap: var(--auto-fit-max-cols--row-gap, #{ site-config.spacer(3) });
+  row-gap: var(--auto-fit-max-cols--row-gap, #{site-config.$scale-0});
   grid-template-columns: repeat(
     auto-fit,
     minmax(var(--grid-col-min-size-calc), 1fr)

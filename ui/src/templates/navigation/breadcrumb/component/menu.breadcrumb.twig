@@ -11,13 +11,6 @@
             {{ item.text }}
           {% endif %}
         {% endapply %}
-
-        {% if not loop.last %}
-          <div class="menu__item-seperator">
-            <i class="fal fa-chevron-right"></i>
-          </div>
-        {% endif %}
-
       </li>
     {% endfor %}
   </ol>

@@ -3,26 +3,39 @@
 @use "s360-scss-toolkit" as s360;
 
 .ckeditor {
-  // Set ul/ol vars.
-  --list--line-height: #{ site-config.$text-line-height };
-  --list--max-width: #{ site-config.$max-line-length };
+  // **************************************************
+  // LISTS
+
+  ul, ol {
+    --list--line-height: #{site-config.$line-height-normal };
+    --list--max-width: #{site-config.$max-line-length };
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // **************************************************
+  // HEADINGS
 
   :is(h2, h3, h4, h5, h6):first-child {
     --heading--margin-top: 0;
   }
 
+  // **************************************************
+
   figure {
     --figure--display: table;
 
-    margin-bottom: site-config.spacer(0);
+    margin-bottom: site-config.$scale-0;
 
     &.align-left {
-      margin-right: site-config.spacer(0);
+      margin-right: site-config.$scale-0;
       float: left;
     }
 
     &.align-right {
-      margin-left: site-config.spacer(0);
+      margin-left: site-config.$scale-0;
       float: right;
     }
   }

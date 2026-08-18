@@ -1,13 +1,19 @@
-import accordionTwig from './accordion/_accordion.twig';
-import oneColumTwig from './one-column/_one-column.twig';
-import twoColumTwig from './two-column/_two-column.twig';
-import threeColumTwig from './three-column/_three-column.twig';
-import fourColumTwig from './four-column/_four-column.twig';
+import accordionTwig from './accordion/component/_accordion.twig';
+import oneColumTwig from './one-column/component/_one-column.twig';
+import twoColumTwig from './two-column/component/_two-column.twig';
+import threeColumTwig from './three-column/component/_three-column.twig';
+import fourColumTwig from './four-column/component/_four-column.twig';
 
 import './layouts.js';
+import './accordion/component/accordion.js';
+import './one-column/component/one-column.js';
+import './two-column/component/two-column.js';
+import './three-column/component/three-column.js';
+import './four-column/component/four-column.js';
+
+import "./_layout-storybook-only.js";
 
 import { colorSchemeControl } from '.storybook/utils';
-
 import { placeholder } from '@ui-paragraph/placeholder/component/paragraph.placeholder.stories.js';
 import { htmlContent } from '@ui-paragraph/html-content/component/paragraph.html-content.stories.js';
 
@@ -170,7 +176,7 @@ threeColumn.args = {
 // **************************************************
 // FOUR COLUMN LAYOUT
 
-export const fourColumn = () => {
+export const fourColumn = (args) => {
   let debug = args.debug ?? false;
   let paragraphAttributes = Object.assign({});
 
@@ -194,7 +200,7 @@ fourColumn.args = {};
 // **************************************************
 // ACCORDION LAYOUT
 
-export const accordionColumn = () => {
+export const accordionColumn = (args) => {
   let debug = args.debug ?? false;
   let paragraphAttributes = Object.assign({});
 

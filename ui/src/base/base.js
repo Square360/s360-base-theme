@@ -1,4 +1,3 @@
-require.context('SRC_IMAGES', true, /\.(gif|png|jpe?g|svg)$/);
 import './base.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Only update if the value has changed to avoid unnecessary DOM updates.
     if (lastScrollbarWidth !== scrollbarWidth) {
-      HTML.style.setProperty('--scrollbar-width', `${ scrollbarWidth }px`);
+      HTML.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
 
       lastScrollbarWidth = scrollbarWidth;
     }

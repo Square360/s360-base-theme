@@ -8,6 +8,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
+use Drupal\s360_base_theme\ThemeHelper;
 
 /**
  * Hook implementations for form preprocessing.
@@ -20,34 +21,40 @@ final class FormHooks {
    * Implements hook_preprocess_form().
    */
   #[Hook('preprocess_form')]
-  public function preprocessForm(&$variables): void {
+  public function preprocessForm(array &$variables): void {
     $element = $variables['element'];
 
     $variables['form_name'] = Html::getClass($element['#form_id']);
 
     $variables['attributes']['class'][] = 'form';
-    $variables['attributes']['class'][] = Html::getClass('form--' . $element['#form_id']);
+    $variables['attributes']['class'][] = Html::getClass("form--{$element['#form_id']}");
   }
 
   /**
    * Implements hook_preprocess_webform().
    */
   #[Hook('preprocess_webform')]
-  public function preprocessWebform(&$variables): void {
+  public function preprocessWebform(array &$variables): void {
     $element = $variables['element'];
+    $webform_id = $element['#webform_id'];
 
     $variables['form_name'] = Html::getClass($element['#webform_id']);
 
     $variables['attributes']['class'][] = 'form';
     $variables['attributes']['class'][] = 'form--webform';
-    $variables['attributes']['class'][] = Html::getClass('form--' . $element['#webform_id']);
+    $variables['attributes']['class'][] = Html::getClass("form--{$element['#webform_id']}");
+
+    $webform_id_method = ThemeHelper::toPascalCase("preprocessWebform{$webform_id}");
+    if (method_exists($this, $webform_id_method)) {
+      $this->$webform_id_method($variables);
+    }
   }
 
   /**
    * Implements hook_preprocess_form_element().
    */
   #[Hook('preprocess_form_element')]
-  public function preprocessFormElement(&$variables): void {
+  public function preprocessFormElement(array &$variables): void {
     $element = $variables['element'];
 
     // Clear any Drupal classes.
@@ -65,10 +72,15 @@ final class FormHooks {
 
         $variables['children'] = Markup::create('<div class="form__select-wrapper">' . $variables['children'] . '</div>');
       }
+
+      // Applies only type matches one of the following.
+      if (in_array($element['#type'], ['email', 'textarea', 'textfield', 'url', 'tel'])) {
+        $variables['attributes']['class'][] = 'form__element--floating-label';
+      }
     }
 
     if (isset($element['#name'])) {
-      $variables['attributes']['class'][] = Html::getClass('form__element--' . $element['#name']);
+      $variables['attributes']['class'][] = Html::getClass("form__element--{$element['#name']}");
     }
 
     if ($variables['label_display'] !== 'none') {
@@ -92,14 +104,13 @@ final class FormHooks {
    * Implements hook_preprocess_form_element_label().
    */
   #[Hook('preprocess_form_element_label')]
-  public function preprocessFormElementLabel(&$variables): void {
+  public function preprocessFormElementLabel(array &$variables): void {
     $element = $variables['element'];
 
     // Clear any Drupal classes.
     $variables['attributes']['class'] = [];
-
     $variables['attributes']['class'][] = 'form__label';
-    $variables['attributes']['class'][] = Html::getClass('form__label--' . $element['#title']);
+    $variables['attributes']['class'][] = Html::getClass("form__label--{$element['#title']}");
 
     if (isset($element['#required']) && $element['#required']) {
       $variables['attributes']['class'][] = 'form-element__label--required';
@@ -110,7 +121,7 @@ final class FormHooks {
    * Implements hook_preprocess_fieldset().
    */
   #[Hook('preprocess_fieldset')]
-  public function preprocessFieldset(&$variables): void {
+  public function preprocessFieldset(array &$variables): void {
     $element = $variables['element'];
 
     // Clear any Drupal classes.
@@ -119,7 +130,7 @@ final class FormHooks {
 
     // Add the new class names to the array of classes.
     if (isset($element['#name'])) {
-      $variables['attributes']['class'][] = Html::getClass('form__fieldset--' . $element['#name']);
+      $variables['attributes']['class'][] = Html::getClass("form__fieldset--{$element['#name']}");
     }
 
     // Clear any Drupal classes.
@@ -131,7 +142,7 @@ final class FormHooks {
    * Implements hook_preprocess_radios().
    */
   #[Hook('preprocess_radios')]
-  public function preprocessRadios(&$variables): void {
+  public function preprocessRadios(array &$variables): void {
     $variables['attributes']['class'] = [];
     $variables['attributes']['class'][] = 'form__radios';
   }
@@ -140,7 +151,7 @@ final class FormHooks {
    * Implements hook_preprocess_checkboxes().
    */
   #[Hook('preprocess_checkboxes')]
-  public function preprocessCheckboxes(&$variables): void {
+  public function preprocessCheckboxes(array &$variables): void {
     $variables['attributes']['class'] = [];
     $variables['attributes']['class'][] = 'form__checkboxes';
   }
@@ -149,10 +160,9 @@ final class FormHooks {
    * Implements hook_preprocess_input().
    */
   #[Hook('preprocess_input')]
-  public function preprocessInput(&$variables): void {
+  public function preprocessInput(array &$variables): void {
     $element = $variables['element'];
     $id = $element['#id'];
-
     $type = $element['#type'];
 
     // Set the form input type "class" to reset.
@@ -161,7 +171,15 @@ final class FormHooks {
     }
 
     $variables['attributes']['class'][] = 'form__input';
-    $variables['attributes']['class'][] = Html::getClass('form__input--' . $type);
+    $variables['attributes']['class'][] = Html::getClass("form__input--{$type}");
+  }
+
+  /**
+   * Implements hook_preprocess_textarea().
+   */
+  #[Hook('preprocess_textarea')]
+  public function preprocessTextarea(array &$variables): void {
+    self::preprocessInput($variables);
   }
 
 }

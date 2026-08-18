@@ -1,0 +1,21 @@
+{# NOTE: This file is for Storybook display purposes only. #}
+
+{% set additional_classes = [] %}
+
+{% for class in classes %}
+  {% set additional_classes = additional_classes|merge([base_class ~ '--' ~ class]) %}
+{% endfor %}
+
+<{{ header_tag }}{{ attributes.addClass([base_class, additional_classes|join(' ')]) }}>
+  {% if heading_text %}
+    <{{ heading_tag }} {{ heading_tag_attributes.addClass([base_class ~ '__heading']) }}>
+      {{ heading_text }}
+    </{{ heading_tag }}>
+  {% endif %}
+
+  {% if subtitle %}
+    <div{{ subtitle_attributes.addClass([base_class ~ '__subtitle']) }}>
+      {{ subtitle }}
+    </div>
+  {% endif %}
+</{{ header_tag }}>

@@ -6,13 +6,6 @@ base:
   js:
     ui/dist/base/base.js: { attributes: { defer: true } }
 
-layouts:
-  css:
-    base:
-      ui/dist/layouts/layouts.css: {}
-  js:
-    ui/dist/layouts/layouts.js: { attributes: { defer: true } }
-
 # ##################################################
 # Site Layout Library
 
@@ -21,4 +14,6 @@ site-layout:
     base:
       ui/dist/site-layout/site-footer/site-footer.css: {}
   js:
-    ui/dist/site-layout/site-layout.js: { attributes: { defer: true } }
+    ui/dist/site-layout/site-header/site-header.js: { attributes: { defer: true } }
+  dependencies:
+    - core/once

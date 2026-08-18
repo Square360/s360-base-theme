@@ -3,6 +3,7 @@
 namespace Drupal\s360_base_theme;
 
 use Drupal\paragraphs\ParagraphInterface;
+use Drupal\s360_base_theme\ThemeHelper;
 
 /**
  * Helper class for paragraphs entity operations.
@@ -19,14 +20,10 @@ final class ParagraphsEntityHelper {
    *   The paragraph entity to process.
    */
   public static function processImageCaption(ParagraphInterface $paragraph): void {
-    if (!$paragraph->hasField('field_caption') || !$paragraph->hasField('field_erm_image')) {
-      return;
-    }
+    $field_caption = ThemeHelper::validateField($paragraph, 'field_caption');
+    $field_erm_image = ThemeHelper::validateField($paragraph, 'field_erm_image');
 
-    $field_image_caption = $paragraph->get('field_caption');
-    $field_erm_image = $paragraph->get('field_erm_image');
-
-    if ($field_image_caption->isEmpty() || $field_erm_image->isEmpty()) {
+    if (!$field_caption || !$field_erm_image) {
       return;
     }
 
@@ -35,7 +32,7 @@ final class ParagraphsEntityHelper {
 
     if (!empty($media_entities)) {
       $media = reset($media_entities);
-      $media->caption = $field_image_caption->view(['label' => 'hidden']);
+      $media->caption = $field_caption->view(['label' => 'hidden']);
     }
   }
 

@@ -1,17 +1,52 @@
 <form class="form">
-  <div class="form__element form__element--input-textfield form__element--has-label form__element--has-description">
+  <div class="form__element form__element--floating-label form__element--input-textfield form__element--has-label form__element--has-description">
     <label for="edit-name" class="form__label form__label--username form__label--required">Required Input</label>
-    <input aria-describedby="edit-name--description" type="text" id="edit-name" name="name" value="" size="60" maxlength="60" class="form__input form__input--textfield" required="required" aria-required="true">
+    <input
+      aria-describedby="edit-name--description"
+      type="text"
+      id="edit-name"
+      name="name"
+      value="" size="60"
+      maxlength="60"
+      class="form__input form__input--textfield"
+      required="required"
+      aria-required="true"
+      placeholder="Required Input">
     <div id="edit-name--description" class="form__description">
       Username.
     </div>
   </div>
 
-  <div class="form__element form__element--input-password form__element--has-label form__element--has-description">
+  <div class="form__element form__element--floating-label form__element--input-password form__element--has-label form__element--has-description">
     <label for="edit-pass" class="form__label form__label--password form-element__label--required">Password Input</label>
-    <input aria-describedby="edit-pass--description" type="password" id="edit-pass" name="pass" size="60" maxlength="128" class="form__input form__input--password" required="required" aria-required="true">
+    <input
+      aria-describedby="edit-pass--description"
+      type="password"
+      id="edit-pass"
+      name="pass"
+      size="60"
+      maxlength="128"
+      class="form__input form__input--password"
+      required="required"
+      aria-required="true"
+      placeholder="Password">
     <div id="edit-pass--description" class="form__description">
       Password.
+    </div>
+  </div>
+
+  <div class="form__element form__element--floating-label form__element--input-search form__element--input-search form__element--has-label">
+    <label for="edit-search" class="form__label form__label--search">Search</label>
+    <div class="form__search-wrapper">
+      <input
+        type="text"
+        id="edit-search"
+        name="search"
+        size="60"
+        maxlength="128"
+        class="form__input form__input--search"
+        aria-required="true"
+        placeholder="Search">
     </div>
   </div>
 
@@ -20,7 +55,7 @@
     <div class="form__select-wrapper">
       <select id="edit-select" name="select" required="required" aria-required="true">
         <option value="">- Select -</option>
-        <option value="">Option 1</option>
+        <option value="">Option 1 - Single that at rich cinnamon roast sweet white eu go trifecta.</option>
         <option value="" selected="selected">Option 2</option>
         <option value="">Option 3</option>
       </select>
@@ -29,7 +64,9 @@
 
   <div class="form__element form__element--input-date form__element--date form__element--has-label">
     <label for="edit-date" class="form__label form__label--date">Date</label>
-    <input type="date" id="edit-date" name="date" value="" class="form__input form__input--date">
+    <div class="form__date-wrapper">
+      <input type="date" id="edit-date" name="date" value="" class="form__input form__input--date">
+    </div>
   </div>
 
   <div class="form__element form__element--input-radio form__element--radio form__element--has-label">
@@ -43,6 +80,6 @@
   </div>
 
   <div class="form__element form__element--actions" id="edit-actions">
-    <button type="submit" id="edit-submit" name="op" class="form__input form__input--submit">Submit</button>
+    <button type="submit" id="edit-submit" name="op" class="form__input form__input--submit"><span>Submit</span></button>
   </div>
 </form>

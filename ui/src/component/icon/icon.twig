@@ -1,0 +1,8 @@
+{% set classes = [
+  'icon',
+  'icon--' ~ icon_name
+] %}
+{% set attributes = create_attribute() %}
+{% set attributes = attributes.setAttribute('class', classes) %}
+
+<i{{ attributes }}></i>

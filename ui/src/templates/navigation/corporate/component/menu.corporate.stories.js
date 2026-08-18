@@ -1,10 +1,8 @@
-import menuTwig from '@ui-navigation/menu.html.twig';
-
 import corporateData from './menu.corporate.yml';
 import './menu.corporate.js';
 
+import menuTwig from '@ui-navigation/menu.html.twig';
 import { setMenuItemAttribues } from '.storybook/utils';
-
 import drupalAttribute from 'drupal-attribute';
 
 /**

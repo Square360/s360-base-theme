@@ -2,5 +2,21 @@
 @use "s360-scss-toolkit" as s360;
 
 .view--table {
+  // **************************************************
+  // RESPONSIVE
 
+  @container (width < 600px) {
+    thead {
+      display: none;
+    }
+
+    td {
+      display: flex;
+      flex-direction: column;
+
+      &::before {
+        content: attr(data-cell);
+      }
+    }
+  }
 }

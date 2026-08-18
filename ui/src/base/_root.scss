@@ -1,7 +1,14 @@
 @use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/mq";
+@use "s360-scss-toolkit" as s360;
 
 :root {
-  --safe-area-inline: #{ site-config.$site-side-margin };
-  --main-menu-mq: #{ site-config.$main-menu-mq };
+  --safe-area-inline: #{site-config.$site-side-margin};
+  --main-menu-mq: #{mq.$mq-main-menu};
   --site-max-width: #{site-config.$site-max-width};
+}
+
+:root,
+[data-color-scheme="default"] {
+
 }

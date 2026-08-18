@@ -13,7 +13,7 @@ options:
   layout_margin_bottom_options:
     plugin: css_class
     label: 'Margin Bottom'
-    default: 'small'
+    default: 'Medium'
     options:
       '':
         label: '- None -'

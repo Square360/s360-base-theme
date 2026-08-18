@@ -7,6 +7,7 @@ namespace Drupal\s360_base_theme\Hook;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ThemeHandler;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
@@ -52,13 +53,13 @@ final class ParagraphHooks {
    */
   #[Hook('preprocess_paragraph')]
   public function preprocessParagraph(array &$variables): void {
-    /** @var \Drupal\paragraphs\Entity\ParagraphInterface $paragraph */
+    /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
     $paragraph = $variables['paragraph'];
     $paragraph_bundle = $paragraph->bundle();
 
-    $variables['attributes']['id'] = Html::getClass('paragraph-' . $paragraph_bundle . '-' . $paragraph->id());
+    $variables['attributes']['id'] = Html::getClass("paragraph-{$paragraph_bundle}-{$paragraph->id()}");
 
-    $paragraph_bundle_method = 'preprocess' . ThemeHelper::toPascalCase($paragraph_bundle);
+    $paragraph_bundle_method = ThemeHelper::toPascalCase("preprocess{$paragraph_bundle}");
     if (method_exists($this, $paragraph_bundle_method)) {
       $this->$paragraph_bundle_method($variables, $paragraph);
     }
@@ -85,25 +86,27 @@ final class ParagraphHooks {
    *   The Views Reference paragraph entity.
    */
   protected function preprocessCuratedContent(&$variables, ParagraphInterface $paragraph): void {
-    $content_view_mode = $paragraph?->field_content_view_mode?->getString();
+    $field_content_view_mode = ThemeHelper::validateField($paragraph, 'field_content_view_mode');
+    $field_ern_content = ThemeHelper::validateField($paragraph, 'field_ern_content');
 
-    /** @var \Drupal\node\NodeInterface $node */
-    $node = $paragraph?->field_ern_content?->entity;
-
-    // Missing node: hide for anonymous.
-    if (!$node) {
+    // Show error message if fields are missing or empty.
+    if (!$field_content_view_mode || !$field_ern_content) {
       if ($this->currentUser->isAnonymous()) {
         return;
       }
 
       $variables['curated_node'] = [
         '#type' => 'inline_template',
-        '#template' => "{% trans %} Node was deleted and cannot be displayed. {% endtrans %}",
+        '#template' => "{% trans %}Node was deleted and cannot be displayed. {% endtrans %}",
       ];
 
       return;
     }
 
+    $field_content_view_mode_string = (string) $field_content_view_mode->getString();
+
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $field_ern_content->entity;
     $node_bundle = $node->bundle();
     $node_title = $node->label();
 
@@ -117,7 +120,7 @@ final class ParagraphHooks {
     $all_view_modes = array_keys($entity_display_repository);
 
     // Invalid view mode for node bundle.
-    if (!in_array($content_view_mode, $all_view_modes)) {
+    if (!in_array($field_content_view_mode_string, $all_view_modes)) {
       if ($this->currentUser->isAnonymous()) {
         return;
       }
@@ -126,10 +129,10 @@ final class ParagraphHooks {
 
       $variables['curated_node'] = [
         '#type' => 'inline_template',
-        '#template' => "{% trans %} Node: <strong>'{{ node_title }}'</strong> cannot be display using view mode: <strong>{{ node_view_mode }}</strong>. {% endtrans %}",
+        '#template' => "{% trans %}Node: <strong>'{{ node_title }}'</strong> cannot be display using view mode: <strong>{{ node_view_mode }}</strong>.{% endtrans %}",
         '#context' => [
           'node_title' => $node_title,
-          'node_view_mode' => $content_view_mode,
+          'node_view_mode' => $field_content_view_mode_string,
         ],
       ];
 
@@ -137,7 +140,7 @@ final class ParagraphHooks {
     }
 
     $view_builder = $this->entityTypeManager->getViewBuilder('node');
-    $variables['curated_node'] = $view_builder->view($node, $content_view_mode);
+    $variables['curated_node'] = $view_builder->view($node, $field_content_view_mode_string);
 
     $variables['#cache']['tags'] = $node->getCacheTags();
     $variables['#cache']['contexts'] = $node->getCacheContexts();
@@ -153,12 +156,26 @@ final class ParagraphHooks {
    *   The Views Reference paragraph entity.
    */
   protected function preprocessEmbedCode(array &$variables, ParagraphInterface $paragraph): void {
-    $field_embedded_media = $paragraph->field_embedded_media?->first()?->getValue();
-
-    if ($field_embedded_media) {
-      $variables['embed_code'] = Markup::create($field_embedded_media['second']);
-      $variables['embed_type'] = Html::getClass($field_embedded_media['first']);
+    $field_embedded_media = ThemeHelper::validateField($paragraph, 'field_embedded_media');
+    if (!$field_embedded_media) {
+      return;
     }
+
+    $first_item = $field_embedded_media->first();
+    if (!$first_item) {
+      return;
+    }
+
+    $field_embedded_media_value = $first_item->getValue();
+    $embed_type_raw = (string) ($field_embedded_media_value['first'] ?? '');
+    $embed_code_raw = (string) ($field_embedded_media_value['second'] ?? '');
+
+    if ($embed_type_raw === '' || $embed_code_raw === '') {
+      return;
+    }
+
+    $variables['embed_code'] = Markup::create($embed_code_raw);
+    $variables['embed_type'] = Html::getClass($embed_type_raw);
   }
 
   /**
@@ -171,7 +188,8 @@ final class ParagraphHooks {
    */
   protected function preprocessInThisSection(array &$variables, ParagraphInterface $paragraph): void {
     // If no target menu is set, default to "main".
-    $field_target_menu = $paragraph?->get('field_target_menu')->getString() ?: 'main';
+    $field_target_menu = ThemeHelper::validateField($paragraph, 'field_target_menu');
+    $field_target_menu = $field_target_menu->getString() ?: 'main';
 
     $menu_for_current_node = [];
 
@@ -220,7 +238,7 @@ final class ParagraphHooks {
 
       $parent_menu_uuid = explode(':', $menu_for_current_node['parent'])[1];
 
-      /** @var Drupal\menu_link_content\Entity\MenuLinkContent $parent_menu_link_content */
+      /** @var \Drupal\menu_link_content\Entity\MenuLinkContent $parent_menu_link_content */
       $parent_menu_link_content = $this->entityTypeManager->getStorage('menu_link_content')->loadByProperties(['uuid' => $parent_menu_uuid]);
       $parent_menu_link_content = reset($parent_menu_link_content);
 
@@ -273,6 +291,37 @@ final class ParagraphHooks {
    */
   protected function preprocessImage(array &$variables, ParagraphInterface $paragraph): void {
     ParagraphsEntityHelper::processImageCaption($paragraph);
+
+    $field_aspect_ratio = ThemeHelper::validateField($paragraph, 'field_aspect_ratio');
+    $field_erm_image = ThemeHelper::validateField($paragraph, 'field_erm_image');
+
+    // Override field_media_image display with aspect ratio-specific responsive image style.
+    if ($field_aspect_ratio && $field_erm_image) {
+      $rendered_media = [];
+      foreach ($paragraph->get('field_erm_image')->referencedEntities() as $delta => $media) {
+        // Render the media entity normally with its default display.
+        $media_view_builder = ThemeHelper::entityTypeManager()->getViewBuilder('media');
+        $media_render = $media_view_builder->view($media, 'default');
+
+        // Replace the image field with aspect ratio-specific responsive image style.
+        if ($field_media_image = ThemeHelper::validateField($media, 'field_media_image')) {
+          $media_render['field_media_image'] = $field_media_image->view([
+            'type' => 'responsive_image',
+            'label' => 'hidden',
+            'settings' => [
+              'responsive_image_style' => 'aspect_ratio_' . $field_aspect_ratio->getString(),
+              'image_link' => '',
+            ],
+          ]);
+        }
+
+        $rendered_media[$delta] = $media_render;
+      }
+
+      if (!empty($rendered_media)) {
+        $variables['content']['field_erm_image'] = $rendered_media;
+      }
+    }
   }
 
 }

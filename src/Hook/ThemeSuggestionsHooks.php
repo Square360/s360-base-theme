@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\s360_base_theme\Hook;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Hook\Attribute\Hook;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -44,11 +45,11 @@ final class ThemeSuggestionsHooks {
 
     $suggestions = [];
 
-    $suggestions[] = 'taxonomy_term__' . $view_mode;
-    $suggestions[] = 'taxonomy_term__' . $term_bundle;
-    $suggestions[] = 'taxonomy_term__' . $term_bundle . '__' . $view_mode;
-    $suggestions[] = 'taxonomy_term__' . $term->id();
-    $suggestions[] = 'taxonomy_term__' . $term->id() . '__' . $view_mode;
+    $suggestions[] = Html::getClass("taxonomy_term__$view_mode");
+    $suggestions[] = Html::getClass("taxonomy_term__$term_bundle");
+    $suggestions[] = Html::getClass("taxonomy_term__{$term_bundle}__$view_mode");
+    $suggestions[] = Html::getClass("taxonomy_term__{$term->id()}");
+    $suggestions[] = Html::getClass("taxonomy_term__{$term->id()}__$view_mode");
   }
 
   /**
@@ -58,17 +59,12 @@ final class ThemeSuggestionsHooks {
   public function themeSuggestionsContainerAlter(array &$suggestions, array $variables) {
     if (isset($variables['element']['#type'])) {
       if ($variables['element']['#type'] == 'view') {
-        $suggestions[] = 'container__' .
-          $variables['element']['#type'];
+        $container_type = $variables['element']['#type'];
+        $container_name = $variables['element']['#name'];
 
-        $suggestions[] = 'container__' .
-          $variables['element']['#type'] . '__' .
-          $variables['element']['#name'];
-
-        $suggestions[] = 'container__' .
-          $variables['element']['#type'] . '__' .
-          $variables['element']['#name'] . '__' .
-          $variables['element']['#display_id'];
+        $suggestions[] = Html::getClass("container__{$container_type}");
+        $suggestions[] = Html::getClass("container__{$container_type}__{$container_name}");
+        $suggestions[] = Html::getClass("container__{$container_type}__{$container_name}__{$variables['element']['#display_id']}");
       }
     }
   }

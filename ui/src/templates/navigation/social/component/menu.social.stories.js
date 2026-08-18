@@ -1,10 +1,9 @@
-import menuTwig from '@ui-navigation/menu.html.twig';
-
 import socialData from './menu.social.yml';
 import './menu.social.js';
 
+import menuTwig from '@ui-navigation/menu.html.twig';
+import { icon } from '@ui-component/icon/icon.stories.js';
 import { setMenuItemAttribues } from '.storybook/utils';
-
 import drupalAttribute from 'drupal-attribute';
 
 /**

@@ -1,11 +1,16 @@
 @use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/cta-primary";
 @use "@s360-base-theme/ui-core/mq";
 
 .form--webform {
+  .form__input--submit {
+    @extend %cta-primary;
+  }
+
   // Drupal class.
   .webform-flexbox {
     display: flex;
-    gap: site-config.spacer(0);
+    gap: site-config.$scale-0;
     flex-wrap: wrap;
 
     &--flex-start {

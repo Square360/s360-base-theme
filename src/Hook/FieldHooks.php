@@ -30,7 +30,7 @@ final class FieldHooks {
    * Implements hook_preprocess_field().
    */
   #[Hook('preprocess_field')]
-  public function proprocessField(&$variables): void {
+  public function proprocessField(array &$variables): void {
     /* **************************************************
      * Field machine name preprocessing
      */
@@ -42,7 +42,7 @@ final class FieldHooks {
       $field_name = substr($field_name, 6);
     }
 
-    $field_name_method = 'preprocessField' . ThemeHelper::toPascalCase($field_name);
+    $field_name_method = ThemeHelper::toPascalCase("preprocessField{$field_name}");
     if (method_exists($this, $field_name_method)) {
       $this->$field_name_method($variables);
     }
@@ -53,9 +53,38 @@ final class FieldHooks {
 
     $field_type = $variables['field_type'];
 
-    $field_type_method = 'preprocessType' . ThemeHelper::toPascalCase($field_type);
+    $field_type_method = ThemeHelper::toPascalCase("preprocessType{$field_type}");
     if (method_exists($this, $field_type_method)) {
       $this->$field_type_method($variables);
+    }
+  }
+
+  /**
+   * Implements hook_preprocess_field() for field_social_links.
+   */
+  protected function preprocessFieldSocialLinks(array &$variables) {
+    $element = $variables['element'];
+
+    /** @var \Drupal\Core\Entity\EntityInterface $object */
+    $object = $element['#object'];
+    $object_label = $object->label();
+
+    foreach ($variables['items'] as &$item) {
+      $url = $item['content']['#url'];
+      $item_content_title = &$item['content']['#title'];
+
+      $social_info = ThemeHelper::getSocialInfo($item_content_title);
+
+      $url->setOptions([
+        'attributes' => [
+          'aria-label' => "Go to {$object_label}'s {$social_info['name']} page",
+        ],
+      ]);
+
+      $item_content_title = [
+        '#theme' => 'social_icon',
+        '#social_name' => $social_info['icon'],
+      ];
     }
   }
 

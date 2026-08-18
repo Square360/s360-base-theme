@@ -10,9 +10,6 @@ import { setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: 'Layout Components/Image',
-  argTypes: {
-    paragraph: { control: false }
-  }
 };
 
 export const image = (args) => {

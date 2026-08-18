@@ -8,6 +8,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    gap: site-config.$scale-0;
   }
 
   &__item {
@@ -30,10 +31,6 @@
       a {
         @extend %animate-underline-in-to-right;
       }
-    }
-
-    + .pager__item {
-      margin-left: site-config.spacer(0);
     }
 
     // Drupal class.

@@ -1,7 +1,7 @@
 @use "./colors";
 @use "./focus-visible";
 
-%a {
+%link-style {
   color: var(--a--color);
   background-color: var(--a--bg-color);
   cursor: pointer;

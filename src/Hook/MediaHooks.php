@@ -23,7 +23,7 @@ final class MediaHooks {
    * Implements hook_preprocess_media().
    */
   #[Hook('preprocess_media')]
-  public function preprocessMedia(&$variables): void {
+  public function preprocessMedia(array &$variables): void {
     /** @var \Drupal\media\MediaInterface $media */
     $media = $variables['media'];
     $media_bundle = $media->bundle();
@@ -32,7 +32,7 @@ final class MediaHooks {
       $variables['caption'] = $variables['media']->caption;
     }
 
-    $media_bundle_method = 'preprocess' . ThemeHelper::toPascalCase($media_bundle);
+    $media_bundle_method = ThemeHelper::toPascalCase("preprocess{$media_bundle}");
     if (method_exists($this, $media_bundle_method)) {
       $this->$media_bundle_method($variables, $media);
     }
@@ -46,9 +46,7 @@ final class MediaHooks {
    * @param \Drupal\media\MediaInterface $media
    *   The Image media entity.
    */
-  protected function preprocessImage(array &$variables, MediaInterface $media): void {
-
-  }
+  protected function preprocessImage(array &$variables, MediaInterface $media): void {  }
 
   /**
    * Preprocesses Document media bundle variables.
@@ -58,9 +56,7 @@ final class MediaHooks {
    * @param \Drupal\media\MediaInterface $media
    *   The Document media entity.
    */
-  protected function preprocessDocument(array &$variables, MediaInterface $media): void {
-
-  }
+  protected function preprocessDocument(array &$variables, MediaInterface $media): void {  }
 
   /**
    * Preprocesses Remote Video media bundle variables.
@@ -71,7 +67,16 @@ final class MediaHooks {
    *   The Remote Video media entity.
    */
   protected function preprocessRemoteVideo(array &$variables, MediaInterface $media): void {
+    if ($field_media_oembed_video = ThemeHelper::validateField($media, 'field_media_oembed_video')) {
+      $video_url = $field_media_oembed_video->value;
 
+      if (strpos($video_url, 'youtube.com') !== FALSE || strpos($video_url, 'youtu.be') !== FALSE) {
+        $variables['attributes']['data-video'] = 'youtube';
+      }
+      elseif (strpos($video_url, 'vimeo.com') !== FALSE) {
+        $variables['attributes']['data-video'] = 'vimeo';
+      }
+    }
   }
 
 }
