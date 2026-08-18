@@ -1,3 +1,9 @@
+# Release 10.0.0 (2026-08-18)
+
+### Features
+
+* storybook 9 build system (750b39e)
+
 # Release 9.1.0 (2026-08-18)
 
 ### Features
