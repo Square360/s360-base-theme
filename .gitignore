@@ -5,3 +5,4 @@ ui/dist/*
 !ui/dist/.gitkeep
 ui/src/images/*
 !ui/src/images/icons/.gitkeep
+/_working

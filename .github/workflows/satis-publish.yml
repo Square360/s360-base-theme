@@ -10,7 +10,7 @@ on:
 
 jobs:
   satis_publish:
-    uses: Square360/shared-workflows/.github/workflows/reusable-satis-publish.yml@v4.3.1
+    uses: Square360/shared-workflows/.github/workflows/reusable-satis-publish.yml@v4  # moving major tag — advances with each 4.x release
     with:
       # Satis indexes this module under the GitHub repo name (S360-Base-Theme),
       # which differs from composer.json's square360/s360_base_theme. Reconcile
