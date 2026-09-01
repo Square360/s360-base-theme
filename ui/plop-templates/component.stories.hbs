@@ -9,6 +9,12 @@ import { setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: '{{ storybookTitle }}',
+  args: {
+    {{ entityType }}_is_published: true,
+  },
+  argTypes: {
+    {{ entityType }}_is_published: { name: 'Published' }
+  }
 };
 
 export const {{ storybookFunctionName }} = (args) => {

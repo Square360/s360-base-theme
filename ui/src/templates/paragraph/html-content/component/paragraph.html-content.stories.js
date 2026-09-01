@@ -9,6 +9,12 @@ import { formatParagraphCKEditor, setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: 'Layout Components/Html Content',
+  args: {
+    paragraph_is_published: true,
+  },
+  argTypes: {
+    paragraph_is_published: { name: 'Published' }
+  }
 };
 
 export const htmlContent = (args) => {

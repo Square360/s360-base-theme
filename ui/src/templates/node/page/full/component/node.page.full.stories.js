@@ -12,6 +12,9 @@ export default {
   args: {
     node_is_published: true,
   },
+  argTypes: {
+    paragraph_is_published: { name: 'Published' }
+  }
 };
 
 export const full = (args) => {
@@ -24,6 +27,3 @@ export const full = (args) => {
   });
 };
 full.args = pageData;
-full.argTypes = {
-  node_is_published: { name: 'Published' },
-}

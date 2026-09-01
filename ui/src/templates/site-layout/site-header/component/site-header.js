@@ -31,7 +31,7 @@ Drupal.behaviors.siteLayout = {
     }
 
     function setAdminPadding() {
-      HTML.style.setProperty('--site-padding-top', `${ HTML.style['scroll-padding-top'] }`);
+      HTML.style.setProperty('--site-padding-top', `${HTML.style['scroll-padding-top']}`);
     }
 
     function setSiteHeaderHeight() {
@@ -40,7 +40,7 @@ Drupal.behaviors.siteLayout = {
       const marginBottom = parseFloat(headerStyles.marginBottom) || 0;
       const heightWithMargins = siteHeader.getBoundingClientRect().height + marginTop + marginBottom;
 
-      HTML.style.setProperty('--site-header-height', `${ heightWithMargins }px`);
+      HTML.style.setProperty('--site-header-height', `${heightWithMargins}px`);
     }
 
     function showMenu() {
@@ -52,12 +52,10 @@ Drupal.behaviors.siteLayout = {
     }
 
     function expandMenuToggle() {
-      siteHeader.setAttribute('data-color-scheme', 'tranquil');
       menuToggle.setAttribute('aria-expanded', 'true');
     }
 
     function collapseMenuToggle() {
-      siteHeader.removeAttribute('data-color-scheme');
       menuToggle.setAttribute('aria-expanded', 'false');
     }
 

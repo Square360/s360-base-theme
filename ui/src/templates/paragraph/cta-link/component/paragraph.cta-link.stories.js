@@ -10,6 +10,12 @@ import { ctaLinkStyleControl, setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: 'Layout Components/Cta Link',
+  args: {
+    paragraph_is_published: true,
+  },
+  argTypes: {
+    paragraph_is_published: { name: 'Published' }
+  }
 };
 
 export const ctaLink = (args) => {
