@@ -5,10 +5,14 @@ import { rm } from 'node:fs/promises';
 
 const __dist = path.resolve(process.cwd(), 'dist');
 
+// Empties and removes the "dist" folder.
 await rm(__dist, {
   recursive: true,
   force: true,
 });
+
+// Immediately recreate it.
+await mkdir(__dist, { recursive: true });
 
 /**
  * Whether the build runner should rebuild entries when source files change.
