@@ -1,7 +1,7 @@
 {#
 /**
  * Available Variables:
- * - paragraph.caption: Override media caption from paragraph.
+ * - media.caption: Override media caption from paragraph.
 
  * @see src/ParagraphsEntityHelper.php::processImageCaption
  */
@@ -10,5 +10,5 @@
 
 {% include "@ui-media/image/default/component/media.image.default.twig" with {
   media_field_media_image: (content.field_media_image.0) ? content.field_media_image : '',
-  media_caption: paragraph.caption ?? (content.field_media_caption.0 ? content.field_media_caption : ''),
+  media_caption: media.caption ?? (content.field_media_caption.0 ? content.field_media_caption : ''),
 } %}
