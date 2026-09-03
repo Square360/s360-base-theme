@@ -197,6 +197,10 @@ function svgSpritePlugin() {
         return `<symbol id="icon-${name}"${viewBoxAttribute}>${contents}</symbol>`;
       }).filter(Boolean);
 
+      if (symbols.length === 0) {
+        return;
+      }
+
       const sprite = [
         '<svg xmlns="http://www.w3.org/2000/svg">',
         '<defs>',
