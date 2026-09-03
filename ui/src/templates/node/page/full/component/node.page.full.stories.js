@@ -20,7 +20,7 @@ export default {
 export const full = (args) => {
   // Create deep copy of data and merge args.
   let data = Object.assign(structuredClone(pageData ?? {}), args);
-  data.node = setPublishedStatus(data.node_is_published);
+  data.node = setPublishedStatus(data.node_is_published ?? true);
 
   return pageTwig({
     ...data,

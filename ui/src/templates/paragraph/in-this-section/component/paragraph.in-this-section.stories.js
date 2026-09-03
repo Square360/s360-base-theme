@@ -21,7 +21,7 @@ export default {
 export const inThisSection = (args) => {
   // Create deep copy of data and merge args.
   let data = Object.assign(structuredClone(inThisSectionData ?? {}), args);
-  data.paragraph = setPublishedStatus(data.paragraph_is_published);
+  data.paragraph = setPublishedStatus(data.paragraph_is_published ?? true);
 
   return inThisSectionTwig({
     ...data,

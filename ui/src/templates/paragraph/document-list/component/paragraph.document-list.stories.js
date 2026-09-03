@@ -20,7 +20,7 @@ export default {
 export const documentList = (args) => {
   // Create deep copy of data and merge args.
   let data = Object.assign(structuredClone(documentListData ?? {}), args);
-  data.paragraph = setPublishedStatus(data.paragraph_is_published);
+  data.paragraph = setPublishedStatus(data.paragraph_is_published ?? true);
 
   return documentListTwig({
     ...data,
