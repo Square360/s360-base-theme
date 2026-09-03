@@ -6,6 +6,7 @@ namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\media\MediaInterface;
+use Drupal\s360_base_theme\MediaEntityHelper;
 use Drupal\s360_base_theme\ThemeHelper;
 
 /**
@@ -46,7 +47,33 @@ final class MediaHooks {
    * @param \Drupal\media\MediaInterface $media
    *   The Image media entity.
    */
-  protected function preprocessImage(array &$variables, MediaInterface $media): void {  }
+  protected function preprocessImage(array &$variables, MediaInterface $media): void {
+    $media_info = MediaEntityHelper::getMediaInfo($media);
+
+    $file = $media_info['file'] ?? NULL;
+    if (!$file) {
+      return;
+    }
+
+    $file_width = $file['width'];
+    $file_height = $file['height'];
+
+    if ($file_width !== 0 && $file_height !== 0) {
+      $variables['attributes']['data-orientation'] = match (TRUE) {
+        $file_width > $file_height => 'landscape',
+        $file_height > $file_width => 'portrait',
+        default => 'square',
+      };
+
+      $custom_properties = sprintf(
+        '--image-width: %d; --image-height: %d; --image-aspect-ratio: %d / %d;',
+        $file_width, $file_height, $file_width, $file_height,
+      );
+
+      $existing_style = $variables['attributes']['style'] ?? '';
+      $variables['attributes']['style'] = trim($existing_style . ' ' . $custom_properties);
+    }
+  }
 
   /**
    * Preprocesses Document media bundle variables.
@@ -67,14 +94,20 @@ final class MediaHooks {
    *   The Remote Video media entity.
    */
   protected function preprocessRemoteVideo(array &$variables, MediaInterface $media): void {
-    if ($field_media_oembed_video = ThemeHelper::validateField($media, 'field_media_oembed_video')) {
-      $video_url = $field_media_oembed_video->value;
+    $field_media_oembed_video = ThemeHelper::validateField($media, 'field_media_oembed_video');
+    if (!$field_media_oembed_video) {
+      return;
+    }
 
-      if (strpos($video_url, 'youtube.com') !== FALSE || strpos($video_url, 'youtu.be') !== FALSE) {
-        $variables['attributes']['data-video'] = 'youtube';
-      }
-      elseif (strpos($video_url, 'vimeo.com') !== FALSE) {
-        $variables['attributes']['data-video'] = 'vimeo';
+    $video_url = $field_media_oembed_video->value;
+    if (!is_string($video_url) || $video_url === '') {
+      return;
+    }
+
+    $video_details = MediaEntityHelper::extractVideoDetailsFromUrl($video_url);
+    if ($video_details) {
+      foreach ($video_details as $key => $value) {
+        $variables['attributes']['data-' . str_replace('_', '-', $key)] = $value;
       }
     }
   }

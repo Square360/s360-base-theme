@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\s360_base_theme;
 
 use Drupal\Core\Url;
 use Drupal\media\MediaInterface;
-use Drupal\s360_base_theme\FileEntityHelper;
-use Drupal\s360_base_theme\ThemeHelper;
 
 /**
  * Helper class for media entity operations.
@@ -15,8 +15,9 @@ final class MediaEntityHelper {
   /**
    * Get file information about the media.
    *
-   * @param int|\Drupal\media\MediaInterface $media
-   *   Either a media entity ID (int) or a loaded Media entity object.
+   * @param int|\Drupal\media\MediaInterface|null $media
+   *   Either a media entity ID (int), a loaded Media entity object, or NULL
+   *   when an entity reference target no longer exists.
    *
    * @return array|null
    *   An array containing:
@@ -25,7 +26,7 @@ final class MediaEntityHelper {
    *   - Additional keys based on media type
    *   Returns NULL if the media entity cannot be loaded.
    */
-  public static function getMediaInfo(int|MediaInterface $media): ?array {
+  public static function getMediaInfo(int|MediaInterface|null $media): ?array {
     if (is_int($media)) {
       $mid = $media;
 
@@ -73,6 +74,23 @@ final class MediaEntityHelper {
   }
 
   /**
+   * Extracts normalized provider and video ID details from a video URL.
+   *
+   * Supports YouTube and Vimeo URLs.
+   *
+   * @param string $url
+   *   The input video URL.
+   *
+   * @return array{
+   *  provider: string,
+   *  video_id: string,
+   * }|null
+   */
+  public static function extractVideoDetailsFromUrl(string $url): ?array {
+    return static::getYouTubeDetailsFromUrl($url) ?? static::getVimeoDetailsFromUrl($url);
+  }
+
+  /**
    * Gets file information for a document media entity.
    *
    * Extracts the referenced file from the field_media_document field and
@@ -81,18 +99,17 @@ final class MediaEntityHelper {
    * @param \Drupal\media\MediaInterface $media
    *   The document media entity.
    *
-   * @return array|null
+   * @return array
    *   An array of file information from FileEntityHelper::getFileInfo(),
    *   or NULL if the field is empty or unavailable.
    */
-  private static function getDocumentInfo(MediaInterface $media): ?array {
+  private static function getDocumentInfo(MediaInterface $media): array {
     $field_media_document = ThemeHelper::validateField($media, 'field_media_document');
-
     if (!$field_media_document) {
-      return NULL;
+      return [];
     }
 
-    return FileEntityHelper::getFileInfo($field_media_document->target_id);
+    return FileEntityHelper::getFileInfo($field_media_document->entity) ?? [];
   }
 
   /**
@@ -104,21 +121,23 @@ final class MediaEntityHelper {
    * @param \Drupal\media\MediaInterface $media
    *   The image media entity.
    *
-   * @return array|null
+   * @return array
    *   An array of file information with additional image metadata.
    *   Returns NULL if the field is empty or unavailable.
    */
-  private static function getImageInfo(MediaInterface $media): ?array {
+  private static function getImageInfo(MediaInterface $media): array {
     $field_media_image = ThemeHelper::validateField($media, 'field_media_image');
-
     if (!$field_media_image) {
-      return NULL;
+      return [];
     }
 
-    $file_info = FileEntityHelper::getFileInfo($field_media_image->target_id);
+    $file_info = FileEntityHelper::getFileInfo($field_media_image->entity);
+    if (!$file_info) {
+      return [];
+    }
 
-    $file_info['file']['width'] = ($field_media_image->width ?? 0) . 'px';
-    $file_info['file']['height'] = ($field_media_image->height ?? 0) . 'px';
+    $file_info['file']['width'] = ($field_media_image->width ?? 0);
+    $file_info['file']['height'] = ($field_media_image->height ?? 0);
     $file_info['file']['alt'] = $field_media_image->alt ?? '';
 
     return $file_info;
@@ -139,15 +158,21 @@ final class MediaEntityHelper {
    *   - icon: FontAwesome icon class (fa-circle-play)
    *   Returns NULL if the field is empty or unavailable.
    */
-  private static function getRemoteVideoInfo(MediaInterface $media): ?array {
+  private static function getRemoteVideoInfo(MediaInterface $media): array {
     $field_media_oembed_video = ThemeHelper::validateField($media, 'field_media_oembed_video');
 
     if (!$field_media_oembed_video) {
-      return NULL;
+      return [];
+    }
+
+    $uri = $field_media_oembed_video->getString();
+
+    if (!is_string($uri) || $uri === '') {
+      return [];
     }
 
     return [
-      'url' => Url::fromUri($field_media_oembed_video->getString()),
+      'url' => Url::fromUri($uri),
       'icon' => 'fa-circle-play',
     ];
   }
@@ -170,7 +195,7 @@ final class MediaEntityHelper {
       return NULL;
     }
 
-    return $field_media_caption->first()->getValue()['value'];
+    return $field_media_caption->value;
   }
 
   /**
@@ -193,9 +218,70 @@ final class MediaEntityHelper {
       return NULL;
     }
 
-    $thumbnail_info = FileEntityHelper::getFileInfo($thumbnail->target_id);
+    $thumbnail_info = FileEntityHelper::getFileInfo($thumbnail->entity);
+
+    if (!$thumbnail_info) {
+      return NULL;
+    }
 
     return reset($thumbnail_info);
+  }
+
+  /**
+   * Extracts YouTube provider details from a URL.
+   *
+   * Supports common YouTube formats such as youtu.be short URLs, watch URLs,
+   * shorts, live, and /v/ paths.
+   *
+   * @param string $url
+   *   The input video URL.
+   *
+   * @return array|null
+   *   An associative array with:
+   *   - provider: youtube
+   *   - video_id: The extracted YouTube video ID.
+   *   Returns NULL when the URL does not match a supported YouTube pattern.
+   */
+  private static function getYouTubeDetailsFromUrl(string $url): ?array {
+    // Match youtube.com or youtu.be that contain:
+    // "watch", "watch?v=", "shorts", "live", or "v".
+    $youtube_url_regex = '/(youtu\.be\/|youtube\.com\/(watch(\?v=|\/))|shorts\/|live\/|v\/)([^\?&"\'>]+)/';
+
+    preg_match($youtube_url_regex, $url, $matches);
+
+    if (!isset($matches[4])) {
+      return NULL;
+    }
+
+    return [
+      'provider' => 'youtube',
+      'video_id' => $matches[4],
+    ];
+  }
+
+  /**
+   * Extracts Vimeo provider details from a URL.
+   *
+   * @param string $url
+   *   The input video URL.
+   *
+   * @return array|null
+   *   An associative array with:
+   *   - provider: vimeo
+   *   - video_id: The extracted Vimeo video ID.
+   *   Returns NULL when no Vimeo ID is found in the URL.
+   */
+  private static function getVimeoDetailsFromUrl(string $url): ?array {
+    preg_match('/vimeo\.com\/(?:.*\/)?(\d+)/', $url, $matches);
+
+    if (!$matches[1]) {
+      return NULL;
+    }
+
+    return [
+      'provider' => 'vimeo',
+      'video_id' => $matches[1],
+    ];
   }
 
 }
