@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\s360_base_theme;
 
 use Drupal\Core\Url;
