@@ -26,10 +26,13 @@ class NodeEntityHelper {
    *   The URL object - either the source link or canonical node URL.
    */
   public static function getNodeUrl(NodeInterface $node): Url {
-    if (static::isPassthroughEnabled($node) && $field_source_link = ThemeHelper::validateField($node, 'field_source_link')) {
-      $source_link = $field_source_link->first()->uri;
+    if (
+      static::isPassthroughEnabled($node) &&
+      $field_source_link = ThemeHelper::validateField($node, 'field_source_link')
+    ) {
+      $source_link = $field_source_link->uri;
 
-      if ($source_link) {
+      if (is_string($source_link) && $source_link !== '') {
         return Url::fromUri($source_link);
       }
     }
@@ -41,7 +44,7 @@ class NodeEntityHelper {
    * Checks if passthrough mode is enabled for the node.
    *
    * Determines whether the node should bypass its canonical URL and use
-   * an source link instead. If field_passthrough doesn't exist, defaults to
+   * a source link instead. If field_passthrough doesn't exist, defaults to
    * TRUE (passthrough enabled).
    *
    * @param \Drupal\node\NodeInterface $node
