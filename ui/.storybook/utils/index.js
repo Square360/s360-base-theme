@@ -186,15 +186,43 @@ export function setPublishedStatus(status) {
 /**
  * Creates an array of formatted links based on sourceLinks.
  *
- * @param {array} sourceLinks - Source links is a plain text array of link text.
- * @returns {array} A formatted array of real links where link text is used.
+ * @param {array} sourceLinks - Source links is an array of plain link text
+ *  or object containing { link_text and/or link_url }.
+ * @returns {array} A formatted array of real links.
  */
 export function formatLinksArray(sourceLinks) {
   let links = [];
 
+  if (!Array.isArray(sourceLinks)) {
+    return '';
+  }
+
   sourceLinks.forEach(link => {
-    links.push(linkTwig({ link_text: link }))
+    links.push(linkTwig(typeof link === 'string'
+      ? { link_text: link }
+      : link
+    ))
   });
 
   return links;
+}
+
+/**
+ * Creates an array of formatted images based on sourceImages.
+ *
+ * @param {array} sourceImages - Source images is a plain text array of images.
+ * @returns {array} A formatted array of real images.
+ */
+export function formatImagesArray(sourceImages) {
+  let images = [];
+
+  if (!Array.isArray(sourceImages)) {
+    return '';
+  }
+
+  sourceImages.forEach(image => {
+    images.push(imgTwig({ image_src: image }))
+  });
+
+  return images;
 }
