@@ -1,3 +1,8 @@
 block.branding-block:
   js:
     ui/dist/block/branding-block/block.branding-block.js: { attributes: { defer: true } }
+
+block.status-messages:
+  css:
+    component:
+      ui/dist/block/status-messages/status-messages.css: {}
