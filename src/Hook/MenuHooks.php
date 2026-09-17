@@ -57,7 +57,7 @@ final class MenuHooks {
   protected function preprocessSocialMenu(array &$variables): void {
     $site_name = ThemeHelper::config('system.site')->get('name');
 
-    foreach ($variables['items'] as &$item) {
+    foreach ($variables['items'] ?? [] as &$item) {
       $item_title = &$item['title'];
 
       $social_info = ThemeHelper::getSocialInfo($item_title);

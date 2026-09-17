@@ -35,27 +35,37 @@ final class FieldHooks {
      * Field machine name preprocessing
      */
 
-    $field_name = $variables['field_name'];
+    if (
+      ($field_name = $variables['field_name'] ?? NULL) !== NULL &&
+      is_string($field_name) &&
+      $field_name !== ''
+    ) {
+      // Remove "field_" prefix if it exists.
+      if (str_starts_with($field_name, 'field_')) {
+        $field_name = substr($field_name, 6);
+      }
 
-    // Remove "field_" prefix if it exists.
-    if (str_starts_with($field_name, 'field_')) {
-      $field_name = substr($field_name, 6);
-    }
+      $field_name_method = ThemeHelper::toPascalCase("preprocessField{$field_name}");
 
-    $field_name_method = ThemeHelper::toPascalCase("preprocessField{$field_name}");
-    if (method_exists($this, $field_name_method)) {
-      $this->$field_name_method($variables);
+      if (method_exists($this, $field_name_method)) {
+        $this->$field_name_method($variables);
+      }
     }
 
     /* *************************************************
      * Field type preprocessing
      */
 
-    $field_type = $variables['field_type'];
+    if (
+      ($field_type = $variables['field_type'] ?? NULL) !== NULL &&
+      is_string($field_type) &&
+      $field_type !== ''
+    ) {
+      $field_type_method = ThemeHelper::toPascalCase("preprocessType{$field_type}");
 
-    $field_type_method = ThemeHelper::toPascalCase("preprocessType{$field_type}");
-    if (method_exists($this, $field_type_method)) {
-      $this->$field_type_method($variables);
+      if (method_exists($this, $field_type_method)) {
+        $this->$field_type_method($variables);
+      }
     }
   }
 
@@ -63,15 +73,31 @@ final class FieldHooks {
    * Implements hook_preprocess_field() for field_social_links.
    */
   protected function preprocessFieldSocialLinks(array &$variables) {
-    $element = $variables['element'];
+    $element = $variables['element'] ?? NULL;
 
-    /** @var \Drupal\Core\Entity\EntityInterface $object */
-    $object = $element['#object'];
+    if (!is_array($element)) {
+      return;
+    }
+
+    $object = $element['#object'] ?? NULL;
+
+    if (!$object instanceof \Drupal\Core\Entity\EntityInterface) {
+      return;
+    }
+
     $object_label = $object->label();
 
-    foreach ($variables['items'] as &$item) {
-      $url = $item['content']['#url'];
+    foreach ($variables['items'] ?? [] as &$item) {
+      $url = $item['content']['#url'] ?? NULL;
       $item_content_title = &$item['content']['#title'];
+
+      if (!$url instanceof \Drupal\Core\Url) {
+        continue;
+      }
+
+      if (!is_string($item_content_title) || $item_content_title === '') {
+        continue;
+      }
 
       $social_info = ThemeHelper::getSocialInfo($item_content_title);
 

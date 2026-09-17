@@ -27,6 +27,10 @@ final class NodeHooks {
    */
   #[Hook('preprocess_node')]
   public function preprocessNode(array &$variables): void {
+    $view_mode = $variables['elements']['#view_mode'];
+
+    $variables['view_mode'] = $view_mode;
+
     /** @var \Drupal\node\NodeInterface $node */
     $node = $variables['node'];
     $node_bundle = $node->bundle();
@@ -49,9 +53,14 @@ final class NodeHooks {
     unset($variables['attributes']['role']);
     unset($variables['attributes']['about']);
 
-    $node_bundle_method = 'preprocess' . ThemeHelper::toPascalCase($node_bundle);
+    $node_bundle_method = ThemeHelper::toPascalCase("preprocessBundle{$node_bundle}");
     if (method_exists($this, $node_bundle_method)) {
       $this->$node_bundle_method($variables, $node);
+    }
+
+    $node_view_mode_method = ThemeHelper::toPascalCase("preprocessViewMode{$view_mode}");
+    if (method_exists($this, $node_view_mode_method)) {
+      $this->$node_view_mode_method($variables, $node);
     }
   }
 
@@ -63,6 +72,6 @@ final class NodeHooks {
    * @param \Drupal\node\NodeInterface $node
    *   The Page node entity.
    */
-  protected function preprocessPage(array &$variables, NodeInterface $node): void {  }
+  protected function preprocessBundlePage(array &$variables, NodeInterface $node): void {  }
 
 }

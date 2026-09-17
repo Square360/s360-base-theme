@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\s360_base_theme;
 
 use Drupal\Core\File\FileUrlGeneratorInterface;
@@ -27,8 +29,8 @@ final class FileEntityHelper {
    * Retrieves comprehensive information about a file entity including its
    * metadata, URLs, formatted size, and appropriate icon representation.
    *
-   * @param int|\Drupal\file\FileInterface $file
-   *   The ID of the file entity.
+   * @param int|\Drupal\file\FileInterface|null $file
+   *   Either a file entity ID (int) or a loaded File entity object.
    *
    * @return array|null
    *   An array of information for the file containing:
@@ -37,7 +39,7 @@ final class FileEntityHelper {
    *   - icon: FontAwesome icon class for the file type.
    *   Returns NULL if the file cannot be loaded.
    */
-  public static function getFileInfo(int|FileInterface $file): ?array {
+  public static function getFileInfo(int|FileInterface|null $file): ?array {
     if (is_int($file)) {
       $fid = $file;
 
@@ -92,7 +94,7 @@ final class FileEntityHelper {
    *   The converted file size with unit (e.g., "1.5 MB") or NULL if size is
    *   zero.
    */
-  protected function formatFileSize($file_size): ?string {
+  protected static function formatFileSize($file_size): ?string {
     if ($file_size === 0) {
       return NULL;
     }
@@ -134,7 +136,7 @@ final class FileEntityHelper {
    *   - icon: FontAwesome icon class (e.g., 'fa-file-pdf').
    *   - file_type: Human-readable file type label (e.g., 'PDF', 'Excel').
    */
-  protected function getFileTypeInfo(string $file_mime_type): array {
+  protected static function getFileTypeInfo(string $file_mime_type): array {
     switch ($file_mime_type) {
       case 'image/jpeg':
         $icon = 'fa-file-image';

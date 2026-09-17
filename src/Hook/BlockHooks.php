@@ -24,9 +24,13 @@ final class BlockHooks {
    */
   #[Hook('preprocess_block')]
   public function preprocessBlock(array &$variables): void {
-    $base_plugin_id = $variables['base_plugin_id'];
+    $base_plugin_id = $variables['base_plugin_id'] ?? NULL;
+    if (!is_string($base_plugin_id) || $base_plugin_id === '') {
+      return;
+    }
 
     $block_plugin_method = ThemeHelper::toPascalCase("preprocess{$base_plugin_id}");
+
     if (method_exists($this, $block_plugin_method)) {
       $this->$block_plugin_method($variables);
     }
@@ -39,17 +43,25 @@ final class BlockHooks {
    *   An associative array containing info about the menu.
    */
   protected function preprocessSystemMenuBlock(array &$variables): void {
-    $elements = $variables['elements'];
+    $elements = $variables['elements'] ?? NULL;
 
-    if (isset($elements['#id'])) {
-      $block_menu = Html::getClass("block-{$elements['#id']}-menu");
+    if (!is_array($elements)) {
+      return;
+    }
 
-      $variables['attributes']['data-js'] = $block_menu;
-      $variables['attributes']['class'][] = $block_menu;
+    $menu_id = $elements['#id'] ?? NULL;
 
-      if ($elements['#id'] === 'main') {
-        $variables['attributes']['style'][] = 'opacity: 0;';
-      }
+    if (!is_string($menu_id) || $menu_id === '') {
+      return;
+    }
+
+    $block_menu = Html::getClass("block-{$menu_id}-menu");
+
+    $variables['attributes']['data-js'] = $block_menu;
+    $variables['attributes']['class'][] = $block_menu;
+
+    if ($menu_id === 'main') {
+      $variables['attributes']['style'][] = 'opacity: 0;';
     }
   }
 
