@@ -30,10 +30,6 @@ Drupal.behaviors.siteLayout = {
       }
     }
 
-    function setAdminPadding() {
-      HTML.style.setProperty('--site-padding-top', `${HTML.style['scroll-padding-top']}`);
-    }
-
     function setSiteHeaderHeight() {
       const headerStyles = getComputedStyle(siteHeader);
       const marginTop = parseFloat(headerStyles.marginTop) || 0;
@@ -64,9 +60,7 @@ Drupal.behaviors.siteLayout = {
      * Listeners
      */
 
-    window.addEventListener('load', setAdminPadding, { passive: true });
     window.addEventListener('resize', () => {
-      setAdminPadding();
       setSiteHeaderHeight();
     }, { passive: true });
 
