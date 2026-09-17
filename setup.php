@@ -102,7 +102,6 @@ function get_files_to_copy($skip_sb = FALSE) {
     'libraries',
     'src',
     'ui/.storybook',
-    'ui/dist',
     'ui/plop-templates',
     'ui/src',
     'ui/utils',
