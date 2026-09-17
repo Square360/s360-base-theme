@@ -8,7 +8,7 @@
   {% set attributes = attributes.setAttribute('data-unpublished', 'media') %}
 {% endif %}
 
-<{{ media_tag }}{{ attributes }}>
+<{{ media_tag }}{{ attributes.addClass(media_classes) }}>
   {% block media_content %}
     {{ content }}
   {% endblock %}

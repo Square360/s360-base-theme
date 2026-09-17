@@ -9,15 +9,6 @@
   {% set media_tag = 'div' %}
 {% endif %}
 
-{% if not attributes.class %}
-  {% set attributes = attributes.setAttribute('class', classes) %}
-{% endif %}
-
-{# merge classes into attributes.class #}
-{% if attributes.class %}
-  {% set attributes = attributes.setAttribute('class', attributes.class|merge(classes)) %}
-{% endif %}
-
 {% extends "@ui-media/media.html.twig" %}
 
 {% block media_content %}
