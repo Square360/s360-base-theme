@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { build } from 'vite';
 import { createViteConfig, getThemeEntries } from '../vite.config.mjs';
-import { rm } from 'node:fs/promises';
+import { mkdir, rm } from 'node:fs/promises';
 
 const __dist = path.resolve(process.cwd(), 'dist');
 

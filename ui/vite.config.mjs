@@ -70,20 +70,40 @@ function cssUrlFilterPlugin() {
 }
 
 /**
- * Provides a Vite plugin hook for handling inline font output.
+ * Inlines woff/woff2 font url() references in stylesheets as base64 data URIs.
  *
  * @returns {import('vite').Plugin} Vite plugin.
  */
 function inlineFontsPlugin() {
+  const FONT_EXTENSION_PATTERN = /\.(woff2?)(\?\S*)?$/i;
+  const FONT_PATH_PATTERN = /(^|\/)(web)?fonts?\//i;
+  const FONT_MIME_TYPES = { woff: 'font/woff', woff2: 'font/woff2' };
+
   return {
     name: 'inline-fonts',
-    enforce: 'post',
-    generateBundle(_, bundle) {
-      for (const [name, asset] of Object.entries(bundle)) {
-        if (asset.type !== 'asset') continue;
-        if (!/\.(woff2?)(\?.*)?$/i.test(name)) continue;
-        if (!/(^|\/)(web)?fonts?\//i.test(name)) continue;
-      }
+    enforce: 'pre',
+    transform(code, id) {
+      if (!id.match(/\.s?css$/)) return null;
+
+      const out = code.replace(
+        /url\((['"]?)([^'")]+\.woff2?(?:\?\S*)?)\1\)/gi,
+        (match, quote, url) => {
+          if (!FONT_EXTENSION_PATTERN.test(url) || !FONT_PATH_PATTERN.test(url)) {
+            return match;
+          }
+
+          const resolvedPath = path.resolve(path.dirname(id), url.split('?')[0]);
+          const extension = path.extname(resolvedPath).slice(1).toLowerCase();
+          const mime = FONT_MIME_TYPES[extension];
+
+          if (!mime) return match;
+
+          const base64 = readFileSync(resolvedPath).toString('base64');
+          return `url("data:${mime};base64,${base64}")`;
+        }
+      );
+
+      return { code: out, map: null };
     }
   };
 }
