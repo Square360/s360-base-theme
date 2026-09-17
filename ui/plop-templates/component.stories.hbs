@@ -2,25 +2,25 @@ import {{ storybookComponentName }}Twig from './{{ componentFilename }}.twig';
 import {{ storybookComponentName }}Data from './{{ componentFilename }}.yml';
 import './{{ componentFilename }}.js';
 
-import { setPublishedStatus } from '.storybook/utils';
+{{~#if includeIsPublished~}}import { setPublishedStatus } from '.storybook/utils';{{/if}}
 
 /**
  * Storybook Definition.
  */
 export default {
-  title: '{{ storybookTitle }}',
+  title: '{{ storybookTitle }}',{{#if includeIsPublished}}
   args: {
     {{ entityType }}_is_published: true,
   },
-  argTypes: {
-    {{ entityType }}_is_published: { name: 'Published' }
-  }
+  argTypes = {
+  {{ entityType }}_is_published: { name: 'Published' }
+  }{{/if}}
 };
 
 export const {{ storybookFunctionName }} = (args) => {
   // Create deep copy of data and merge args.
   let data = Object.assign(structuredClone({{ storybookComponentName }}Data ?? {}), args);
-  data.{{ entityType }} = setPublishedStatus(data.{{ entityType }}_is_published ?? true);
+  {{#if includeIsPublished~}}data.{{ entityType }} = setPublishedStatus(data.{{ entityType }}_is_published ?? true);{{~/if}}
 
   return {{ storybookComponentName }}Twig({
     ...data,
