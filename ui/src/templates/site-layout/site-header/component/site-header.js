@@ -1,7 +1,7 @@
 import './includes/menu-toggle/_menu-toggle.scss';
 import './site-header.scss';
 
-Drupal.behaviors.siteLayout = {
+Drupal.behaviors.siteHeader = {
   attach(context) {
     const MQ_MAIN_MENU = window.matchMedia(`(min-width: ${ getComputedStyle(document.documentElement).getPropertyValue('--main-menu-mq') })`);
     const HTML = document.documentElement;

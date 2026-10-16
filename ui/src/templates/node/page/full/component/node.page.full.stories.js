@@ -13,7 +13,7 @@ export default {
     node_is_published: true,
   },
   argTypes: {
-    paragraph_is_published: { name: 'Published' }
+    node_is_published: { name: 'Published' }
   }
 };
 

@@ -57,6 +57,10 @@ final class MenuHooks {
   protected function preprocessSocialMenu(array &$variables): void {
     $site_name = ThemeHelper::config('system.site')->get('name');
 
+    if (empty($variables['items'])) {
+      return;
+    }
+
     foreach ($variables['items'] ?? [] as &$item) {
       $item_title = &$item['title'];
 
@@ -74,6 +78,8 @@ final class MenuHooks {
         '#social_name' => $social_info['icon'],
       ];
     }
+
+    unset($item);
   }
 
 }
