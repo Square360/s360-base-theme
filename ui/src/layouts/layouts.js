@@ -4,7 +4,7 @@ import { FadeInSlideUpAnimator, FadeInSlideRightAnimator, FadeInSlideLeftAnimato
 
 document.addEventListener('DOMContentLoaded', () => {
   const animateLayoutRegionItems = () => {
-    const layouts = document.querySelectorAll('.layout:not(.layout--two-column');
+    const layouts = document.querySelectorAll('.layout:not(.layout--two-column, .layout--accordion)');
     if (!layouts) return;
 
     layouts.forEach(layout => {

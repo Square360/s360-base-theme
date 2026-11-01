@@ -2,13 +2,13 @@
 @use "@s360-base-theme/ui-core/mq";
 
 .layout--three-column {
-  --layout-three-column-regions-gta:
+  --_layout-three-column-regions-gta:
     "lr1"
     "lr2"
     "lr3";
 
   > .layout__content > .layout__regions {
-    grid-template-areas: var(--layout-three-column-regions-gta);
+    grid-template-areas: var(--_layout-three-column-regions-gta);
 
     > .layout__region--first {
       grid-area: lr1;
@@ -24,9 +24,9 @@
   }
 
   // **************************************************
-  // MEDIA QUERIES
+  // RESPONSIVE
 
-  @media (min-width: mq.$mq-1024) {
+  @container (width > 896px) {
     > .layout__content > .layout__regions {
       grid-template-columns: repeat(12, minmax(0, 1fr));
     }
@@ -34,29 +34,29 @@
     // **************************************************
     // 33-33-33 SPLIT
 
-    &.layout--33-33-33 {
-      --layout-three-column-regions-gta: "lr1 lr1 lr1 lr1 lr2 lr2 lr2 lr2 lr3 lr3 lr3 lr3"
+    &.layout--33-33-33 > .layout__content {
+      --_layout-three-column-regions-gta: "lr1 lr1 lr1 lr1 lr2 lr2 lr2 lr2 lr3 lr3 lr3 lr3"
     }
 
     // **************************************************
     // 25-50-25 SPLIT
 
-    &.layout--25-50-25 {
-      --layout-three-column-regions-gta: "lr1 lr1 lr1 lr2 lr2 lr2 lr2 lr2 lr2 lr3 lr3 lr3"
+    &.layout--25-50-25 > .layout__content {
+      --_layout-three-column-regions-gta: "lr1 lr1 lr1 lr2 lr2 lr2 lr2 lr2 lr2 lr3 lr3 lr3"
     }
 
     // **************************************************
     // 50-25-25 SPLIT
 
-    &.layout--50-25-25 {
-      --layout-three-column-regions-gta: "lr1 lr1 lr1 lr1 lr1 lr1 lr2 lr2 lr2 lr3 lr3 lr3"
+    &.layout--50-25-25 > .layout__content {
+      --_layout-three-column-regions-gta: "lr1 lr1 lr1 lr1 lr1 lr1 lr2 lr2 lr2 lr3 lr3 lr3"
     }
 
     // **************************************************
     // 25-25-50 SPLIT
 
-    &.layout--25-25-50 {
-      --layout-three-column-regions-gta: "lr1 lr1 lr1 lr2 lr2 lr2 lr3 lr3 lr3 lr3 lr3 lr3"
+    &.layout--25-25-50 > .layout__content {
+      --_layout-three-column-regions-gta: "lr1 lr1 lr1 lr2 lr2 lr2 lr3 lr3 lr3 lr3 lr3 lr3"
     }
   }
 }
