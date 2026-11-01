@@ -17,17 +17,23 @@
     &.view--2-columns,
     &.view--3-columns,
     &.view--4-columns {
-      --view-grid--gtc: 2;
+      > .view__content > .view__grid {
+        --view-grid--gtc: 2;
+      }
     }
   }
 
   @media (min-width: mq.$mq-1024) {
     &.view--3-columns {
-      --view-grid--gtc: 3;
+      > .view__content > .view__grid {
+        --view-grid--gtc: 3;
+      }
     }
 
     &.view--4-columns {
-      --view-grid--gtc: 4;
+      > .view__content > .view__grid {
+        --view-grid--gtc: 4;
+      }
     }
   }
 }
