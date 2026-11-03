@@ -9,7 +9,11 @@ layout.accordion:
   css:
     base:
       ui/dist/layouts/accordion/accordion.css: {}
+  js:
+    ui/dist/layouts/accordion/accordion.js: { attributes: { defer: true } }
   dependencies:
+    - core/drupal
+    - core/once
     - s360_base_theme/layouts
 
 layout.flex:
