@@ -44,7 +44,7 @@ final class FormHooks {
     $variables['attributes']['class'][] = 'form--webform';
     $variables['attributes']['class'][] = Html::getClass("form--{$element['#webform_id']}");
 
-    $webform_id_method = ThemeHelper::toPascalCase("preprocessWebform{$webform_id}");
+    $webform_id_method = 'preprocessWebform' . ThemeHelper::toPascalCase($webform_id);
     if (method_exists($this, $webform_id_method)) {
       $this->$webform_id_method($variables);
     }

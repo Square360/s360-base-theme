@@ -33,7 +33,7 @@ final class MenuHooks {
       $variables['attributes']['class'] = [];
     }
 
-    $menu_name_method = ThemeHelper::toPascalCase("preprocess{$menu_name}Menu");
+    $menu_name_method = 'preprocess' . ThemeHelper::toPascalCase($menu_name) . 'Menu';
     if (method_exists($this, $menu_name_method)) {
       $this->$menu_name_method($variables);
     }

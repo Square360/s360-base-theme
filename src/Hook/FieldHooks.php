@@ -45,7 +45,7 @@ final class FieldHooks {
         $field_name = substr($field_name, 6);
       }
 
-      $field_name_method = ThemeHelper::toPascalCase("preprocessField{$field_name}");
+      $field_name_method = 'preprocessField' . ThemeHelper::toPascalCase($field_name);
 
       if (method_exists($this, $field_name_method)) {
         $this->$field_name_method($variables);
@@ -61,7 +61,7 @@ final class FieldHooks {
       is_string($field_type) &&
       $field_type !== ''
     ) {
-      $field_type_method = ThemeHelper::toPascalCase("preprocessType{$field_type}");
+      $field_type_method = 'preprocessType' . ThemeHelper::toPascalCase($field_type);
 
       if (method_exists($this, $field_type_method)) {
         $this->$field_type_method($variables);
