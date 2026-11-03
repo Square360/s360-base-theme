@@ -1,8 +1,7 @@
 /vendor/
 node_modules
 .yarn
-ui/dist/*
-!ui/dist/.gitkeep
+ui/dist
 ui/src/images/*
 !ui/src/images/icons/.gitkeep
 /_working

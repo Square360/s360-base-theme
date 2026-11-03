@@ -21,6 +21,10 @@ libraries:
 
 libraries-override:
   webform/webform.element.flexbox: false
+  system/base:
+    css:
+      component:
+        css/components/align.module.css: false
 
 regions:
   system: System

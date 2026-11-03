@@ -8,16 +8,10 @@
   summary {
     --summary--font-size: var(--accordion--summary--font-size);
     --summary--font-weight: var(--accordion--summary--font-weight);
-    --summary--margin: var(--accordion--summary--margin, 0.5em 0 0 0);
-    --summary--margin--open: var(--accordion--summary--margin--open, 0.5em 0 0.75em 0);
+    --summary--margin--open: var(--accordion--summary--margin--open, 0 0 0.75em 0);
     --summary--display: var(--accordion--summary--display);
 
     &::before {
-      --mask-embed--margin-inline: 0 0.5em;
-      --mask-embed--bg-color: '';
-      --mask-embed--mask-image: '';
-      @extend %mask-embed;
-
       transition: rotate 200ms ease-in-out;
       rotate: var(--accordion--summary--rotate, 0);
     }

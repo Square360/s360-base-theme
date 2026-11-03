@@ -1,64 +1,111 @@
-@mixin _animate-background() {
+@use "sass:map";
+
+/// Sets up a directional background-reveal animation triggered on hover/focus.
+/// The background grows from the edge opposite `$start-position` and is
+/// combined with a starting size set by the calling placeholder.
+///
+/// @access private
+///
+/// @param {String} $start-position
+///   The edge the background should grow from: `top`, `bottom`, `left`, or `right`.
+///
+/// @require {placeholder} %animate-background--active
+///
+@mixin _animate-background($start-position) {
+  // Maps the desired animation direction to the background's starting position.
+  $start-position-map: (
+    right: left,
+    left: right,
+    top: bottom,
+    bottom: top,
+  );
+
   display: inline;
   line-height: 1;
-  background-image: linear-gradient(0deg,
-    var(--animate-background--gradient-color) 0%,
-    var(--animate-background--gradient-color) 100%
-  );
+  background-image: linear-gradient(0deg, var(--animate-background--bg-color));
   background-size:
     var(--animate-background--bg-size--width, 0%)
     var(--animate-background--bg-size--height, 0%);
   background-repeat: no-repeat;
-  background-position: var(--animate-background--bg-position);
+  background-position: map.get($start-position-map, $start-position);
   color: var(--animate-background--color);
-  transition: all 200ms ease-in-out;
+  transition:
+    color 200ms ease-in-out,
+    background-size 200ms ease-in-out;
 
   &:hover,
   &:focus-visible {
-    color: var(--animate-background--color--active, var(--animate-background--color));
+    @extend %animate-background--active;
   }
 }
 
+/// Animates the background reveal upward from the bottom edge on hover/focus.
+///
+/// @access public
+///
+/// @require {mixin} _animate-background
+///
 %animate-background-to-top {
   --animate-background--bg-size--width: 100%;
-  --animate-background--bg-position: bottom;
-  @include _animate-background();
-
-  &:hover,
-  &:focus-visible {
-    --animate-background--bg-size--height: 100%;
-  }
+  --animate-background--bg-size--height--active: 100%;
+  @include _animate-background(top);
 }
 
+/// Animates the background reveal downward from the top edge on hover/focus.
+///
+/// @access public
+///
+/// @require {mixin} _animate-background
+///
 %animate-background-to-bottom {
   --animate-background--bg-size--width: 100%;
-  --animate-background--bg-position: top;
-  @include _animate-background();
-
-  &:hover,
-  &:focus-visible {
-    --animate-background--bg-size--height: 100%;
-  }
+  --animate-background--bg-size--height--active: 100%;
+  @include _animate-background(bottom);
 }
 
+/// Animates the background reveal leftward from the right edge on hover/focus.
+///
+/// @access public
+///
+/// @require {mixin} _animate-background
+///
 %animate-background-to-left {
   --animate-background--bg-size--height: 100%;
-  --animate-background--bg-position: right;
-  @include _animate-background();
-
-  &:hover,
-  &:focus-visible {
-    --animate-background--bg-size--width: 100%;
-  }
+  --animate-background--bg-size--width--active: 100%;
+  @include _animate-background(left);
 }
 
+/// Animates the background reveal rightward from the left edge on hover/focus.
+///
+/// @access public
+///
+/// @require {mixin} _animate-background
+///
 %animate-background-to-right {
   --animate-background--bg-size--height: 100%;
-  --animate-background--bg-position: left;
-  @include _animate-background();
+  --animate-background--bg-size--width--active: 100%;
+  @include _animate-background(right);
+}
 
-  &:hover,
-  &:focus-visible {
-    --animate-background--bg-size--width: 100%;
-  }
+/// The active (hover/focus) state for the background-reveal animation.
+/// Applied automatically by the directional placeholders; extend directly
+/// only when the active state is needed without the base animation setup.
+///
+/// @access public
+///
+%animate-background--active {
+  text-decoration: none;
+  background-size:
+    var(
+      --animate-background--bg-size--width--active,
+      var(--animate-background--bg-size--width, 0%)
+    )
+    var(
+      --animate-background--bg-size--height--active,
+      var(--animate-background--bg-size--height, 0%)
+    );
+  color: var(
+    --animate-background--color--active,
+    var(--animate-background--color)
+  );
 }

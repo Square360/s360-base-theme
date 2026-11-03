@@ -1,10 +1,14 @@
 {% set media_tag = media_tag|default('figure') %}
+{% set media_classes = media_classes|default([])|merge([
+  'media',
+  media.bundle() ? 'media--' ~ media.bundle()|clean_class : '',
+]) %}
 
 {% if not media.isPublished() %}
   {% set attributes = attributes.setAttribute('data-unpublished', 'media') %}
 {% endif %}
 
-<{{ media_tag }}{{ attributes }}>
+<{{ media_tag }}{{ attributes.addClass(media_classes) }}>
   {% block media_content %}
     {{ content }}
   {% endblock %}

@@ -61,8 +61,11 @@ export class Collapsible {
 
     // Store the current height of the element
     const startHeight = `${this.el.offsetHeight}px`;
-    // Calculate the height of the summary
-    const endHeight = `${this.summary.offsetHeight}px`;
+    // Measure the real closed height so summary margins and element padding
+    // are included; restoring [open] in the same frame never paints.
+    this.el.open = false;
+    const endHeight = `${this.el.offsetHeight}px`;
+    this.el.open = true;
 
     // If there is already an animation running
     if (this.animation) {
@@ -111,8 +114,9 @@ export class Collapsible {
     // Get the current fixed height of the element
     const startHeight = `${this.el.offsetHeight}px`;
 
-    // Calculate the open height of the element (summary height + content height)
-    const endHeight = `${this.summary.offsetHeight + this.content.offsetHeight}px`;
+    // Measure the natural open height, including margins and padding.
+    this.el.style.height = '';
+    const endHeight = `${this.el.offsetHeight}px`;
 
     // If there is already an animation running
     if (this.animation) {

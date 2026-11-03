@@ -6,7 +6,7 @@ export default {
   stories: [
     '../src/**/*.stories.@(js|ts)',
     // Uncomment if using multiple themes.
-    // '../../../[THEME_NAME]/src/**/*.stories.@(js|ts)'
+    // '../../themes/**/src/**/*.stories.@(js|ts)'
   ],
   addons: [
     "@storybook/addon-a11y",

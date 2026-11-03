@@ -1,4 +1,5 @@
 @use "@s360-base-theme/ui-core/site-config";
+@use "@s360-base-theme/ui-core/colors";
 @use "@s360-base-theme/ui-core/content-containers";
 @use "@s360-base-theme/ui-core/typography";
 @use "s360-scss-toolkit" as s360;
@@ -6,11 +7,12 @@
 body {
   @extend %content-container-live;
 
-  color: currentColor;
+  color: colors.$black;
   font-family: '';
-  line-height: 1.2;
+  line-height: site-config.$line-height-compact;
   width: 100%;
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
+  overflow-x: hidden;
 }

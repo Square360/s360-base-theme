@@ -146,14 +146,14 @@ final class ThemeHooks {
     }
 
     foreach ($critical_css_files as $css_file) {
-      $css = file_get_contents("$this->themePath/ui/dist/$css_file");
+      $css = file_get_contents("{$this->themePath}/ui/dist/{$css_file}");
 
       $page['#attached']['html_head'][] = [
         [
           '#tag' => 'style',
           '#value' => Markup::create($css),
         ],
-        "s360_base_theme.$css_file",
+        "s360_base_theme.{$css_file}",
       ];
     }
   }

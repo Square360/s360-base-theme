@@ -45,11 +45,11 @@ final class ThemeSuggestionsHooks {
 
     $suggestions = [];
 
-    $suggestions[] = Html::getClass("taxonomy_term__$view_mode");
-    $suggestions[] = Html::getClass("taxonomy_term__$term_bundle");
-    $suggestions[] = Html::getClass("taxonomy_term__{$term_bundle}__$view_mode");
+    $suggestions[] = Html::getClass("taxonomy_term__{$view_mode}");
+    $suggestions[] = Html::getClass("taxonomy_term__{$term_bundle}");
+    $suggestions[] = Html::getClass("taxonomy_term__{$term_bundle}__{$view_mode}");
     $suggestions[] = Html::getClass("taxonomy_term__{$term->id()}");
-    $suggestions[] = Html::getClass("taxonomy_term__{$term->id()}__$view_mode");
+    $suggestions[] = Html::getClass("taxonomy_term__{$term->id()}__{$view_mode}");
   }
 
   /**

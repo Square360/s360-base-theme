@@ -9,12 +9,18 @@ import { formatParagraphText, setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: 'Layout Components/Placeholder',
+  args: {
+    paragraph_is_published: true,
+  },
+  argTypes: {
+    paragraph_is_published: { name: 'Published' }
+  }
 };
 
 export const placeholder = (args) => {
   // Create deep copy of data and merge args.
   let data = Object.assign(structuredClone(placeholderData ?? {}), args);
-  data.paragraph = setPublishedStatus(data.paragraph_is_published);
+  data.paragraph = setPublishedStatus(data.paragraph_is_published ?? true);
 
   return placeholderTwig({
     ...data,
