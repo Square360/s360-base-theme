@@ -1,3 +1,61 @@
+# Release 10.1.0 (2026-11-03)
+
+### Features
+
+* (): update Hooks (ee1d447)
+* (): update entity helpers (b6a2a96)
+* (): add drupal/book as a dev dependency (f747739)
+* (): update entity helpers (c739d70)
+* (): update responsive (ecda82b)
+* (): add align styles to ckeditor (31d45aa)
+* (): update branding block (113e762)
+* (): use existing variables for body props (03455e4)
+* (): sassdoc comments (7a3b928)
+* (): update storybook files (f50c8b2)
+* (): add themes folder (0da0e26)
+* (): update library yml files (daab94f)
+* (): update vite (5f1fc6e)
+* (): add endHeight so the collapse doesnt jump (6100ae6)
+* (): update views (b451cf5)
+* (): update layouts (4ef15ef)
+* (): update media to use base classes (9ad9900)
+* (): update plop (2af0017)
+* (): update hooks and helpers (037bdc7)
+* (): harden Media classes (97ecc83)
+* (): change classes to media_classes (4cdd164)
+* (): harden NodeEntityHelper class (a48ae30)
+* (): add psr/log to require-dev for testing (5f77756)
+* (): harden ParagraphEntityHelper class (6f7966e)
+* (): add drupal offsets to bleed (f6d879f)
+* (): update storybook util helpers (f2ef866)
+* (): update preview-head.html file (99f52cc)
+* (): add is_published ?? true failback (28b3b0d)
+* (): prevent sprite.svg unless there are symbols (64a6acb)
+* (): remove and rebuild the dist folder on first run (98283e8)
+* (): add strict_types=1 (6541c0c)
+* (): remove *_is_published from yml files (159ab56)
+
+### Bug Fixes
+
+* (): layout animations (359fb20)
+* (): setup.php file (21a519b)
+* (): style_options (84c07c5)
+* (): replaced tedco_2026 with s360_base_theme (4abee75)
+* (): issues with migrated templates/styles (b77687d)
+* (): vite build (ce54de5)
+* (): status-messages library (7f34dec)
+* (): status message block (ed5f6fd)
+* (): caption variable provided from paragraph (80b005d)
+* (): page.html.twig components (fbb41d1)
+
+### Chores
+
+* (): remove fontawesomeicon templates (4ea6c82)
+* (): code cleanup (6afd115)
+* (): remove dist from setup (7ff3e49)
+* (): update PHPDoc block (71b6cb3)
+* (): composer update (8540d1e)
+
 # Release 10.0.0 (2026-08-18)
 
 ### Features
