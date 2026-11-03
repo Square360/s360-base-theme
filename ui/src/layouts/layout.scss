@@ -16,7 +16,7 @@
 
   // Apply slideup animator to all region items except two-column and accordion.
   &:not(.layout--two-column, .layout--accordion) {
-    > .layout__content > .layout__regions > .layout__region-item {
+    > .layout__content > .layout__regions > .layout__region > .layout__region-item {
       @extend %fadein-slideup-animator;
     }
   }
