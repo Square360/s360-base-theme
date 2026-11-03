@@ -20,23 +20,48 @@
 
   :is(h2, h3, h4, h5, h6):first-child {
     --heading--margin-top: 0;
+
+    &:first-child {
+      --heading--margin-top: 0;
+    }
   }
 
   // **************************************************
+  // FIGURE
 
   figure {
     --figure--display: table;
 
     margin-bottom: site-config.$scale-0;
+  }
 
-    &.align-left {
-      margin-right: site-config.$scale-0;
-      float: left;
-    }
+  // **************************************************
+  // CLASSES
 
-    &.align-right {
-      margin-left: site-config.$scale-0;
-      float: right;
-    }
+  .align-left {
+    margin-right: site-config.$scale-0;
+    float: left;
+  }
+
+  .align-right {
+    margin-left: site-config.$scale-0;
+    float: right;
+  }
+
+  .text-align-left {
+    text-align: left;
+  }
+
+  .text-align-right {
+    text-align: right;
+  }
+
+  .text-align-center {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .text-align-justify {
+    text-align: justify;
   }
 }
