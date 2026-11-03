@@ -9,7 +9,6 @@ import drupalAttribute from 'drupal-attribute';
  */
 export const CTA_LINK_STYLE_OPTIONS = {
   'primary': 'Primary',
-  'secondary': 'Secondary',
 };
 
 /**
