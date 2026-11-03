@@ -102,7 +102,6 @@ function get_files_to_copy($skip_sb = FALSE) {
     'libraries',
     'src',
     'ui/.storybook',
-    'ui/dist',
     'ui/plop-templates',
     'ui/src',
     'ui/utils',
@@ -214,6 +213,7 @@ function get_files_to_alter($skip_sb = FALSE) {
     'ui/package.json',
     'ui/plop-templates',
     'ui/src',
+    'ui/vite/vite.config.mjs',
     'ui-core/package.json',
     's360_base_theme.breakpoints.yml',
     's360_base_theme.info.yml',
@@ -259,8 +259,8 @@ function alter_files(string $theme_path, array $files, array $alterations, bool 
       $files = scandir($file_path);
       $files = array_splice($files, 2);
 
-      foreach ($files as $file) {
-        $alter_files = alter_files($theme_path, [$file_path . DIRECTORY_SEPARATOR . $file], $alterations, TRUE);
+      foreach ($files as $inner_file) {
+        $alter_files = alter_files($theme_path, [$file_path . DIRECTORY_SEPARATOR . $inner_file], $alterations, TRUE);
         if ($alter_files !== TRUE) {
           return FALSE;
         }

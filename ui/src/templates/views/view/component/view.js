@@ -60,5 +60,6 @@ Drupal.behaviors.view = {
      */
 
     animate();
+    exposed();
   }
 }

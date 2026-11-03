@@ -33,7 +33,7 @@ final class MenuHooks {
       $variables['attributes']['class'] = [];
     }
 
-    $menu_name_method = ThemeHelper::toPascalCase("preprocess{$menu_name}Menu");
+    $menu_name_method = 'preprocess' . ThemeHelper::toPascalCase($menu_name) . 'Menu';
     if (method_exists($this, $menu_name_method)) {
       $this->$menu_name_method($variables);
     }
@@ -57,7 +57,11 @@ final class MenuHooks {
   protected function preprocessSocialMenu(array &$variables): void {
     $site_name = ThemeHelper::config('system.site')->get('name');
 
-    foreach ($variables['items'] as &$item) {
+    if (empty($variables['items'])) {
+      return;
+    }
+
+    foreach ($variables['items'] ?? [] as &$item) {
       $item_title = &$item['title'];
 
       $social_info = ThemeHelper::getSocialInfo($item_title);
@@ -74,6 +78,8 @@ final class MenuHooks {
         '#social_name' => $social_info['icon'],
       ];
     }
+
+    unset($item);
   }
 
 }

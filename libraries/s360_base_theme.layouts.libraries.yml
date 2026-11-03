@@ -9,40 +9,44 @@ layout.accordion:
   css:
     base:
       ui/dist/layouts/accordion/accordion.css: {}
+  js:
+    ui/dist/layouts/accordion/accordion.js: { attributes: { defer: true } }
   dependencies:
-    - s360_base_theme/layout
+    - core/drupal
+    - core/once
+    - s360_base_theme/layouts
 
 layout.flex:
   css:
     base:
       ui/dist/layouts/flex/flex.css: {}
   dependencies:
-    - s360_base_theme/layout
+    - s360_base_theme/layouts
 
 layout.one-column:
   css:
     base:
       ui/dist/layouts/one-column/one-column.css: {}
   dependencies:
-    - s360_base_theme/layout
+    - s360_base_theme/layouts
 
 layout.two-column:
   css:
     base:
       ui/dist/layouts/two-column/two-column.css: {}
   dependencies:
-    - s360_base_theme/layout
+    - s360_base_theme/layouts
 
 layout.three-column:
   css:
     base:
       ui/dist/layouts/three-column/three-column.css: {}
   dependencies:
-    - s360_base_theme/layout
+    - s360_base_theme/layouts
 
 layout.four-column:
   css:
     base:
       ui/dist/layouts/four-column/four-column.css: {}
   dependencies:
-    - s360_base_theme/layout
+    - s360_base_theme/layouts

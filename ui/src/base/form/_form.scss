@@ -6,7 +6,7 @@
 
 form {
   margin: var(--form--margin, 0);
-  padding: var(--form_-padding, 0);
+  padding: var(--form--padding, 0);
   display: var(--form--display, grid);
   column-gap: var(--form--column-gap, #{site-config.$column-gap});
   row-gap: var(--form--row-gap, #{site-config.$scale-0});
@@ -21,11 +21,12 @@ form {
   input[type="date"],
   select,
   textarea {
-    font-family: var(--form-input--font-family, inherit);
-    color: var(--form-input--color);
-    display: var(--form-input--display, block);
-    padding: var(--form-input--padding);
-    width: var(--form-input--width, 100%);
+    font-family: var(--form--input--font-family, inherit);
+    font-size: var(--form--input--font-size, #{site-config.$form-input-font-size});
+    color: var(--form--input--color);
+    display: var(--form--input--display, block);
+    padding: var(--form--input--padding, #{site-config.$scale--5} 0);
+    width: var(--form--input--width, 100%);
     outline: none;
 
     &:invalid {
@@ -46,14 +47,14 @@ form {
   }
 
   input[type="date"] {
-    --form-input--width: auto;
+    --form--input--width: auto;
   }
 
   label {
-    color: var(--form-label--color);
+    color: var(--form--label--color);
     cursor: pointer;
-    font-family: var(--form-label--font-family);
-    font-size: var(--form-label--font-size);
+    font-family: var(--form--label--font-family);
+    font-size: var(--form--label--font-size);
 
     &[class*="required"] {
       &::after {

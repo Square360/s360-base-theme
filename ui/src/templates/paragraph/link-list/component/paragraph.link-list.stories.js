@@ -10,12 +10,18 @@ import { setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: 'Layout Components/Link List',
+  args: {
+    paragraph_is_published: true,
+  },
+  argTypes: {
+    paragraph_is_published: { name: 'Published' }
+  }
 };
 
 export const linkList = (args) => {
   // Create deep copy of data and merge args.
   let data = Object.assign(structuredClone(linkListData ?? {}), args);
-  data.paragraph = setPublishedStatus(data.paragraph_is_published);
+  data.paragraph = setPublishedStatus(data.paragraph_is_published ?? true);
 
   let links = [];
 

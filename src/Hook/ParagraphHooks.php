@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace Drupal\s360_base_theme\Hook;
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Extension\ThemeHandler;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\media\MediaInterface;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\s360_base_theme\ParagraphsEntityHelper;
@@ -59,7 +60,7 @@ final class ParagraphHooks {
 
     $variables['attributes']['id'] = Html::getClass("paragraph-{$paragraph_bundle}-{$paragraph->id()}");
 
-    $paragraph_bundle_method = ThemeHelper::toPascalCase("preprocess{$paragraph_bundle}");
+    $paragraph_bundle_method = 'preprocess' . ThemeHelper::toPascalCase($paragraph_bundle);
     if (method_exists($this, $paragraph_bundle_method)) {
       $this->$paragraph_bundle_method($variables, $paragraph);
     }
@@ -97,7 +98,7 @@ final class ParagraphHooks {
 
       $variables['curated_node'] = [
         '#type' => 'inline_template',
-        '#template' => "{% trans %}Node was deleted and cannot be displayed. {% endtrans %}",
+        '#template' => '{% trans %}Node was deleted and cannot be displayed. {% endtrans %}',
       ];
 
       return;
@@ -129,7 +130,7 @@ final class ParagraphHooks {
 
       $variables['curated_node'] = [
         '#type' => 'inline_template',
-        '#template' => "{% trans %}Node: <strong>'{{ node_title }}'</strong> cannot be display using view mode: <strong>{{ node_view_mode }}</strong>.{% endtrans %}",
+        '#template' => '{% trans %}Node: <strong>"{{ node_title }}"</strong> cannot be display using view mode: <strong>{{ node_view_mode }}</strong>.{% endtrans %}',
         '#context' => [
           'node_title' => $node_title,
           'node_view_mode' => $field_content_view_mode_string,
@@ -238,7 +239,7 @@ final class ParagraphHooks {
 
       $parent_menu_uuid = explode(':', $menu_for_current_node['parent'])[1];
 
-      /** @var \Drupal\menu_link_content\Entity\MenuLinkContent $parent_menu_link_content */
+      /** @var \Drupal\menu_link_content\Entity\MenuLinkContent[] $parent_menu_link_content */
       $parent_menu_link_content = $this->entityTypeManager->getStorage('menu_link_content')->loadByProperties(['uuid' => $parent_menu_uuid]);
       $parent_menu_link_content = reset($parent_menu_link_content);
 
@@ -261,7 +262,7 @@ final class ParagraphHooks {
 
     $build['#cache']['contexts'][] = 'url.path';
     $build['#menu_name'] = 'in-this-section-menu';
-    $build["#theme"] = 'menu__in-this-section_menu';
+    $build['#theme'] = 'menu__in-this-section_menu';
 
     $variables['menu'] = $build;
     $variables['parent_label'] = $parent_menu_title;
@@ -278,7 +279,7 @@ final class ParagraphHooks {
    */
   protected function preprocessViewsReference(array &$variables, ParagraphInterface $paragraph): void {
     // Add the url (complete) as a cache context to field_views_reference.
-    $variables["content"]["field_views_reference"]["#cache"]["contexts"][] = 'url';
+    $variables['content']['field_views_reference']['#cache']['contexts'][] = 'url';
   }
 
   /**
@@ -295,31 +296,42 @@ final class ParagraphHooks {
     $field_aspect_ratio = ThemeHelper::validateField($paragraph, 'field_aspect_ratio');
     $field_erm_image = ThemeHelper::validateField($paragraph, 'field_erm_image');
 
+
     // Override field_media_image display with aspect ratio-specific responsive image style.
     if ($field_aspect_ratio && $field_erm_image) {
-      $rendered_media = [];
-      foreach ($paragraph->get('field_erm_image')->referencedEntities() as $delta => $media) {
-        // Render the media entity normally with its default display.
-        $media_view_builder = ThemeHelper::entityTypeManager()->getViewBuilder('media');
-        $media_render = $media_view_builder->view($media, 'default');
+      $media = $field_erm_image->entity;
 
-        // Replace the image field with aspect ratio-specific responsive image style.
-        if ($field_media_image = ThemeHelper::validateField($media, 'field_media_image')) {
-          $media_render['field_media_image'] = $field_media_image->view([
-            'type' => 'responsive_image',
-            'label' => 'hidden',
-            'settings' => [
-              'responsive_image_style' => 'aspect_ratio_' . $field_aspect_ratio->getString(),
-              'image_link' => '',
-            ],
-          ]);
-        }
-
-        $rendered_media[$delta] = $media_render;
+      if (!$media instanceof MediaInterface) {
+        return;
       }
 
-      if (!empty($rendered_media)) {
-        $variables['content']['field_erm_image'] = $rendered_media;
+      // Skipping the override on denied access leaves the default field
+      // rendering, which does its own access check.
+      $access = $media->access('view', NULL, TRUE);
+
+      if (!$access->isAllowed()) {
+        return;
+      }
+
+      // Render the media entity normally with its default display.
+      $media_view_builder = ThemeHelper::entityTypeManager()->getViewBuilder('media');
+      $media_render = $media_view_builder->view($media, 'default');
+
+      // Replace the image field with aspect ratio-specific image style.
+      if ($field_media_image = ThemeHelper::validateField($media, 'field_media_image')) {
+        $media_render['field_media_image'] = $field_media_image->view([
+          'type' => 'image_style',
+          'label' => 'hidden',
+          'settings' => [
+            'image_style' => $field_aspect_ratio->getString(),
+          ],
+        ]);
+
+        CacheableMetadata::createFromRenderArray($media_render)
+          ->addCacheableDependency($access)
+          ->applyTo($media_render);
+
+        $variables['image'] = $media_render;
       }
     }
   }

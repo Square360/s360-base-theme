@@ -1,7 +1,7 @@
 import './includes/menu-toggle/_menu-toggle.scss';
 import './site-header.scss';
 
-Drupal.behaviors.siteLayout = {
+Drupal.behaviors.siteHeader = {
   attach(context) {
     const MQ_MAIN_MENU = window.matchMedia(`(min-width: ${ getComputedStyle(document.documentElement).getPropertyValue('--main-menu-mq') })`);
     const HTML = document.documentElement;
@@ -30,17 +30,13 @@ Drupal.behaviors.siteLayout = {
       }
     }
 
-    function setAdminPadding() {
-      HTML.style.setProperty('--site-padding-top', `${ HTML.style['scroll-padding-top'] }`);
-    }
-
     function setSiteHeaderHeight() {
       const headerStyles = getComputedStyle(siteHeader);
       const marginTop = parseFloat(headerStyles.marginTop) || 0;
       const marginBottom = parseFloat(headerStyles.marginBottom) || 0;
       const heightWithMargins = siteHeader.getBoundingClientRect().height + marginTop + marginBottom;
 
-      HTML.style.setProperty('--site-header-height', `${ heightWithMargins }px`);
+      HTML.style.setProperty('--site-header-height', `${heightWithMargins}px`);
     }
 
     function showMenu() {
@@ -52,12 +48,10 @@ Drupal.behaviors.siteLayout = {
     }
 
     function expandMenuToggle() {
-      siteHeader.setAttribute('data-color-scheme', 'tranquil');
       menuToggle.setAttribute('aria-expanded', 'true');
     }
 
     function collapseMenuToggle() {
-      siteHeader.removeAttribute('data-color-scheme');
       menuToggle.setAttribute('aria-expanded', 'false');
     }
 
@@ -66,9 +60,7 @@ Drupal.behaviors.siteLayout = {
      * Listeners
      */
 
-    window.addEventListener('load', setAdminPadding, { passive: true });
     window.addEventListener('resize', () => {
-      setAdminPadding();
       setSiteHeaderHeight();
     }, { passive: true });
 

@@ -1,6 +1,6 @@
 {% set view_tag = view_tag|default('div') %}
 
-{% set classes = view_classes|default([])|merge([
+{% set view_classes = view_classes|default([])|merge([
   'view',
   'view--' ~ view_id,
   'view--' ~ view_display_id,

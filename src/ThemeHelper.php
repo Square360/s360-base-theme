@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\s360_base_theme;
 
 use Drupal\Core\Config\ImmutableConfig;
@@ -98,9 +100,12 @@ final class ThemeHelper {
    * @param string $social_name
    *   The name of a social network.
    *
-   * @return array
-   *   The FontAwesome icon classes for the specified social network.
-   *   Returns 'far fa-globe' if the social network is not recognized.
+   * @return array{
+   *   name: string,
+   *   icon: string,
+   *   family: string,
+   * }
+   *   Information about the social network.
    */
   public static function getSocialInfo(string $social_name): array {
     $normalized = strtolower(trim($social_name));

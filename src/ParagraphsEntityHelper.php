@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\s360_base_theme;
 
 use Drupal\paragraphs\ParagraphInterface;
@@ -27,13 +29,13 @@ final class ParagraphsEntityHelper {
       return;
     }
 
-    /** @var \Drupal\media\MediaInterface[] $media_entities */
-    $media_entities = $field_erm_image->referencedEntities();
+    $media = $field_erm_image->entity;
 
-    if (!empty($media_entities)) {
-      $media = reset($media_entities);
-      $media->caption = $field_caption->view(['label' => 'hidden']);
+    if (!$media instanceof \Drupal\media\MediaInterface) {
+      return;
     }
+
+    $media->caption = $field_caption->view(['label' => 'hidden']);
   }
 
 }

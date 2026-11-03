@@ -1,50 +1,82 @@
-$_default-thickness: 1px;
-
-@mixin _animate-underline() {
+/// Sets up an underline reveal/conceal animation anchored to the bottom edge.
+/// Whether the underline is visible by default or hidden by default, and the
+/// active-state width, are controlled by the calling placeholder's custom
+/// properties — this mixin only wires up the anchor and the transition.
+///
+/// @access private
+///
+/// @param {String} $start-position
+///   The horizontal edge the underline grows/shrinks from: `left` or `right`.
+///
+@mixin _animate-underline($start-position) {
   display: inline;
   line-height: 1;
   background-image: linear-gradient(0deg,
-    var(--animate-underline--underline-color, currentColor) 0%,
-    var(--animate-underline--underline-color, currentColor) 100%
-  );
+    var(--animate-underline--underline-color, currentColor));
   background-size:
     var(--animate-underline--bg-size--width, 0%)
-    var(--animate-underline--bg-size--thickness, #{$_default-thickness});
+    var(--animate-underline--bg-size--thickness, 1px);
   background-repeat: no-repeat;
-  background-position-y: var(--animate-underline--bg-position-y, bottom);
-  background-position-x: var(--animate-underline--bg-position-x);
-  transition: all 200ms ease-in-out;
+  background-position-y: bottom;
+  background-position-x: $start-position;
+  transition: background-size 200ms ease-in-out;
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     --animate-underline--bg-size--width: var(--animate-underline--bg-size--width--active);
   }
 }
 
+/// Underline is shown by default and recedes toward the right on hover/focus.
+///
+/// @access public
+///
+/// @require {mixin} _animate-underline
+///
 %animate-underline-to-right {
-  --animate-underline--bg-position-x: left;
   --animate-underline--bg-size--width: 100%;
   --animate-underline--bg-size--width--active: 0%;
-  @include _animate-underline();
+  @include _animate-underline(right);
 }
 
+/// Underline is hidden by default and grows in toward the right on hover/focus.
+///
+/// Anchored at `left` (the opposite edge of %animate-underline-to-right)
+/// since a reveal must grow from the edge the line is travelling away from.
+///
+/// @access public
+///
+/// @require {mixin} _animate-underline
+///
 %animate-underline-in-to-right {
-  --animate-underline--bg-position-x: left;
   --animate-underline--bg-size--width: 0%;
   --animate-underline--bg-size--width--active: 100%;
-  @include _animate-underline();
+  @include _animate-underline(left);
 }
 
+/// Underline is shown by default and recedes toward the left on hover/focus.
+///
+/// @access public
+///
+/// @require {mixin} _animate-underline
+///
 %animate-underline-to-left {
-  --animate-underline--bg-position-x: right;
   --animate-underline--bg-size--width: 100%;
   --animate-underline--bg-size--width--active: 0%;
-  @include _animate-underline();
+  @include _animate-underline(left);
 }
 
+/// Underline is hidden by default and grows in toward the left on hover/focus.
+///
+/// Anchored at `right` (the opposite edge of %animate-underline-to-left)
+/// since a reveal must grow from the edge the line is travelling away from.
+///
+/// @access public
+///
+/// @require {mixin} _animate-underline
+///
 %animate-underline-in-to-left {
-  --animate-underline--bg-position-x: right;
-  --animate-underline--bg-size--width--active: 100%;
   --animate-underline--bg-size--width: 0%;
-  @include _animate-underline();
+  --animate-underline--bg-size--width--active: 100%;
+  @include _animate-underline(right);
 }

@@ -21,7 +21,7 @@
 
   //         // Set the label back to look like a label once again.
   //         --form--label--color: var(--form-text);
-  //         font-size: site-config.$form-label-font-size;
+  //         --form--label--font-size: #{site-config.$form-label-font-size};
 
   //         top: 0;
   //       }
@@ -33,7 +33,7 @@
   //     label {
   //       // By default set the label to look like the input.
   //       --form--label--color: var(--form--input--color);
-  //       font-size: site-config.$form-input-font-size;
+  //       --form--label--font-size: #{site-config.$form-input-font-size};
 
   //       position: absolute;
   //       top: calc(#{site-config.$form-input-block-padding} + #{site-config.$form-label-font-size});

@@ -1,12 +1,11 @@
 @use "@s360-base-theme/ui-core/site-config";
-@use "@s360-base-theme/ui-core/mq";
 @use "s360-scss-toolkit" as s360;
 
 .layout--four-column {
   // **************************************************
   // MEDIA QUERIES
 
-  @media (min-width: mq.$mq-1024) {
+  @container (width > 896px) {
     > .layout__content > .layout__regions {
       grid-template-columns: repeat(12, minmax(0, 1fr));
 

@@ -10,12 +10,18 @@ import { setPublishedStatus } from '.storybook/utils';
  */
 export default {
   title: 'Layout Components/Image',
+  args: {
+    paragraph_is_published: true,
+  },
+  argTypes: {
+    paragraph_is_published: { name: 'Published' }
+  }
 };
 
 export const image = (args) => {
   // Create deep copy of data and merge args.
   let data = Object.assign(structuredClone(imageData ?? {}), args);
-  data.paragraph = setPublishedStatus(data.paragraph_is_published);
+  data.paragraph = setPublishedStatus(data.paragraph_is_published ?? true);
 
   return imageTwig({
     ...data,

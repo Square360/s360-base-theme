@@ -50,6 +50,9 @@ export default function (plop) {
         if (data.viewMode === 'full') {
           componentBaseClass = 'node';
 
+          data.includeIsPublished = true;
+          data.componentClassArray = 'node_classes';
+
           /**
            * @see component.twig.hbs
            */
@@ -58,6 +61,9 @@ export default function (plop) {
         }
         else if (data.viewMode.includes('teaser')) {
           componentBaseClass = 'node-teaser';
+
+          data.includeIsPublished = false;
+          data.componentClassArray = 'node_teaser_classes';
 
           /**
            * @see component.twig.hbs
@@ -110,6 +116,9 @@ export default function (plop) {
         data.storybookTitle = `Layout Components/${ plop.getHelper('titleCase')(data.componentName).replace(/[^\w\s]/gi, ' ') }`;
         data.storybookFunctionName = plop.getHelper('camelCase')(data.componentName);
         data.storybookComponentName = plop.getHelper('camelCase')(data.componentName);
+        data.includeIsPublished = true;
+
+        data.componentClassArray = 'paragraph_classes';
 
         /**
          * @see component.twig.hbs

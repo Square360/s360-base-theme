@@ -32,3 +32,15 @@
     background-color: var(--a--bg-color--active, var(--a--bg-color));
   }
 }
+
+/// Creates a hidden full width/height on the link so everything is clickable.
+@mixin stretch($pseudo-element: before) {
+  --a--position: static;
+
+  &::#{$pseudo-element} {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+}

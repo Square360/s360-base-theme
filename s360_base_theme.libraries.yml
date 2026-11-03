@@ -16,4 +16,5 @@ site-layout:
   js:
     ui/dist/site-layout/site-header/site-header.js: { attributes: { defer: true } }
   dependencies:
+    - core/drupal
     - core/once

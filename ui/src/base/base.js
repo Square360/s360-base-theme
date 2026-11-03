@@ -18,20 +18,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Only update if the value has changed to avoid unnecessary DOM updates.
     if (lastScrollbarWidth !== scrollbarWidth) {
-      HTML.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+      HTML.style.setProperty('--scrollbar-width', `${ scrollbarWidth }px`);
 
       lastScrollbarWidth = scrollbarWidth;
     }
-  };
+  }
+
+  const setAdminPadding = () => {
+    HTML.style.setProperty('--site-padding-top', `${ HTML.style['scroll-padding-top'] }`);
+  }
 
   /**
-   * Debounced handler for scrollbar width updates.
-   * Used by both resize and mutation observers.
+   * Debounced handler for scrollbar width and admin padding updates.
+   * Used by both resize and resize observers.
    */
-  const debouncedScrollbarUpdate = () => {
+  const debouncedResizeUpdate = () => {
     clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(updateScrollbarWidth, 16);
-  };
+    resizeTimeout = setTimeout(() => {
+      updateScrollbarWidth();
+      setAdminPadding();
+    }, 16);
+  }
 
   /**
    * Opens details elements based on the current hash in the URL.
@@ -62,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const handleResize = () => {
-    debouncedScrollbarUpdate();
+    debouncedResizeUpdate();
   };
 
   const handleMutationObserver = () => {
@@ -71,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const handleResizeObserver = () => {
-    debouncedScrollbarUpdate();
+    debouncedResizeUpdate();
   };
 
   /**
@@ -110,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * Initialize
    */
 
+  setAdminPadding();
   openDetailsFromHash();
   updateScrollbarWidth();
 });
