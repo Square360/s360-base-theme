@@ -68,6 +68,7 @@ final class FileEntityHelper {
 
     return [
       'file' => [
+        'id' => $file->id(),
         'entity' => $file,
         'size' => static::formatFileSize((int) $file_size),
         'filename' => $file_filename,
