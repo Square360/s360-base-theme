@@ -9,27 +9,24 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-const aliases = {
-  SRC_IMAGES: path.resolve(__dirname, 'src/images'),
-  vendors: path.resolve(__dirname, 'vendors'),
-  utils: path.resolve(__dirname, 'utils')
-}
+const baseUiRoot = path.resolve(__dirname, '..');
 
 /**
  * Creates Vite entry names from matching JavaScript source files.
  *
- * @param {string} pattern Glob pattern used to find entry files.
+ * @param {string} uiRoot Theme UI root.
+ * @param {string[]} [files] Optional source files already found by a glob.
  * @returns {Record<string, string>} Entry names mapped to absolute source paths.
  */
-function getEntries(pattern) {
+function getEntries(uiRoot, files = globSync(path.resolve(uiRoot, 'src/**/!(_*|*.stories|*.component|*.min|*.test).js'), { absolute: true })) {
   const entries = {};
 
-  for (const file of globSync(pattern, { absolute: true })) {
-    let filePath = file.split(`${path.sep}src${path.sep}`)[1];
+  for (const file of files) {
+    let filePath = path.relative(path.resolve(uiRoot, 'src'), file);
+    const templateIndex = filePath.split(path.sep).indexOf('templates');
 
-    if (filePath.includes(`templates${path.sep}`)) {
-      filePath = filePath.split(`templates${path.sep}`)[1];
+    if (templateIndex !== -1) {
+      filePath = filePath.split(path.sep).slice(templateIndex + 1).join(path.sep);
     }
 
     filePath = filePath.split(`${path.sep}component${path.sep}`).join(path.sep);
@@ -46,7 +43,38 @@ function getEntries(pattern) {
  * @returns {Record<string, string>} Entry names mapped to absolute source paths.
  */
 export function getThemeEntries() {
-  return getEntries(path.resolve(__dirname, 'src/**/!(_*|*.stories|*.component|*.min|*.test).js'));
+  return getEntries(baseUiRoot);
+}
+
+/**
+ * Gets entry points grouped by the UI root that owns their source and assets.
+ *
+ * @returns {{name: string, uiRoot: string, entries: Record<string, string>}[]}
+ */
+export function getThemeGroups() {
+  return [
+    { name: 's360_base_theme', uiRoot: baseUiRoot, entries: getThemeEntries() },
+    ...getSubThemeEntries()
+  ];
+}
+
+/**
+ * Gets named entry descriptors for explicitly registered subthemes.
+ *
+ * @returns {{name: string, uiRoot: string, entries: Record<string, string>}[]} Descriptors for registered subthemes.
+ */
+export function getSubThemeEntries() {
+  const SUBTHEMES = [{
+    name: '',
+    uiRoot: '' // path.resolve(baseUiRoot, '../themes/[path_to_subtheme]')
+  }];
+
+  return SUBTHEMES
+    .filter(({ name, uiRoot }) => name && uiRoot)
+    .map((subtheme) => ({
+      ...subtheme,
+      entries: getEntries(subtheme.uiRoot)
+    }));
 }
 
 /**
@@ -152,25 +180,22 @@ function cssOutputPathPlugin() {
  *
  * @returns {import('vite').Plugin} Vite plugin.
  */
-function copyThemeImagesPlugin() {
+function copyThemeImagesPlugin(uiRoot) {
+  const imagesRoot = path.resolve(uiRoot, 'src/images');
+
   return {
     name: 'copy-theme-images',
 
     generateBundle() {
       const images = globSync(
-        path.resolve(__dirname, `${aliases['SRC_IMAGES']}/**/*.{gif,png,jpg,jpeg,svg}`),
+        path.resolve(imagesRoot, '**/*.{gif,png,jpg,jpeg,svg}'),
         {
-          ignore: [
-            path.resolve(__dirname, `${aliases['SRC_IMAGES']}/icons/**/*.svg`),
-          ],
+          ignore: [path.resolve(imagesRoot, 'icons/**/*.svg')],
         }
       );
 
       for (const image of images) {
-        const relativePath = path.relative(
-          path.resolve(__dirname, `${aliases['SRC_IMAGES']}`),
-          image
-        );
+        const relativePath = path.relative(imagesRoot, image);
 
         this.emitFile({
           type: 'asset',
@@ -182,8 +207,8 @@ function copyThemeImagesPlugin() {
   };
 }
 
-function svgSpritePlugin() {
-  const iconsDir = path.resolve(__dirname, 'src/images/icons');
+function svgSpritePlugin(uiRoot) {
+  const iconsDir = path.resolve(uiRoot, 'src/images/icons');
 
   return {
     name: 'svg-sprite',
@@ -242,22 +267,28 @@ function svgSpritePlugin() {
  * Creates the Vite configuration for one or more theme entry points.
  *
  * @param {object} options Build configuration overrides.
+ * @param {string} [options.uiRoot=baseUiRoot] Theme UI root.
  * @param {Record<string, string>} [options.entries] Entry names mapped to source paths.
- * @param {boolean} [options.emptyOutDir=true] Whether Vite clears dist before building.
  * @param {'development'|'production'} [options.mode='production'] Build mode.
  * @param {boolean} [options.watch=false] Whether to enable Rollup watch mode.
  * @returns {import('vite').UserConfig} Vite configuration object.
  */
 export function createViteConfig({
-  entries = getThemeEntries(),
+  uiRoot = baseUiRoot,
+  entries = getEntries(uiRoot),
   mode = 'production',
   watch = false
 } = {}) {
   const isProduction = mode === 'production';
+  const aliases = {
+    SRC_IMAGES: path.resolve(uiRoot, 'src/images'),
+    vendors: path.resolve(uiRoot, 'vendors'),
+    utils: path.resolve(uiRoot, 'utils')
+  };
 
   return {
     mode,
-    root: __dirname,
+    root: uiRoot,
     resolve: {
       alias: {
         ...aliases,
@@ -280,8 +311,8 @@ export function createViteConfig({
     plugins: [
       cssUrlFilterPlugin(),
       inlineFontsPlugin(),
-      copyThemeImagesPlugin(),
-      svgSpritePlugin(),
+      copyThemeImagesPlugin(uiRoot),
+      svgSpritePlugin(uiRoot),
       ViteImageOptimizer({
         exclude: /sprite\.svg$/,
         mozjpeg: { quality: 75 },
@@ -299,7 +330,7 @@ export function createViteConfig({
     ],
 
     build: {
-      outDir: path.resolve(__dirname, 'dist'),
+      outDir: path.resolve(uiRoot, 'dist'),
       emptyOutDir: false,
       sourcemap: false,
       cssMinify: isProduction,

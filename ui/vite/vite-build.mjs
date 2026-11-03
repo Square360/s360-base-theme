@@ -1,18 +1,7 @@
 import path from 'node:path';
 import { build } from 'vite';
-import { createViteConfig, getThemeEntries } from '../vite.config.mjs';
+import { createViteConfig, getThemeGroups } from './vite.config.mjs';
 import { mkdir, rm } from 'node:fs/promises';
-
-const __dist = path.resolve(process.cwd(), 'dist');
-
-// Empties and removes the "dist" folder.
-await rm(__dist, {
-  recursive: true,
-  force: true,
-});
-
-// Immediately recreate it.
-await mkdir(__dist, { recursive: true });
 
 /**
  * Whether the build runner should rebuild entries when source files change.
@@ -36,18 +25,20 @@ const modeArgument = process.argv.indexOf('--mode');
 const mode = modeArgument === -1 ? 'production' : process.argv[modeArgument + 1];
 
 /**
- * Theme entry points to build independently.
+ * Theme entry points grouped by their owning UI roots.
  *
- * @type {Record<string, string>}
+ * @type {{uiRoot: string, entries: Record<string, string>}[]}
  */
-const entries = getThemeEntries();
+const themeGroups = getThemeGroups();
 
 /**
  * Entry point names paired with their source files.
  *
  * @type {[string, string][]}
  */
-const entryBuilds = Object.entries(entries);
+const entryBuilds = themeGroups.flatMap(({ uiRoot, entries }) =>
+  Object.entries(entries).map(([entryName, entryFile]) => ({ uiRoot, entryName, entryFile }))
+);
 
 if (!['development', 'production'].includes(mode)) {
   throw new Error(`Unsupported build mode: ${ mode }.`);
@@ -57,9 +48,16 @@ if (entryBuilds.length === 0) {
   throw new Error('No JavaScript entry files were found.');
 }
 
-const buildOptions = entryBuilds.map(([entryName, entryFile], index) => ({
+for (const { uiRoot } of themeGroups) {
+  const dist = path.resolve(uiRoot, 'dist');
+  await rm(dist, { recursive: true, force: true });
+  await mkdir(dist, { recursive: true });
+}
+
+const buildOptions = entryBuilds.map(({ uiRoot, entryName, entryFile }) => ({
   configFile: false,
   ...createViteConfig({
+    uiRoot,
     entries: { [entryName]: entryFile },
     mode,
     watch,
