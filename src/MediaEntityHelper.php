@@ -47,6 +47,7 @@ final class MediaEntityHelper {
     $media_bundle = $media->bundle();
     $media_info = [
       'media' => [
+        'id' => $media->id(),
         'name' => $media->getName(),
         'entity' => $media,
         'type' => $media_bundle,
@@ -228,6 +229,22 @@ final class MediaEntityHelper {
   }
 
   /**
+   * Strips the query string and fragment from a URL.
+   *
+   * Editors paste share links with tracking params (?share=copy&fl=sv&fe=ci)
+   * that would break the video ID parsing.
+   *
+   * @param string $url
+   *   The input URL.
+   *
+   * @return string
+   *   The URL without query string or fragment.
+   */
+  private static function cleanUrl(string $url): string {
+    return preg_replace('/[?#].*$/', '', $url);
+  }
+
+  /**
    * Extracts YouTube provider details from a URL.
    *
    * Supports common YouTube formats such as youtu.be short URLs, watch URLs,
@@ -272,15 +289,18 @@ final class MediaEntityHelper {
    *   Returns NULL when no Vimeo ID is found in the URL.
    */
   private static function getVimeoDetailsFromUrl(string $url): ?array {
-    preg_match('/vimeo\.com\/(?:.*\/)?(\d+)/', $url, $matches);
+    // The unlisted privacy hash is a 10-character segment after the ID; other
+    // trailing segments (e.g. /embed) are ignored.
+    preg_match('~vimeo\.com/(?:[^/\d][^/]*/)*(\d+)(?!\w)(?:/([a-zA-Z0-9]{10})(?![a-zA-Z0-9]))?~', static::cleanUrl($url), $matches);
 
-    if (!$matches[1]) {
+    if (!isset($matches[1])) {
       return NULL;
     }
 
     return [
       'provider' => 'vimeo',
       'video_id' => $matches[1],
+      'privacy_hash' => $matches[2] ?? NULL,
     ];
   }
 
