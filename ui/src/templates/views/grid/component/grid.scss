@@ -11,9 +11,9 @@
   }
 
   // **************************************************
-  // MEDIA QUERIES
+  // RESPONSIVE
 
-  @media (min-width: mq.$mq-768) {
+  @container(width > 768px) {
     &.view--2-columns,
     &.view--3-columns,
     &.view--4-columns {
@@ -23,7 +23,7 @@
     }
   }
 
-  @media (min-width: mq.$mq-1024) {
+  @container(width > 1024px) {
     &.view--3-columns {
       > .view__content > .view__grid {
         --view-grid--gtc: 3;
