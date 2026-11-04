@@ -112,7 +112,6 @@ function get_files_to_copy($skip_sb = FALSE) {
     'ui/package.json',
     'ui/plopfile.mjs',
     'ui/README.md',
-    'ui/vite.config.mjs',
     'ui-core',
     '.editorconfig',
     'package.json',
