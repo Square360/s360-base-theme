@@ -32,7 +32,7 @@
   "dependencies": {
     "@s360-base-theme/ui-core": "workspace:^1.0.0",
     "add-attributes-twig-extension": "0.1.0",
-    "s360-scss-toolkit": "git+https://bitbucket.org/sq360_sysadmin/s360-scss-toolkit.git#1.2.2"
+    "s360-scss-toolkit": "git+https://github.com/Square360/s360-scss-toolkit.git"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "9.1.20",
